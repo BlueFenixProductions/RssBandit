@@ -92,31 +92,11 @@ namespace NewsComponents.Storage
 		#region IUserDataService
 
 		/// <summary>
-		/// Saves the NNTP server definitions.
-		/// </summary>
-		/// <param name="nntpServerDefinitions">The NNTP server definitions.</param>
-		public abstract void SaveNntpServerDefinitions(List<NntpServerDefinition> nntpServerDefinitions);
-
-		/// <summary>
-		/// Loads the NNTP server definitions.
-		/// </summary>
-		/// <returns></returns>
-		public abstract List<NntpServerDefinition> LoadNntpServerDefinitions();
-
-		/// <summary>
 		/// Gets the used data file names.
 		/// </summary>
 		/// <returns></returns>
 		public abstract string[] GetUserDataFileNames();
 
-		/// <summary>
-		/// Sets the content for data file.
-		/// </summary>
-		/// <param name="dataFileName">Name of the data file.</param>
-		/// <param name="content">The content.</param>
-		/// <returns></returns>
-		public abstract DataEntityName SetContentForDataFile(string dataFileName, Stream content);
-		
 		#endregion
 
 		#region Implementation of IDisposable

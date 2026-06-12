@@ -147,14 +147,7 @@ namespace NewsComponents.Feed
             this.optionalElements = optionalElements != null ? new Dictionary<XmlQualifiedName, string>(optionalElements) : new Dictionary<XmlQualifiedName, string>();
             this.language = language;
 
-            if (RssHelper.IsNntpUrl(link))
-            {
-                type = FeedType.Nntp;
-            }
-            else
-            {
-                type = FeedType.Rss;
-            }
+            type = FeedType.Rss;
         }
 
         internal string title;

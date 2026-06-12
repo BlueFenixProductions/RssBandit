@@ -39,23 +39,10 @@ namespace RssBandit.WinGui {
 			this.item2post = item2post;
 			this.inReply2item = inReply2item;
 		}
-		/// <summary>
-		/// Initializes a new instance of the <see cref="PostReplyThreadHandler"/> class.
-		/// </summary>
-		/// <param name="feedHandler">The feed handler.</param>
-		/// <param name="item2post">The item2post.</param>
-		/// <param name="postTarget">The post target.</param>
-		public PostReplyThreadHandler(FeedSource feedHandler, INewsItem item2post, INewsFeed postTarget) {
-			this.feedHandler = feedHandler;
-			this.item2post = item2post;
-			this.postTarget = postTarget;
-		}
-
 		private static readonly log4net.ILog _log = Logger.Log.GetLogger(typeof(PostReplyThreadHandler));
 		private FeedSource feedHandler = null;
 		private string commentApiUri = null;
 		private INewsItem item2post = null, inReply2item = null;
-		private INewsFeed postTarget = null;
 
 		/// <summary>
 		/// Gets or sets the comment API URI.
@@ -75,22 +62,10 @@ namespace RssBandit.WinGui {
 			set {	this.item2post = value;	}
 		}
 
-		/// <summary>
-		/// Gets or sets the post target.
-		/// </summary>
-		/// <value>The post target.</value>
-		public INewsFeed PostTarget {
-			get {	return this.postTarget ;	}
-			set {	this.postTarget = value;	}
-		}
-
 		protected override void Run() {
 
-			try {				
-				if (this.postTarget != null)
-					this.feedHandler.PostComment(item2post, postTarget) ;
-				else
-					this.feedHandler.PostComment(commentApiUri, item2post, inReply2item); 
+			try {
+				this.feedHandler.PostComment(commentApiUri, item2post, inReply2item);
 
 			} catch (ThreadAbortException) {
 				// eat up

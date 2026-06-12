@@ -483,14 +483,7 @@ namespace RssBandit.WinGui.Forms
 						if (Disposing)
 							return;
 
-						if (RssHelper.IsNntpUrl(f.link))
-						{
-							tn = new FeedNode(
-								f.title, Resource.SubscriptionTreeImage.Nntp,
-								Resource.SubscriptionTreeImage.NntpSelected,
-								_treeFeedContextMenu);
-						}
-						else if (RssHelper.IsSecuredFeed(f))
+						if (RssHelper.IsSecuredFeed(f))
 						{
 							tn = new FeedNode(f.title, Resource.SubscriptionTreeImage.FeedSecured,
 											  Resource.SubscriptionTreeImage.FeedSecuredSelected,
@@ -1019,14 +1012,7 @@ namespace RssBandit.WinGui.Forms
                     "+cmdFlagNewsItem", "+cmdNavigateToFeedHome", "+cmdNavigateToFeedCosmos",
                     "+cmdViewSourceOfFeed", "+cmdValidateFeed");
 
-                if (RssHelper.IsNntpUrl(feedsNode.DataKey))
-                {
-                    _feedInfoContextMenu.Enabled = false;
-                }
-                else
-                {
-                    _feedInfoContextMenu.Enabled = true;
-                }
+                _feedInfoContextMenu.Enabled = true;
             }
             else if (feedsNode.Type == FeedNodeType.SmartFolder)
             {
@@ -1391,13 +1377,7 @@ namespace RssBandit.WinGui.Forms
         {
             TreeFeedsNodeBase tn;
 
-            if (RssHelper.IsNntpUrl(f.link))
-            {
-                tn = new FeedNode(f.title, Resource.SubscriptionTreeImage.Nntp,
-                                  Resource.SubscriptionTreeImage.NntpSelected,
-                                  _treeFeedContextMenu);
-            }
-            else if (RssHelper.IsSecuredFeed(f))
+            if (RssHelper.IsSecuredFeed(f))
             {
 				tn = new FeedNode(f.title, Resource.SubscriptionTreeImage.FeedSecured,
 								  Resource.SubscriptionTreeImage.FeedSecuredSelected,

@@ -107,7 +107,6 @@ namespace RssBandit
 			public const int ItemDetailViewAtTop = 20;	
 			public const int ItemDetailViewWithoutList = 21;	
 
-			public const int NewNntpSubscription = 22;	
 			public const int NewDiscoveredSubscription = 23;	
 			
 			/// <summary>
@@ -194,18 +193,6 @@ namespace RssBandit
 			public const int FeedSecuredSelected = 7;
 			public const int FeedUpdating = 8;
 			public const int FeedUpdatingSelected = 8;
-
-			// nntp node images
-			public const int Nntp = 23;
-			public const int NntpSelected = 23;
-			public const int NntpDisabled = 24;
-			public const int NntpDisabledSelected = 24;
-			public const int NntpFailure = 25;
-			public const int NntpFailureSelected = 25;
-			public const int NntpSecured = 26;
-			public const int NntpSecuredSelected = 26;
-			public const int NntpUpdating = 27;
-			public const int NntpUpdatingSelected = 27;
 
 			// feed/news failures
 			public const int Exceptions = 9;

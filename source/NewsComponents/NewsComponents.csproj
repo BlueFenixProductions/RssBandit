@@ -6,12 +6,6 @@
     </PropertyGroup>
 
   <ItemGroup>
-    <Reference Include="Org.Mime4Net, Version=1.8.3189.15061, Culture=neutral, PublicKeyToken=39cb28311174616c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Common\Libraries\Org.Mime4Net.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="..\Common\*.cs" />
     <Compile Update="Resources\ComponentsText.Designer.cs">
       <AutoGen>True</AutoGen>

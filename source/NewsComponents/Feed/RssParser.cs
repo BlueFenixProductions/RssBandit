@@ -170,7 +170,7 @@ namespace NewsComponents.Feed
         {
             if (string.IsNullOrEmpty(url))
                 return false;
-            if (url.StartsWith("nntp") || url.StartsWith("news") || url.StartsWith("http") || url.StartsWith("file") ||
+            if (url.StartsWith("http") || url.StartsWith("file") ||
                 File.Exists(url))
                 return true;
             return false;
@@ -1628,7 +1628,6 @@ namespace NewsComponents.Feed
 
             //int iSize = 0;	   
 
-            bool isNntpFeed = f.link.StartsWith("news") || f.link.StartsWith("nntp");
 
             for (int i = 0, count = items.Count; i < count; i++)
             {
@@ -1659,11 +1658,6 @@ namespace NewsComponents.Feed
                     // update with channel build date, if not added to relationCosmos (that adjust the date)
                     ri.Date = channelBuildDate;
                     channelBuildDate = channelBuildDate.AddSeconds(-1.0); // make it a bit older then the previous
-                }
-
-                if (isNntpFeed)
-                {
-                    ri.CommentStyle = SupportedCommentStyle.NNTP;
                 }
 
                 if ((f.deletedstories.Contains(ri.Id) ||

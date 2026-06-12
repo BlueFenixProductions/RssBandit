@@ -14,7 +14,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml;
 using NewsComponents.Feed;
-using NewsComponents.News;
 
 namespace NewsComponents.Utils
 {
@@ -421,20 +420,6 @@ namespace NewsComponents.Utils
 			if (string.IsNullOrEmpty(url))
 				return false;
 			if (url.StartsWith("http") || url.StartsWith("file") || File.Exists(url))
-				return true;
-			return false;
-		}
-
-		/// <summary>
-		/// Returns true, if the url is a valid NNTP Url
-		/// </summary>
-		/// <param name="url"></param>
-		/// <returns></returns>
-		public static bool IsNntpUrl(string url) 
-		{
-			if (string.IsNullOrEmpty(url))
-				return false;
-			if (url.StartsWith(NntpWebRequest.NntpUriScheme) || url.StartsWith(NntpWebRequest.NewsUriScheme) || url.StartsWith(NntpWebRequest.NntpsUriScheme))
 				return true;
 			return false;
 		}

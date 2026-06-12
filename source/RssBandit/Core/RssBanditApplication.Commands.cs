@@ -316,7 +316,6 @@ namespace RssBandit
                             "  * and all the active members of RSS Bandit community.\n" +
                             "\nCredits:\n\n" +
                             "  * Mike Krueger (#ZipLib)\n" +
-                            "  * Jack Palevich (NntpClient)\n" +
                             "  * Scott McMaster (WinInetAPI)\n" +
                             "  * NetAdvantage for Windows Forms (c) 2020 by Infragistics, http://www.infragistics.com\n" +
                             "  * SandBar, SandDock (c) 2005 by Divelements Limited, http://www.divil.co.uk/net/\n" +
@@ -513,21 +512,6 @@ namespace RssBandit
             string category = guiMain.CategoryOfSelectedNode() ?? DefaultCategory;
 
         	SubscribeToFeed(null, category.Trim(), null, null, AddSubscriptionWizardMode.SubscribeURLDirect);
-
-            if (sender is AppContextMenuCommand)
-                guiMain.CurrentSelectedFeedsNode = null;
-        }
-
-        /// <summary>
-        /// Pops up the SubscriptionWizard and adds a new feed to the list 
-        /// of subscribed feeds. WizardMode.SubscribeNNTPDirect
-        /// </summary>
-        /// <param name="sender">Object that initiates the call</param>
-        public void CmdNewNntpFeed(ICommand sender)
-        {
-            string category = guiMain.CategoryOfSelectedNode() ?? DefaultCategory;
-
-        	SubscribeToFeed(null, category.Trim(), null, null, AddSubscriptionWizardMode.SubscribeNNTPDirect);
 
             if (sender is AppContextMenuCommand)
                 guiMain.CurrentSelectedFeedsNode = null;
@@ -1538,8 +1522,7 @@ namespace RssBandit
 
         /// <summary>
         /// Opens the reply post window to allow a user to
-        /// answer to an post (send a comment to a feed item) 
-        /// or reply to NNTP group post.
+        /// answer to an post (send a comment to a feed item).
         /// </summary>
         /// <param name="sender">Object that initiates the call</param>
         public void CmdPostReplyToItem(ICommand sender)
@@ -1564,47 +1547,6 @@ namespace RssBandit
 
             postReplyForm.Show(); // open non-modal
             Win32.NativeMethods.SetForegroundWindow(postReplyForm.Handle);
-        }
-
-        /// <summary>
-        /// Opens the new post window to allow a user to
-        /// create a new post to send to a NNTP group.
-        /// </summary>
-        /// <param name="sender">Object that initiates the call</param>
-        public void CmdPostNewItem(ICommand sender)
-        {
-            TreeFeedsNodeBase tn = guiMain.CurrentSelectedFeedsNode;            
-            if (tn == null || tn.Type != FeedNodeType.Feed)
-            {
-               // Mediator.SetEnabled("-cmdFeedItemNewPost");
-                return;
-            }
-
-            string feedUrl = tn.DataKey;
-            FeedSource source = guiMain.FeedSourceOf(tn); 
-
-            if (feedUrl == null ||
-                !RssHelper.IsNntpUrl(feedUrl) ||
-                !source.IsSubscribed(feedUrl))
-            {
-              //  Mediator.SetEnabled("-cmdFeedItemNewPost");
-                return;
-            }
-
-            if ((postReplyForm == null) || (postReplyForm.IsDisposed))
-            {
-                postReplyForm = new PostReplyForm(Preferences.UserIdentityForComments, IdentityManager);
-                postReplyForm.PostReply += OnPostReplyFormPostReply;
-            }
-
-            INewsFeed f;
-
-            if (source.GetFeeds().TryGetValue(feedUrl, out f)) {
-                postReplyForm.PostToFeed = f;
-
-                postReplyForm.Show(); // open non-modal
-                Win32.NativeMethods.SetForegroundWindow(postReplyForm.Handle);
-            }
         }
 
         public void CmdBrowserGoBack(ICommand sender)

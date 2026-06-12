@@ -24,12 +24,10 @@ namespace RssBandit.WinGui.Dialogs
 {
 
 	/// <summary>
-	/// SynchronizeFeedsWizard summerize and handles 
+	/// SynchronizeFeedsWizard summerize and handles
 	/// all kind of subscriptions now:
 	///   By URL (direct, and autodiscovered)
 	///   By Search/Topic
-	///   NNTP Groups
-	///   Direct NNTP Group
 	/// </summary>
 	internal partial class AddSubscriptionWizard : Form, IWaitDialog
 	{
@@ -102,7 +100,6 @@ namespace RssBandit.WinGui.Dialogs
 		private System.Windows.Forms.RadioButton radioNewByTopicSearch;
 		private System.Windows.Forms.RadioButton radioNewByURL;
 		private Divelements.WizardFramework.WizardPage pageNewByURL;
-		private System.Windows.Forms.RadioButton radioNewByNNTPGroup;
 		private System.Windows.Forms.LinkLabel lblNewByURLIntro;
 		private System.Windows.Forms.CheckBox checkNewByURLValidate;
 		private System.Windows.Forms.Label lblNewByURL;
@@ -120,13 +117,7 @@ namespace RssBandit.WinGui.Dialogs
 		private System.Windows.Forms.Label lblFeedCredentialsIntro;
 		private System.Windows.Forms.Label lblPassword;
 		private System.Windows.Forms.Label lblUsername;
-		private Divelements.WizardFramework.WizardPage pageNewByNNTPGroup;
 		private System.Windows.Forms.Button btnManageSearchEngines;
-		private System.Windows.Forms.Button btnManageNNTPServer;
-		private System.Windows.Forms.ComboBox cboNNTPServer;
-		private System.Windows.Forms.ListBox lstNNTPGroups;
-		private System.Windows.Forms.Label lblNNTPGroups;
-		private System.Windows.Forms.Label lblNNTPServer;
 		private System.Windows.Forms.CheckBox checkMarkItemsReadOnExiting;
 		private System.Windows.Forms.CheckBox checkEnableAlertOnNewItems;
 		private System.Windows.Forms.CheckBox checkUseCustomFormatter;
@@ -135,14 +126,10 @@ namespace RssBandit.WinGui.Dialogs
 		private System.Windows.Forms.TextBox textUser;
 		private System.Windows.Forms.TextBox textPassword;
 		private System.Windows.Forms.Label lblWaitStepIntro;
-		private System.Windows.Forms.LinkLabel lblNewByNNTPGroupIntro;
-		private System.Windows.Forms.LinkLabel lblReloadNntpListOfGroups;
 		private System.Windows.Forms.LinkLabel lblAutodiscoverHelp;
 		private System.Windows.Forms.PictureBox pictureHelpAutodiscover;
 		private System.Windows.Forms.PictureBox pictureHelpSyndic8;
 		private System.Windows.Forms.LinkLabel lblSyndic8Help;
-		private System.Windows.Forms.PictureBox pictureBox1;
-		private System.Windows.Forms.LinkLabel lblUsenetHelp;
 		private System.Windows.Forms.Timer timerStartValidation;
 		private System.Windows.Forms.LinkLabel linkLabelCanonicalUrl;
 		private System.Windows.Forms.ToolTip toolTip;
@@ -166,10 +153,8 @@ namespace RssBandit.WinGui.Dialogs
 			this.wizard.MarginImage = Properties.Resources.subscription_wizard_welcome;
 
 			// fix the link label(s) linkarea size to fit the whole text (in all translations):
-			this.lblReloadNntpListOfGroups.LinkArea = new LinkArea(0,this.lblReloadNntpListOfGroups.Text.Length );
 			this.lblAutodiscoverHelp.LinkArea = new LinkArea(0, this.lblAutodiscoverHelp.Text.Length);
 			this.lblSyndic8Help.LinkArea = new LinkArea(0, this.lblSyndic8Help.Text.Length);
-			this.lblUsenetHelp.LinkArea = new LinkArea(0, this.lblUsenetHelp.Text.Length);
 		}
 
         public AddSubscriptionWizard(AddSubscriptionWizardMode mode)
@@ -313,15 +298,6 @@ namespace RssBandit.WinGui.Dialogs
 					pageNewByURL.PreviousPage = pageWelcome;
 					pageTitleCategory.PreviousPage = pageNewByURL;
 					break;
-				case AddSubscriptionWizardMode.SubscribeNNTPGroup:
-					pageHowToSelection.NextPage = pageNewByNNTPGroup;
-					pageTitleCategory.PreviousPage = pageNewByNNTPGroup;
-					break;
-				case AddSubscriptionWizardMode.SubscribeNNTPDirect:
-					pageWelcome.NextPage = pageNewByNNTPGroup;
-					pageNewByNNTPGroup.PreviousPage = pageWelcome;
-					pageTitleCategory.PreviousPage = pageNewByNNTPGroup;
-					break;
 				case AddSubscriptionWizardMode.SubscribeSearch:
 					pageHowToSelection.NextPage = pageNewBySearchTopic;
 					pageFoundMultipleFeeds.PreviousPage = pageNewBySearchTopic;
@@ -332,10 +308,6 @@ namespace RssBandit.WinGui.Dialogs
 					pageNewBySearchTopic.PreviousPage = pageWelcome;
 					pageFoundMultipleFeeds.PreviousPage = pageNewBySearchTopic;
 					pageTitleCategory.PreviousPage = pageFoundMultipleFeeds;
-					break;
-				case AddSubscriptionWizardMode.SubscribeNNTPGroupDirect:
-					pageWelcome.NextPage = pageTitleCategory;
-					pageTitleCategory.PreviousPage = pageWelcome;
 					break;
 				default:
 					throw new InvalidOperationException("WizardMode '" + m.ToString() + "' not supported");
@@ -623,35 +595,6 @@ namespace RssBandit.WinGui.Dialogs
 				comboFormatters.SelectedIndex = 0;
 		}
 		
-		private void PopulateNntpServerDefinitions(IDictionary<string, INntpServerDefinition> definitions, string selectedServer) {
-			cboNNTPServer.Items.Clear();
-			int selIndex = -1;
-			foreach (INntpServerDefinition sd in definitions.Values) {
-				int index = cboNNTPServer.Items.Add(sd.Name);
-				if (sd.Name.Equals(selectedServer))
-					selIndex = index;
-			}
-			if (selIndex >= 0)
-				cboNNTPServer.SelectedIndex = selIndex;
-			else if (cboNNTPServer.Items.Count > 0)
-				cboNNTPServer.SelectedIndex = 0;
-		}
-
-		private void PopulateNntpServerGroups(bool forceReloadFromServer) {
-			pageNewByNNTPGroup.AllowMoveNext = false;
-			lstNNTPGroups.Items.Clear();
-			string nntpServer = cboNNTPServer.Text;
-			if (string.IsNullOrEmpty(nntpServer)) {
-				return;
-			}
-			IList groups = coreApplication.GetNntpNewsGroups(nntpServer, forceReloadFromServer);
-			if (groups != null && groups.Count > 0) {
-				object[] g = new object[groups.Count];
-				groups.CopyTo(g, 0);
-				lstNNTPGroups.Items.AddRange(g);
-			}
-		}
-
 		private string ValidateFeedUri(WizardPage page, string url) {
 			Exception ex;
 			string validUrl = this.ValidateFeedUri(url, out ex);
@@ -730,12 +673,7 @@ namespace RssBandit.WinGui.Dialogs
 		/// 	<c>true</c> if multiple feeds to subscribe; otherwise, <c>false</c>.
 		/// </value>
 		public bool MultipleFeedsToSubscribe {
-			get { 
-				if ((this.wizardMode == AddSubscriptionWizardMode.SubscribeNNTPDirect ||
-					this.wizardMode == AddSubscriptionWizardMode.SubscribeNNTPGroup ||
-					this.wizardMode == AddSubscriptionWizardMode.SubscribeNNTPGroupDirect) &&
-					this.lstNNTPGroups.SelectedItems.Count > 1)
-					return true;
+			get {
 				if ((this.wizardMode == AddSubscriptionWizardMode.SubscribeURL ||
 					this.wizardMode == AddSubscriptionWizardMode.SubscribeURLDirect ) &&
 					this.listFeeds.SelectedItems.Count > 1)
@@ -750,15 +688,11 @@ namespace RssBandit.WinGui.Dialogs
 		/// <value>int</value>
 		public int MultipleFeedsToSubscribeCount {
 			get {
-				if ((this.wizardMode == AddSubscriptionWizardMode.SubscribeNNTPDirect ||
-					this.wizardMode == AddSubscriptionWizardMode.SubscribeNNTPGroup ||
-					this.wizardMode == AddSubscriptionWizardMode.SubscribeNNTPGroupDirect))
-					return this.lstNNTPGroups.SelectedItems.Count;
 				if ((this.wizardMode == AddSubscriptionWizardMode.SubscribeURL ||
 					this.wizardMode == AddSubscriptionWizardMode.SubscribeURLDirect ))
 					return this.listFeeds.SelectedItems.Count;
 				return 0;
-			}	
+			}
 		}
 
 		/// <summary>
@@ -767,29 +701,12 @@ namespace RssBandit.WinGui.Dialogs
 		/// <param name="index">The index.</param>
 		/// <returns></returns>
 		public string FeedUrls(int index) {
-			
-			if (this.wizardMode == AddSubscriptionWizardMode.SubscribeNNTPDirect ||
-				this.wizardMode == AddSubscriptionWizardMode.SubscribeNNTPGroup ||
-				this.wizardMode == AddSubscriptionWizardMode.SubscribeNNTPGroupDirect) {
-				
-				if (this.lstNNTPGroups.SelectedItems.Count > 0) {
-					string newsServer = String.Empty;
-					INntpServerDefinition sd = this.coreApplication.NntpServerDefinitions[cboNNTPServer.Text];
 
-					if(sd != null){
-						newsServer = sd.Server; 						
-					}	
-					return "nntp://" + newsServer + "/" + this.lstNNTPGroups.SelectedItems[index].ToString(); 
-				
-				} else {
-					return this.FeedUrl;
-				}
-
-			} else if (this.wizardMode == AddSubscriptionWizardMode.SubscribeURL ||
+			if (this.wizardMode == AddSubscriptionWizardMode.SubscribeURL ||
 					this.wizardMode == AddSubscriptionWizardMode.SubscribeURLDirect ) {
 
                         if (this.listFeeds.Items.Count == 1)
-                            return (string)this.listFeeds.Items[0].Tag; 
+                            return (string)this.listFeeds.Items[0].Tag;
                         else if (this.listFeeds.SelectedItems.Count > 0)
                             return (string)this.listFeeds.SelectedItems[index].Tag;
                         else
@@ -800,8 +717,8 @@ namespace RssBandit.WinGui.Dialogs
 				return this.FeedUrl;
 
 			}
-		
-		} 
+
+		}
 		
 		/// <summary>
 		/// Gets the indexed feed title.
@@ -809,16 +726,8 @@ namespace RssBandit.WinGui.Dialogs
 		/// <param name="index">The index.</param>
 		/// <returns></returns>
 		public string FeedTitles(int index) {
-			
-			if (this.wizardMode == AddSubscriptionWizardMode.SubscribeNNTPDirect ||
-				this.wizardMode == AddSubscriptionWizardMode.SubscribeNNTPGroup ||
-				this.wizardMode == AddSubscriptionWizardMode.SubscribeNNTPGroupDirect)
-			{
-				if (this.lstNNTPGroups.SelectedItems.Count > 1)
-					return this.lstNNTPGroups.SelectedItems[index].ToString();
-				return this.FeedTitle;
-			}
-			else if (this.wizardMode == AddSubscriptionWizardMode.SubscribeURL ||
+
+			if (this.wizardMode == AddSubscriptionWizardMode.SubscribeURL ||
 				this.wizardMode == AddSubscriptionWizardMode.SubscribeURLDirect )
 			{
 				if (this.listFeeds.SelectedItems.Count > 1)
@@ -1148,8 +1057,6 @@ namespace RssBandit.WinGui.Dialogs
 				WireStepsForMode(AddSubscriptionWizardMode.SubscribeURL);
 			else if (sender == radioNewByTopicSearch)
 				WireStepsForMode(AddSubscriptionWizardMode.SubscribeSearch);
-			else if (sender == radioNewByNNTPGroup)
-				WireStepsForMode(AddSubscriptionWizardMode.SubscribeNNTPGroup);
 		}
 
 		private void OnAutodiscoverVerifyCheckedChanged(object sender, EventArgs e) {
@@ -1202,10 +1109,7 @@ namespace RssBandit.WinGui.Dialogs
 			this._btnImmediateFinish.Visible = true;
 			this.txtFeedTitle.Enabled = !this.MultipleFeedsToSubscribe;
 
-			if (this.wizardMode == AddSubscriptionWizardMode.SubscribeNNTPDirect ||
-				this.wizardMode == AddSubscriptionWizardMode.SubscribeNNTPGroup ||
-				this.wizardMode == AddSubscriptionWizardMode.SubscribeNNTPGroupDirect ||
-				this.credentialsStepReWired) 
+			if (this.credentialsStepReWired)
 			{
 				if (this.credentialsStepReWired)
 					this.pageTitleCategory.PreviousPage = this.pageFeedCredentials;
@@ -1233,12 +1137,6 @@ namespace RssBandit.WinGui.Dialogs
 			this.WireStepsForMode(AddSubscriptionWizardMode.SubscribeURL);
 		}
 
-		private void OnPageNewNNTPGroupAfterDisplay(object sender, EventArgs e) {
-			this.feedInfo = null;
-			pageNewByNNTPGroup.AllowMoveNext = false;
-			PopulateNntpServerDefinitions(coreApplication.NntpServerDefinitions, null);
-		}
-
 		private void OnPageNewURLAfterDisplay(object sender, EventArgs e) {
 			this.feedInfo = null;
 			if (string.IsNullOrEmpty(this.txtNewByURL.Text))
@@ -1248,39 +1146,6 @@ namespace RssBandit.WinGui.Dialogs
 		private void OnPageNewSearchAfterDisplay(object sender, EventArgs e) {
 			this.feedInfo = null;
 			this.PopulateSearchEngines(coreApplication.WebSearchEngines, cboNewBySearchEngines.Text);
-		}
-
-		private void btnManageNNTPServer_Click(object sender, EventArgs e) {
-			coreApplication.ShowNntpServerManagementDialog(this, this.OnManagedNNTPServersChange);
-		}
-		
-		private void OnManagedNNTPServersChange(object sender, EventArgs e) {
-			this.PopulateNntpServerDefinitions(coreApplication.NntpServerDefinitions, cboNNTPServer.Text);
-		}
-
-		private void OnNNTPServerSelectedValueChanged(object sender, EventArgs e) {
-			this.PopulateNntpServerGroups(false);
-		}
-
-		private void OnNNTPGroupsListSelectedValueChanged(object sender, EventArgs e) {
-			pageNewByNNTPGroup.AllowMoveNext = lstNNTPGroups.SelectedItems.Count > 0;
-			if (lstNNTPGroups.SelectedItems.Count == 1) {
-				txtFeedTitle.Text = lstNNTPGroups.SelectedItems[0].ToString();
-			} else if(lstNNTPGroups.SelectedItems.Count > 1) {
-				txtFeedTitle.Text = string.Empty;
-			}
-		}
-
-		private void OnNNTPGroupsDoubleClick(object sender, EventArgs e) {
-			if (lstNNTPGroups.SelectedItems.Count > 0) {
-				pageNewByNNTPGroup.AllowMoveNext = true;
-				if (lstNNTPGroups.SelectedItems.Count == 1) {
-					txtFeedTitle.Text = lstNNTPGroups.SelectedItems[0].ToString();
-				} else {
-					txtFeedTitle.Text = string.Empty;
-				}
-				wizard.GoNext();
-			}
 		}
 
 		private void OnPageFeedItemDisplayAfterDisplay(object sender, EventArgs e) {
@@ -1301,28 +1166,18 @@ namespace RssBandit.WinGui.Dialogs
 			}
 		}
 		
-		private void OnReloadNntpGroupList(object sender, LinkLabelLinkClickedEventArgs e) {
-			try {
-				this.PopulateNntpServerGroups(true);
-			} catch (Exception ex) {
-				RssBanditApplication.PublishException(ex, false);
-			}
-		}
-
 		/// <summary>
-		/// Ensures the Feed URL is valid and is in the proper form if an NNTP URL
-		/// </summary>		
+		/// Ensures the Feed URL is valid and is in the proper form
+		/// </summary>
 		private void ProcessFeedUrl(){
-		
-			Exception invalidUriException; 
 
-			if(radioNewByNNTPGroup.Checked || this.MultipleFeedsToSubscribe ||
-				(this.wizardMode == AddSubscriptionWizardMode.SubscribeNNTPDirect) ||
-				(this.wizardMode == AddSubscriptionWizardMode.SubscribeNNTPGroup) ){
-				
+			Exception invalidUriException;
+
+			if(this.MultipleFeedsToSubscribe){
+
 				// take/set the first:
 				this.FeedUrl = this.FeedUrls(0);
-			} 
+			}
 
 			this.FeedUrl = ValidateFeedUri(this.FeedUrl, out invalidUriException);
 
@@ -1457,18 +1312,6 @@ namespace RssBandit.WinGui.Dialogs
 		/// Search steps
 		/// </summary>
 		SubscribeSearch,
-		/// <summary>
-		/// NNTP Group steps
-		/// </summary>
-		SubscribeNNTPGroup,
-		/// <summary>
-		/// Like SubscribeNNTPGroup, but but ignores the pageHowToSelection
-		/// </summary>
-		SubscribeNNTPDirect,
-		/// <summary>
-		/// Like SubscribeNNTPGroup, but did no go back from title/category step
-		/// </summary>
-		SubscribeNNTPGroupDirect,
 		/// <summary>
 		/// Like SubscribeURL, but but ignores the pageHowToSelection
 		/// </summary>

@@ -72,7 +72,7 @@ namespace RssBandit.WinGui.Dialogs
 			this.comboBox1.DataSource = Utils.RefreshRateStrings; 
 			this.comboBox1.Text = refreshRate.ToString(); 
 			
-			tabAuthentication.Enabled = !RssHelper.IsNntpUrl(link);
+			tabAuthentication.Enabled = true;
 			ClientCertificate = null;
 
 			//initialize category combo box			

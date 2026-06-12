@@ -56,7 +56,6 @@ using Microsoft.Win32;
 using NewsComponents;
 using NewsComponents.Feed;
 using NewsComponents.Net;
-using NewsComponents.News;
 using NewsComponents.Search;
 using NewsComponents.Utils;
 using RssBandit.AppServices;
@@ -300,11 +299,6 @@ namespace RssBandit
         /// <returns></returns>
         public bool Init()
         {
-            //specify 'nntp' and 'news' URI handler
-            //var creator = new NntpWebRequest(new Uri("http://www.example.com"));
-            //WebRequest.RegisterPrefix("nntp", creator);
-            //WebRequest.RegisterPrefix("news", creator);
-
             defaultCategory = SR.FeedDefaultCategory;
 
             // first: load user preferences (proxy, maxitemage, etc.)
@@ -995,11 +989,6 @@ namespace RssBandit
             get { return sourceManager; }
         }
 
-		public IBanditFeedSource BanditFeedSourceExtension
-		{
-			get { return BanditFeedSourceEntry.Source as IBanditFeedSource; }
-		}
-
         public FeedSource BanditFeedSource
         {
 			get { return BanditFeedSourceEntry.Source; }
@@ -1030,11 +1019,6 @@ namespace RssBandit
         public RssBanditPreferences Preferences { get; set; }
 
         public IdentityNewsServerManager IdentityManager
-        {
-            get { return identityNewsServerManager; }
-        }
-
-        public IdentityNewsServerManager NntpServerManager
         {
             get { return identityNewsServerManager; }
         }
@@ -5766,58 +5750,6 @@ namespace RssBandit
                 AddSentNewsItem(item2reply, item2post);
                 success = true;
             }
-            else if (replyEventArgs.PostToFeed != null)
-            {
-                INewsFeed f = replyEventArgs.PostToFeed;
-                var tempDoc = new XmlDocument();
-
-                if (replyEventArgs.Beautify)
-                {
-// not yet active (but in next release):
-                    comment = replyEventArgs.Comment.Replace("\r\n", "<br />");
-                    item2post =
-                        new NewsItem(sentItemsFeed, title, url, comment, DateTime.Now, null, ContentType.Html,
-                                     new Dictionary<XmlQualifiedName, string>(), url, null);
-                }
-                else
-                {
-                    comment = replyEventArgs.Comment;
-                    item2post = new NewsItem(sentItemsFeed, title, url, comment, DateTime.Now, null, null, null);
-                }
-
-                item2post.CommentStyle = SupportedCommentStyle.NNTP;
-                // in case the feed does not yet have downloaded items, we may get null here:
-                item2post.FeedDetails = BanditFeedSource.GetFeedDetails(f.link);
-                if (item2post.FeedDetails == null)
-                    item2post.FeedDetails =
-                        new FeedInfo(f.id, f.cacheurl, new List<INewsItem>(0), f.title, f.link, f.title);
-                item2post.Author = (email == null) || (email.Trim().Length == 0) ? name : email + " (" + name + ")";
-
-                /* redundancy here, because Joe Gregorio changed spec now must support both <author> and <dc:creator> */
-                XmlElement emailNode = tempDoc.CreateElement("author");
-                emailNode.InnerText = item2post.Author;
-
-                item2post.OptionalElements.Add(new XmlQualifiedName("author"), emailNode.OuterXml);
-                item2post.ContentType = ContentType.Html;
-
-				prth = new PostReplyThreadHandler(BanditFeedSource, item2post, f);
-                DialogResult result = prth.Start(postReplyForm, SR.GUIStatusPostNewFeedItem);
-
-                if (result != DialogResult.OK)
-                    return;
-
-                if (!prth.OperationSucceeds)
-                {
-                    MessageError(String.Format(SR.ExceptionPostNewFeedItem,
-                                               (string.IsNullOrEmpty(item2post.Title) ? f.link : item2post.Title),
-                                               prth.OperationException.Message));
-                    return;
-                }
-
-                AddSentNewsItem(f, item2post);
-                success = true;
-            }
-
             if (success)
             {
                 if (postReplyForm != null)
@@ -6012,20 +5944,6 @@ namespace RssBandit
         }
 
         /// <summary>
-        /// Shows the NNTP server management dialog.
-        /// </summary>
-        /// <param name="owner">The owner.</param>
-        /// <param name="definitionChangeEventHandler">The definition change event handler.</param>
-        public void ShowNntpServerManagementDialog(IWin32Window owner, EventHandler definitionChangeEventHandler)
-        {
-            if (definitionChangeEventHandler != null)
-                NntpServerManager.NewsServerDefinitionsModified += definitionChangeEventHandler;
-            NntpServerManager.ShowNewsServerSubscriptionsDialog(owner ?? guiMain);
-            if (definitionChangeEventHandler != null)
-                NntpServerManager.NewsServerDefinitionsModified -= definitionChangeEventHandler;
-        }
-
-        /// <summary>
         /// Shows the user identity management dialog.
         /// </summary>
         /// <param name="owner">The owner.</param>
@@ -6127,8 +6045,6 @@ namespace RssBandit
             if (! string.IsNullOrEmpty(url))
             {
                 mode = AddSubscriptionWizardMode.SubscribeURLDirect;
-                //if (RssHelper.IsNntpUrl(url))
-                //    mode = AddSubscriptionWizardMode.SubscribeNNTPGroupDirect;
             }
             return SubscribeToFeed(url, category, title, null, mode);
         }
@@ -6360,22 +6276,6 @@ namespace RssBandit
         IDictionary ICoreApplication.Identities
         {
             get { return new ReadOnlyDictionary(IdentityManager.Identities); }
-        }
-
-        IDictionary<string, INntpServerDefinition> ICoreApplication.NntpServerDefinitions
-        {
-            get { return NntpServerManager.CurrentNntpServers; }
-        }
-
-        IList ICoreApplication.GetNntpNewsGroups(string nntpServerName, bool forceReloadFromServer)
-        {
-        	INntpServerDefinition sd;
-            if (! string.IsNullOrEmpty(nntpServerName) &&
-                NntpServerManager.CurrentNntpServers.TryGetValue(nntpServerName, out sd))
-            {
-                return (IList) NntpServerManager.LoadNntpNewsGroups(guiMain, sd, forceReloadFromServer);
-            }
-            return new string[] {};
         }
 
         /// <summary>

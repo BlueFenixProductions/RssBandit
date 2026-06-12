@@ -378,80 +378,14 @@ namespace NewsComponents.Storage {
 			}
 		}
 
-		#region NntpServerDefinitions
-
-		/// <summary>
-		/// Saves the NNTP server definitions.
-		/// </summary>
-		/// <param name="nntpServerDefinitions">The NNTP server definitions.</param>
-		public override void SaveNntpServerDefinitions(List<NntpServerDefinition> nntpServerDefinitions)
-		{
-			string fileName = NntpServerDefsFileName;
-			if (nntpServerDefinitions == null || nntpServerDefinitions.Count == 0)
-            {
-				if (File.Exists(fileName)) 
-					FileHelper.Delete(fileName);
-            	return;
-            }  
-				
-			XmlSerializer serializer = XmlHelper.SerializerCache.GetSerializer(typeof(SerializableNntpServerDefinitions));
-            using (Stream s = FileHelper.OpenForWrite(fileName))
-            {
-				SerializableNntpServerDefinitions root = new SerializableNntpServerDefinitions();
-            	root.List = nntpServerDefinitions;
-            	serializer.Serialize(s, root);
-            }
-		}
-
-		/// <summary>
-		/// Loads the NNTP server definitions.
-		/// </summary>
-		/// <returns></returns>
-		public override List<NntpServerDefinition> LoadNntpServerDefinitions()
-		{
-			string fileName = NntpServerDefsFileName;
-			if (File.Exists(fileName))
-			{
-				XmlSerializer serializer = XmlHelper.SerializerCache.GetSerializer(typeof(SerializableNntpServerDefinitions));
-				using (Stream s = FileHelper.OpenForRead(fileName))
-				{
-					SerializableNntpServerDefinitions root = (SerializableNntpServerDefinitions)serializer.Deserialize(s);
-					return root.List;
-				}
-			}
-			return null;
-		}
-		
-		private string NntpServerDefsFileName
-		{
-			get
-			{
-				return Path.Combine(CacheLocation,
-					"nntp-server-definitions.xml");
-			}
-		}
-
-		#endregion
-
 		/// <summary>
 		/// Gets the used user data file names.
 		/// </summary>
 		/// <returns></returns>
 		public override string[] GetUserDataFileNames()
 		{
-			return new string[]{NntpServerDefsFileName};
-		}
-
-		public override DataEntityName SetContentForDataFile(string dataFileName, Stream content)
-		{
-			string fileName = Path.GetFileName(NntpServerDefsFileName);
-			if (String.Equals(dataFileName, fileName, StringComparison.OrdinalIgnoreCase))
-			{
-				FileHelper.WriteStreamWithBackup(NntpServerDefsFileName, content);
-				return DataEntityName.NntpServerDefinitions;
-			}
-
-			return DataEntityName.None;
+			// no user data files remain (NNTP server definitions are gone)
+			return Array.Empty<string>();
 		}
 
 		/// <summary>
@@ -471,21 +405,5 @@ namespace NewsComponents.Storage {
 		}
 
 	}
-
-	#region SerializableNntpServerDefinitions
-
-	/// <summary>
-	/// NNTP Server Definition serializable root class
-	/// </summary>
-	[XmlType(Namespace = NamespaceCore.Feeds_vCurrent)]
-	[XmlRoot("nntp-servers", Namespace = NamespaceCore.Feeds_vCurrent, IsNullable = false)]
-	public class SerializableNntpServerDefinitions
-	{
-		/// <remarks/>
-		[XmlElement("server", Type = typeof(NntpServerDefinition), IsNullable = false)]
-		//public ArrayList List = new ArrayList();
-		public List<NntpServerDefinition> List = new List<NntpServerDefinition>();
-	}
-	#endregion
 
 }

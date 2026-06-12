@@ -115,64 +115,6 @@ namespace RssBandit.WinGui.Forms.ControlHelpers
 			this.shortcutHandler = null;
 		}
 
-		public void CreateToolbars(NewsgroupsConfiguration mainConfig) {
-
-            var scaleFactor = (float)mainConfig.DeviceDpi / 96;
-			UltraToolbar mainTools = new UltraToolbar(Resource.Toolbar.MainTools);
-			
-			mainTools.DockedColumn = 0;
-			mainTools.DockedRow = 0;
-			mainTools.Text = SR.NewsGroupConfiguration_MainToolbarCaption;
-       
-				
-			this.manager.Toolbars.AddRange(
-				new UltraToolbar[] {  mainTools });
-          
-			Infragistics.Win.Appearance a = null;
-			
-            var img = Properties.Resources.add_user_16.GetImageStretchedDpi(scaleFactor);
-
-            manager.ImageSizeSmall = img.Size;
-
-            ButtonTool newIdentity = new ButtonTool("toolNewIndentity");
-			newIdentity.SharedProps.Caption = SR.NewsGroupConfiguration_NewIdentityToolCaption;
-			newIdentity.SharedProps.StatusText = newIdentity.SharedProps.ToolTipText = SR.NewsGroupConfiguration_NewIdentityToolDesc;
-			a = new Infragistics.Win.Appearance();
-            a.Image = img;
-			newIdentity.SharedProps.AppearancesSmall.Appearance = a;
-			newIdentity.SharedProps.DisplayStyle = ToolDisplayStyle.ImageAndText;
-			
-			ButtonTool newServer = new ButtonTool("toolNewNntpServer");
-			newServer.SharedProps.Caption = SR.NewsGroupConfiguration_NewNewsServerToolCaption;
-			newServer.SharedProps.StatusText = newServer.SharedProps.ToolTipText = SR.NewsGroupConfiguration_NewNewsServerToolDesc;
-			a = new Infragistics.Win.Appearance();
-			a.Image = Properties.Resources.add_newsserver_16.GetImageStretchedDpi(scaleFactor);
-			newServer.SharedProps.AppearancesSmall.Appearance = a;
-			newServer.SharedProps.DisplayStyle = ToolDisplayStyle.ImageAndText;
-			
-			ButtonTool deleteItem = new ButtonTool("toolDelete");
-			deleteItem.SharedProps.Caption = SR.NewsGroupConfiguration_DeleteToolCaption;
-			deleteItem.SharedProps.StatusText = deleteItem.SharedProps.ToolTipText = SR.NewsGroupConfiguration_DeleteToolDesc;
-			a = new Infragistics.Win.Appearance();
-			a.Image = Properties.Resources.delete_16.GetImageStretchedDpi(scaleFactor);
-			deleteItem.SharedProps.AppearancesSmall.Appearance = a;
-			deleteItem.SharedProps.DisplayStyle = ToolDisplayStyle.ImageAndText;
-
-
-
-          // must be added to the toolbar first:
-          this.manager.Tools.AddRange(new ToolBase[] {newIdentity, newServer, deleteItem});
-
-			mainTools.Tools.AddRange(new ToolBase[]{newIdentity, newServer, deleteItem});
-			foreach (ToolBase tool in mainTools.Tools) {
-				tool.SharedProps.Category = SR.MainForm_ToolCategoryTools;
-			}
-			
-			// now we can set instance properties:
-			ToolBase t = mainTools.Tools["toolDelete"];
-			t.InstanceProps.IsFirstInGroup = true;
-		}
-		
 		/// <summary>
 		/// Sets the toolbar visible state.
 		/// </summary>
@@ -498,12 +440,6 @@ namespace RssBandit.WinGui.Forms.ControlHelpers
 			//	"cmdOpenConfigIdentitiesDialog", owner.Mediator, main.CmdOpenConfigIdentitiesDialog,
 			//	SR.MenuOpenConfigIdentitiesDialogCaption, SR.MenuOpenConfigIdentitiesDialogdesc, shortcutHandler);
 			
-			//AppButtonToolCommand tbConfigNntpServer = new AppButtonToolCommand(
-			//	"cmdOpenConfigNntpServerDialog", owner.Mediator, main.CmdOpenConfigNntpServerDialog,
-			//	SR.MenuOpenConfigNntpServerDialogCaption, SR.MenuOpenConfigNntpServerDialogDesc, 
-			//	shortcutHandler);
-			//tbConfigNntpServer.Enabled = true;
-
 			AppButtonToolCommand tbDownload = new AppButtonToolCommand(
 				"cmdLauchDownloadManager", owner.Mediator, main.CmdLauchDownloadManager,
 				SR.MenuDownloadManager, SR.MenuDownloadManagerDesc, shortcutHandler);
@@ -514,12 +450,6 @@ namespace RssBandit.WinGui.Forms.ControlHelpers
 				SR.MenuTopStoriesCaption, SR.MenuTopStoriesDesc);
 			toolTopStories.SharedProps.AppearancesSmall.Appearance.Image = Properties.Resources.hotnews_16.GetImageStretchedDpi(owner.ScaleFactor);
 			toolTopStories.SharedProps.DisplayStyle = ToolDisplayStyle.ImageAndText;
-
-			//AppButtonToolCommand style51 = new AppButtonToolCommand(
-			//	"cmdFeedItemNewPost", owner.Mediator, owner.CmdPostNewItem,
-			//	SR.MenuPostNewFeedItemCaption, SR.MenuPostNewFeedItemDesc, 
-			//	Resource.ToolItemImage.NewPost,shortcutHandler);
-			//style51.Enabled = false;		// dynamically enabled on runtime if feed is NNTP
 
 			//AppButtonToolCommand style52 = new AppButtonToolCommand(
 			//	"cmdFeedItemPostReply", owner.Mediator, owner.CmdPostReplyToItem,
@@ -648,11 +578,6 @@ namespace RssBandit.WinGui.Forms.ControlHelpers
 				"cmdNewFeed", owner.Mediator, owner.CmdNewFeed, 
 				SR.MenuNewFeedCaption, SR.MenuNewFeedDesc, Resource.ToolItemImage.NewSubscription);
             subNewFeed.SharedProps.DisplayStyle = ToolDisplayStyle.ImageAndText;
-
-			//AppButtonToolCommand subNewNntp = new AppButtonToolCommand(
-			//	"cmdNewNntpFeed", owner.Mediator, owner.CmdNewNntpFeed, 
-			//	SR.MenuNewNntpFeedCaption, SR.MenuNewNntpFeedDesc,
-			//	Resource.ToolItemImage.NewNntpSubscription);
 
 			//AppButtonToolCommand subNewDiscovered = new AppButtonToolCommand(
 			//	"cmdAutoDiscoverFeed", owner.Mediator, owner.CmdAutoDiscoverFeed, 

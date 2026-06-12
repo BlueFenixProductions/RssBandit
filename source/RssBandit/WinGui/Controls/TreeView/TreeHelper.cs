@@ -410,13 +410,9 @@ namespace RssBandit.WinGui.Controls
                 {
                     if (destinationTree.ImageList.Images.Count > n.ImageIndex && n.ImageIndex != 0)
                         imgIdx = n.ImageIndex;
-                    else if (RssHelper.IsNntpUrl(n.DataKey))
-                        imgIdx = Resource.SubscriptionTreeImage.Nntp;
 
                     if (destinationTree.ImageList.Images.Count > n.SelectedImageIndex && n.SelectedImageIndex != 0)
                         selImgIdx = n.SelectedImageIndex;
-                    else if (RssHelper.IsNntpUrl(n.DataKey))
-                        selImgIdx = Resource.SubscriptionTreeImage.NntpSelected;
                 }
 
                 var tn = new TreeNode(n.Text, imgIdx, selImgIdx);
@@ -449,13 +445,9 @@ namespace RssBandit.WinGui.Controls
             {
                 if (destinationTree.ImageList.Images.Count > node.ImageIndex)
                     imgIdx = node.ImageIndex;
-                else if (RssHelper.IsNntpUrl(node.DataKey))
-                    imgIdx = Resource.SubscriptionTreeImage.Nntp;
 
                 if (destinationTree.ImageList.Images.Count > node.SelectedImageIndex)
                     selImgIdx = node.SelectedImageIndex;
-                else if (RssHelper.IsNntpUrl(node.DataKey))
-                    selImgIdx = Resource.SubscriptionTreeImage.NntpSelected;
             }
 
             var tn = new TreeNode(node.Text, imgIdx, selImgIdx);
@@ -480,13 +472,9 @@ namespace RssBandit.WinGui.Controls
                 {
                     if (destinationTree.ImageList.Images.Count > n.ImageIndex && n.ImageIndex != 0)
                         imgIdx = n.ImageIndex;
-                    else if (RssHelper.IsNntpUrl(n.DataKey))
-                        imgIdx = Resource.SubscriptionTreeImage.Nntp;
 
                     if (destinationTree.ImageList.Images.Count > n.SelectedImageIndex && n.SelectedImageIndex != 0)
                         selImgIdx = n.SelectedImageIndex;
-                    else if (RssHelper.IsNntpUrl(n.DataKey))
-                        selImgIdx = Resource.SubscriptionTreeImage.NntpSelected;
                 }
 
                 var tn = new TreeNode(n.Text, imgIdx, selImgIdx);

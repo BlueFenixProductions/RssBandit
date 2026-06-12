@@ -230,9 +230,6 @@
     <value>Manage Identities</value>
     <comment> window caption texts</comment>
   </data>
-  <data name="ConfigNewsServerDialogCaption" xml:space="preserve">
-    <value>Manage Newsgroups</value>
-  </data>
   <data name="ControlCollapsiblePanelCollapseTooltip" xml:space="preserve">
     <value>Collapse panel...</value>
     <comment> displayed as a tooltip on a collapsible panel button</comment>
@@ -336,11 +333,6 @@ Detail: {1}</value>
   </data>
   <data name="ExceptionNewsItemTransformation" xml:space="preserve">
     <value>Feed item cannot be transformed to HTML.</value>
-  </data>
-  <data name="ExceptionNntpLoadingGroupsFailed" xml:space="preserve">
-    <value>Loading Newsgroups from '{0}' failed:
-{1}</value>
-    <comment>Parameters: 0 - serverName (string), 1 - error (string) </comment>
   </data>
   <data name="ExceptionNoOnNewWindowExecutable" xml:space="preserve">
     <value>Provide the executable file path and name, please.</value>
@@ -705,9 +697,6 @@ failed with error:
   </data>
   <data name="GUIFieldWebUrlInvalid" xml:space="preserve">
     <value>No Web Page URL specified</value>
-  </data>
-  <data name="GUINntpLoadingGroupsFailedCaption" xml:space="preserve">
-    <value>Loading Newsgroups failed</value>
   </data>
   <data name="GuiStateNoFeedItemSelectedMessage" xml:space="preserve">
     <value>No Feed Item selected.</value>
@@ -1574,12 +1563,6 @@ for detailed information about the error occured.</value>
   <data name="MenuNewFinderDesc" xml:space="preserve">
     <value>Create a new search folder...</value>
   </data>
-  <data name="MenuNewNntpFeedCaption" xml:space="preserve">
-    <value>&amp;Newsgroup Subscription...</value>
-  </data>
-  <data name="MenuNewNntpFeedDesc" xml:space="preserve">
-    <value>Subscribe to a new feed</value>
-  </data>
   <data name="MenuNewRssSearchCaption" xml:space="preserve">
     <value>Search</value>
   </data>
@@ -1604,12 +1587,6 @@ for detailed information about the error occured.</value>
   </data>
   <data name="MenuOpenConfigIdentitiesDialogdesc" xml:space="preserve">
     <value>Opens a dialog to manage identities...</value>
-  </data>
-  <data name="MenuOpenConfigNntpServerDialogCaption" xml:space="preserve">
-    <value>Newsgroups...</value>
-  </data>
-  <data name="MenuOpenConfigNntpServerDialogDesc" xml:space="preserve">
-    <value>Opens a dialog to manage NNTP servers and newsgroups...</value>
   </data>
   <data name="MenuOpenManageAddInsDialogCaption" xml:space="preserve">
     <value>&amp;Add-Ins...</value>
@@ -1851,20 +1828,6 @@ for detailed information about the error occured.</value>
     <value>New Post to Feed: {0}</value>
     <comment> New Post to a Feed Form Caption.
  Parameters: 0 - feedName (string) </comment>
-  </data>
-  <data name="NntpLoadingGroupsWaitMessage" xml:space="preserve">
-    <value>Loading Newsgroups. This can take a few moments, ...</value>
-    <comment> Message Text displayed in the entertainment dialog while loading the list of newsgroups from the NNTP server</comment>
-  </data>
-  <data name="NntpServerConfig_AdvancedSettingsNodeCaption" xml:space="preserve">
-    <value>Advanced Settings</value>
-    <comment> NNTP Server Configuration Settings Node captions</comment>
-  </data>
-  <data name="NntpServerConfig_GeneralSettingsNodeCaption" xml:space="preserve">
-    <value>General Settings</value>
-  </data>
-  <data name="NntpServerConfig_ServerSettingsNodeCaption" xml:space="preserve">
-    <value>Server Settings</value>
   </data>
   <data name="NotYetImplementedFeature_Info" xml:space="preserve">
     <value>Sorry, but this feature is not yet implemented.</value>
@@ -2343,31 +2306,6 @@ Please try to open the Panel manually using the Control Panel Start Menu.</value
   <data name="SearchPanel_comboRssSearchItemAge_x_years" xml:space="preserve">
     <value>{0} years</value>
     <comment>Parameters: 0 - years (int) </comment>
-  </data>
-  <data name="NewsGroupConfiguration_MainToolbarCaption" xml:space="preserve">
-    <value>Main Tools</value>
-    <comment> NewsGroupConfiguration dialog toolbar caption</comment>
-  </data>
-  <data name="NewsGroupConfiguration_NewIdentityToolCaption" xml:space="preserve">
-    <value>Add Identity</value>
-    <comment> NewsGroupConfiguration dialog main tool</comment>
-  </data>
-  <data name="NewsGroupConfiguration_NewIdentityToolDesc" xml:space="preserve">
-    <value>Create a new identity...</value>
-  </data>
-  <data name="NewsGroupConfiguration_NewNewsServerToolCaption" xml:space="preserve">
-    <value>Add News Server</value>
-    <comment> NewsGroupConfiguration dialog main tool</comment>
-  </data>
-  <data name="NewsGroupConfiguration_NewNewsServerToolDesc" xml:space="preserve">
-    <value>Add a new NNTP Server...</value>
-  </data>
-  <data name="NewsGroupConfiguration_DeleteToolCaption" xml:space="preserve">
-    <value>Delete</value>
-    <comment> NewsGroupConfiguration dialog main tool</comment>
-  </data>
-  <data name="NewsGroupConfiguration_DeleteToolDesc" xml:space="preserve">
-    <value>Removes the selected item</value>
   </data>
   <data name="MenuSynchronizeFeedsCaption" xml:space="preserve">
     <value>&amp;Synchronize Feeds...</value>

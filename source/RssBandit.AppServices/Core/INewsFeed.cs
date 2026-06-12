@@ -84,7 +84,6 @@ namespace NewsComponents.Feed
         bool causedException { get; set; }
         bool replaceitemsonrefresh { get; set; }
         bool replaceitemsonrefreshSpecified { get; set; }
-        string newsaccount { get; set; }
 		//bool markitemsreadonexit { get; set; }
 		//bool markitemsreadonexitSpecified { get; set; }
         XmlElement[] Any { get; set; }

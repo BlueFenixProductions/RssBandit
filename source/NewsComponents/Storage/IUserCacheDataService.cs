@@ -18,21 +18,6 @@ namespace NewsComponents.Storage
 {
 
 	/// <summary>
-	/// Defines used entity names
-	/// </summary>
-	internal enum DataEntityName
-	{
-		/// <summary>
-		/// 
-		/// </summary>
-		None,
-		/// <summary>
-		/// 
-		/// </summary>
-		NntpServerDefinitions,
-	}
-
-	/// <summary>
 	/// News Components Data Service interface.
 	/// Inherits <see cref="IDisposable"/> interface to cleanup any used database
 	/// connection or other resource(s)
@@ -114,30 +99,11 @@ namespace NewsComponents.Storage
 	/// </summary>
 	internal interface IUserDataService: IDisposable
 	{
-		#region NntpServerDefinitions
-
-		/// <summary>
-		/// Saves the NNTP server definitions.
-		/// </summary>
-		/// <param name="nntpServerDefinitions">The NNTP server definitions.</param>
-		void SaveNntpServerDefinitions(List<NntpServerDefinition> nntpServerDefinitions);
-
-		/// <summary>
-		/// Loads the NNTP server definitions.
-		/// </summary>
-		/// <returns></returns>
-		List<NntpServerDefinition> LoadNntpServerDefinitions();
-		
-		#endregion
-
 		/// <summary>
 		/// Gets the used user data file names.
 		/// </summary>
 		/// <returns></returns>
 		string[] GetUserDataFileNames();
-
-		DataEntityName SetContentForDataFile(string dataFileName, Stream content);
-		
 	}
 
 	/// <summary>

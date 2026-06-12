@@ -785,12 +785,6 @@ namespace RssBandit.WinGui.Forms
             imng.ShowIdentityDialog(this);
         }
 
-        public void CmdOpenConfigNntpServerDialog(ICommand sender)
-        {
-            var imng = new IdentityNewsServerManager(owner);
-            imng.ShowNewsServerSubscriptionsDialog(this);
-        }
-
 
         public FeedSourceEntry CurrentSelectedFeedSource
         {

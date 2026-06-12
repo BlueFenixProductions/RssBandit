@@ -436,15 +436,6 @@ namespace RssBandit.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Manage Newsgroups.
-        /// </summary>
-        internal static string ConfigNewsServerDialogCaption {
-            get {
-                return ResourceManager.GetString("ConfigNewsServerDialogCaption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Collapse panel....
         /// </summary>
         internal static string ControlCollapsiblePanelCollapseTooltip {
@@ -740,16 +731,6 @@ namespace RssBandit.Resources {
         internal static string ExceptionNewsItemTransformation {
             get {
                 return ResourceManager.GetString("ExceptionNewsItemTransformation", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Loading Newsgroups from &apos;{0}&apos; failed:
-        ///{1}.
-        /// </summary>
-        internal static string ExceptionNntpLoadingGroupsFailed {
-            get {
-                return ResourceManager.GetString("ExceptionNntpLoadingGroupsFailed", resourceCulture);
             }
         }
         
@@ -1572,15 +1553,6 @@ namespace RssBandit.Resources {
         internal static string GUILoadFileOperationExceptionMessage {
             get {
                 return ResourceManager.GetString("GUILoadFileOperationExceptionMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Loading Newsgroups failed.
-        /// </summary>
-        internal static string GUINntpLoadingGroupsFailedCaption {
-            get {
-                return ResourceManager.GetString("GUINntpLoadingGroupsFailedCaption", resourceCulture);
             }
         }
         
@@ -4333,24 +4305,6 @@ namespace RssBandit.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;Newsgroup Subscription....
-        /// </summary>
-        internal static string MenuNewNntpFeedCaption {
-            get {
-                return ResourceManager.GetString("MenuNewNntpFeedCaption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Subscribe to a new feed.
-        /// </summary>
-        internal static string MenuNewNntpFeedDesc {
-            get {
-                return ResourceManager.GetString("MenuNewNntpFeedDesc", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Search.
         /// </summary>
         internal static string MenuNewRssSearchCaption {
@@ -4419,24 +4373,6 @@ namespace RssBandit.Resources {
         internal static string MenuOpenConfigIdentitiesDialogdesc {
             get {
                 return ResourceManager.GetString("MenuOpenConfigIdentitiesDialogdesc", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Newsgroups....
-        /// </summary>
-        internal static string MenuOpenConfigNntpServerDialogCaption {
-            get {
-                return ResourceManager.GetString("MenuOpenConfigNntpServerDialogCaption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Opens a dialog to manage NNTP servers and newsgroups....
-        /// </summary>
-        internal static string MenuOpenConfigNntpServerDialogDesc {
-            get {
-                return ResourceManager.GetString("MenuOpenConfigNntpServerDialogDesc", resourceCulture);
             }
         }
         
@@ -5238,105 +5174,6 @@ namespace RssBandit.Resources {
         internal static string NewPostToFeedFormCaption {
             get {
                 return ResourceManager.GetString("NewPostToFeedFormCaption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Delete.
-        /// </summary>
-        internal static string NewsGroupConfiguration_DeleteToolCaption {
-            get {
-                return ResourceManager.GetString("NewsGroupConfiguration_DeleteToolCaption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Removes the selected item.
-        /// </summary>
-        internal static string NewsGroupConfiguration_DeleteToolDesc {
-            get {
-                return ResourceManager.GetString("NewsGroupConfiguration_DeleteToolDesc", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Main Tools.
-        /// </summary>
-        internal static string NewsGroupConfiguration_MainToolbarCaption {
-            get {
-                return ResourceManager.GetString("NewsGroupConfiguration_MainToolbarCaption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Add Identity.
-        /// </summary>
-        internal static string NewsGroupConfiguration_NewIdentityToolCaption {
-            get {
-                return ResourceManager.GetString("NewsGroupConfiguration_NewIdentityToolCaption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Create a new identity....
-        /// </summary>
-        internal static string NewsGroupConfiguration_NewIdentityToolDesc {
-            get {
-                return ResourceManager.GetString("NewsGroupConfiguration_NewIdentityToolDesc", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Add News Server.
-        /// </summary>
-        internal static string NewsGroupConfiguration_NewNewsServerToolCaption {
-            get {
-                return ResourceManager.GetString("NewsGroupConfiguration_NewNewsServerToolCaption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Add a new NNTP Server....
-        /// </summary>
-        internal static string NewsGroupConfiguration_NewNewsServerToolDesc {
-            get {
-                return ResourceManager.GetString("NewsGroupConfiguration_NewNewsServerToolDesc", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Loading Newsgroups. This can take a few moments, ....
-        /// </summary>
-        internal static string NntpLoadingGroupsWaitMessage {
-            get {
-                return ResourceManager.GetString("NntpLoadingGroupsWaitMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Advanced Settings.
-        /// </summary>
-        internal static string NntpServerConfig_AdvancedSettingsNodeCaption {
-            get {
-                return ResourceManager.GetString("NntpServerConfig_AdvancedSettingsNodeCaption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to General Settings.
-        /// </summary>
-        internal static string NntpServerConfig_GeneralSettingsNodeCaption {
-            get {
-                return ResourceManager.GetString("NntpServerConfig_GeneralSettingsNodeCaption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Server Settings.
-        /// </summary>
-        internal static string NntpServerConfig_ServerSettingsNodeCaption {
-            get {
-                return ResourceManager.GetString("NntpServerConfig_ServerSettingsNodeCaption", resourceCulture);
             }
         }
         

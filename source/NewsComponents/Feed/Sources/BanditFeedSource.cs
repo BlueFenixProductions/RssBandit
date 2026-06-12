@@ -8,7 +8,6 @@ using System.Xml.Schema;
 using System.Xml.Serialization;
 using log4net;
 using NewsComponents.Net;
-using NewsComponents.News;
 using NewsComponents.Storage;
 using NewsComponents.Utils;
 using RssBandit.Common;
@@ -19,42 +18,10 @@ using RssBandit.Common.Logging;
 
 namespace NewsComponents.Feed
 {
-	#region IBanditFeedSource interface: public FeedSource extensions
 	/// <summary>
-	/// public FeedSource extension offered by Bandit Feed Source
-	/// </summary>
-	public interface IBanditFeedSource
-	{
-		#region NNTP Support
-
-		/// <summary>
-		/// Gets the NNTP server definitions.
-		/// </summary>
-		/// <value>The NNTP servers.</value>
-		IDictionary<string, INntpServerDefinition> NntpServers { get; }
-
-		/// <summary>
-		/// Saves the NNTP server definitions.
-		/// </summary>
-		void SaveNntpServers();
-
-		/// <summary>
-		/// Gets the feed credentials for a INntpServerDefinition.
-		/// </summary>
-		/// <param name="sd">The sd.</param>
-		/// <returns></returns>
-		ICredentials GetFeedCredentials(INntpServerDefinition sd);
-
-		#endregion
-	}
-
-	#endregion
-
-	/// <summary>
-    /// A FeedSource that directly accesses RSS/Atom feeds via HTTP or HTTPS 
-    /// and newsgroups via NNTP. 
+    /// A FeedSource that directly accesses RSS/Atom feeds via HTTP or HTTPS.
     /// </summary>
-	internal class BanditFeedSource : FeedSource, IBanditFeedSource
+	internal class BanditFeedSource : FeedSource
     {
         #region constructor
 
@@ -93,14 +60,6 @@ namespace NewsComponents.Feed
         #region private fields
 
 		private static readonly ILog _log = Log.GetLogger(typeof(BanditFeedSource));
-
-        /// <summary>
-        /// Collection contains NntpServerDefinition objects.
-        /// Keys are the account name(s) - friendly names for the news server def.:
-        /// NntpServerDefinition.Name's
-        /// </summary>
-        /// <remarks>We use null here: this flag the data as NOT yet loaded</remarks>
-        private IDictionary<string, INntpServerDefinition> nntpServers;
 
         /// <summary>
         /// Collection contains UserIdentity objects.
@@ -186,17 +145,7 @@ namespace NewsComponents.Feed
                         Uri uri;
 						if (Uri.TryCreate(f.link, UriKind.Absolute, out uri))
                         {
-                            // CLR 2.0 Uri does not like "news:" scheme, so we 
-                            // switch it to "nntp:" (see http://msdn2.microsoft.com/en-us/library/system.uri.scheme.aspx)
-                            if (NntpWebRequest.NewsUriScheme.Equals(uri.Scheme))
-                            {
-                                f.link = NntpWebRequest.NntpUriScheme +
-                                         uri.CanonicalizedUri().Substring(uri.Scheme.Length);
-                            }
-                            else
-                            {
-                                f.link = uri.CanonicalizedUri();
-                            }
+                            f.link = uri.CanonicalizedUri();
                         }
                         else
                         {
@@ -251,19 +200,6 @@ namespace NewsComponents.Feed
 				if (myFeeds.identities != null)
 				{
 					MigrationProperties.Add("UserIdentity", myFeeds.identities);
-				}
-
-				//copy nntp-server defs. over if we are migrating  
-				if (myFeeds.nntpservers != null)
-				{
-					foreach (var sd in myFeeds.nntpservers)
-					{
-						// using the public property will initiate a load:
-						if (NntpServers.ContainsKey(sd.Name) == false)
-						{
-							NntpServers.Add(sd.Name, sd);
-						}
-					}
 				}
 
                 //if refresh rate in imported feed then use that
@@ -397,64 +333,6 @@ namespace NewsComponents.Feed
         #endregion
 
 		/// <summary>
-		/// Accesses the list of NntpServerDefinition objects 
-		/// Keys are the account name(s) - friendly names for the news server def.:
-		/// NewsServerDefinition.Name's
-		/// </summary>
-		public IDictionary<string, INntpServerDefinition> NntpServers
-		{
-			[DebuggerStepThrough]
-			get
-			{
-				if (nntpServers == null)
-				{
-					try
-					{
-						nntpServers = LoadNntpServers();
-					} 
-					catch (Exception ex)
-					{
-						_log.Error("Failed to load NNTP server definitions", ex);
-					}
-				}
-
-				return nntpServers;
-			}
-		}
-
-		public void SaveNntpServers()
-		{
-			if (nntpServers == null)
-				return;
-			List<NntpServerDefinition> list = new List<NntpServerDefinition>(nntpServers.Count);
-			foreach (NntpServerDefinition sd in nntpServers.Values)
-			{
-				list.Add(sd);
-			}
-			try
-			{
-				this.UserDataService.SaveNntpServerDefinitions(list);
-			}
-			catch (Exception ex)
-			{
-				_log.Error("Failed to save NNTP server definitions", ex);
-			}
-		}
-
-		private Dictionary<string, INntpServerDefinition> LoadNntpServers()
-		{
-			Dictionary<string, INntpServerDefinition> loaded = new Dictionary<string, INntpServerDefinition>();
-			List<NntpServerDefinition> list = this.UserDataService.LoadNntpServerDefinitions();
-			if (list == null || list.Count == 0)
-				return loaded;
-			foreach (NntpServerDefinition sd in list)
-			{
-				loaded.Add(sd.Name, sd);
-			}
-			return loaded;
-		}
-
-		/// <summary>
 		/// Gets the data service files used by each data service.
 		/// </summary>
 		/// <returns></returns>
@@ -467,62 +345,9 @@ namespace NewsComponents.Feed
 
 		protected override bool ReplaceDataWithContent(string dataFileName, Stream content)
 		{
-			// my IUserDataService has relevant files, reset ivar(s):
-			if (DataEntityName.NntpServerDefinitions == UserDataService.SetContentForDataFile(dataFileName, content))
-			{
-				nntpServers = null;
-				return true;
-			}
-
+			// no replaceable user data files remain (NNTP server defs. are gone)
 			return false;
 		}
-
-		#region NntpServerDefinition Credentials handling
-
-		/// <summary>
-		/// Return ICredentials of a feed. 
-		/// </summary>
-		/// <param name="sd">NntpServerDefinition</param>
-		/// <returns>null in the case the nntp server does not have credentials</returns>
-		public ICredentials GetFeedCredentials(INntpServerDefinition sd)
-		{
-			ICredentials c = null;
-			if (sd.AuthUser != null)
-			{
-				string u, p;
-				GetNntpServerCredentials(sd, out u, out p);
-				c = CreateCredentialsFrom(u, p);
-			}
-			return c;
-		}
-
-		/// <summary>
-		/// Set the authorization credentials for a Nntp Server.
-		/// </summary>
-		/// <param name="sd">NntpServerDefinition to be modified</param>
-		/// <param name="user">username, identifier</param>
-		/// <param name="pwd">password</param>
-		public static void SetNntpServerCredentials(NntpServerDefinition sd, string user, string pwd)
-		{
-			if (sd == null) return;
-			sd.AuthPassword = CryptHelper.EncryptB(pwd);
-			sd.AuthUser = user;
-		}
-
-		/// <summary>
-		/// Get the authorization credentials for a feed.
-		/// </summary>
-		/// <param name="sd">NntpServerDefinition, where the credentials are taken from</param>
-		/// <param name="user">String return parameter containing the username</param>
-		/// <param name="pwd">String return parameter, containing the password</param>
-		public static void GetNntpServerCredentials(NntpServerDefinition sd, out string user, out string pwd)
-		{
-			pwd = user = null;
-			if (sd == null) return;
-			pwd = (sd.AuthPassword != null ? CryptHelper.Decrypt(sd.AuthPassword) : null);
-			user = sd.AuthUser;
-		}
-		#endregion
 
 		#endregion
 	}

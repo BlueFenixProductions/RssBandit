@@ -4034,7 +4034,7 @@ namespace RssBandit.WinGui.Forms
 
                 if (url.StartsWith("mailto:") || url.StartsWith("news:"))
                 {
-                    //TODO: if nntp is impl., InterceptUrlNavigation() should handle "news:"
+                    // let the OS-registered protocol handler deal with these:
                     return;
                 }
 

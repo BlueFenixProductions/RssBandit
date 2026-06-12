@@ -40,10 +40,8 @@ namespace NewsComponents.Feed
 		//[XmlArrayItem("listview-layout", Type = typeof (listviewLayout), IsNullable = false)]
 		//public List<listviewLayout> listviewLayouts = new List<listviewLayout>();
 
-        /// <remarks/>
-        [XmlArrayItem("server", Type = typeof (NntpServerDefinition), IsNullable = false)]
-        [XmlArray(ElementName = "nntp-servers", IsNullable = false)]
-        public List<NntpServerDefinition> nntpservers = new List<NntpServerDefinition>();
+        // NNTP support was removed; a legacy <nntp-servers> element in an old
+        // feedlist.xml is simply ignored by the XmlSerializer on read.
 
         /// <remarks/>
         [XmlArrayItem("identity", Type = typeof (UserIdentity), IsNullable = false)]
@@ -670,9 +668,7 @@ namespace NewsComponents.Feed
             }
         } 
 
-        /// <remarks>Reference the corresponding NntpServerDefinition</remarks>
-        [XmlElement("news-account")]
-        public virtual string newsaccount { get; set; }
+        // the legacy <news-account> element (NNTP) is ignored on read
 
         /// <remarks/>
         [XmlElement("mark-items-read-on-exit")]
@@ -1156,211 +1152,6 @@ namespace NewsComponents.Feed
 
     #endregion
 
-    #region NewsServerDefinition
-
-    /// <remarks/>
-    [XmlType(Namespace=NamespaceCore.Feeds_vCurrent)]
-    public class NntpServerDefinition : INntpServerDefinition, ICloneable
-    {
-        private string name;
-
-        /// <remarks/>
-        [XmlAttribute("name")]
-        public string Name
-        {
-            get
-            {
-                return name;
-            }
-            set
-            {
-                name = value;
-            }
-        }
-
-        private string defaultIdentity;
-
-        /// <remarks/>
-        [XmlElement("default-identity")]
-        public string DefaultIdentity
-        {
-            get
-            {
-                return defaultIdentity;
-            }
-            set
-            {
-                defaultIdentity = value;
-            }
-        }
-
-        private bool preventDownloadOnRefresh;
-
-        /// <remarks/>
-        [XmlElement("prevent-download")]
-        public bool PreventDownloadOnRefresh
-        {
-            get
-            {
-                return preventDownloadOnRefresh;
-            }
-            set
-            {
-                preventDownloadOnRefresh = value;
-            }
-        }
-
-        /// <remarks/>
-        [XmlIgnore]
-        public bool PreventDownloadOnRefreshSpecified;
-
-        private string server;
-
-        /// <remarks/>
-        [XmlElement("server-address")]
-        public string Server
-        {
-            get
-            {
-                return server;
-            }
-            set
-            {
-                server = value;
-            }
-        }
-
-        private string authUser;
-
-        /// <remarks/>
-        [XmlElement("auth-user")]
-        public string AuthUser
-        {
-            get
-            {
-                return authUser;
-            }
-            set
-            {
-                authUser = value;
-            }
-        }
-
-        private Byte[] authPassword;
-
-        /// <remarks/>
-        [XmlElement("auth-password", DataType="base64Binary")]
-        public Byte[] AuthPassword
-        {
-            get
-            {
-                return authPassword;
-            }
-            set
-            {
-                authPassword = value;
-            }
-        }
-
-        private bool useSecurePasswordAuthentication;
-
-        /// <remarks/>
-        [XmlElement("auth-use-spa")]
-        public bool UseSecurePasswordAuthentication
-        {
-            get
-            {
-                return useSecurePasswordAuthentication;
-            }
-            set
-            {
-                useSecurePasswordAuthentication = value;
-            }
-        }
-
-        /// <remarks/>
-        [XmlIgnore]
-        public bool UseSecurePasswordAuthenticationSpecified;
-
-        private int port;
-
-        /// <remarks/>
-        [XmlElement("port-number")]
-        public int Port
-        {
-            get
-            {
-                return port;
-            }
-            set
-            {
-                port = value;
-            }
-        }
-
-        /// <remarks/>
-        [XmlIgnore]
-        public bool PortSpecified;
-
-        private bool useSSL;
-
-        /// <remarks>Makes the 'nntp:' a 'nntps:'</remarks>
-        [XmlElement("use-ssl")]
-        public bool UseSSL
-        {
-            get
-            {
-                return useSSL;
-            }
-            set
-            {
-                useSSL = value;
-            }
-        }
-
-        /// <remarks/>
-        [XmlIgnore]
-        public bool UseSSLSpecified;
-
-        private int timeout;
-
-        /// <remarks/>
-        [XmlElement("timeout")]
-        public int Timeout
-        {
-            get
-            {
-                return timeout;
-            }
-            set
-            {
-                timeout = value;
-            }
-        }
-
-        /// <remarks/>
-        [XmlIgnore]
-        public bool TimeoutSpecified;
-
-        /// <remarks/>
-        [XmlAnyAttribute]
-        public XmlAttribute[] AnyAttr;
-
-        /// <remarks/>
-        [XmlAnyElement]
-        public XmlElement[] Any;
-
-        #region ICloneable Members
-
-        public object Clone()
-        {
-            return MemberwiseClone();
-        }
-
-        #endregion
-    }
-
-    #endregion
 }
 
 #region CVS Version Log

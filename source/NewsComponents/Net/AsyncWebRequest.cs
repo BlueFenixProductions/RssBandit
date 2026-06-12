@@ -22,7 +22,6 @@ using System.Threading.Tasks;
 using System.Threading.Tasks.Schedulers;
 
 using log4net;
-using NewsComponents.News;
 using NewsComponents.Utils;
 using RssBandit.Common;
 using RssBandit.Common.Logging;
@@ -166,8 +165,8 @@ namespace NewsComponents.Net
 
         /// <summary>
         /// Creates the request state for a request parameter: HTTP(S) requests are
-        /// performed natively over HttpClient (no WebRequest involved), the remaining
-        /// schemes (file://, nntp://) keep using the legacy WebRequest based stack.
+        /// performed natively over HttpClient (no WebRequest involved), file://
+        /// keeps using the legacy WebRequest based stack.
         /// </summary>
         private RequestState CreateState(RequestParameter requestParameter, int priority)
         {
@@ -188,8 +187,8 @@ namespace NewsComponents.Net
         }
 
         /// <summary>
-        /// Used to create a request for the legacy WebRequest based schemes
-        /// (file:// and nntp:/news:). HTTP(S) is handled natively over HttpClient.
+        /// Used to create a request for the legacy WebRequest based scheme
+        /// (file://). HTTP(S) is handled natively over HttpClient.
         /// </summary>
         /// <param name="requestParameter">Could be modified for each subsequent request</param>
         internal WebRequest PrepareRequest(RequestParameter requestParameter)
@@ -203,7 +202,6 @@ namespace NewsComponents.Net
 #pragma warning restore SYSLIB0014
 
             FileWebRequest fileRequest = webRequest as FileWebRequest;
-            NntpWebRequest nntpRequest = webRequest as NntpWebRequest;
 
             if (fileRequest != null)
             {
@@ -212,22 +210,6 @@ namespace NewsComponents.Net
                 if (requestParameter.Credentials != null)
                 {
                     fileRequest.Credentials = requestParameter.Credentials;
-                }
-            }
-            else if (nntpRequest != null)
-            {
-                // ten minutes timeout. Large timeout is needed if this is first time we are fetching news
-                //TODO: move the timeout handling to the requestor
-                nntpRequest.Timeout = DefaultTimeout * 5;
-
-                if (requestParameter.Credentials != null)
-                {
-                    nntpRequest.Credentials = requestParameter.Credentials;
-                }
-
-                if (requestParameter.LastModified > MinValue)
-                {
-                    nntpRequest.IfModifiedSince = requestParameter.LastModified;
                 }
             }
             else
@@ -986,14 +968,13 @@ namespace NewsComponents.Net
         }
 
         /// <summary>
-        /// WebResponse processing (legacy WebRequest schemes: file:// and nntp:).
+        /// WebResponse processing (legacy WebRequest scheme: file://).
         /// </summary>
         private void ProcessResponse(RequestState state)
         {
             try
             {
                 FileWebResponse fileResponse = state.Response as FileWebResponse;
-                NntpWebResponse nntpResponse = state.Response as NntpWebResponse;
 
                 if (fileResponse != null)
                 {
@@ -1011,18 +992,6 @@ namespace NewsComponents.Net
                                                    ReadCallback, state);
                     // async read started, so we are done here:
                     Log.Debug("ProcessResponse() file response OK: " + state.RequestUri);
-
-                    return;
-                }
-
-                if (nntpResponse != null)
-                {
-                    state.RequestParams.LastModified = DateTime.Now;
-                    state.ResponseStream = nntpResponse.GetResponseStream();
-                    state.ResponseStream.BeginRead(state.ReadBuffer, 0, RequestState.BUFFER_SIZE,
-                                                   ReadCallback, state);
-                    // async read started, so we are done here:
-                    Log.Debug("ProcessResponse() nntp response OK: " + state.RequestUri);
 
                     return;
                 }

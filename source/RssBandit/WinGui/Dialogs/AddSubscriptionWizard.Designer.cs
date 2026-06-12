@@ -68,7 +68,6 @@ namespace RssBandit.WinGui.Dialogs
 			this.pbar = new System.Windows.Forms.ProgressBar();
 			this.lblWaitStepIntro = new System.Windows.Forms.Label();
 			this.pageHowToSelection = new Divelements.WizardFramework.WizardPage();
-			this.radioNewByNNTPGroup = new System.Windows.Forms.RadioButton();
 			this.lblHowToSubscribeIntro = new System.Windows.Forms.Label();
 			this.radioNewByTopicSearch = new System.Windows.Forms.RadioButton();
 			this.radioNewByURL = new System.Windows.Forms.RadioButton();
@@ -85,16 +84,6 @@ namespace RssBandit.WinGui.Dialogs
 			this.lblWelcomeInfoBox = new Divelements.WizardFramework.InformationBox();
 			this.lblWelcomeHelpMessage1 = new System.Windows.Forms.Label();
 			this.lblWelcomeHelpMessage2 = new System.Windows.Forms.Label();
-			this.pageNewByNNTPGroup = new Divelements.WizardFramework.WizardPage();
-			this.lstNNTPGroups = new System.Windows.Forms.ListBox();
-			this.lblUsenetHelp = new System.Windows.Forms.LinkLabel();
-			this.pictureBox1 = new System.Windows.Forms.PictureBox();
-			this.lblReloadNntpListOfGroups = new System.Windows.Forms.LinkLabel();
-			this.lblNNTPGroups = new System.Windows.Forms.Label();
-			this.btnManageNNTPServer = new System.Windows.Forms.Button();
-			this.lblNNTPServer = new System.Windows.Forms.Label();
-			this.cboNNTPServer = new System.Windows.Forms.ComboBox();
-			this.lblNewByNNTPGroupIntro = new System.Windows.Forms.LinkLabel();
 			this.timerIncreaseProgress = new System.Windows.Forms.Timer(this.components);
 			this.timerStartValidation = new System.Windows.Forms.Timer(this.components);
 			this.toolTip = new System.Windows.Forms.ToolTip(this.components);
@@ -113,8 +102,6 @@ namespace RssBandit.WinGui.Dialogs
 			this.pageNewByURL.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureHelpAutodiscover)).BeginInit();
 			this.pageWelcome.SuspendLayout();
-			this.pageNewByNNTPGroup.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// wizard
@@ -125,7 +112,6 @@ namespace RssBandit.WinGui.Dialogs
 			this.wizard.Controls.Add(this.pageTitleCategory);
 			this.wizard.Controls.Add(this.pageNewByURL);
 			this.wizard.Controls.Add(this.pageNewBySearchTopic);
-			this.wizard.Controls.Add(this.pageNewByNNTPGroup);
 			this.wizard.Controls.Add(this.pageValidateUrl);
 			this.wizard.Controls.Add(this.pageFoundMultipleFeeds);
 			this.wizard.Controls.Add(this.pageFeedItemDisplay);
@@ -522,7 +508,6 @@ namespace RssBandit.WinGui.Dialogs
 			// 
 			// pageHowToSelection
 			// 
-			this.pageHowToSelection.Controls.Add(this.radioNewByNNTPGroup);
 			this.pageHowToSelection.Controls.Add(this.lblHowToSubscribeIntro);
 			this.pageHowToSelection.Controls.Add(this.radioNewByTopicSearch);
 			this.pageHowToSelection.Controls.Add(this.radioNewByURL);
@@ -531,13 +516,7 @@ namespace RssBandit.WinGui.Dialogs
 			this.pageHowToSelection.NextPage = this.pageNewByURL;
 			this.pageHowToSelection.PreviousPage = this.pageWelcome;
 			this.pageHowToSelection.AfterDisplay += new System.EventHandler(this.OnPageHowToSelectionAfterDisplay);
-			// 
-			// radioNewByNNTPGroup
-			// 
-			resources.ApplyResources(this.radioNewByNNTPGroup, "radioNewByNNTPGroup");
-			this.radioNewByNNTPGroup.Name = "radioNewByNNTPGroup";
-			this.radioNewByNNTPGroup.CheckedChanged += new System.EventHandler(this.OnRadioHowToSubscribeCheckedChanged);
-			// 
+			//
 			// lblHowToSubscribeIntro
 			// 
 			resources.ApplyResources(this.lblHowToSubscribeIntro, "lblHowToSubscribeIntro");
@@ -656,89 +635,7 @@ namespace RssBandit.WinGui.Dialogs
 			// 
 			resources.ApplyResources(this.lblWelcomeHelpMessage2, "lblWelcomeHelpMessage2");
 			this.lblWelcomeHelpMessage2.Name = "lblWelcomeHelpMessage2";
-			// 
-			// pageNewByNNTPGroup
-			// 
-			this.pageNewByNNTPGroup.Controls.Add(this.lstNNTPGroups);
-			this.pageNewByNNTPGroup.Controls.Add(this.lblUsenetHelp);
-			this.pageNewByNNTPGroup.Controls.Add(this.pictureBox1);
-			this.pageNewByNNTPGroup.Controls.Add(this.lblReloadNntpListOfGroups);
-			this.pageNewByNNTPGroup.Controls.Add(this.lblNNTPGroups);
-			this.pageNewByNNTPGroup.Controls.Add(this.btnManageNNTPServer);
-			this.pageNewByNNTPGroup.Controls.Add(this.lblNNTPServer);
-			this.pageNewByNNTPGroup.Controls.Add(this.cboNNTPServer);
-			this.pageNewByNNTPGroup.Controls.Add(this.lblNewByNNTPGroupIntro);
-			resources.ApplyResources(this.pageNewByNNTPGroup, "pageNewByNNTPGroup");
-			this.pageNewByNNTPGroup.Name = "pageNewByNNTPGroup";
-			this.pageNewByNNTPGroup.NextPage = this.pageTitleCategory;
-			this.pageNewByNNTPGroup.PreviousPage = this.pageHowToSelection;
-			this.pageNewByNNTPGroup.AfterDisplay += new System.EventHandler(this.OnPageNewNNTPGroupAfterDisplay);
-			// 
-			// lstNNTPGroups
-			// 
-			resources.ApplyResources(this.lstNNTPGroups, "lstNNTPGroups");
-			this.lstNNTPGroups.Name = "lstNNTPGroups";
-			this.lstNNTPGroups.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-			this.lstNNTPGroups.Sorted = true;
-			this.lstNNTPGroups.SelectedValueChanged += new System.EventHandler(this.OnNNTPGroupsListSelectedValueChanged);
-			this.lstNNTPGroups.DoubleClick += new System.EventHandler(this.OnNNTPGroupsDoubleClick);
-			// 
-			// lblUsenetHelp
-			// 
-			this.lblUsenetHelp.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			resources.ApplyResources(this.lblUsenetHelp, "lblUsenetHelp");
-			this.lblUsenetHelp.Name = "lblUsenetHelp";
-			this.lblUsenetHelp.TabStop = true;
-			this.lblUsenetHelp.Tag = "http://wikipedia.org/wiki/Usenet";
-			this.lblUsenetHelp.UseCompatibleTextRendering = true;
-			this.lblUsenetHelp.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OnAnyLinkLabel_LinkClicked);
-			// 
-			// pictureBox1
-			// 
-			resources.ApplyResources(this.pictureBox1, "pictureBox1");
-			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.TabStop = false;
-			// 
-			// lblReloadNntpListOfGroups
-			// 
-			resources.ApplyResources(this.lblReloadNntpListOfGroups, "lblReloadNntpListOfGroups");
-			this.lblReloadNntpListOfGroups.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.lblReloadNntpListOfGroups.Name = "lblReloadNntpListOfGroups";
-			this.lblReloadNntpListOfGroups.TabStop = true;
-			this.lblReloadNntpListOfGroups.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OnReloadNntpGroupList);
-			// 
-			// lblNNTPGroups
-			// 
-			resources.ApplyResources(this.lblNNTPGroups, "lblNNTPGroups");
-			this.lblNNTPGroups.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.lblNNTPGroups.Name = "lblNNTPGroups";
-			// 
-			// btnManageNNTPServer
-			// 
-			resources.ApplyResources(this.btnManageNNTPServer, "btnManageNNTPServer");
-			this.btnManageNNTPServer.Name = "btnManageNNTPServer";
-			this.btnManageNNTPServer.Click += new System.EventHandler(this.btnManageNNTPServer_Click);
-			// 
-			// lblNNTPServer
-			// 
-			resources.ApplyResources(this.lblNNTPServer, "lblNNTPServer");
-			this.lblNNTPServer.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.lblNNTPServer.Name = "lblNNTPServer";
-			// 
-			// cboNNTPServer
-			// 
-			resources.ApplyResources(this.cboNNTPServer, "cboNNTPServer");
-			this.cboNNTPServer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cboNNTPServer.Name = "cboNNTPServer";
-			this.cboNNTPServer.SelectedValueChanged += new System.EventHandler(this.OnNNTPServerSelectedValueChanged);
-			// 
-			// lblNewByNNTPGroupIntro
-			// 
-			resources.ApplyResources(this.lblNewByNNTPGroupIntro, "lblNewByNNTPGroupIntro");
-			this.lblNewByNNTPGroupIntro.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.lblNewByNNTPGroupIntro.Name = "lblNewByNNTPGroupIntro";
-			this.lblNewByNNTPGroupIntro.Tag = "";
-			// 
+			//
 			// timerIncreaseProgress
 			// 
 			this.timerIncreaseProgress.Tick += new System.EventHandler(this.OnTimerIncreaseProgress_Tick);
@@ -773,8 +670,6 @@ namespace RssBandit.WinGui.Dialogs
 			this.pageNewByURL.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureHelpAutodiscover)).EndInit();
 			this.pageWelcome.ResumeLayout(false);
-			this.pageNewByNNTPGroup.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			this.ResumeLayout(false);
 
 		}

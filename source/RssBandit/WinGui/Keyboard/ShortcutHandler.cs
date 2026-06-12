@@ -517,8 +517,7 @@ namespace RssBandit.Utility.Keyboard
 						//Menu Commands
 						"cmdNewSubscription",	// calls the wizard in general
 						"cmdNewFeed",			// wizard for Url
-						"cmdNewCategory",		
-						"cmdNewNntpFeed",		// wizard for nntp subscription
+						"cmdNewCategory",
 						"cmdImportFeeds",
 						"cmdExportFeeds",
 						"cmdCloseExit",

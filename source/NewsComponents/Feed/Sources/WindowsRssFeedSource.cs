@@ -3185,10 +3185,6 @@ namespace NewsComponents.Feed
       
         public string stylesheet { get; set; }
 
-        /// <remarks>Reference the corresponding NntpServerDefinition</remarks>
-        [XmlElement("news-account")]
-        public string newsaccount { get; set; }
-
         /// <remarks/>
         [XmlElement("mark-items-read-on-exit")]
         public bool markitemsreadonexit { get; set; }

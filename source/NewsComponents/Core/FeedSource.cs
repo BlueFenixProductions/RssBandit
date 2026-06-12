@@ -28,7 +28,6 @@ using NewsComponents.Collections;
 using NewsComponents.Feed;
 using NewsComponents.Feed.Sources;
 using NewsComponents.Net;
-using NewsComponents.News;
 using NewsComponents.RelationCosmos;
 using NewsComponents.Resources;
 using NewsComponents.Search;
@@ -1862,85 +1861,6 @@ namespace NewsComponents
 
         #endregion
 
-        #region NntpServerDefinition Credentials handling
-
-		/// <summary>
-		/// Set the authorization credentials for a Nntp Server.
-		/// </summary>
-		/// <param name="sd">NntpServerDefinition to be modified</param>
-		/// <param name="user">username, identifier</param>
-		/// <param name="pwd">password</param>
-		public static void SetNntpServerCredentials(INntpServerDefinition sd, string user, string pwd)
-		{
-			BanditFeedSource.SetNntpServerCredentials(sd as NntpServerDefinition, user,pwd);
-		}
-
-		/// <summary>
-		/// Get the authorization credentials for a feed.
-		/// </summary>
-		/// <param name="sd">NntpServerDefinition, where the credentials are taken from</param>
-		/// <param name="user">String return parameter containing the username</param>
-		/// <param name="pwd">String return parameter, containing the password</param>
-		public static void GetNntpServerCredentials(INntpServerDefinition sd, out string user, out string pwd)
-		{
-			BanditFeedSource.GetNntpServerCredentials(sd as NntpServerDefinition, out user, out pwd);
-		}
-
-        /// <summary>
-        /// Gets the NNTP server credentials for a feed.
-        /// </summary>
-        /// <param name="f">The feed.</param>
-        /// <returns>ICredentials</returns>
-        internal ICredentials GetNntpServerCredentials(INewsFeed f)
-        {
-            ICredentials c = null;
-            if (f == null || ! RssHelper.IsNntpUrl(f.link))
-                return c;
-
-        	IBanditFeedSource extension = this as IBanditFeedSource;
-
-			Uri feedUri;
-			if (extension != null && Uri.TryCreate(f.link, UriKind.Absolute, out feedUri))
-            {
-				// this could be called asynchron, so we have to lock the defs.
-				// to be in sync. with potential user modifications at the definitions
-				// the same time:
-				lock (extension.NntpServers)
-				{
-					foreach (INntpServerDefinition nsd in extension.NntpServers.Values)
-					{
-						if (nsd.Server.Equals(feedUri.Authority))
-						{
-							if (nsd.Name != null)
-								c = extension.GetFeedCredentials(nsd);
-							break;
-						}
-					}
-				}
-            }
-            
-            return c;
-        }
-
-		///// <summary>
-		///// Return ICredentials of a feed. 
-		///// </summary>
-		///// <param name="sd">NntpServerDefinition</param>
-		///// <returns>null in the case the nntp server does not have credentials</returns>
-		//public static ICredentials GetFeedCredentials(INntpServerDefinition sd)
-		//{
-		//    ICredentials c = null;
-		//    if (sd.AuthUser != null)
-		//    {
-		//        string u = null, p = null;
-		//        BanditFeedSource.GetNntpServerCredentials(sd, ref u, ref p);
-		//        c = CreateCredentialsFrom(u, p);
-		//    }
-		//    return c;
-		//}
-
-        #endregion
-
         #region Trace support
 
         protected static bool p_traceMode;
@@ -3188,9 +3108,7 @@ namespace NewsComponents
                 //we don't want to write out empty <categories /> into the schema. 				
                 feedlist.categories = c.Count == 0 ? null : c;
 
-				// NNTP is saved now separately:
-				feedlist.nntpservers = null;
-				// saved separately too:
+				// saved separately:
             	feedlist.identities = null;
                 
 				//var ids = new List<UserIdentity>(identities.Values);
@@ -4425,10 +4343,7 @@ namespace NewsComponents
 				}
 
 
-				//get credentials from server definition if this is a newsgroup subscription
-				ICredentials c = RssHelper.IsNntpUrl(theFeed.link)
-									 ? GetNntpServerCredentials(theFeed)
-									 : CreateCredentialsFrom(theFeed);
+				ICredentials c = CreateCredentialsFrom(theFeed);
 
 				reqParam = RequestParameter.Create(reqUri, UserAgent, Proxy, c, lastModified, etag);
 				// global cookie handling:
@@ -4648,17 +4563,7 @@ namespace NewsComponents
                     //Update our recently read stories. This is very necessary for 
                     //dynamically generated feeds which always return 200(OK) even if unchanged							
 
-                    IInternalFeedDetails fi;
-
-                    if ((requestUri.Scheme == NntpWebRequest.NntpUriScheme) ||
-                        (requestUri.Scheme == NntpWebRequest.NewsUriScheme))
-                    {
-                        fi = NntpParser.GetItemsForNewsGroup(theFeed, responseStream, response, UserCacheDataService, false);
-                    }
-					else
-                    {
-                        fi = RssParser.GetItemsForFeed(theFeed, responseStream, false);
-                    }
+                    IInternalFeedDetails fi = RssParser.GetItemsForFeed(theFeed, responseStream, false);
 
                     IInternalFeedDetails fiFromCache = null;
 
@@ -6396,12 +6301,12 @@ namespace NewsComponents
         }
 
         /// <summary>
-        /// Posts a comment in reply to an item using either NNTP or the CommentAPI 
+        /// Posts a comment in reply to an item using the CommentAPI
         /// </summary>
         /// <param name="url">The URL to post the comment to</param>
         /// <param name="item2post">An RSS item that will be posted to the website</param>
-        /// <param name="inReply2item">An RSS item that is the post parent</param>		
-        /// <exception cref="WebException">If an error occurs when the POSTing the 
+        /// <param name="inReply2item">An RSS item that is the post parent</param>
+        /// <exception cref="WebException">If an error occurs when the POSTing the
         /// comment</exception>
         public virtual void PostComment(string url, INewsItem item2post, INewsItem inReply2item)
         {
@@ -6409,26 +6314,6 @@ namespace NewsComponents
             {
                 RssParserInstance.PostCommentViaCommentAPI(url, item2post, inReply2item,
                                                            GetFeedCredentials(inReply2item.Feed));
-            }
-            else if (inReply2item.CommentStyle == SupportedCommentStyle.NNTP)
-            {
-                NntpParser.PostCommentViaNntp(item2post, inReply2item, GetNntpServerCredentials(inReply2item.Feed));
-            }
-        }
-
-        /// <summary>
-        /// Posts a new item to a feed (currently only NNTP feeds) 
-        /// </summary>
-        /// <remarks>How about Atom feed posting?</remarks>
-        /// <param name="item2post">An RSS item that will be posted to the website/NNTP Group</param>
-        /// <param name="postTarget">An NewsFeed as the post target</param>		
-        /// <exception cref="WebException">If an error occurs when the POSTing the 
-        /// comment</exception>
-        public void PostComment(INewsItem item2post, INewsFeed postTarget)
-        {
-            if (item2post.CommentStyle == SupportedCommentStyle.NNTP)
-            {
-                NntpParser.PostCommentViaNntp(item2post, postTarget, GetNntpServerCredentials(postTarget));
             }
         }
 

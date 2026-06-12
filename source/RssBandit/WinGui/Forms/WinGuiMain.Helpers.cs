@@ -17,7 +17,6 @@ using Microsoft.ApplicationBlocks.ExceptionManagement;
 using NewsComponents;
 using NewsComponents.Feed;
 using NewsComponents.Net;
-using NewsComponents.News;
 using NewsComponents.Utils;
 using RssBandit.Resources;
 using RssBandit.WinGui.Controls;
@@ -429,53 +428,7 @@ namespace RssBandit.WinGui.Forms
         internal void SetSubscriptionNodeState(INewsFeed f, TreeFeedsNodeBase feedsNode, FeedProcessingState state)
         {
             if (f == null || feedsNode == null) return;
-            if (RssHelper.IsNntpUrl(f.link))
-            {
-                SetNntpNodeState(f, feedsNode, state);
-            }
-            else
-            {
-                SetFeedNodeState(f, feedsNode, state);
-            }
-        }
-
-        private static void SetNntpNodeState(INewsFeed f, TreeFeedsNodeBase feedsNode, FeedProcessingState state)
-        {
-            if (f == null || feedsNode == null) return;
-            switch (state)
-            {
-                case FeedProcessingState.Normal:
-                    if (f.refreshrateSpecified && f.refreshrate <= 0)
-                    {
-                        feedsNode.Override.NodeAppearance.Image = Resource.SubscriptionTreeImage.NntpDisabled;
-                        feedsNode.Override.SelectedNodeAppearance.Image =
-                            Resource.SubscriptionTreeImage.NntpDisabledSelected;
-                    }
-                    else if (f.authUser != null || f.link.StartsWith(NntpWebRequest.NntpsUriScheme))
-                    {
-                        feedsNode.Override.NodeAppearance.Image = Resource.SubscriptionTreeImage.NntpSecured;
-                        feedsNode.Override.SelectedNodeAppearance.Image =
-                            Resource.SubscriptionTreeImage.NntpSecuredSelected;
-                    }
-                    else
-                    {
-                        feedsNode.Override.NodeAppearance.Image = Resource.SubscriptionTreeImage.Nntp;
-                        feedsNode.Override.SelectedNodeAppearance.Image = Resource.SubscriptionTreeImage.NntpSelected;
-                    }
-                    break;
-                case FeedProcessingState.Failure:
-                    feedsNode.Override.NodeAppearance.Image = Resource.SubscriptionTreeImage.NntpFailure;
-                    feedsNode.Override.SelectedNodeAppearance.Image = Resource.SubscriptionTreeImage.NntpFailureSelected;
-                    break;
-                case FeedProcessingState.Updating:
-                    feedsNode.Override.NodeAppearance.Image = Resource.SubscriptionTreeImage.NntpUpdating;
-                    feedsNode.Override.SelectedNodeAppearance.Image =
-                        Resource.SubscriptionTreeImage.NntpUpdatingSelected;
-                    break;
-                default:
-                    Trace.WriteLine("Unhandled/unknown FeedProcessingState: " + state);
-                    break;
-            }
+            SetFeedNodeState(f, feedsNode, state);
         }
 
         private void SetFeedNodeState(INewsFeed f, TreeFeedsNodeBase feedsNode, FeedProcessingState state)
