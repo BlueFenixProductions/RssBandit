@@ -62,10 +62,12 @@ namespace RssBandit
 
             var appInstance = new RssBanditApplication();
             Action<string[]> callback = appInstance.OnOtherInstance;
+            // Must succeed; if this throws, every later GuiInvoker call would fail,
+            // so don't let the catch below swallow it.
+            GuiInvoker.Initialize();
+
             try
             {
-                GuiInvoker.Initialize();
-
                 isFirstInstance = ApplicationActivator.LaunchOrReturn(cb => GuiInvoker.Invoke(appInstance.MainForm, () => callback(cb)), args);
             }
             catch (Exception /* ex */)
