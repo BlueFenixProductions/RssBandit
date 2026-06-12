@@ -11,7 +11,7 @@ namespace NewsComponents.UnitTests
     /// Tests BanditFeedSource
 	/// </summary>
 	[TestFixture]
-	public class BanditFeedSourceTests : CassiniHelperTestFixture
+	public class BanditFeedSourceTests : WebServerTestFixture
 	{
 		internal const string BASE_URL = "http://127.0.0.1:8081/NewsHandlerTestFiles/";
 		readonly string _cacheDirectory = Path.Combine(Path.GetTempPath(), "RssBanditUnitTestCache");

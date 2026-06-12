@@ -18,7 +18,7 @@ namespace NewsComponents.UnitTests
     /// Test the request class. Most of the tests are async heavy!
     /// </summary>
     [TestFixture]
-    public class AsyncWebRequestTests : CassiniHelperTestFixture
+    public class AsyncWebRequestTests : WebServerTestFixture
     {
         internal const string ROOT_URL = "http://127.0.0.1:8081/";
         internal const string BASE_URL = ROOT_URL + "NewsHandlerTestFiles/";

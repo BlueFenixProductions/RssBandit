@@ -9,13 +9,8 @@ namespace NewsComponents.UnitTests
 	/// <summary>
 	/// NUnit test fixture containing unit tests of the RssLocater class.
 	/// </summary>
-	/// <remarks>
-	/// IDEAS for some tests:
-	///		- Simulate network issues (may require some custom mods to Cassini or just writing HttpModules)
-	///		- USE CassiniEX instead of Cassini http://www.systemex.net/CassiniEx/
-	/// </remarks>
 	[TestFixture]
-	public class RssLocaterTests : CassiniHelperTestFixture
+	public class RssLocaterTests : WebServerTestFixture
 	{
 		const string BASE_URL = "http://127.0.0.1:8081/RssLocaterTestFiles/";
 

@@ -6,23 +6,12 @@
   
   <ItemGroup>
     <ProjectReference Include="..\RssBandit.AppServices\RssBandit.AppServices.csproj" />
-    
-    <Reference Include="Cassini">
-      <Name>Cassini</Name>
-      <HintPath>ExternalDependencies\Cassini.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <ProjectReference Include="..\NewsComponents\NewsComponents.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ExternalDependencies\Cassini.dll" />
-    <Content Include="ExternalDependencies\Cassini.pdb" />
     <EmbeddedResource Include="Resources\TestFeeds\rss_2_0_no_dates.xml" />
     <EmbeddedResource Include="Resources\TestFeeds\FeedWithWeirdLineBreaks.xml" />
     <EmbeddedResource Include="Resources\TestFeeds\rss_rdf_0_91.xml" />
-    <EmbeddedResource Include="Resources\WebRoot\FailWithStatus.aspx">
-      <SubType>ASPXCodeBehind</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Cache\172.0.0.1.8081.1214057202.df05c3d0bd8748e68f121451084e3e62.xml" />
     <EmbeddedResource Include="Resources\Expected\RssItemTests\TestToString.NoGMT.xml" />
     <EmbeddedResource Include="Resources\Expected\RssItemTests\TestToString.NotStandalone.xml" />
@@ -57,6 +46,7 @@
   <ItemGroup>
     <PackageReference Include="NUnit" Version="3.14.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.6.0" />
+    <PackageReference Include="WireMock.Net" Version="2.11.0" />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3" privateassets="all" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />

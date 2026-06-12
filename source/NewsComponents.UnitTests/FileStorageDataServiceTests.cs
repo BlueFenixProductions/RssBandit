@@ -141,7 +141,7 @@ namespace NewsComponents.UnitTests
     /// FileStorageDataService Tests requiring a web server
     /// </summary>
     [TestFixture]
-    public class FileStorageDataServiceTestsRequiringWebServer : CassiniHelperTestFixture
+    public class FileStorageDataServiceTestsRequiringWebServer : WebServerTestFixture
     {
         private readonly string _cacheDirectory;
         const string BASE_URL = "http://127.0.0.1:8081/NewsHandlerTestFiles/";
