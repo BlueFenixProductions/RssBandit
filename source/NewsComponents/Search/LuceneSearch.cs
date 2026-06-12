@@ -11,9 +11,10 @@ using Lucene.Net.Analysis.Snowball;
 using Lucene.Net.Analysis.Standard;
 using Lucene.Net.Documents;
 using Lucene.Net.Index;
-using Lucene.Net.QueryParsers;
+using Lucene.Net.QueryParsers.Classic;
 using Lucene.Net.Search;
 using Lucene.Net.Store;
+using Lucene.Net.Util;
 using NewsComponents.Collections;
 using NewsComponents.Feed;
 using NewsComponents.Resources;
@@ -112,7 +113,7 @@ namespace NewsComponents.Search
 				
 				startIndexAll = (this._settings.IsRAMBasedSearch ||
 					IsIndexCorrupted(this._settings.GetIndexDirectory()) ||
-					!IndexReader.IndexExists(this._settings.GetIndexDirectory()));
+					!DirectoryReader.IndexExists(this._settings.GetIndexDirectory()));
 				
 				this._indexModifier = new LuceneIndexModifier(this._settings);
 			}
@@ -167,65 +168,83 @@ namespace NewsComponents.Search
 			if (q == null)	// not validated
 				return new Result(0, 0, GetList<SearchHitNewsItem>.Empty, GetArrayList.Empty);
 
-			//TODO: to be fixed -
-			// next line causes issues with concurrent thread access to the search index:
-			IndexSearcher searcher = new IndexSearcher(this._settings.GetIndexDirectory());
-			Hits hits = null;
-			
-			while (hits == null)
+			Lucene.Net.Store.Directory indexDirectory = this._settings.GetIndexDirectory();
+			if (!DirectoryReader.IndexExists(indexDirectory)) // no index (yet): no results
+				return new Result(0, 0, GetList<SearchHitNewsItem>.Empty, GetArrayList.Empty);
+
+			using (DirectoryReader reader = DirectoryReader.Open(indexDirectory))
 			{
-				try {
-					DateTime start = DateTime.Now;
-					hits = searcher.Search(q, Sort.RELEVANCE);
-					TimeSpan timeRequired = TimeSpan.FromTicks(DateTime.Now.Ticks - start.Ticks);
-					_log.Info(String.Format("Found {0} document(s) that matched query '{1}' (time required: {2})", hits.Length(), q,timeRequired));
-				} catch (BooleanQuery.TooManyClauses) {
-					BooleanQuery.SetMaxClauseCount(BooleanQuery.GetMaxClauseCount()*2);
-					_log.Info(String.Format("Search failed with error 'BooleanQuery.TooManyClauses'. Retry with BooleanQuery.MaxClauseCount == {0}", BooleanQuery.GetMaxClauseCount()));
+				IndexSearcher searcher = new IndexSearcher(reader);
+				TopDocs hits = null;
+
+				while (hits == null)
+				{
+					try {
+						DateTime start = DateTime.Now;
+						// old code searched without a result limit (Hits), so we request up to MaxDoc:
+						hits = searcher.Search(q, Math.Max(1, reader.MaxDoc), Sort.RELEVANCE);
+						TimeSpan timeRequired = TimeSpan.FromTicks(DateTime.Now.Ticks - start.Ticks);
+						_log.Info(String.Format("Found {0} document(s) that matched query '{1}' (time required: {2})", hits.TotalHits, q,timeRequired));
+					} catch (BooleanQuery.TooManyClausesException) {
+						BooleanQuery.MaxClauseCount = BooleanQuery.MaxClauseCount*2;
+						_log.Info(String.Format("Search failed with error 'BooleanQuery.TooManyClauses'. Retry with BooleanQuery.MaxClauseCount == {0}", BooleanQuery.MaxClauseCount));
+					}
 				}
+
+				List<SearchHitNewsItem> items = new List<SearchHitNewsItem>(hits.ScoreDocs.Length);
+				HybridDictionary matchedFeeds = new HybridDictionary();
+
+
+				for (int i = 0; i < hits.ScoreDocs.Length; i++) {
+					Document doc = searcher.Doc(hits.ScoreDocs[i].Doc);
+
+					INewsFeed f = null;
+					string feedLink = doc.Get(Keyword.FeedLink);
+					if (matchedFeeds.Contains(feedLink))
+						f = (INewsFeed) matchedFeeds[feedLink];
+
+	                if (f == null){
+	                    foreach (FeedSource h in feedSources)
+	                    {
+	                        if (h.IsSubscribed(feedLink))
+	                        {
+	                            f = h.GetFeeds()[feedLink];
+	                            break;
+	                        }
+	                    }
+	                }
+
+					if (f == null) continue;
+					SearchHitNewsItem item = new SearchHitNewsItem(f,
+						doc.Get(Keyword.ItemTitle),
+						doc.Get(Keyword.ItemLink),
+						doc.Get(IndexDocument.ItemSummary),
+						doc.Get(Keyword.ItemAuthor),
+						ParseIndexedDate(doc.Get(Keyword.ItemDate)),
+						LuceneNewsItemSearch.NewsItemIDFromUID(doc.Get(IndexDocument.ItemID)));
+
+					items.Add(item);
+					if (!matchedFeeds.Contains(feedLink))
+						matchedFeeds.Add(feedLink, f);
+
+				}
+
+
+				return new Result(items.Count, matchedFeeds.Count, items, new ArrayList(matchedFeeds.Values));
 			}
+		}
 
-			List<SearchHitNewsItem> items = new List<SearchHitNewsItem>(hits.Length());
-			HybridDictionary matchedFeeds = new HybridDictionary();
-
-			
-			for (int i = 0; i < hits.Length(); i++) {
-				Document doc = hits.Doc(i);
-
-				INewsFeed f = null;
-				string feedLink = doc.Get(Keyword.FeedLink);
-				if (matchedFeeds.Contains(feedLink))
-					f = (INewsFeed) matchedFeeds[feedLink];
-
-                if (f == null){
-                    foreach (FeedSource h in feedSources)
-                    {
-                        if (h.IsSubscribed(feedLink))
-                        {
-                            f = h.GetFeeds()[feedLink];
-                            break;
-                        }
-                    }
-                }
-
-				if (f == null) continue;
-				SearchHitNewsItem item = new SearchHitNewsItem(f, 
-					doc.Get(Keyword.ItemTitle),
-					doc.Get(Keyword.ItemLink),
-					doc.Get(IndexDocument.ItemSummary),
-					doc.Get(Keyword.ItemAuthor),
-					new DateTime(DateTools.StringToTime(doc.Get(Keyword.ItemDate))),
-					LuceneNewsItemSearch.NewsItemIDFromUID(doc.Get(IndexDocument.ItemID)));
-				
-				items.Add(item);
-				if (!matchedFeeds.Contains(feedLink))
-					matchedFeeds.Add(feedLink, f);
-				
-			}
-			
-			
-			return new Result(items.Count, matchedFeeds.Count, items, new ArrayList(matchedFeeds.Values));
-			
+		/// <summary>
+		/// Parses a date stored in the index (see <see cref="LuceneNewsItemSearch.DateIndexFormat"/>).
+		/// </summary>
+		private static DateTime ParseIndexedDate(string indexedDate)
+		{
+			DateTime date;
+			if (!string.IsNullOrEmpty(indexedDate) &&
+				DateTime.TryParseExact(indexedDate, LuceneNewsItemSearch.DateIndexFormat,
+					CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
+				return date;
+			return DateTime.MinValue;
 		}
 
 		/// <summary>
@@ -314,73 +333,73 @@ namespace NewsComponents.Search
 					}
 					
 				} 
-				else if (sc is SearchCriteriaAge) 
+				else if (sc is SearchCriteriaAge)
 				{
 					SearchCriteriaAge c = (SearchCriteriaAge) sc;
-					Term left, right; 
+					string left, right;
 					string pastDate = "19900101",
 					       pastDateTime = "199001010001";
 					string futureDate =DateTime.Now.AddYears(20).DateToInteger().ToString(NumberFormatInfo.InvariantInfo),
 						   futureDateTime = DateTime.Now.AddYears(20).DateToInteger().ToString(NumberFormatInfo.InvariantInfo) + "0001";
-					
+
 					if (c.WhatRelativeToToday.CompareTo(TimeSpan.Zero) == 0) {
 						// compare date only:
 						//TODO: validate provided date(s) to be in the allowed ranges (pastDate, futureDate)!
-						switch(c.WhatKind){	
+						switch(c.WhatKind){
 							case DateExpressionKind.Equal:
 								AddBooleanClauseMust(bRanges, new PrefixQuery(new Term(Keyword.ItemDate, c.WhatAsIntDateOnly.ToString(NumberFormatInfo.InvariantInfo))));  //itemDate == whatYearOnly;
 								break;
 							case DateExpressionKind.OlderThan:
-								left = new Term(Keyword.ItemDate, pastDate);
-								right = new Term(Keyword.ItemDate, c.What.DateToInteger().ToString(NumberFormatInfo.InvariantInfo));
-								AddBooleanClauseMust(bRanges, new RangeQuery(left, right, true)); // return itemDate < whatYearOnly;
+								left = pastDate;
+								right = c.What.DateToInteger().ToString(NumberFormatInfo.InvariantInfo);
+								AddBooleanClauseMust(bRanges, TermRangeQuery.NewStringRange(Keyword.ItemDate, left, right, true, true)); // return itemDate < whatYearOnly;
 								break;
 							case DateExpressionKind.NewerThan:
-								left = new Term(Keyword.ItemDate, c.What.DateToInteger().ToString(NumberFormatInfo.InvariantInfo));
-								right = new Term(Keyword.ItemDate, futureDate);
-								AddBooleanClauseMust(bRanges, new RangeQuery(left, right, true)); // return itemDate > whatYearOnly;
+								left = c.What.DateToInteger().ToString(NumberFormatInfo.InvariantInfo);
+								right = futureDate;
+								AddBooleanClauseMust(bRanges, TermRangeQuery.NewStringRange(Keyword.ItemDate, left, right, true, true)); // return itemDate > whatYearOnly;
 								break;
-								
+
 							default:
-								break; 
+								break;
 						}
 					} else {
 						DateTime dt = DateTime.Now.ToUniversalTime().Subtract(c.WhatRelativeToToday);
-						switch(c.WhatKind){	
+						switch(c.WhatKind){
 							case DateExpressionKind.OlderThan:
-								left = new Term(Keyword.ItemDate, pastDateTime);
-								right = new Term(Keyword.ItemDate, DateTools.TimeToString(dt.Ticks, DateTools.Resolution.MINUTE));
-								AddBooleanClauseMust(bRanges, new RangeQuery(left, right, true));
+								left = pastDateTime;
+								right = dt.ToString(LuceneNewsItemSearch.DateIndexFormat, CultureInfo.InvariantCulture);
+								AddBooleanClauseMust(bRanges, TermRangeQuery.NewStringRange(Keyword.ItemDate, left, right, true, true));
 								break;
 							case DateExpressionKind.NewerThan:
-								left = new Term(Keyword.ItemDate, DateTools.TimeToString(dt.Ticks, DateTools.Resolution.MINUTE));
-								right = new Term(Keyword.ItemDate, futureDateTime);
-								AddBooleanClauseMust(bRanges, new RangeQuery(left, right, true));
+								left = dt.ToString(LuceneNewsItemSearch.DateIndexFormat, CultureInfo.InvariantCulture);
+								right = futureDateTime;
+								AddBooleanClauseMust(bRanges, TermRangeQuery.NewStringRange(Keyword.ItemDate, left, right, true, true));
 								break;
-								
+
 							default:
-								break; 
+								break;
 						}
 					}
-					 
+
 				}
 				else if (sc is SearchCriteriaDateRange)
 				{
 					SearchCriteriaDateRange  c = (SearchCriteriaDateRange) sc;
-					
-					Term left = new Term(Keyword.ItemDate, c.Bottom.DateToInteger().ToString(NumberFormatInfo.InvariantInfo));
-					Term right = new Term(Keyword.ItemDate, c.Top.DateToInteger().ToString(NumberFormatInfo.InvariantInfo));
-					AddBooleanClauseMust(bRanges, new RangeQuery(left, right, true)); // return itemDate > whatYearOnly;
-				}	
+
+					string left = c.Bottom.DateToInteger().ToString(NumberFormatInfo.InvariantInfo);
+					string right = c.Top.DateToInteger().ToString(NumberFormatInfo.InvariantInfo);
+					AddBooleanClauseMust(bRanges, TermRangeQuery.NewStringRange(Keyword.ItemDate, left, right, true, true)); // return itemDate > whatYearOnly;
+				}
 			}
 
 			// now we build: +(terms...) +ranges
-			if (bTerms.GetClauses().Length > 0) {
+			if (bTerms.Clauses.Count > 0) {
 				masterQuery = new BooleanQuery();
 				AddBooleanClauseMust(masterQuery, bTerms);
 			}
 
-			if (bRanges.GetClauses().Length > 0) {
+			if (bRanges.Clauses.Count > 0) {
 				if (masterQuery != null)
 					AddBooleanClauseMust(masterQuery, bRanges); // AND
 				else
@@ -422,8 +441,8 @@ namespace NewsComponents.Search
 			bq.Add(q, false, false);
 		}
 
-#else // lucene 2.0:
-		
+#else // lucene 4.8:
+
 		private static Query QueryFromStringExpression(SearchCriteriaString c, string field, Analyzer a)
 		{
 			if (c.WhatKind == StringExpressionKind.RegularExpression) {
@@ -433,13 +452,13 @@ namespace NewsComponents.Search
 		}
 
 		private static Query QueryFromStringExpression(string expression, string field, Analyzer a) {
-			return new QueryParser(field, a).Parse(expression);
+			return new QueryParser(LuceneVersion.LUCENE_48, field, a).Parse(expression);
 		}
 		private static void AddBooleanClauseMust(BooleanQuery bq, Query q) {
-			bq.Add(q, BooleanClause.Occur.MUST);
+			bq.Add(q, Occur.MUST);
 		}
 		private static void AddBooleanClauseShould(BooleanQuery bq, Query q) {
-			bq.Add(q, BooleanClause.Occur.SHOULD);
+			bq.Add(q, Occur.SHOULD);
 		}
 #endif
 		
@@ -709,9 +728,9 @@ namespace NewsComponents.Search
 		/// <returns></returns>
 		internal static Analyzer GetAnalyzer(NewsItem item) {
 			if (item == null)
-				return new StandardAnalyzer();
+				return new StandardAnalyzer(LuceneVersion.LUCENE_48);
 			return GetAnalyzer(item.Language);
-		} 
+		}
 
 		/// <summary>
 		/// Base method to get the analyzer.
@@ -739,25 +758,23 @@ namespace NewsComponents.Search
 				case "es":	return new SpanishAnalyzer();
 				default:	return new StandardAnalyzer();
 #endif
-				// Snowball/lucene 2.0:
-				// Available stemmers are listed in {@link SF.Snowball.Ext}.  The name of a
+				// Snowball/lucene 4.8:
+				// Available stemmers are listed in Lucene.Net.Tartarus.Snowball.Ext.  The name of a
 				// stemmer is the part of the class name before "Stemmer", e.g., the stemmer in
-				// {@link EnglishStemmer} is named "English".
-				case "en":		return new SnowballAnalyzer("English");
-				//TODO: review on next lucene update; Danish stemmer cause IndexOutOfRange exception in lucene.net 2.0 b004. Check in newer version(s) for a fix
-				//case "da":		return new SnowballAnalyzer("Danish");
-				case "de":		return new SnowballAnalyzer("German");
-				case "es":		return new SnowballAnalyzer("Spanish");
-				//TODO: review on next lucene update; also cause exceptions. See http://sourceforge.net/tracker/index.php?func=detail&aid=1859508&group_id=96589&atid=615248
-				//case "fi":		return new SnowballAnalyzer("Finnish");
-				case "fr":		return new SnowballAnalyzer("French");
-				case "it":		return new SnowballAnalyzer("Italian");
-				case "nl-nl":	return new SnowballAnalyzer("Dutch");
-				case "no":		return new SnowballAnalyzer("Norwegian");
-				case "pt":		return new SnowballAnalyzer("Portuguese");
-				case "ru":		return new SnowballAnalyzer("Russian");
-				case "sv":		return new SnowballAnalyzer("Swedish");
-				default:		return new StandardAnalyzer();
+				// EnglishStemmer is named "English".
+				case "en":		return new SnowballAnalyzer(LuceneVersion.LUCENE_48, "English");
+				case "da":		return new SnowballAnalyzer(LuceneVersion.LUCENE_48, "Danish");
+				case "de":		return new SnowballAnalyzer(LuceneVersion.LUCENE_48, "German");
+				case "es":		return new SnowballAnalyzer(LuceneVersion.LUCENE_48, "Spanish");
+				case "fi":		return new SnowballAnalyzer(LuceneVersion.LUCENE_48, "Finnish");
+				case "fr":		return new SnowballAnalyzer(LuceneVersion.LUCENE_48, "French");
+				case "it":		return new SnowballAnalyzer(LuceneVersion.LUCENE_48, "Italian");
+				case "nl-nl":	return new SnowballAnalyzer(LuceneVersion.LUCENE_48, "Dutch");
+				case "no":		return new SnowballAnalyzer(LuceneVersion.LUCENE_48, "Norwegian");
+				case "pt":		return new SnowballAnalyzer(LuceneVersion.LUCENE_48, "Portuguese");
+				case "ru":		return new SnowballAnalyzer(LuceneVersion.LUCENE_48, "Russian");
+				case "sv":		return new SnowballAnalyzer(LuceneVersion.LUCENE_48, "Swedish");
+				default:		return new StandardAnalyzer(LuceneVersion.LUCENE_48);
 			}
 		}
 
@@ -796,9 +813,9 @@ namespace NewsComponents.Search
 
 		private bool IsIndexCorrupted(Lucene.Net.Store.Directory directory)
 		{
-			if (directory is FSDirectory && IndexReader.IndexExists(directory))
+			if (directory is FSDirectory && DirectoryReader.IndexExists(directory))
 			{
-				bool unexpectedProcessTermination = IndexReader.IsLocked(directory);
+				bool unexpectedProcessTermination = IndexWriter.IsLocked(directory);
 				if (unexpectedProcessTermination) try
 					{
 						_log.Error("Try to cleanup index after unexpected Process Termination...");
@@ -811,14 +828,43 @@ namespace NewsComponents.Search
 						_log.Error("Could not cleanup index after unexpected Process Termination. Try simply unlock now.", accessEx);
 						try
 						{
-							IndexReader.Unlock(directory);
-						} 
+							IndexWriter.Unlock(directory);
+						}
 						catch (Exception ex)
 						{
 							_log.Error("Could not unlock index after unexpected Process Termination. Giving up now.", ex);
-						
+
 						}
 					}
+
+				// Proactive format check: an index written by an older Lucene version (e.g. the
+				// Lucene 2.9 format used by previous RSS Bandit versions) cannot be opened by
+				// Lucene 4.8. In that case (or if it is otherwise corrupted/unreadable) we delete
+				// the index directory contents here, so the regular "index missing" detection and
+				// CheckIndex() machinery rebuild it from scratch:
+				try
+				{
+					using (DirectoryReader.Open(directory)) { /* opens fine: format is readable */ }
+				}
+				catch (Exception formatEx) when (
+					formatEx is IndexFormatTooOldException ||
+					formatEx is CorruptIndexException ||
+					formatEx is IOException)
+				{
+					_log.Info(String.Format("Search index at '{0}' is in an old or unreadable format ({1}). " +
+						"The index gets deleted now and will be rebuilt from scratch.",
+						_settings.IndexPath, formatEx.GetBaseException().Message));
+					try
+					{
+						Directory.Delete(_settings.IndexPath, true);
+						Directory.CreateDirectory(_settings.IndexPath);
+					}
+					catch (Exception cleanupEx)
+					{
+						_log.Error("Could not cleanup the old/unreadable index.", cleanupEx);
+					}
+					return true;
+				}
 			}
 			return false;
 		}

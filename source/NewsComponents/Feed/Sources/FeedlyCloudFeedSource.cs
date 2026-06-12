@@ -18,7 +18,6 @@ using System.Net;
 using System.Xml;
 using System.Xml.Serialization;
 using log4net;
-using Lucene.Net.Util;
 using NewsComponents.Net;
 using NewsComponents.Utils;
 using RssBandit.Common.Logging;

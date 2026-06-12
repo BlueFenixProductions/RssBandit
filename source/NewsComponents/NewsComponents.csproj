@@ -47,9 +47,12 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="log4net" Version="2.0.17" />
-    <PackageReference Include="Lucene.Net" Version="2.9.4.1" />
-    <PackageReference Include="Lucene.Net.Contrib" Version="2.9.4.1" />
+    <PackageReference Include="Lucene.Net" Version="4.8.0-beta00017" />
+    <PackageReference Include="Lucene.Net.Analysis.Common" Version="4.8.0-beta00017" />
+    <PackageReference Include="Lucene.Net.QueryParser" Version="4.8.0-beta00017" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+    <!-- SharpZipLib was formerly a transitive dependency of Lucene.Net.Contrib 2.9.4.1; FileHelper.ZipFiles() uses it directly: -->
+    <PackageReference Include="SharpZipLib" Version="1.4.2" />
     <PackageReference Include="WindowsAPICodePack-Core" Version="1.1.2" />
     <PackageReference Include="WindowsAPICodePack-Shell" Version="1.1.1" />
   </ItemGroup>

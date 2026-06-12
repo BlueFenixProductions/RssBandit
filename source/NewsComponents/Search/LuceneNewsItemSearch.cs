@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Text;
 using Lucene.Net.Documents;
 using NewsComponents.Utils;
@@ -39,12 +40,11 @@ namespace NewsComponents.Search
 			doc.Add(Field.Keyword(LuceneSearch.IndexDocument.FeedID, item.Feed.id));
 			
 			doc.Add(Field.Keyword(LuceneSearch.Keyword.ItemLink, CheckNull(item.Link)));
-			//TODO: check, if we cannot simpy use the DateTime overload of the Keyword() method
-			// remember, the item.Date is UTC here
-			//doc.Add(Field.Keyword(LuceneSearch.Keyword.ItemDate, DateToString(item.Date)));
-			//doc.Add(Field.Keyword(LuceneSearch.Keyword.ItemDate, item.Date));
+			// remember, the item.Date is UTC here.
+			// The format equals the old Lucene 2.9 DateTools.TimeToString(ticks, Resolution.MINUTE)
+			// output ("yyyyMMddHHmm"), so term/prefix/range date queries keep working unchanged:
 			doc.Add(Field.Keyword(LuceneSearch.Keyword.ItemDate,
-				DateTools.TimeToString(item.Date.Ticks, DateTools.Resolution.MINUTE)));
+				item.Date.ToString(DateIndexFormat, CultureInfo.InvariantCulture)));
 			doc.Add(Field.Text(LuceneSearch.Keyword.ItemTitle, CheckNull(item.Title)));
 			doc.Add(Field.Text(LuceneSearch.Keyword.ItemAuthor, CheckNull(item.Author)));
 			doc.Add(Field.Text(LuceneSearch.Keyword.ItemTopic, CheckNull(item.Subject)));
@@ -87,59 +87,53 @@ namespace NewsComponents.Search
 			return doc;
 		}
 		
-#if LUCENE_1_9		
-#else // lucene 2.0:
+		// lucene 4.8:
 		class Field
 		{
 			/// <summary>
-			/// Field.Keyword() are added and indexed (searchable), but not tokenized
+			/// Field.Keyword() are stored and indexed (searchable), but not tokenized
+			/// (old Lucene 2.x: Store.YES + Index.UN_TOKENIZED)
 			/// </summary>
 			/// <param name="name">The name.</param>
 			/// <param name="value">The value.</param>
 			/// <returns></returns>
 			public static Lucene.Net.Documents.Field Keyword(string name, string value) {
-				//return new Lucene.Net.Documents.Field(name, value, true, true, false);
-				return new Lucene.Net.Documents.Field(name, value,
-				    Lucene.Net.Documents.Field.Store.YES,
-				    Lucene.Net.Documents.Field.Index.UN_TOKENIZED);
+				return new StringField(name, value, Lucene.Net.Documents.Field.Store.YES);
 			}
 			/// <summary>
-			/// Field.Text() are added, indexed (searchable) and tokenized  
+			/// Field.Text() are stored, indexed (searchable) and tokenized
+			/// (old Lucene 2.x: Store.YES + Index.TOKENIZED)
 			/// </summary>
 			/// <param name="name">The name.</param>
 			/// <param name="value">The value.</param>
 			/// <returns></returns>
 			public static Lucene.Net.Documents.Field Text(string name, string value) {
-				return new Lucene.Net.Documents.Field(name, value,
-					Lucene.Net.Documents.Field.Store.YES,
-					Lucene.Net.Documents.Field.Index.TOKENIZED);
+				return new TextField(name, value, Lucene.Net.Documents.Field.Store.YES);
 			}
 			/// <summary>
-			/// Field.UnIndexed() are added only
+			/// Field.UnIndexed() are stored only
+			/// (old Lucene 2.x: Store.YES + Index.NO)
 			/// </summary>
 			/// <param name="name">The name.</param>
 			/// <param name="value">The value.</param>
 			/// <returns></returns>
 			public static Lucene.Net.Documents.Field UnIndexed(string name, string value) {
-				return new Lucene.Net.Documents.Field(name, value,
-					Lucene.Net.Documents.Field.Store.YES,
-					Lucene.Net.Documents.Field.Index.NO);
+				return new StoredField(name, value);
 			}
 		}
-#endif
-		
-		/// <summary> 
+
+		/// <summary>
+		/// The (invariant culture) date(time) format used to index item dates.
+		/// It matches the old Lucene 2.9 DateTools.TimeToString(ticks, Resolution.MINUTE) format.
+		/// </summary>
+		internal const string DateIndexFormat = "yyyyMMddHHmm";
+
+		/// <summary>
 		/// Converts a Date to a string suitable for indexing.
 		/// </summary>
-		/// <throws>  RuntimeException if the date specified in the 
-		/// method argument is before 1970</throws>
-		/// <remarks>Check, if we really have to subtract the TimeZone.UtcOffset,
-		/// because the date is already UTC!</remarks>
+		/// <remarks>The date is expected to be UTC (as item dates are).</remarks>
 		public static System.String DateToString(System.DateTime date) {
-			TimeSpan ts = date.Subtract(new DateTime(1970, 1, 1));
-			//TODO: Check, if this have to be removed:
-			ts = ts.Subtract(TimeZone.CurrentTimeZone.GetUtcOffset(date));
-			return DateField.TimeToString(ts.Ticks / TimeSpan.TicksPerMillisecond);
+			return date.ToString(DateIndexFormat, CultureInfo.InvariantCulture);
 		}
 		
 		private static string CheckNull(string s) {

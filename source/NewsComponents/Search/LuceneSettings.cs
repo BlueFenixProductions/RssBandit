@@ -93,7 +93,9 @@ namespace NewsComponents.Search
 			{
 				return new RAMDirectory();
 			}
-            return FSDirectory.GetDirectory(this.indexPath, create);
+			if (create && !System.IO.Directory.Exists(this.indexPath))
+				System.IO.Directory.CreateDirectory(this.indexPath);
+            return FSDirectory.Open(this.indexPath);
         }
 
 		/// <summary>

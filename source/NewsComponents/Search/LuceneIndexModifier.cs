@@ -11,6 +11,7 @@ using Lucene.Net.Analysis.Standard;
 using Lucene.Net.Documents;
 using Lucene.Net.Index;
 using Lucene.Net.Store;
+using Lucene.Net.Util;
 using NewsComponents.Collections;
 using NewsComponents.Utils;
 using RssBandit.Common.Logging;
@@ -107,11 +108,11 @@ namespace NewsComponents.Search
 		private AutoResetEvent startProcessPendingOpsSignal;
 		private RegisteredWaitHandle rwhProcessPendingOps;
 
-		private readonly PriorityQueue pendingIndexOperations = new PriorityQueue(); 
+		private readonly NewsComponents.Collections.PriorityQueue pendingIndexOperations = new NewsComponents.Collections.PriorityQueue();
 
 		// logging/tracing:
-		private static readonly ILog _log = Log.GetLogger(typeof(LuceneIndexModifier));	
-		private static readonly LuceneInfoWriter _logHelper = new LuceneInfoWriter(_log); 
+		private static readonly ILog _log = Log.GetLogger(typeof(LuceneIndexModifier));
+		private static readonly LuceneInfoStream _logHelper = new LuceneInfoStream(_log);
 
 		protected internal IndexWriter indexWriter;
 		//protected internal IndexReader indexReader = null;
@@ -164,9 +165,9 @@ namespace NewsComponents.Search
 		/// Gets true if an Index exists.
 		/// </summary>
 		/// <returns></returns>
-		public bool IndexExists 
+		public bool IndexExists
 		{
-			get { return IndexReader.IndexExists(this.BaseDirectory); }
+			get { return DirectoryReader.IndexExists(this.BaseDirectory); }
 		}
 
 		/// <summary> 
@@ -322,17 +323,22 @@ namespace NewsComponents.Search
 		#region public methods (Index related)
 		
 		/// <summary>
-		/// Creates the index.
+		/// Creates the index (a new empty one, removing all previously indexed documents).
 		/// </summary>
 		public void CreateIndex() {
-			IndexWriter writer = new IndexWriter(this.settings.GetIndexDirectory(), new StandardAnalyzer(), true);
-			writer.Close();
+			lock (SyncRoot)
+			{
+				// In Lucene 4.8 only one IndexWriter can hold the directory write lock,
+				// so we reuse the open writer (instead of opening a second one with create==true
+				// as the Lucene 2.9 based code did) and simply reset its content:
+				CreateIndexWriter();
+				indexWriter.DeleteAll();
+				indexWriter.Commit();
+			}
 		}
 
 		/// <summary> Returns the number of documents currently in this index.</summary>
-		/// <seealso cref="IndexWriter.DocCount()">
-		/// </seealso>
-		/// <seealso cref="IndexReader.NumDocs()">
+		/// <seealso cref="IndexWriter.NumDocs">
 		/// </seealso>
 		/// <exception cref="InvalidOperationException">If the index is closed </exception>
 		public virtual int NumberOfDocuments()
@@ -342,7 +348,7 @@ namespace NewsComponents.Search
 				AssureOpen();
 				if (indexWriter != null)
 				{
-					return indexWriter.DocCount();
+					return indexWriter.NumDocs;
 				}
 				return 0;
 			}
@@ -383,7 +389,7 @@ namespace NewsComponents.Search
 				if (!open) return;
 				if (indexWriter != null)
 				{
-					try { indexWriter.Close(); } 
+					try { indexWriter.Dispose(); }
 					catch (Exception closeEx) { _log.Error("Failed to close indexWriter", closeEx);}
 					indexWriter = null;
 				}
@@ -691,7 +697,7 @@ namespace NewsComponents.Search
                     try
                     {
 
-                        indexWriter.Close();
+                        indexWriter.Dispose();
                         indexWriter = null;
                         if (!closeWriterOnly)
                             CreateIndexWriter();
@@ -721,7 +727,7 @@ namespace NewsComponents.Search
 		/// <summary> Merges all segments together into a single segment, optimizing an index
 		/// for search.
 		/// </summary>
-		/// <seealso cref="IndexWriter.Optimize()">
+		/// <seealso cref="IndexWriter.ForceMerge(int)">
 		/// </seealso>
 		/// <exception cref="InvalidOperationException">If the index is closed </exception>
 		private void OptimizeIndex()
@@ -729,13 +735,14 @@ namespace NewsComponents.Search
 #if TRACE_INDEX_OPS
 			_log.Info("OptimizeIndex...");
 #endif
-			//since this significantly modifies the index, we don't want other operations 
+			//since this significantly modifies the index, we don't want other operations
 			//occuring at the same time
 			lock (SyncRoot)
 			{
 				AssureOpen();
 				CreateIndexWriter();
-				indexWriter.Optimize();
+				indexWriter.ForceMerge(1);
+				indexWriter.Commit();
 			}
 		}
 
@@ -745,12 +752,44 @@ namespace NewsComponents.Search
 
 		/// <summary> Initialize an IndexWriter.</summary>
 		/// <exception cref="IOException"></exception>
-		protected internal void Init() 
+		protected internal void Init()
 		{
 			lock (this.SyncRoot) {
-				this.indexWriter =new IndexWriter(this.settings.GetIndexDirectory(),
-					LuceneSearch.GetAnalyzer(LuceneSearch.DefaultLanguage), !this.IndexExists);
+				try
+				{
+					CreateIndexWriter();
+				}
+				catch (Exception ex) when (ex is IndexFormatTooOldException || ex is CorruptIndexException)
+				{
+					// the index was written by an older (incompatible) Lucene version (e.g. 2.9)
+					// or is corrupted: remove and recreate it from scratch (full re-index is
+					// triggered by LuceneSearch.CheckIndex()):
+					_log.Info("Search index is in an old or corrupted format and cannot be opened. " +
+					          "It gets deleted now and will be rebuilt from scratch.", ex);
+					WipeIndexDirectory();
+					this.BaseDirectory = settings.GetIndexDirectory(true);
+					CreateIndexWriter();
+				}
 				open = true;
+			}
+		}
+
+		/// <summary>
+		/// Deletes all files of a file system based index (to be re-created empty).
+		/// </summary>
+		private void WipeIndexDirectory()
+		{
+			if (this.BaseDirectory is FSDirectory && settings.IndexPath != null)
+			{
+				try
+				{
+					Directory.Delete(settings.IndexPath, true);
+					Directory.CreateDirectory(settings.IndexPath);
+				}
+				catch (Exception ex)
+				{
+					_log.Error("Failed to wipe the index directory " + settings.IndexPath, ex);
+				}
 			}
 		}
 		
@@ -766,19 +805,27 @@ namespace NewsComponents.Search
 
 		/// <summary> Close the IndexReader and open an IndexWriter.</summary>
 		/// <exception cref="IOException"></exception>
-		protected internal virtual void  CreateIndexWriter() 
+		protected internal virtual void  CreateIndexWriter()
 		{
-			if (this.indexWriter == null) 
+			if (this.indexWriter == null)
 			{
 #if TRACE_INDEX_OPS
 				_log.Info("Creating IndexWriter...");
 #endif
-				this.indexWriter = new IndexWriter(this.BaseDirectory, 
-					LuceneSearch.GetAnalyzer(LuceneSearch.DefaultLanguage), false);
-				this.indexWriter.SetInfoStream(_logHelper);
-                this.indexWriter.SetMergeFactor(MaxSegments);
-                this.indexWriter.SetMaxBufferedDocs(DocsPerSegment);
-				this.indexWriter.SetMergeScheduler(new NoExceptionsConcurrentMergeScheduler());
+				var config = new IndexWriterConfig(LuceneVersion.LUCENE_48,
+					LuceneSearch.GetAnalyzer(LuceneSearch.DefaultLanguage))
+				{
+					// create the index, if it does not yet exist, else append:
+					OpenMode = OpenMode.CREATE_OR_APPEND,
+					// old code: indexWriter.SetMaxBufferedDocs(DocsPerSegment):
+					MaxBufferedDocs = DocsPerSegment,
+					// old code: indexWriter.SetMergeFactor(MaxSegments):
+					MergePolicy = new LogDocMergePolicy { MergeFactor = MaxSegments },
+					MergeScheduler = new NoExceptionsConcurrentMergeScheduler()
+				};
+				// old code: indexWriter.SetInfoStream(_logHelper):
+				config.SetInfoStream(_logHelper);
+				this.indexWriter = new IndexWriter(this.BaseDirectory, config);
 			}
 		}
 
@@ -801,58 +848,55 @@ namespace NewsComponents.Search
 	}
 
 	/*
-	 * according to http://mail-archives.apache.org/mod_mbox/lucene-java-user/200902.mbox/%3c39D2833E-C1BE-425A-B7E8-47C17748E792@mikemccandless.com%3e 
-	 * we create our own exception ignoring MergeScheduler class 
+	 * according to http://mail-archives.apache.org/mod_mbox/lucene-java-user/200902.mbox/%3c39D2833E-C1BE-425A-B7E8-47C17748E792@mikemccandless.com%3e
+	 * we create our own exception ignoring MergeScheduler class
 	 */
 	internal class NoExceptionsConcurrentMergeScheduler: ConcurrentMergeScheduler
 	{
-		public NoExceptionsConcurrentMergeScheduler()
+		// logging/tracing:
+		private static readonly ILog _log = Log.GetLogger(typeof(NoExceptionsConcurrentMergeScheduler));
+
+		protected override void HandleMergeException(Exception exc)
 		{
-            // as long there is no  handleMergeException method to overwrite,
-            // we use this one:
-            this.SetSuppressExceptions();//.SetSuppressExceptions_ForNUnitTest();
-		} 
+			// suppress merge exceptions (just log them), as the old
+			// Lucene 2.9 based code did via SetSuppressExceptions():
+			_log.Error("Suppressed background merge exception", exc);
+		}
 	}
 
 	/**
-	 * Helper class which writes internal Lucene debug info to RSS Bandit trace logs. 
+	 * Helper class which writes internal Lucene debug info to RSS Bandit trace logs.
 	 */
-	internal class LuceneInfoWriter: StreamWriter{
+	internal class LuceneInfoStream : InfoStream
+	{
 
-		private readonly ILog logger; 
-		
-		/// <summary>
-		/// We don't want a default constructor
-		/// </summary>
-		private LuceneInfoWriter(): base(new MemoryStream()){;}
-
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public override System.Text.Encoding Encoding {
-			get {
-				return null;
-			}
-		}
-
+		private readonly ILog logger;
 
 		/// <summary>
 		/// Constructor accepts logger as input
 		/// </summary>
 		/// <param name="logger">The logger to which we'll actually write the information</param>
-		internal LuceneInfoWriter(ILog logger) : base(new MemoryStream()){
-			this.logger = logger; 					
+		internal LuceneInfoStream(ILog logger) {
+			this.logger = logger;
 		}
 
-		public override void Write(string value) {
-			logger.Debug(value); 			
+		/// <summary>
+		/// Returns true if messages are enabled and should be posted to <see cref="Message"/>.
+		/// </summary>
+		public override bool IsEnabled(string component) {
+			return logger.IsDebugEnabled;
 		}
 
-		public override void Write(string format, params object[] args) {
-			logger.DebugFormat(format, args); 		
+		/// <summary>
+		/// Prints a message.
+		/// </summary>
+		public override void Message(string component, string message) {
+			logger.DebugFormat("{0}: {1}", component, message);
 		}
-		
+
+		protected override void Dispose(bool disposing) {
+			// nothing to dispose
+		}
 	}
 }
 
