@@ -35,7 +35,7 @@ namespace NewsComponents.UnitTests
         }
 
         /// <summary>
-        /// Tests that the Constructors throws argument exception if init parameter is null
+        /// Tests that Initialize throws argument null exception if init parameter is null
         /// </summary>
         [Test]
         public void ConstructorThrowsArgumentNullExceptionIfInitializeGetNull()
@@ -44,12 +44,13 @@ namespace NewsComponents.UnitTests
         }
 
         /// <summary>
-        /// Tests that the Constructors throws argument out of range exception if init parameter is empty
+        /// Tests that Initialize throws argument exception if init parameter is empty or whitespace
         /// </summary>
         [Test]
-        public void ConstructorThrowsArgumentOutOfRangeExceptionIfInitializeGetEmpty()
+        public void ConstructorThrowsArgumentExceptionIfInitializeGetEmpty()
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => new FileStorageDataService().Initialize(""));
+            Assert.Throws<ArgumentException>(() => new FileStorageDataService().Initialize(""));
+            Assert.Throws<ArgumentException>(() => new FileStorageDataService().Initialize("   "));
         }
 
         /// <summary>

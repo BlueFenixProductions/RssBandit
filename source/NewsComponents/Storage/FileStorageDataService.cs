@@ -46,10 +46,7 @@ namespace NewsComponents.Storage {
 		/// depending on the implementation of the data service</param>
 		public override void Initialize(string initData)
 		{
-            if (string.IsNullOrWhiteSpace(initData))
-            {
-                throw new ArgumentException("message", nameof(initData));
-            }
+            ArgumentException.ThrowIfNullOrWhiteSpace(initData);
 
 			base.Initialize(initData);
 			
