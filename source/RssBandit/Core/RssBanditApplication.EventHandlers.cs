@@ -340,64 +340,7 @@ namespace RssBandit
 										SubscriptionModified(entry, NewsFeedProperty.FeedCredentials);
 									}
                                 }
-/*
-                                if (e.ExceptionThrown.InnerException is FacebookException)
-                                {
-                                    FacebookException fe = e.ExceptionThrown.InnerException as FacebookException;
 
-                                    if (fe.ErrorCode == 102) //session key has expired
-                                    {
-                                        try
-                                        {                                           
-                                            FeedSourceEntry fse =
-                                                this.FeedSources.Sources.SingleOrDefault(fs => fs.SourceType == FeedSourceType.Facebook);
-
-                                            string FacebookAuthToken = String.Empty;
-                                            DialogResult result = DialogResult.None;
-
-                                            try
-                                            {
-												//TODO review: how do we get this token now?
-                                                HttpWebRequest request = WebRequest.Create(FacebookConnectDialog.TokenUrl) as HttpWebRequest;
-                                                FacebookAuthToken = new StreamReader(request.GetResponse().GetResponseStream()).ReadToEnd();
-
-                                                //string fbUrl = String.Format(FacebookConnectDialog.FbLoginUrlTemplate, FacebookConnectDialog.ApiKey, FacebookAuthToken);
-												string fbUrl = FacebookApp.Authorization.GetLoginUrl(FacebookAuthToken);
-
-                                                // login user 
-                                                using (FacebookConnectDialog fcd = new FacebookConnectDialog(new Uri(fbUrl), uri =>
-													{
-														return true;
-													}))
-                                                {
-                                                    result = fcd.ShowDialog();
-                                                }                                             
-                                            }
-                                            catch (WebException)
-                                            {
-                                                MessageBox.Show(SR.ExceptionFacebookAuthToken, String.Empty, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                            }
-
-                                            if (result != DialogResult.OK)
-                                            {
-                                                throw new Exception(SR.ExceptionFacebookLogin);
-                                            }
-                                            else
-                                            {
-                                                var fbSource = fse.Source as IFacebookFeedSource;
-
-                                                fbSource.SetAuthToken(FacebookAuthToken);
-                                                fbSource.GetSessionKey();
-                                                fse.Source.RefreshFeeds(true );// force_download 
-                                            }
-                                        }
-                                        catch (Exception)
-                                        {
-                                            // SingleOrDefault throws exception if more than one Facebook feed source is found 
-                                        }
-                                    }
-                                }
-*/
 								WebException webex = e.ExceptionThrown as WebException;
                                 if (webex != null)
                                 {

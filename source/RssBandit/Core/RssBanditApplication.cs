@@ -14,7 +14,6 @@
 #define USEAUTOUPDATE
 
 #define TEST_PERSISTED_FEEDSOURCES
-//#define TEST_NEWSGATOR_ONLINE
 
 // Uncomment the next line to enable specific UI lang. tests.
 // Then modify the returned culture ISO code within I18NTestCulture struct.
@@ -2028,9 +2027,6 @@ namespace RssBandit
                 //case 2: //"dasBlog"
                 //    Preferences.RemoteStorageProtocol = RemoteStorageProtocolType.dasBlog;
                 //    break;
-               /* case 3: //"NewsgatorOnline"
-                    Preferences.RemoteStorageProtocol = RemoteStorageProtocolType.NewsgatorOnline;
-                    break; */ 
                 case 3: //"WebDAV"
                     Preferences.RemoteStorageProtocol = RemoteStorageProtocolType.WebDAV;
                     break;
@@ -3537,18 +3533,6 @@ namespace RssBandit
 //							case FeedSourceType.WindowsRSS:
 //								loc = new SubscriptionLocation(locName);
 //								break;
-//								//case FeedSourceType.Google:
-//								//	loc = new SubscriptionLocation(locName,
-//								//		new NetworkCredential(wiz.UserName, wiz.Password));
-//								//	break;
-//								//case FeedSourceType.NewsGator:
-//								//	loc = new SubscriptionLocation(locName,
-//								//		new NetworkCredential(wiz.UserName, wiz.Password));
-//								//	break;
-//							//case FeedSourceType.Facebook:
-//							//	loc = new SubscriptionLocation(locName,
-//							//		new NetworkCredential(wiz.UserName, wiz.Password, wiz.FacebookAuthToken));
-//								//break;
 ////#if FEEDLY_FEATURE
 ////							case FeedSourceType.FeedlyCloud:
 ////								loc = new SubscriptionLocation(locName,
@@ -5049,7 +5033,6 @@ namespace RssBandit
         /// fdaction:?action=unsubscribefeed&amp;feedid=id-of-feed
         /// From within top story page:
         /// fdaction?action=markdiscussionread&amp;storyid=id-of-story
-        /// From within a Facebook newsfeed
         /// fdaction?action=comment&amp;postid=id-of-post
         /// </code>
         /// </remarks>
@@ -5118,14 +5101,6 @@ namespace RssBandit
                     else if (webUrl.IndexOf("toggleflag") != -1)
                     {
                         guiMain.ToggleItemFlagState(webUrl.Substring(idIndex));
-                    }
-                    else if (webUrl.IndexOf("toggleshare") != -1)
-                    {
-                        guiMain.ToggleItemShareState(webUrl.Substring(idIndex));
-                    }
-                    else if (webUrl.IndexOf("toggleclip") != -1)
-                    {
-                        guiMain.ToggleItemClipState(webUrl.Substring(idIndex));
                     }
                     else if (webUrl.IndexOf("togglewatch") != -1)
                     {
@@ -5514,14 +5489,6 @@ namespace RssBandit
             {
                 CmdShowMainGui(null);
 
-                //if (commandLineOptions.AddFacebook || commandLineOptions.AddGoogleReader)
-                //{
-                //    FeedSourceType newFeedSource = (commandLineOptions.AddFacebook ? FeedSourceType.Facebook : FeedSourceType.Google);
-
-                //    if (IsFormAvailable(guiMain))
-                //        guiMain.AddFeedSourceSynchronized(newFeedSource);
-                //}
-
                 if (!String.IsNullOrEmpty(commandLineOptions.NavigateTo))
                 {
                     if (IsFormAvailable(guiMain))
@@ -5781,7 +5748,6 @@ namespace RssBandit
 				// allow users to specify commandline options via app.config:
 				StartInTaskbarNotificationAreaOnly = ReadAppSettingsEntry("ui.display.taskbar", false);
 				LocalCulture = ReadAppSettingsEntry("ui.display.culture", String.Empty);
-               // AddFacebook = AddGoogleReader = false; 
 			}
 
             /// <summary>
@@ -5798,16 +5764,7 @@ namespace RssBandit
 
             [DefaultCommandLineArgument(CommandLineArgumentTypes.Multiple, Name = "feedUrl",
                 Description = "CmdLineSubscribeToDesc", DescriptionIsResourceId = true)]
-            public List<string> SubscribeTo { get; set; }          
-
-            //[CommandLineArgument(CommandLineArgumentTypes.Exclusive, Name = "facebook", ShortName = "f",
-            //  Description = "CmdLineFacebookDesc", DescriptionIsResourceId = true)]
-            //public bool AddFacebook { get; set; }
-
-            //[CommandLineArgument(CommandLineArgumentTypes.Exclusive, Name = "googlereader", ShortName = "g",
-            //  Description = "CmdLineGoogleReaderDesc", DescriptionIsResourceId = true)]
-            //public bool AddGoogleReader { get; set; }
-
+            public List<string> SubscribeTo { get; set; }
 
             [CommandLineArgument(CommandLineArgumentTypes.Exclusive, Name = "help", ShortName = "h",
                 Description = "CmdLineHelpDesc", DescriptionIsResourceId = true)]

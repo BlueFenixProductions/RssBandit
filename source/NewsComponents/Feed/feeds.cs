@@ -340,7 +340,6 @@ namespace NewsComponents.Feed
 
     /// <remarks/>
     [XmlType(Namespace=NamespaceCore.Feeds_vCurrent)]
-    [XmlInclude(typeof(GoogleReaderNewsFeed))]
     [DebuggerDisplay("Title = {title}, Uri = {link}")]
     public class NewsFeed : INewsFeed
     {

@@ -140,7 +140,7 @@ namespace NewsComponents.Net
                                                                    DateTime.MinValue,
                                                                    null /* eTag */,
                                                                    Convert.ToInt32(maxWaitTime.TotalSeconds), 
-                                                                   null /* cookie */, null /* body */, null /* newsGatorAPIToken */);
+                                                                   null /* cookie */, null /* body */, null /* additionalHeaders */);
 
             OnRequestComplete(new Uri(task.DownloadItem.Enclosure.Url), response.GetResponseStream(), response, null, null,
                               DateTime.MinValue, RequestResult.OK, 0);

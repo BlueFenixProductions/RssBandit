@@ -234,7 +234,7 @@ namespace NewsComponents.Feed.Sources
 		#region public methods
 
 		/// <summary>
-		/// Adds the feed source to the list of GoogleReaderFeedSources being modified by this class 
+		/// Adds the feed source to the list of FeedlyCloudFeedSources being modified by this class
 		/// </summary>
 		/// <param name="source"></param>
 		public void RegisterFeedSource(FeedlyCloudFeedSource source)
@@ -245,7 +245,7 @@ namespace NewsComponents.Feed.Sources
 		}
 
 		/// <summary>
-		/// Removes the feed source from the list of GoogleReaderFeedSources being modified by this class. 
+		/// Removes the feed source from the list of FeedlyCloudFeedSources being modified by this class.
 		/// </summary>
 		/// <param name="source"></param>
 		public void UnregisterFeedSource(FeedlyCloudFeedSource source)

@@ -35,8 +35,6 @@ namespace RssBandit.WinGui.Dialogs {
 		public event EventHandler OnApplyPreferences;
 	
 		private static readonly log4net.ILog _log = Logger.Log.GetLogger(typeof(PreferencesDialog));
-		
-		//private const string NgosDefaultLocation = "NewsGator Web Edition"; 
 
 		private readonly Hashtable imageIndexMap = new Hashtable();
 		internal List<SearchEngine> searchEngines;
@@ -367,12 +365,8 @@ namespace RssBandit.WinGui.Dialogs {
 					case RemoteStorageProtocolType.dasBlog:
 						comboRemoteStorageProtocol.SelectedIndex = 2;
 						break;
-                    /* 
-					case RemoteStorageProtocolType.NewsgatorOnline:
-						comboRemoteStorageProtocol.SelectedIndex = 3; 
-						textRemoteStorageLocation.Enabled = false;
-						break;
-							case RemoteStorageProtocolType.dasBlog_1_3:
+                    /*
+					case RemoteStorageProtocolType.dasBlog_1_3:
 						comboRemoteStorageProtocol.SelectedIndex = 3;
 						break; */
 					case RemoteStorageProtocolType.WebDAV:
@@ -604,14 +598,9 @@ namespace RssBandit.WinGui.Dialogs {
 
 			textRemoteStorageUserName.Enabled = enabled;
 			textRemoteStoragePassword.Enabled = enabled;
-			textRemoteStorageLocation.Enabled = enabled; 
+			textRemoteStorageLocation.Enabled = enabled;
 			comboRemoteStorageProtocol.Enabled = enabled;
 
-			/* location text box is disabled if NewsgatorOnline is remote storage method */
-			if(enabled && this.RemoteStorageProtocol == RemoteStorageProtocolType.NewsgatorOnline){
-				textRemoteStorageLocation.Enabled = false; 
-			} 
-	
 			if (enabled) {
 				if (textRemoteStorageLocation.Text.Length == 0)  {
 					errorProvider1.SetError(textRemoteStorageLocation, SR.ExceptionNoRemoteStorageLocation);
@@ -665,14 +654,6 @@ namespace RssBandit.WinGui.Dialogs {
 					labelExperimental.Text = SR.LabelTextRemoteStorageLocation_WebDAV_hint;
 					showAuth = true;
 					break;
-			/*	case 3: //"NewsgatorOnline"
-					labelRemoteStorageLocation.Text = SR.LabelTextRemoteStorageLocation_NewsgatorOnline;
-					labelExperimental.Text = SR.LabelTextRemoteStorageLocation_NewsgatorOnline_hint;
-					showAuth = true;
-					textRemoteStorageLocation.Text = NgosDefaultLocation;
-					textRemoteStorageLocation.Enabled = false;
-				    break;
-           */ 
 				default:
 					// There is no selected protocol or the selected one is invalid;
 					// use some defaults
@@ -1023,8 +1004,7 @@ namespace RssBandit.WinGui.Dialogs {
 					errorProvider1.SetError(textRemoteStorageLocation, SR.ExceptionNoRemoteStorageLocation);
 					e.Cancel = true;
 				} else {
-					if (protocol != RemoteStorageProtocolType.UNC &&
-						protocol != RemoteStorageProtocolType.NewsgatorOnline) {	// Check url
+					if (protocol != RemoteStorageProtocolType.UNC) {	// Check url
 						try {
 							Uri testUri = new Uri(textRemoteStorageLocation.Text);
 							if (protocol == RemoteStorageProtocolType.FTP) {	// Check url scheme

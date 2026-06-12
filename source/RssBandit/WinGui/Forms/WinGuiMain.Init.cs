@@ -99,11 +99,6 @@ namespace RssBandit.WinGui.Forms
                 IconReference = new IconReference(RssBanditApplication.GetAddFeedIconPath(), 0),
                 Arguments     =  "http://www.example.com/feed.rss" 
             });
-            jumpList.AddUserTasks(new JumpListLink(Application.ExecutablePath, SR.JumpListAddFacebookCaption)
-            {
-                IconReference = new IconReference(RssBanditApplication.GetAddFacebookIconPath(), 0),
-                Arguments = "-f"
-            });
 			
             jumpList.AddUserTasks(new JumpListSeparator());
             jumpList.AddUserTasks(new JumpListLink(Resource.OutgoingLinks.ProjectNewsUrl, SR.JumpListGoToWebsiteCaption)

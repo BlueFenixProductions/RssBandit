@@ -1537,61 +1537,6 @@ namespace RssBandit
 
 
         /// <summary>
-        /// Sets up all the prerequisites for commenting on Facebook such as prompting for the "publish_stream" permission 
-        /// if it hasn't been granted and creating the local UserIdentity object. 
-        /// </summary>
-        /// <param name="fbSource">The Facebook feed source</param>
-        /// <returns>true if all the requirements for posting to Facebook have been met</returns>
-        private bool CanPostToFacebook(IFacebookFeedSource fbSource)
-        {
-	        return false;
-	        /*
-            //Ensure user's Facebook identity is known
-            var identity = IdentityManager.Identities.Values.FirstOrDefault(id => id.ReferrerUrl.Contains("facebook.com"));
-            if (identity == null)
-            {
-                //TODO: Try...catch around this in case we need to reprompt for session ID
-                UserIdentity ui = fbSource.GetUserIdentity();
-                identity = new RssBandit.Core.Storage.Serialization.UserIdentity()
-                {
-                    Name = ui.Name,
-                    RealName = ui.RealName,
-                    ReferrerUrl = ui.ReferrerUrl
-                };
-
-                IdentityManager.Identities.Add(identity.Name, identity);
-                IdentityManager.Save(); 
-            }
-            DialogResult result = DialogResult.OK;
-
-            //Ensure user granted the stream_publish permission
-            if (!fbSource.CanPublishToStream())
-            {
-                try
-                {
-                    // get extended permission to publish to the news feed 
-                    //string fbPermissionUrl = String.Format(FacebookConnectDialog.FbPermissionsUrlTemplate, FacebookConnectDialog.ApiKey, "publish_stream");
-                    string fbPermissionUrl = FacebookApp.Authorization.GetPermissionUrl("publish_stream");
-
-                    using (FacebookConnectDialog fcd = new FacebookConnectDialog(new Uri(fbPermissionUrl), uri =>
-                    {
-	                    return true;
-                    }))
-                    {
-                        result = fcd.ShowDialog();
-                    }
-                }
-                catch (WebException)
-                {
-                    MessageBox.Show(SR.ExceptionFacebookAuthToken, String.Empty, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-
-            return result == DialogResult.OK; //user didn't grant permission to publish to the news feed if not OK   
-          	*/
-        }
-             
-        /// <summary>
         /// Opens the reply post window to allow a user to
         /// answer to an post (send a comment to a feed item) 
         /// or reply to NNTP group post.
@@ -1607,23 +1552,8 @@ namespace RssBandit
                 return;
             }
 
-            string defaultIdentity = Preferences.UserIdentityForComments;       
-/*       
-            IFacebookFeedSource fbSource = item2reply.Feed.owner as IFacebookFeedSource;
+            string defaultIdentity = Preferences.UserIdentityForComments;
 
-            if (fbSource != null)
-            {
-                if (CanPostToFacebook(fbSource))
-                {
-                    var fbIdentity = IdentityManager.Identities.Values.FirstOrDefault(id => id.ReferrerUrl.Contains("facebook.com"));
-                    defaultIdentity = (fbIdentity != null ? fbIdentity.Name : defaultIdentity);
-                }
-                else
-                {
-                    return; //user didn't grant permission
-                }
-            }
-*/
             if ((postReplyForm == null) || (postReplyForm.IsDisposed))
             {
                 postReplyForm = new PostReplyForm(defaultIdentity, IdentityManager);

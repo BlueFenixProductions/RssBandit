@@ -1085,12 +1085,6 @@ namespace RssBandit.WinGui.Forms
             }
 
             owner.Mediator.SetEnabled(true, "cmdShowFeedProperties");
-            //we don't want people to be able to change properties of Facebook feed source
-            FeedSourceEntry fse = FeedSourceEntryOf(feedsNode);
-            if ((fse != null) && (fse.SourceType == FeedSourceType.Facebook))
-            {
-                owner.Mediator.SetEnabled(false, "cmdShowFeedProperties");
-            }
         }
 
         private void MoveFeedDetailsToFront()
@@ -1845,7 +1839,6 @@ namespace RssBandit.WinGui.Forms
                     SetSubscriptionNodeState(feed, tn, FeedProcessingState.Normal);
 
                     if (modified || feed.containsNewMessages)
-                        // if (feed.containsNewMessages) No longer applies due to syncing state from Google Reader & NewsGator Online
                     {
                         // if (modified)
                         int unreadBefore = tn.UnreadCount;
@@ -2843,45 +2836,7 @@ namespace RssBandit.WinGui.Forms
 
 
         /// <summary>
-        /// Toggle's the Google Reader shared state of the identified RSS item
-        /// </summary>
-        /// <param name="id">The ID of the RSS item</param>
-        public void ToggleItemShareState(string id)
-        {
-            ThreadedListViewItem lvItem = GetListViewItem(id);
-
-            if (lvItem != null)
-            {
-                var item = (INewsItem) lvItem.Key;
-                if (FeedSourceType.Google == owner.FeedSources.SourceTypeOf(item.Feed))
-                {
-                    var source = owner.FeedSources.GetSourceExtension<IGoogleReaderFeedSource>(item.Feed);
-                    source.ShareNewsItem(item);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Toggle's the NewsGator Online clipped state of the identified RSS item
-        /// </summary>
-        /// <param name="id">The ID of the RSS item</param>
-        public void ToggleItemClipState(string id)
-        {
-            ThreadedListViewItem lvItem = GetListViewItem(id);
-
-            if (lvItem != null)
-            {
-                var item = (INewsItem) lvItem.Key;
-                if (FeedSourceType.NewsGator == owner.FeedSources.SourceTypeOf(item.Feed))
-                {
-                    var source = owner.FeedSources.GetSourceExtension<INewsGatorFeedSource>(item.Feed);
-                    source.ClipNewsItem(item);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Toggles the identified item's watchd state. 
+        /// Toggles the identified item's watchd state.
         /// </summary>
         /// <param name="id">The ID of the RSS item</param>
         public void ToggleItemWatchState(string id)

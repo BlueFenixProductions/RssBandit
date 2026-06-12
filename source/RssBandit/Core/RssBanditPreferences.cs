@@ -92,7 +92,6 @@ namespace RssBandit
 
 		// new: 1.3.x
 		private string userIdentityForComments = String.Empty;
-		private string ngosSyncToken = String.Empty;
 
 		// old: 1.2.x; see RssBanditApplication.CheckAndMigrateSettingsAndPreferences() 
 		private string referer = String.Empty;
@@ -183,18 +182,6 @@ namespace RssBandit
 			}		
 		}
 
-
-		/// <summary>
-		/// Gets/Sets the Newsgator Online sync token.
-		/// </summary>
-		public string NgosSyncToken {
-			[DebuggerStepThrough]
-			get { return ngosSyncToken; }
-			set 
-			{ 
-				SetProperty(ref ngosSyncToken, value);
-			}
-		}
 
 		/// <summary>
 		/// Gets/Sets the user identity used to post feed comments.
@@ -1237,8 +1224,6 @@ namespace RssBandit
 				ReuseFirstBrowserTab = reader.Get(nameof(ReuseFirstBrowserTab), true);
 			}
 
-			this.NgosSyncToken = reader.Get(nameof(NgosSyncToken), String.Empty); 
-
 			this.NumNewsItemsPerPage = reader.Get(nameof(NumNewsItemsPerPage), 10);
 
             this.ReadingPaneTextSize = reader.Get(nameof(ReadingPaneTextSize), TextSize.Medium);
@@ -1298,7 +1283,6 @@ namespace RssBandit
 			info.AddValue(nameof(ShowAlertWindow), ShowAlertWindow.ToString());
 			info.AddValue(nameof(UserIdentityForComments), UserIdentityForComments); 
 			info.AddValue("AllOptionalFlags", this.allOptionalFlags.ToString());
-			info.AddValue(nameof(NgosSyncToken), this.NgosSyncToken); 
 			info.AddValue(nameof(NumNewsItemsPerPage), this.NumNewsItemsPerPage);
             info.AddValue(nameof(ReadingPaneTextSize), this.ReadingPaneTextSize.ToString());
 			info.AddValue(nameof(RefreshRate), this.RefreshRate);

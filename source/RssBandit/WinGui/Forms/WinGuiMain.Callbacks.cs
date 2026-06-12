@@ -1313,8 +1313,6 @@ namespace RssBandit.WinGui.Forms
 		    {
 			    case FeedSourceType.DirectAccess:
 				    return (small ? Properties.Resources.feedsource_bandit_16.GetImageStretchedDpi(ScaleFactor) : Properties.Resources.feedsource_bandit_32.GetImageStretchedDpi(ScaleFactor));
-				case FeedSourceType.Facebook:
-					return (small ? Properties.Resources.feedsource_facebook_16.GetImageStretchedDpi(ScaleFactor) : Properties.Resources.feedsource_facebook_32.GetImageStretchedDpi(ScaleFactor));
 				case FeedSourceType.FeedlyCloud:
 					return (small ? Properties.Resources.feedsource_feedly_16.GetImageStretchedDpi(ScaleFactor) : Properties.Resources.feedsource_feedly_32.GetImageStretchedDpi(ScaleFactor));
 				case FeedSourceType.WindowsRSS:

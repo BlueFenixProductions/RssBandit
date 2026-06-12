@@ -42,13 +42,11 @@
     <EmbeddedResource Include="Resources\xhtml-symbol.ent" />
     <EmbeddedResource Include="Resources\xhtml1-strict.dtd" />
     <EmbeddedResource Include="Resources\xhtml1-transitional.dtd" />
-    <EmbeddedResource Include="Resources\facebook-newsfeed-2-atom.xslt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RssBandit.AppServices\RssBandit.AppServices.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Facebook" Version="7.0.6" />
     <PackageReference Include="log4net" Version="2.0.17" />
     <PackageReference Include="Lucene.Net" Version="2.9.4.1" />
     <PackageReference Include="Lucene.Net.Contrib" Version="2.9.4.1" />

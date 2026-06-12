@@ -8,9 +8,7 @@ xmlns:fd='http://www.bradsoft.com/feeddemon/xmlns/1.0/'
 xmlns:bndt='http://www.25hoursaday.com/2003/RSSBandit/feeds/'
 xmlns:localized='urn:localization-extension'
 xmlns:wfw='http://wellformedweb.org/CommentAPI/'
-xmlns:gr='http://www.google.com/reader/'
-xmlns:ng='http://newsgator.com/schema/extensions'
-exclude-result-prefixes='wfw content slash dc fd bndt localized gr ng'>
+exclude-result-prefixes='wfw content slash dc fd bndt localized'>
 
 <!-- 
 	Two variables, that are setup to reflect:
@@ -496,17 +494,6 @@ exclude-result-prefixes='wfw content slash dc fd bndt localized gr ng'>
 	<area alt="{localized:ToggleWatchStateText()}" shape="rect" coords="0,0,20,16" href="{concat('fdaction:?action=togglewatch&amp;postid=', $itemID)}" />
   </map>	
   </xsl:if>
-  <xsl:if test="count($current_item/gr:broadcast) &gt; 0">
-    <map name="{concat('sharestate', string($current_position))}">
-      <area alt="{localized:ToggleShareStateText()}" shape="rect" coords="0,0,16,16" href="{concat('fdaction:?action=toggleshare&amp;postid=', $itemID)}" />
-    </map>
-  </xsl:if>
-  <xsl:if test="count($current_item/ng:clipped) &gt; 0">
-    <map name="{concat('clipstate', string($current_position))}">
-      <area alt="{localized:ToggleClipStateText()}" shape="rect" coords="0,0,16,16" href="{concat('fdaction:?action=toggleclip&amp;postid=', $itemID)}" />
-    </map>
-  </xsl:if>
-
   <xsl:choose>
     <xsl:when test="$current_item/fd:state[@read='1']">
 	  <img  border="0" usemap="{concat('#readstate', string($current_position))}" class="icon" src="$IMAGEDIR$read.gif" onclick="swapImage(this, true)" /> 
@@ -551,27 +538,6 @@ exclude-result-prefixes='wfw content slash dc fd bndt localized gr ng'>
   </xsl:choose>	
   </xsl:if>
 
-  <xsl:if test="count($current_item/gr:broadcast) &gt; 0">
-    <xsl:choose>
-      <xsl:when test="$current_item/gr:broadcast[.='1']">
-        <img  border="0" usemap="{concat('#sharestate', string($current_position))}" class="icon" src="$IMAGEDIR$shared.png" onclick="swapImage(this, true)" />
-      </xsl:when>
-      <xsl:otherwise>
-        <img  border="0" usemap="{concat('#sharestate', string($current_position))}" class="icon" src="$IMAGEDIR$unshared.gif" onclick="swapImage(this, true)" />
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:if>
-
-  <xsl:if test="count($current_item/ng:clipped) &gt; 0">
-    <xsl:choose>
-      <xsl:when test="$current_item/ng:clipped[.='True']">
-        <img  border="0" usemap="{concat('#clipstate', string($current_position))}" class="icon" src="$IMAGEDIR$newsbin.gif" onclick="swapImage(this, true)" />
-      </xsl:when>
-      <xsl:otherwise>
-        <img  border="0" usemap="{concat('#clipstate', string($current_position))}" class="icon" src="$IMAGEDIR$clip.gif" onclick="swapImage(this, true)" />
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:if>
 
 </xsl:template>
 

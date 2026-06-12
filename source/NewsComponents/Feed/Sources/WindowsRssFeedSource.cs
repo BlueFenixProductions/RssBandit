@@ -41,7 +41,7 @@ namespace NewsComponents.Feed
     #region IWindowsRssFeedSource
 
     /// <summary>
-	/// public <see cref="FeedSource"/> extension offered by NewsGator Feed Source
+	/// public <see cref="FeedSource"/> extension offered by the Windows RSS platform Feed Source
 	/// </summary>
     public interface IWindowsRssFeedSource
     {

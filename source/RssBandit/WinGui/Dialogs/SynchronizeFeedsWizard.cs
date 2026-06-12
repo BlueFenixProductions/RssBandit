@@ -12,9 +12,7 @@ using System;
 using System.Windows.Forms;
 
 using Divelements.WizardFramework;
-using log4net;
 using RssBandit.AppServices;
-using RssBandit.Common.Logging;
 using RssBandit.Resources;
 using RssBandit.WinGui.Controls;
 using NewsComponents;
@@ -24,15 +22,13 @@ namespace RssBandit.WinGui.Dialogs
 {
 
     /// <summary>
-    /// SynchronizeFeedsWizard handles adding new FeedSources including Google Reader, Windows RSS platform and NewsGator Online.
+    /// SynchronizeFeedsWizard handles adding new FeedSources including the Windows RSS platform and Feedly Cloud.
     /// </summary>
     internal class SynchronizeFeedsWizard : Form
     {
 
         private readonly WindowSerializer _windowSerializer;
-        private IInternetService _internetService;
-		private static readonly ILog _log = Log.GetLogger(typeof(SynchronizeFeedsWizard));
-        
+
         #region Designer Form variables
 
         private CheckBox chkDisplayWelcome;
@@ -67,10 +63,6 @@ namespace RssBandit.WinGui.Dialogs
                 {
                     return FeedSourceType.FeedlyCloud;
                 }
-				//else if (radioFacebookReview.Checked)
-				//{
-				//	return FeedSourceType.Facebook;
-				//}
                 else
                 {
                     return FeedSourceType.Unknown;
@@ -88,10 +80,6 @@ namespace RssBandit.WinGui.Dialogs
                 {
                     radioFeedlyCloud.Checked = true;
                 }
-				//else if (value == FeedSourceType.Facebook)
-				//{
-				//	radioFacebookReview.Checked = true;
-				//}                
             }
         }
 
@@ -110,10 +98,6 @@ namespace RssBandit.WinGui.Dialogs
             get { return textFeedSourceName.Text; }
         }
 
-        public string FacebookAuthToken { get; set; }
-        public string FacebookUserId { get; set; }
-        public string FacebookUserName { get; set; }
-
         #endregion
 
         #region ctor's
@@ -131,15 +115,7 @@ namespace RssBandit.WinGui.Dialogs
             _windowSerializer = new WindowSerializer(this);
             _windowSerializer.SaveOnlyLocation = true;
             _windowSerializer.SaveNoWindowState = true;
-          
-			// to get notified, if the inet connection state changes:
-            _internetService = IoC.Resolve<IInternetService>();
-            if (_internetService != null)
-            {
-                _internetService.InternetConnectionStateChange += OnInternetServiceInternetConnectionStateChange;
-	            //radioFacebookReview.Enabled = _internetService.InternetAccessAllowed && !_internetService.InternetConnectionOffline;
-            }
-            
+
             this.wizard.SelectedPage = this.pageStartImport;
 
             if (selectedFeedSource != FeedSourceType.DirectAccess && selectedFeedSource != FeedSourceType.Unknown)
@@ -162,11 +138,6 @@ namespace RssBandit.WinGui.Dialogs
                 if (components != null)
                 {
                     components.Dispose();
-                }
-                if (_internetService != null)
-                {
-                    _internetService.InternetConnectionStateChange -= OnInternetServiceInternetConnectionStateChange;
-                    _internetService = null;
                 }
 
             }
@@ -403,15 +374,9 @@ namespace RssBandit.WinGui.Dialogs
         }
 
         private void OnWizardFinish(object sender, EventArgs e)
-        {          
+        {
             this.DialogResult = DialogResult.OK;
             Close();
-        }
-       
-
-        private void OnInternetServiceInternetConnectionStateChange(object sender, InternetConnectionStateChangeEventArgs e)
-        {
-            //radioFacebookReview.Enabled = (e.NewState & InternetState.Connected) > 0 && (e.NewState & InternetState.Online) > 0;
         }
 
         private void OnImmediateFinish_Click(object sender, EventArgs e)
@@ -446,92 +411,7 @@ namespace RssBandit.WinGui.Dialogs
         private void OnPageFeedCredentials_BeforeMoveNext(object sender, EventArgs e)
         {
             this.OnControlValidating(this.textUser, new System.ComponentModel.CancelEventArgs());
-            this.OnControlValidating(this.textPassword, new System.ComponentModel.CancelEventArgs()); 
-        }
-
-        private bool GetFacebookPermissions()
-        {
-			/* 
-			 * Deactivated because of lack of user usages (see stats at FB for our application)
-			 * 
-            if (this.SelectedFeedSource == FeedSourceType.Facebook)
-            {
-           
-                //DialogResult result = DialogResult.None; 
-
-                try
-                {
-					//TODO review: how do we get this token now? How about proxy, etc?
-					//HttpWebRequest request = WebRequest.Create(FacebookConnectDialog.TokenUrl) as HttpWebRequest;
-                    //FacebookAuthToken = new StreamReader(request.GetResponse().GetResponseStream()).ReadToEnd();
-
-                    //string fbUrl = String.Format(FacebookConnectDialog.FbLoginUrlTemplate, FacebookConnectDialog.ApiKey, FacebookAuthToken);
-					//string fbUrl = FacebookApp.Authorization.GetLoginUrl(FacebookAuthToken);
-
-	                var authState = Guid.NewGuid().ToString("N");
-					var fbUrl = FacebookApp.Authorization.PrepareOAuthLoginUri(authState, "read_stream");
-					FacebookApp.Authorization.AccessToken accessToken=null;
-
-                    // login user 
-					using (FacebookConnectDialog fcd = new FacebookConnectDialog(fbUrl,
-						uri =>
-						{
-							var at = FacebookApp.Authorization.ParseOAuthLoginCallbackUri(uri, authState);
-							if (at != null && FacebookApp.Authorization.AccessTokenInspectionSucceeds(at))
-							{
-								//????
-								FacebookAuthToken = at.Value;
-
-								var me = FacebookApp.Authorization.GetAuthenticatedUserInfo(at);
-								if (me != null)
-								{
-									FacebookUserId = me.id;
-									FacebookUserName = me.name;
-								}
-								return true;
-							}
-
-							return false;
-						})) 
-                    {
-                        return (fcd.ShowDialog() == DialogResult.OK);
-                    }
-
-					//if (accessToken != null)
-					//{
-					//	//????
-					//	FacebookAuthToken = accessToken.Value;
-					//	return true;
-					//}
-
-					//if (result == DialogResult.OK)
-					//{
-					//	// get extended permission to access the news feed 
-					//	//string fbPermissionUrl = String.Format(FacebookConnectDialog.FbPermissionsUrlTemplate,
-					//		//FacebookConnectDialog.ApiKey, "read_stream");
-					//	string fbPermissionUrl = FacebookApp.Authorization.GetPermissionUrl("read_stream");
-						
-					//	using (FacebookConnectDialog fcd2 = new FacebookConnectDialog(new Uri(fbPermissionUrl)))
-					//	{
-					//		result = fcd2.ShowDialog();
-					//		return fcd2.AuthorizationComplete;
-					//	}
-					//}
-                }
-                catch (WebException ex)
-                {
-					_log.Error(SR.ExceptionFacebookAuthToken, ex);
-                    MessageBox.Show(SR.ExceptionFacebookAuthToken, String.Empty, MessageBoxButtons.OK, MessageBoxIcon.Error); 
-                }
-
-				//if (result != DialogResult.OK)
-				//{
-				//	throw new Exception(SR.ExceptionFacebookLogin);                    
-				//}               
-
-            }
-*/
-	        return false;
+            this.OnControlValidating(this.textPassword, new System.ComponentModel.CancelEventArgs());
         }
 
         private void OnPageFeedCredentials_BeforeDisplay(object sender, EventArgs e)
@@ -551,11 +431,7 @@ namespace RssBandit.WinGui.Dialogs
                 case FeedSourceType.FeedlyCloud:
                     this.textFeedSourceName.Text = SR.FeedNodeMyFeedlyCloudFeedsCaption;
 					this.pageSourceName.PreviousPage = this.pageStartImport;
-                    break; 
-                case FeedSourceType.Facebook:
-                    this.textFeedSourceName.Text = SR.FeedNodeFacebookFeedsCaption;
-                    this.pageSourceName.PreviousPage = this.pageStartImport;
-                    break; 
+                    break;
             }
         }
 
@@ -632,22 +508,11 @@ namespace RssBandit.WinGui.Dialogs
 
         private void textFeedSourceName_TextChanged(object sender, EventArgs e)
         {
-            this.OnControlValidating(sender, new System.ComponentModel.CancelEventArgs()); 
-        }
-
-        private void radioFacebook_CheckedChanged(object sender, EventArgs e)
-        {
-            this.pageStartImport.NextPage = this.pageSourceName;             
+            this.OnControlValidating(sender, new System.ComponentModel.CancelEventArgs());
         }
 
 		private void OnPageStartImportBeforeMoveNext(object sender, System.ComponentModel.CancelEventArgs e)
 		{
-			if (this.SelectedFeedSource == FeedSourceType.Facebook)
-			{
-				var ok = GetFacebookPermissions();
-				e.Cancel = !ok;
-			}
-			
 			if (this.SelectedFeedSource == FeedSourceType.Unknown)
 				e.Cancel = true;
 		}

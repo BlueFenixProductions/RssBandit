@@ -230,19 +230,6 @@ namespace NewsComponents
                 case FeedSourceType.WindowsRSS:
                     handler = new WindowsRssFeedSource(configuration, location);
                     break;
-/*
- * Deactivated because of lack of user usages (see stats at FB for our application)
- * https://developers.facebook.com/apps/15028810303/insights?dates=1%2F1%2F2012_10%2F18%2F2013
-                case FeedSourceType.Google:
-                    handler = new GoogleReaderFeedSource(configuration, location);
-                    break;
-                case FeedSourceType.NewsGator:
-                    handler = new NewsGatorFeedSource(configuration, location);
-                    break;
-                case FeedSourceType.Facebook:
-                    handler = new FacebookFeedSource(configuration, location); 
-                    break;
- */ 
 				case FeedSourceType.FeedlyCloud:
 					handler = new FeedlyCloudFeedSource(configuration, location);
 					break;
@@ -7128,19 +7115,8 @@ namespace NewsComponents
 
 
         /// <summary>
-        /// Invoked when a NewsFeed owned by this FeedSource changes in a way that 
-        /// needs to be communicated to NewsGator Online. 
-        /// </summary>
-        /// <param name="sender">the NewsFeed</param>
-        /// <param name="e">information on the property that changed</param>
-        protected virtual void OnNewsFeedPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            //DOES NOTHING BY DEFAULT
-        }
-
-        /// <summary>
-        /// Adds a feed and associated FeedInfo object to the FeedsTable and itemsTable. 
-        /// Any existing feed objects are replaced by the new objects. 
+        /// Adds a feed and associated FeedInfo object to the FeedsTable and itemsTable.
+        /// Any existing feed objects are replaced by the new objects.
         /// </summary>
         /// <param name="f">The NewsFeed object </param>
         /// <returns>The actual INewsFeed instance that will be used to represent this feed subscription</returns>
