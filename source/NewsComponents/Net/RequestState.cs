@@ -9,6 +9,7 @@
 
 using System;
 using System.Net;
+using System.Net.Http;
 using System.IO;
 
 namespace NewsComponents.Net
@@ -20,14 +21,14 @@ namespace NewsComponents.Net
     {
         public const int MAX_RETRIES = 25;	// how often we retry, if a url was a redirect (of a redirect of a redirect...)
         public const int BUFFER_SIZE = 4096;	// 4K
-        
+
         public event RequestStartCallback WebRequestBeforeStart;
         public event RequestCompleteCallback WebRequestCompleted;
         public event RequestExceptionCallback WebRequestException;
         public event RequestProgressCallback WebRequestProgress;
 
         private Stream _requestData;
-        
+
         public byte[] ReadBuffer;
         public long BytesTransferred;
 
@@ -35,15 +36,19 @@ namespace NewsComponents.Net
         public bool RequestFinalized;
 
         public RequestParameter RequestParams;
+        /// <summary>Only set for the legacy WebRequest based schemes (file://, nntp://)</summary>
         public WebRequest Request;
+        /// <summary>Only set for the legacy WebRequest based schemes (file://, nntp://)</summary>
         public WebResponse Response;
+        /// <summary>Only set for the HTTP(S) requests performed over HttpClient</summary>
+        public HttpResponseMessage HttpResponse;
         public Stream ResponseStream;
 
         public int RetryCount;
         public DateTime StartTime = DateTime.Now;
         public int Priority;
         public Uri InitialRequestUri;
-        
+
         #region ctor's
 
         public RequestState()
@@ -59,6 +64,20 @@ namespace NewsComponents.Net
 
             this.Request = request;
             this.InitialRequestUri = request.RequestUri;
+            this.Priority = priority;
+            this.RequestParams = requestParameter;
+        }
+
+        /// <summary>
+        /// Initializer used for the HTTP(S) requests performed over HttpClient
+        /// (no WebRequest instance involved).
+        /// </summary>
+        public RequestState(int priority, RequestParameter requestParameter) :
+            this()
+        {
+            if (requestParameter == null) throw new ArgumentNullException("requestParameter");
+
+            this.InitialRequestUri = requestParameter.RequestUri;
             this.Priority = priority;
             this.RequestParams = requestParameter;
         }
@@ -150,6 +169,8 @@ namespace NewsComponents.Net
             {
                 if (Request != null)
                     return Request.RequestUri;
+                if (RequestParams != null)
+                    return RequestParams.RequestUri;
                 return null;
             }
         }

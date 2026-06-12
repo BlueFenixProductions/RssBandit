@@ -28,7 +28,7 @@ namespace NewsComponents.Net
        // private static readonly ILog _log = DefaultLog.GetLogger(typeof(HttpCookieManager));
 
         /// <summary>
-        /// Retrieves the cookie(s) from windows system and assign them to the request, 
+        /// Retrieves the cookie(s) from windows system and assign them to the request,
         /// if available.
         /// </summary>
         /// <param name="request">HttpWebRequest</param>
@@ -40,6 +40,25 @@ namespace NewsComponents.Net
         }
 
         /// <summary>
+        /// Retrieves the cookie(s) from windows system and assign them to the request,
+        /// if available (HttpClient based requests: cookies travel as a request header).
+        /// </summary>
+        /// <param name="request">HttpRequestMessage</param>
+        public static void SetCookies(System.Net.Http.HttpRequestMessage request)
+        {
+            if (request == null || request.RequestUri == null)
+                return;
+
+            CookieContainer c = GetCookieContainerUri(request.RequestUri);
+            if (c.Count > 0)
+            {
+                string cookieHeader = c.GetCookieHeader(request.RequestUri);
+                if (!String.IsNullOrEmpty(cookieHeader))
+                    request.Headers.TryAddWithoutValidation("Cookie", cookieHeader);
+            }
+        }
+
+        /// <summary>
         /// Gets newly received cookie(s) and make them persistent within windows system.
         /// </summary>
         /// <param name="response">HttpWebResponse</param>
@@ -47,10 +66,28 @@ namespace NewsComponents.Net
         {
             if (response.Headers["Set-Cookie"] != null)
             {
-                /* 
-				 * It seems this may log users out of certain sites, 
+                /*
+				 * It seems this may log users out of certain sites,
 				 * see http://www.rssbandit.org/forum/topic.asp?whichpage=1&TOPIC_ID=2080&#4080
 				 *	- InternetSetCookie(response.ResponseUri.CanonicalizedUri(), null, response.Headers["Set-Cookie"]);
+				 */
+            }
+        }
+
+        /// <summary>
+        /// Gets newly received cookie(s) and make them persistent within windows system
+        /// (HttpClient based requests).
+        /// </summary>
+        /// <param name="response">HttpResponseMessage</param>
+        public static void GetCookies(System.Net.Http.HttpResponseMessage response)
+        {
+            System.Collections.Generic.IEnumerable<string> setCookie;
+            if (response.Headers.TryGetValues("Set-Cookie", out setCookie))
+            {
+                /*
+				 * Intentionally not persisted - same behavior as the HttpWebResponse
+				 * overload above: it seems this may log users out of certain sites,
+				 * see http://www.rssbandit.org/forum/topic.asp?whichpage=1&TOPIC_ID=2080&#4080
 				 */
             }
         }

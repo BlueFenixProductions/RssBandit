@@ -648,8 +648,8 @@ namespace RssBandit.WinGui.Utility
 			try
 			{
 				//_log.Info("FrameworkCheckConnection('"+url+"') ");
-				using (var response = (HttpWebResponse)SyncWebRequest.GetResponse(HttpMethod.Get, url, 
-					credentials, UserAgent, proxy, FeedSource.UnixEpoch, null, 
+				using (var response = (HttpClientResponse)SyncWebRequest.GetResponse(HttpMethod.Get, url,
+					credentials, UserAgent, proxy, FeedSource.UnixEpoch, null,
 					parameters.WebTimeout * 1000, null, null, null))
 				{
 					if (WebRequestBase.IsRedirect(response.StatusCode))

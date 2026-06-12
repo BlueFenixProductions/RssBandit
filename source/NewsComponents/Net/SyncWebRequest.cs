@@ -14,7 +14,9 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text;
+using System.Threading;
 using NewsComponents.Utils;
 
 namespace NewsComponents.Net
@@ -33,7 +35,7 @@ namespace NewsComponents.Net
         /// <param name="proxy">Proxy to use</param>
         /// <param name="ifModifiedSince">Header date</param>
         /// <param name="eTag">Header tag</param>
-        /// <param name="timeout">Request timeout. E.g. 60 * 1000, means one minute timeout. 
+        /// <param name="timeout">Request timeout. E.g. 60 * 1000, means one minute timeout.
         /// If zero or less than zero, the default timeout of one minute will be used</param>
         /// <param name="cookie">HTTP cookie to send along with the request</param>
         /// <param name="body">The body of the request (if it is POST request)</param>
@@ -44,62 +46,24 @@ namespace NewsComponents.Net
                                               IWebProxy proxy, DateTime ifModifiedSince, string eTag, int timeout,
                                               Cookie cookie, string body, WebHeaderCollection additonalHeaders)
         {
+            Uri uri;
+            if (Uri.TryCreate(address, UriKind.Absolute, out uri) &&
+                (uri.Scheme == Uri.UriSchemeHttp || uri.Scheme == Uri.UriSchemeHttps))
+            {
+                return GetHttpResponse(method, uri, credentials, userAgent, proxy, ifModifiedSince, eTag,
+                                       timeout, cookie, body, additonalHeaders);
+            }
+
+            // legacy path (e.g. file:// or local/UNC paths):
             try
             {
+#pragma warning disable SYSLIB0014
                 WebRequest webRequest = WebRequest.Create(address);
+#pragma warning restore SYSLIB0014
 
-                HttpWebRequest httpRequest = webRequest as HttpWebRequest;
                 FileWebRequest fileRequest = webRequest as FileWebRequest;
 
-                if (httpRequest != null)
-                {
-                    httpRequest.Timeout = (timeout <= 0 ? DefaultTimeout : timeout);
-                    //two minute timeout, if lower than zero
-                    httpRequest.UserAgent = userAgent ?? FullUserAgent(userAgent);
-                    httpRequest.Proxy = proxy;
-                    httpRequest.AllowAutoRedirect = false;
-                    httpRequest.IfModifiedSince = ifModifiedSince;
-                    //httpRequest.Headers.Add("Accept-Encoding", "gzip, deflate");
-                    httpRequest.AutomaticDecompression = DecompressionMethods.GZip |
-                                                         DecompressionMethods.Deflate;
-                    httpRequest.Method = method.ToString().ToUpperInvariant();
-
-                    if (additonalHeaders != null)
-                    {
-                        httpRequest.Headers.Add(additonalHeaders);
-                    }
-
-                    if (cookie != null)
-                    {
-                        httpRequest.CookieContainer = new CookieContainer();
-                        httpRequest.CookieContainer.Add(cookie);
-                    }
-
-                    if (eTag != null)
-                    {
-                        httpRequest.Headers.Add("If-None-Match", eTag);
-                        httpRequest.Headers.Add("A-IM", "feed");
-                    }
-
-                    if (credentials != null)
-                    {
-                        httpRequest.Credentials = credentials;
-                    }
-
-                    if (method != HttpMethod.Get && !string.IsNullOrWhiteSpace(body))
-                    {
-                        UTF8Encoding encoding = new UTF8Encoding();
-                        byte[] data = encoding.GetBytes(body);
-                        httpRequest.ContentType = (body.StartsWith("<")
-                                                       ? "application/xml"
-                                                       : "application/x-www-form-urlencoded");
-                        httpRequest.ContentLength = data.Length;
-                        Stream newStream = httpRequest.GetRequestStream();
-                        newStream.Write(data, 0, data.Length);
-                        newStream.Close();
-                    }
-                }
-                else if (fileRequest != null)
+                if (fileRequest != null)
                 {
                     fileRequest.Timeout = (timeout <= 0 ? DefaultTimeout : timeout);
                     if (credentials != null)
@@ -129,6 +93,111 @@ namespace NewsComponents.Net
             } //end try/catch
         }
 
+        /// <summary>
+        /// Performs the HTTP(S) request over a pooled HttpClient instance (synchronous send)
+        /// and returns the response wrapped as a <see cref="HttpClientResponse"/>.
+        /// Like the old HttpWebRequest code path, redirects are NOT followed automatically
+        /// and failure status codes do not throw - callers inspect the status code.
+        /// </summary>
+        private static HttpClientResponse GetHttpResponse(HttpMethod method, Uri uri, ICredentials credentials,
+                                                          string userAgent, IWebProxy proxy,
+                                                          DateTime ifModifiedSince, string eTag, int timeout,
+                                                          Cookie cookie, string body,
+                                                          WebHeaderCollection additonalHeaders)
+        {
+            HttpClient client = HttpClientCache.GetClient(proxy, credentials, uri, null);
+
+            var request = new HttpRequestMessage(TranslateMethod(method), uri)
+            {
+                // the synchronous HttpClient.Send() API supports HTTP/1.1 only:
+                Version = HttpVersion.Version11,
+                VersionPolicy = HttpVersionPolicy.RequestVersionOrLower
+            };
+
+            using (request)
+            {
+                request.Headers.TryAddWithoutValidation("User-Agent", userAgent ?? FullUserAgent(null));
+
+                if (additonalHeaders != null)
+                {
+                    foreach (string header in additonalHeaders.AllKeys)
+                    {
+                        request.Headers.TryAddWithoutValidation(header, additonalHeaders[header]);
+                    }
+                }
+
+                if (cookie != null)
+                {
+                    request.Headers.TryAddWithoutValidation("Cookie",
+                        String.Concat(cookie.Name, "=", cookie.Value));
+                }
+
+                if (eTag != null)
+                {
+                    request.Headers.TryAddWithoutValidation("If-None-Match", eTag);
+                    request.Headers.TryAddWithoutValidation("A-IM", "feed");
+                }
+
+                if (ifModifiedSince > DateTime.MinValue)
+                {
+                    // DateTime.MinValue means: do not send the header
+                    // (same as the old HttpWebRequest.IfModifiedSince behavior)
+                    request.Headers.IfModifiedSince = ifModifiedSince;
+                }
+
+                if (method != HttpMethod.Get && !string.IsNullOrWhiteSpace(body))
+                {
+                    UTF8Encoding encoding = new UTF8Encoding();
+                    byte[] data = encoding.GetBytes(body);
+                    var content = new ByteArrayContent(data);
+                    content.Headers.TryAddWithoutValidation("Content-Type",
+                        body.StartsWith("<")
+                            ? "application/xml"
+                            : "application/x-www-form-urlencoded");
+                    request.Content = content;
+                }
+
+                int effectiveTimeout = (timeout <= 0 ? DefaultTimeout : timeout);
+                var timeoutSource = new CancellationTokenSource(effectiveTimeout);
+                try
+                {
+                    TrustSelectedCertificatePolicy.CurrentRequestUri = uri;
+                    HttpResponseMessage response = client.Send(request,
+                                                               HttpCompletionOption.ResponseHeadersRead,
+                                                               timeoutSource.Token);
+                    return new HttpClientResponse(response, uri);
+                }
+                catch (Exception ex)
+                {
+                    Exception translated =
+                        HttpClientCache.TranslateSendException(ex, uri, timeoutSource.IsCancellationRequested);
+                    if (!ReferenceEquals(translated, ex))
+                        throw translated;
+                    throw;
+                }
+                finally
+                {
+                    TrustSelectedCertificatePolicy.CurrentRequestUri = null;
+                    timeoutSource.Dispose();
+                }
+            }
+        }
+
+        private static System.Net.Http.HttpMethod TranslateMethod(HttpMethod method)
+        {
+            switch (method)
+            {
+                case HttpMethod.Delete:
+                    return System.Net.Http.HttpMethod.Delete;
+                case HttpMethod.Post:
+                    return System.Net.Http.HttpMethod.Post;
+                case HttpMethod.Put:
+                    return System.Net.Http.HttpMethod.Put;
+                default:
+                    return System.Net.Http.HttpMethod.Get;
+            }
+        }
+
         #endregion
 
         #region GetResponseHeadersOnly
@@ -138,7 +207,7 @@ namespace NewsComponents.Net
         /// </summary>
         /// <param name="address">Url to request</param>
         /// <param name="proxy">Proxy to use</param>
-        /// <param name="timeout">Request timeout. E.g. 60 * 1000, means one minute timeout. 
+        /// <param name="timeout">Request timeout. E.g. 60 * 1000, means one minute timeout.
         /// If zero or less than zero, the default timeout of one minute will be used</param>
         /// <returns>WebResponse</returns>
         public static WebResponse GetResponseHeadersOnly(string address, IWebProxy proxy, int timeout)
@@ -151,39 +220,46 @@ namespace NewsComponents.Net
         /// </summary>
         /// <param name="address">Url to request</param>
         /// <param name="proxy">Proxy to use</param>
-        /// <param name="timeout">Request timeout. E.g. 60 * 1000, means one minute timeout. 
+        /// <param name="timeout">Request timeout. E.g. 60 * 1000, means one minute timeout.
         /// If zero or less than zero, the default timeout of one minute will be used</param>
         /// <param name="credentials">ICredentials</param>
         /// <returns>WebResponse</returns>
         public static WebResponse GetResponseHeadersOnly(string address, IWebProxy proxy, int timeout,
                                                              ICredentials credentials)
         {
-            try
+            Uri uri = new Uri(address);
+            HttpClient client = HttpClientCache.GetClient(proxy, credentials, uri, null);
+
+            using (var request = new HttpRequestMessage(System.Net.Http.HttpMethod.Head, uri)
             {
-                HttpWebRequest httpRequest = (HttpWebRequest)WebRequest.Create(address);
-
-                httpRequest.Timeout = (timeout <= 0 ? DefaultTimeout : timeout);
-                //one minute timeout, if lower than zero
-                if (proxy != null)
-                    httpRequest.Proxy = proxy;
-                if (credentials != null)
-                    httpRequest.Credentials = credentials;
-                httpRequest.Method = "HEAD";
-
-                return httpRequest.GetResponse();
-            }
-            catch (Exception e)
+                Version = HttpVersion.Version11,
+                VersionPolicy = HttpVersionPolicy.RequestVersionOrLower
+            })
             {
-                //For some reason the HttpWebResponse class throws an exception on 3xx responses
-
-                WebException we = e as WebException;
-
-                if ((we != null) && (we.Response != null))
+                int effectiveTimeout = (timeout <= 0 ? DefaultTimeout : timeout);
+                var timeoutSource = new CancellationTokenSource(effectiveTimeout);
+                try
                 {
-                    return we.Response;
+                    TrustSelectedCertificatePolicy.CurrentRequestUri = uri;
+                    HttpResponseMessage response = client.Send(request,
+                                                               HttpCompletionOption.ResponseHeadersRead,
+                                                               timeoutSource.Token);
+                    return new HttpClientResponse(response, uri);
                 }
-                throw;
-            } //end try/catch
+                catch (Exception ex)
+                {
+                    Exception translated =
+                        HttpClientCache.TranslateSendException(ex, uri, timeoutSource.IsCancellationRequested);
+                    if (!ReferenceEquals(translated, ex))
+                        throw translated;
+                    throw;
+                }
+                finally
+                {
+                    TrustSelectedCertificatePolicy.CurrentRequestUri = null;
+                    timeoutSource.Dispose();
+                }
+            }
         }
 
         #endregion
@@ -199,14 +275,14 @@ namespace NewsComponents.Net
         /// <param name="credentials">Url credentials</param>
         /// <param name="proxy">Proxy to use</param>
         /// <returns></returns>
-        public static HttpWebResponse PostResponse(string address, string body, WebHeaderCollection headers,
-                                                   ICredentials credentials, IWebProxy proxy)
+        public static WebResponse PostResponse(string address, string body, WebHeaderCollection headers,
+                                               ICredentials credentials, IWebProxy proxy)
         {
 
             DateTime ifModifiedSince = MinValue;
             return
                 GetResponse(HttpMethod.Post, address, credentials, null /* userAgent */, proxy, ifModifiedSince,
-                            null /* eTag */, DefaultTimeout, null /* cookie */, body, headers) as HttpWebResponse;
+                            null /* eTag */, DefaultTimeout, null /* cookie */, body, headers);
         }
 
         /// <summary>
@@ -218,15 +294,14 @@ namespace NewsComponents.Net
         /// <param name="proxy">Proxy to use</param>
         /// <param name="additionalHeaders">The additional headers.</param>
         /// <returns></returns>
-        public static HttpWebResponse PostResponse(string address, string body, ICredentials credentials,
-                                                   IWebProxy proxy, WebHeaderCollection additionalHeaders)
+        public static WebResponse PostResponse(string address, string body, ICredentials credentials,
+                                               IWebProxy proxy, WebHeaderCollection additionalHeaders)
         {
 
             DateTime ifModifiedSince = MinValue;
             return
                 GetResponse(HttpMethod.Post, address, credentials, null /* userAgent */, proxy, ifModifiedSince,
-                            null /* eTag */, DefaultTimeout, null /* cookie */, body, additionalHeaders) as
-                HttpWebResponse;
+                            null /* eTag */, DefaultTimeout, null /* cookie */, body, additionalHeaders);
         }
 
         #endregion
@@ -242,19 +317,18 @@ namespace NewsComponents.Net
         /// <param name="proxy">Proxy to use</param>
         /// <param name="additionalHeaders">The additional headers.</param>
         /// <returns></returns>
-        public static HttpWebResponse PutResponse(string address, string body, ICredentials credentials, IWebProxy proxy,
-                                                  WebHeaderCollection additionalHeaders)
+        public static WebResponse PutResponse(string address, string body, ICredentials credentials, IWebProxy proxy,
+                                              WebHeaderCollection additionalHeaders)
         {
 
             DateTime ifModifiedSince = MinValue;
             return
                 GetResponse(HttpMethod.Put, address, credentials, null /* userAgent */, proxy, ifModifiedSince,
-                            null /* eTag */, DefaultTimeout, null /* cookie */, body, additionalHeaders) as
-                HttpWebResponse;
+                            null /* eTag */, DefaultTimeout, null /* cookie */, body, additionalHeaders);
         }
 
         #endregion
-        
+
         #region DeleteResponse
 
         /// <summary>
@@ -266,15 +340,14 @@ namespace NewsComponents.Net
         /// <param name="proxy">Proxy to use</param>
         /// <param name="additionalHeaders">The additional headers.</param>
         /// <returns></returns>
-        public static HttpWebResponse DeleteResponse(string address, string body, ICredentials credentials,
-                                                     IWebProxy proxy, WebHeaderCollection additionalHeaders)
+        public static WebResponse DeleteResponse(string address, string body, ICredentials credentials,
+                                                 IWebProxy proxy, WebHeaderCollection additionalHeaders)
         {
 
             DateTime ifModifiedSince = MinValue;
             return
                 GetResponse(HttpMethod.Delete, address, credentials, null /* userAgent */, proxy, ifModifiedSince,
-                            null /* eTag */, DefaultTimeout, null /* cookie */, body, additionalHeaders) as
-                HttpWebResponse;
+                            null /* eTag */, DefaultTimeout, null /* cookie */, body, additionalHeaders);
         }
 
         #endregion
@@ -469,7 +542,7 @@ namespace NewsComponents.Net
                 GetResponse(method, address, credentials, userAgent, proxy, ifModifiedSince, eTag, timeout, cookie, body,
                             additonalHeaders);
 
-            HttpWebResponse response = wr as HttpWebResponse;
+            HttpClientResponse response = wr as HttpClientResponse;
             FileWebResponse fileresponse = wr as FileWebResponse;
 
             if (response != null)
