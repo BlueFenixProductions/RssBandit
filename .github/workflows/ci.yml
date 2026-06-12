@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+    branches: [ develop, main ]
+  pull_request:
+    branches: [ develop, main ]
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # Nerdbank.GitVersioning needs the full history to compute the version height
+          fetch-depth: 0
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      # Build the csproj files, not the solution: RssBandit.Package.wapproj is not
+      # CLI-buildable. RssBandit.csproj transitively builds NewsComponents and
+      # RssBandit.AppServices.
+      - name: Build app
+        run: dotnet build source/RssBandit/RssBandit.csproj -c Release
+
+      - name: Build tests
+        run: dotnet build source/NewsComponents.UnitTests/NewsComponents.UnitTests.csproj -c Release
+
+      - name: Test
+        run: dotnet test source/NewsComponents.UnitTests/NewsComponents.UnitTests.csproj -c Release --no-build --logger trx --results-directory TestResults
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-results
+          path: TestResults
+          if-no-files-found: ignore
