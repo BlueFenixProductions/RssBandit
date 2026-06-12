@@ -1440,8 +1440,9 @@ namespace RssBandit
 				var converter = new FontConverter();
 				return converter.ConvertFromString(null, CultureInfo.InvariantCulture, fontString) as Font ?? defaultValue;
 			}
-			catch
+			catch (Exception ex)
 			{
+				_log.Warn("Could not parse stored font value '" + fontString + "', using default", ex);
 				return defaultValue;
 			}
 		}
@@ -1457,8 +1458,9 @@ namespace RssBandit
 			{
 				return ColorTranslator.FromHtml(htmlColor);
 			}
-			catch
+			catch (Exception ex)
 			{
+				_log.Warn("Could not parse stored color value '" + htmlColor + "', using default", ex);
 				return defaultValue;
 			}
 		}

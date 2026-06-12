@@ -900,7 +900,8 @@ namespace NewsComponents.Search
 		
 		private void RaiseIndexingFinished() {
 			if (IndexingFinished != null)
-				try { IndexingFinished(this, EventArgs.Empty); } catch {}
+				try { IndexingFinished(this, EventArgs.Empty); }
+				catch (Exception ex) { _log.Error("IndexingFinished event handler failed", ex); }
 		}
 
 		private static IDictionary ReadIndexingRestartStateFileContent(string indexStateFile, out DictionaryEntry lastIndexed) {

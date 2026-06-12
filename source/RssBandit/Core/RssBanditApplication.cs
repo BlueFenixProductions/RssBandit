@@ -1977,16 +1977,24 @@ namespace RssBandit
             // This will set the task state
         //    Preferences.RunBanditAsWindowsUserLogon = propertiesDialog.checkRunAtStartup.Checked;
             var startupCheck = propertiesDialog.checkRunAtStartup.Checked;
-            var startupTask = await StartupTask.GetAsync("RssBanditStartupTask");
-            if (startupCheck && startupTask.State != StartupTaskState.Enabled)
+            try
             {
-                // currently disabled, try to enable
-                var state = await startupTask.RequestEnableAsync();
+                var startupTask = await StartupTask.GetAsync("RssBanditStartupTask");
+                if (startupCheck && startupTask.State != StartupTaskState.Enabled)
+                {
+                    // currently disabled, try to enable
+                    var state = await startupTask.RequestEnableAsync();
+                }
+                if (!startupCheck && startupTask.State == StartupTaskState.Enabled)
+                {
+                    // currently enabled, disable
+                    startupTask.Disable();
+                }
             }
-            if (!startupCheck && startupTask.State == StartupTaskState.Enabled)
+            catch (Exception ex)
             {
-                // currently enabled, disable
-                startupTask.Disable();
+                // async void event handler: an unhandled exception here would crash the process
+                _log.Error("Failed to query/update the Windows startup task", ex);
             }
 
             Preferences.UserIdentityForComments = propertiesDialog.cboUserIdentityForComments.Text;
@@ -5967,8 +5975,18 @@ namespace RssBandit
             {
 
                 // Get the enabled state
-                var startupTask = await StartupTask.GetAsync("RssBanditStartupTask");
-                propertiesDialog.checkRunAtStartup.Checked = startupTask.State == StartupTaskState.Enabled;
+                bool startupTaskEnabled = false;
+                try
+                {
+                    var startupTask = await StartupTask.GetAsync("RssBanditStartupTask");
+                    startupTaskEnabled = startupTask.State == StartupTaskState.Enabled;
+                }
+                catch (Exception ex)
+                {
+                    // async void (ICoreApplication contract): an unhandled exception here would crash the process
+                    _log.Error("Failed to query the Windows startup task state", ex);
+                }
+                propertiesDialog.checkRunAtStartup.Checked = startupTaskEnabled;
 
                 propertiesDialog.OnApplyPreferences += OnApplyPreferences;
                 if (optionsChangedHandler != null)
