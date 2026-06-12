@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Globalization;
@@ -728,23 +729,40 @@ namespace NewsComponents.Search
 		/// <returns></returns>
 		internal static Analyzer GetAnalyzer(NewsItem item) {
 			if (item == null)
-				return new StandardAnalyzer(LuceneVersion.LUCENE_48);
+				return GetAnalyzer(DefaultLanguage);
 			return GetAnalyzer(item.Language);
 		}
 
 		/// <summary>
-		/// Base method to get the analyzer.
+		/// Analyzers cached per normalized culture. Lucene.Net 4.8 analyzers are
+		/// designed for cross-thread reuse (per-thread TokenStream components via
+		/// ReuseStrategy); cached instances intentionally live for the app lifetime,
+		/// so callers must not dispose them.
+		/// </summary>
+		private static readonly ConcurrentDictionary<string, Analyzer> AnalyzerCache =
+			new ConcurrentDictionary<string, Analyzer>(StringComparer.Ordinal);
+
+		/// <summary>
+		/// Gets the (cached) analyzer for the given culture.
+		/// </summary>
+		/// <param name="culture">The language.</param>
+		/// <returns>A shared Analyzer instance; do not dispose.</returns>
+		internal static Analyzer GetAnalyzer(string culture) {
+			return AnalyzerCache.GetOrAdd(NormalizeCulture(culture), CreateAnalyzer);
+		}
+
+		/// <summary>
+		/// Base method to create the analyzer.
 		/// TODO: have to be changed as soon Lucene fully integrates
 		/// the Snowball Analyzer using different language stemmers.
 		/// See also: https://svn.apache.org/repos/asf/incubator/lucene.net/trunk/C%23/contrib/Snowball.Net/Snowball.Net/Lucene.Net/Analysis/Snowball/
 		/// </summary>
-		/// <param name="culture">The language.</param>
+		/// <param name="culture">The normalized language.</param>
 		/// <remarks>To get language support we use a custom build of Lucene.Net.dll
 		/// including the various language packs. Italian was there, but did not compiled
 		/// and so it is not supported here.</remarks>
 		/// <returns></returns>
-		internal static Analyzer GetAnalyzer(string culture) {
-			culture = NormalizeCulture(culture);
+		private static Analyzer CreateAnalyzer(string culture) {
 			switch (culture) {
 #if LUCENE_1_9
 				case "de":	return new GermanAnalyzer();

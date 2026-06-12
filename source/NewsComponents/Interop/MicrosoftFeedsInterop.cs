@@ -859,21 +859,37 @@ namespace Microsoft.Feeds.Interop
 
     #region IFeedFolderEvents_Event (ComEventsHelper-based replacement for the tlbimp TCE pattern)
 
+    /// <summary>Handles a general error raised by the watched feed folder.</summary>
     public delegate void IFeedFolderEvents_ErrorEventHandler();
+    /// <summary>Handles a subfolder being added under the watched folder.</summary>
     public delegate void IFeedFolderEvents_FolderAddedEventHandler(string path);
+    /// <summary>Handles a subfolder being deleted under the watched folder.</summary>
     public delegate void IFeedFolderEvents_FolderDeletedEventHandler(string path);
+    /// <summary>Handles a subfolder being renamed under the watched folder.</summary>
     public delegate void IFeedFolderEvents_FolderRenamedEventHandler(string path, string oldPath);
+    /// <summary>Handles a subfolder being moved out of the watched folder.</summary>
     public delegate void IFeedFolderEvents_FolderMovedFromEventHandler(string path, string oldPath);
+    /// <summary>Handles a subfolder being moved into the watched folder.</summary>
     public delegate void IFeedFolderEvents_FolderMovedToEventHandler(string path, string oldPath);
+    /// <summary>Handles a change of the unread/item count of a subfolder (see FEEDS_EVENTS_ITEM_COUNT_FLAGS).</summary>
     public delegate void IFeedFolderEvents_FolderItemCountChangedEventHandler(string path, int itemCountType);
+    /// <summary>Handles a feed being added to the watched folder.</summary>
     public delegate void IFeedFolderEvents_FeedAddedEventHandler(string path);
+    /// <summary>Handles a feed being deleted from the watched folder.</summary>
     public delegate void IFeedFolderEvents_FeedDeletedEventHandler(string path);
+    /// <summary>Handles a feed being renamed within the watched folder.</summary>
     public delegate void IFeedFolderEvents_FeedRenamedEventHandler(string path, string oldPath);
+    /// <summary>Handles a change of a feed's URL within the watched folder.</summary>
     public delegate void IFeedFolderEvents_FeedUrlChangedEventHandler(string path);
+    /// <summary>Handles a feed being moved out of the watched folder.</summary>
     public delegate void IFeedFolderEvents_FeedMovedFromEventHandler(string path, string oldPath);
+    /// <summary>Handles a feed being moved into the watched folder.</summary>
     public delegate void IFeedFolderEvents_FeedMovedToEventHandler(string path, string oldPath);
+    /// <summary>Handles the start of a feed download.</summary>
     public delegate void IFeedFolderEvents_FeedDownloadingEventHandler(string path);
+    /// <summary>Handles the completion of a feed download, including its error status.</summary>
     public delegate void IFeedFolderEvents_FeedDownloadCompletedEventHandler(string path, FEEDS_DOWNLOAD_ERROR error);
+    /// <summary>Handles a change of the unread/item count of a feed (see FEEDS_EVENTS_ITEM_COUNT_FLAGS).</summary>
     public delegate void IFeedFolderEvents_FeedItemCountChangedEventHandler(string path, int itemCountType);
 
     /// <summary>
