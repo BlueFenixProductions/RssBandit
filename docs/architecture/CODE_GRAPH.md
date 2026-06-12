@@ -50,11 +50,15 @@ app already migrated to WebView2 (old IEControl calls are commented out).
 
 ## Recommended build-fix order → "smoothly running WinForms"
 
-**Phase A — make it build (low risk, mechanical)**
-1. Retarget the 4 main projects `net5.0-windows` → `net8.0-windows` (or `net10.0-windows`); bump `Microsoft.Web.WebView2`, `log4net`, `Newtonsoft.Json`, NUnit/Test SDK packages.
-2. Verify Infragistics 20.2.14 loads on .NET 8; if not, upgrade license/version or stub the affected surfaces. Same check for SandDock and Divelements (binary-era vendors — have fallback plan: DockPanelSuite for docking).
-3. Keep SoapFormatter/BinaryFormatter compiling on net8 (obsolete warnings only) — they hard-break at net9+.
-4. Drop dead satellites from any build scripts (IEControl, ShellLib, Jumplist, RssBandit.UnitTests, plugins).
+**Phase A — make it build (low risk, mechanical)** — ✅ **DONE 2026-06-12** (commit `1d6e4a17` on develop)
+1. ✅ Retargeted the 4 main projects to `net10.0-windows10.0.19041` (net8 already near EOL at the time); bumped WebView2 1.0.4022.49, log4net 2.0.17, Newtonsoft.Json 13.0.4, NUnit 3.14.0 / adapter 4.6.0 / Test SDK 17.14.1, Unity 5.11.10, Nerdbank.GitVersioning 3.9.50; dropped the Microsoft.NETCore.Targets workaround and System.Windows.Extensions (in-box now).
+2. ✅ Runtime-verified on .NET 10: app launches, all 8 Infragistics 20.2.14 assemblies + SandDock + WebView2 load and render; Divelements loads lazily with the wizard dialog. No fallback plan needed.
+3. ✅ BinaryFormatter sites survive net10 via `System.Runtime.Serialization.Formatters` 10.0.9 + `EnableUnsafeBinaryFormatterSerialization` (proper Phase B replacement still pending); SoapFormatter NuGet package is TFM-safe.
+4. ✅ Both COMReferences eliminated so the **pure dotnet CLI builds green** (no VS MSBuild): `stdole` deleted (unused), `Microsoft.Feeds.Interop` replaced by hand-written ComImport interop (`NewsComponents/Interop/MicrosoftFeedsInterop.cs`, derived from Windows SDK `msfeeds.idl`/`msfeedsid.h`), including a self-carried IEnumVARIANT→IEnumerator marshaler and a `ComEventsHelper`-based `IFeedFolderEvents_Event` (the .NET Framework TCE cast pattern is gone on modern .NET).
+   - Build the projects, not the .sln (`RssBandit.Package.wapproj` is not CLI-buildable). Repo-scoped `packageSourceMapping` added to `source/NuGet.Config`.
+   - Tests: 17/36 pass; all 19 failures pre-existing (17 Cassini/System.Web fixtures → Phase C item 9, 2 stale exception-type asserts in FileStorageDataServiceTests).
+   - WFO1000 (WinForms designer-serialization analyzer) suppressed in Directory.Build.props — annotate the custom controls in Phase B/C.
+   - Dead satellites (IEControl, ShellLib, plugins) were already absent from the 4-project build; nothing to drop.
 
 **Phase B — make it run reliably**
 5. Replace SoapFormatter/BinaryFormatter state persistence with System.Text.Json (UI feed state + engine download registry). Migration shim for users' existing state files.
