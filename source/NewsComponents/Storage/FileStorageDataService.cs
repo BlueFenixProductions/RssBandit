@@ -117,31 +117,17 @@ namespace NewsComponents.Storage {
 			using (FileStream stream = FileHelper.OpenForWrite(tempFile))
 			{
 				var writer = new BinaryWriter(stream);
-				
-				FileStream fs = null;
-				BinaryReader reader = null;
-				
-				try
-				{
-					if (File.Exists(Path.Combine(CacheLocation, feedContentLocation)))
-					{
-						fs = new FileStream(Path.Combine(CacheLocation, feedContentLocation), FileMode.OpenOrCreate);
-						reader = new BinaryReader(fs);
-					}
 
-					feed.WriteItemContents(reader, writer);
-					writer.Write(FileHelper.EndOfBinaryFileMarker);
-					writer.Flush();
-				}
-				finally
-				{
-					if (fs != null)
-					{
-						fs.Close();
-					}
-				}
-				
-			}//using(...) 
+				string contentPath = Path.Combine(CacheLocation, feedContentLocation);
+				using FileStream fs = File.Exists(contentPath)
+					? new FileStream(contentPath, FileMode.OpenOrCreate)
+					: null;
+				using BinaryReader reader = fs != null ? new BinaryReader(fs) : null;
+
+				feed.WriteItemContents(reader, writer);
+				writer.Write(FileHelper.EndOfBinaryFileMarker);
+				writer.Flush();
+			}//using(...)
 
 			FileHelper.MoveFile(tempFile, Path.Combine(CacheLocation, feedContentLocation), MoveFileFlag.ReplaceExisting);
 			

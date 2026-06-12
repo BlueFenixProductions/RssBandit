@@ -38,6 +38,11 @@ namespace NewsComponents.Net
         /// </summary>
         private RequestState state = null;
 
+        /// <summary>
+        /// Guards against double-dispose.
+        /// </summary>
+        private bool _disposed;
+
         #endregion
 
         #region Constructors
@@ -133,17 +138,18 @@ namespace NewsComponents.Net
 		        return;
 	        }
 
-	        WebResponse response = SyncWebRequest.GetResponse(HttpMethod.Get, task.DownloadItem.Enclosure.Url,
+	        using (WebResponse response = SyncWebRequest.GetResponse(HttpMethod.Get, task.DownloadItem.Enclosure.Url,
                                                                    task.DownloadItem.Credentials,
                                                                    FeedSource.UserAgentString(String.Empty),
                                                                    task.DownloadItem.Proxy,
                                                                    DateTime.MinValue,
                                                                    null /* eTag */,
-                                                                   Convert.ToInt32(maxWaitTime.TotalSeconds), 
-                                                                   null /* cookie */, null /* body */, null /* additionalHeaders */);
-
-            OnRequestComplete(new Uri(task.DownloadItem.Enclosure.Url), response.GetResponseStream(), response, null, null,
-                              DateTime.MinValue, RequestResult.OK, 0);
+                                                                   Convert.ToInt32(maxWaitTime.TotalSeconds),
+                                                                   null /* cookie */, null /* body */, null /* additionalHeaders */))
+            {
+                OnRequestComplete(new Uri(task.DownloadItem.Enclosure.Url), response.GetResponseStream(), response, null, null,
+                                  DateTime.MinValue, RequestResult.OK, 0);
+            }
         }
 
 
@@ -231,9 +237,14 @@ namespace NewsComponents.Net
         /// <param name="isDisposing">whether or not to clean up managed + unmanaged/large (true) or just unmanaged(false)</param>
         private void Dispose(bool isDisposing)
         {
+            if (_disposed)
+                return;
+            _disposed = true;
+
             if (isDisposing)
             {
-                if (currentTask.State == DownloadTaskState.Downloading || currentTask.State == DownloadTaskState.Pending)
+                if (currentTask != null &&
+                    (currentTask.State == DownloadTaskState.Downloading || currentTask.State == DownloadTaskState.Pending))
                 {
                     try
                     {
@@ -288,8 +299,10 @@ namespace NewsComponents.Net
             string fileLocation = Path.Combine(currentTask.DownloadFilesBase, currentTask.DownloadItem.File.LocalName);
 
             //write file to disk from memory stream
-            FileHelper.WriteStreamWithRename(fileLocation, responseStream);
-            responseStream.Close();
+            using (responseStream)
+            {
+                FileHelper.WriteStreamWithRename(fileLocation, responseStream);
+            }
 
             OnDownloadCompleted(new TaskEventArgs(currentTask));
         }

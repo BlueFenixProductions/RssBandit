@@ -778,9 +778,13 @@ namespace NewsComponents.Net
                     string htmlStatusMessage = null;
                     try
                     {
-                        htmlStatusMessage = new StreamReader(httpResponse.Content.ReadAsStream()).ReadToEnd();
+                        using (var reader = new StreamReader(httpResponse.Content.ReadAsStream()))
+                            htmlStatusMessage = reader.ReadToEnd();
                     }
-                    catch { }
+                    catch (Exception readEx)
+                    {
+                        Log.Debug("Could not read error response body for " + state.RequestUri, readEx);
+                    }
 
                     if (String.IsNullOrEmpty(htmlStatusMessage))
 							throw new WebException("Unexpected HTTP Response: " + statusDescription);

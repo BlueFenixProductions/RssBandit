@@ -77,8 +77,9 @@ namespace RssBandit
 			switch ((Task)task.TaskID) {
 
 				case Task.LoadAllFeedSourcesSubscriptions:
+				{
 					List<FeedSourceEntry> entries = (List<FeedSourceEntry>)task.Arguments[0];
-					var finished = new ManualResetEvent(false);
+					using var finished = new ManualResetEvent(false);
 					int max = entries.Count;
 					int current = 0;
 
@@ -114,8 +115,9 @@ namespace RssBandit
 					
 					if (max > 0)
 						finished.WaitOne(Timeout.Infinite, true);
-					
+
 					break;
+				}
 
 				case Task.LoadFeedSourceSubscriptions:
 					app.LoadFeedSourceSubscriptions((FeedSourceEntry)task.Arguments[0], true);

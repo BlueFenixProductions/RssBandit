@@ -31,8 +31,7 @@ namespace NewsComponents.Net
 
         internal HttpClientResponse(HttpResponseMessage response, Uri requestUri)
         {
-            if (response == null)
-                throw new ArgumentNullException("response");
+            ArgumentNullException.ThrowIfNull(response);
 
             _response = response;
             _requestUri = requestUri;
