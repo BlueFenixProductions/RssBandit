@@ -102,7 +102,9 @@ namespace NewsComponents.Search
 
 		private readonly LuceneSettings settings;
 		private Lucene.Net.Store.Directory indexBaseDirectory;
-		private bool open, flushInprogress, threadRunning;
+		private bool open;
+		// read/written cross-thread without locks (StopIndexer spin-waits on them)
+		private volatile bool flushInprogress, threadRunning;
 		
 		// (initially not signalled)
 		private AutoResetEvent startProcessPendingOpsSignal;

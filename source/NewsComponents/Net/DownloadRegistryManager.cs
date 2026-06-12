@@ -62,7 +62,7 @@ namespace NewsComponents.Net
         /// <summary>
         /// Indicates if the list of tasks is loaded
         /// </summary>
-        private bool loaded;
+        private volatile bool loaded;
 
         private static readonly JsonSerializerOptions TaskSerializationOptions = new JsonSerializerOptions
         {
@@ -73,6 +73,10 @@ namespace NewsComponents.Net
 
         #region Public fields 
 
+        // Intentional app-lifetime singletons: never disposed. HttpDownloader.Dispose
+        // only cancels an in-flight task and BITS handles are reclaimed at process
+        // exit, so disposing these at shutdown adds ordering risk for no benefit.
+
         /// <summary>
         /// The HTTP downloader used by tasks loaded on startup
         /// </summary>
@@ -81,7 +85,7 @@ namespace NewsComponents.Net
         /// <summary>
         /// The BITS downloader used by tasks loaded on startup
         /// </summary>
-        public static readonly BITSDownloader bitsDownloader = new BITSDownloader(); 
+        public static readonly BITSDownloader bitsDownloader = new BITSDownloader();
 
         #endregion 
 
@@ -136,14 +140,20 @@ namespace NewsComponents.Net
         /// </summary>
         public void Load()
         {
-            if (!loaded)
-            {
-                foreach (var fi in RootDir.GetFiles())
-                {
-                    LoadTask(fi.FullName);
-                }
+            if (loaded)
+                return;
 
-                loaded = true;
+            lock (registry)
+            {
+                if (!loaded)
+                {
+                    foreach (var fi in RootDir.GetFiles())
+                    {
+                        LoadTask(fi.FullName);
+                    }
+
+                    loaded = true;
+                }
             }
         }
 
@@ -376,12 +386,22 @@ namespace NewsComponents.Net
 
         private void AddTask(DownloadTask task)
         {
-            _context.Post(o => _tasks.Add(task), null);
+            // _context is only set when Initialize() ran on the dispatcher thread;
+            // fall back to a direct add in headless/startup-race scenarios
+            var ctx = _context;
+            if (ctx != null)
+                ctx.Post(o => _tasks.Add(task), null);
+            else
+                _tasks.Add(task);
         }
 
         private void RemoveTask(DownloadTask task)
         {
-            _context.Post(o => _tasks.Remove(task), null);
+            var ctx = _context;
+            if (ctx != null)
+                ctx.Post(o => _tasks.Remove(task), null);
+            else
+                _tasks.Remove(task);
         }
 
 
