@@ -60,11 +60,11 @@ app already migrated to WebView2 (old IEControl calls are commented out).
    - WFO1000 (WinForms designer-serialization analyzer) suppressed in Directory.Build.props — annotate the custom controls in Phase B/C.
    - Dead satellites (IEControl, ShellLib, plugins) were already absent from the 4-project build; nothing to drop.
 
-**Phase B — make it run reliably**
-5. Replace SoapFormatter/BinaryFormatter state persistence with System.Text.Json (UI feed state + engine download registry). Migration shim for users' existing state files.
-6. Wrap AsyncWebRequest/SyncWebRequest over HttpClient (TLS 1.3, HTTP/2, proxy support).
-7. Remove dead feed sources (GoogleReader, NewsGator, Facebook) and dead IE code paths.
-8. Lucene.Net 2.9 → 4.8 (breaking: analyzers, query API, index format — plan an index rebuild on first run).
+**Phase B — make it run reliably** — ✅ **DONE 2026-06-12** (commits `de0f6f45`..`18577881` on develop)
+5. ✅ Persistence on System.Text.Json: preferences (`.preferences.json` primary; SOAP/binary chain kept as one-time read shim — sandbox-verified migration incl. encrypted secrets) and the download registry (`*.task` JSON; legacy binary files discarded on load). NewsComponents no longer references BinaryFormatter at all; the Formatters package + unsafe flag remain only in RssBandit.csproj for the shim.
+6. ✅ AsyncWebRequest/SyncWebRequest rewritten over HttpClient/SocketsHttpHandler (cached clients keyed by proxy/credentials/cert, HTTP/2 on async path, manual redirect loop preserving 301 new-URL signaling, conditional-GET quirks kept, per-handler cert-trust callback re-activating the dormant TrustSelectedCertificatePolicy). Live-network harness verified fetch/304/301/sync. NNTP + BITS untouched.
+7. ✅ Dead sources removed (−8.3k lines): Google Reader, NewsGator, Facebook implementations, their UI chains and the Facebook package; FeedSourceType enum members kept for feedsources.xml compat; live migration shims kept. All commented MSHTML/IEControl corpse code deleted; `CreateAndInitIEControl`→`CreateAndInitWebView`, `ScrollHtmlControl`→`ScrollWebBrowser`.
+8. ✅ Lucene.Net 4.8.0-beta00017 (+Analysis.Common, +QueryParser; SharpZipLib explicit at 1.4.2 fixing the 0.86 advisory). Field semantics and date format preserved; old/corrupt index auto-wiped at startup and rebuilt via the existing re-index path (harness + in-app verified).
 
 **Phase C — health**
 9. Replace Cassini with WireMock.Net; consolidate tests on NUnit; wire up CI (`dotnet build` + `dotnet test` on the 4-project solution).
