@@ -1,0 +1,3162 @@
+{
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\AddIn\\AdsBlocker2.AddIn.sln": {
+    "mtime": 1781251031.245529,
+    "ast_hash": "72807d988627282243bce4e7f8056984",
+    "semantic_hash": "72807d988627282243bce4e7f8056984"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\AddIn\\AdsBlocker\\AdsBlocker2.AddIn.csproj": {
+    "mtime": 1781251031.238525,
+    "ast_hash": "05ae1ca447655b95fe1876bc984717dc",
+    "semantic_hash": "05ae1ca447655b95fe1876bc984717dc"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\AddIn\\AdsBlocker\\AdsBlockerAddIn.cs": {
+    "mtime": 1781251031.2395263,
+    "ast_hash": "010eca4297da846c0b4f27682b9fea64",
+    "semantic_hash": "010eca4297da846c0b4f27682b9fea64"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\AddIn\\AdsBlocker\\AdsBlockerChannel.cs": {
+    "mtime": 1781251031.2395263,
+    "ast_hash": "3843f9836023bc0219c5e586fb020987",
+    "semantic_hash": "3843f9836023bc0219c5e586fb020987"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\AddIn\\AdsBlocker\\AssemblyInfo.cs": {
+    "mtime": 1781251031.2405264,
+    "ast_hash": "94a940ed95ed8f24a06022e08c6babbd",
+    "semantic_hash": "94a940ed95ed8f24a06022e08c6babbd"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\AddIn\\AdsBlocker\\IBlackWhiteList.cs": {
+    "mtime": 1781251031.2415264,
+    "ast_hash": "285db880825366fa72b34f95ea236669",
+    "semantic_hash": "285db880825366fa72b34f95ea236669"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\AddIn\\AdsBlocker\\NewsItemAdsBlocker.cs": {
+    "mtime": 1781251031.2415264,
+    "ast_hash": "5714a988c45c89e5fbd4c6640b511eab",
+    "semantic_hash": "5714a988c45c89e5fbd4c6640b511eab"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\AddIn\\AdsBlocker\\UserAdsBlacklist.cs": {
+    "mtime": 1781251031.2435236,
+    "ast_hash": "cae0b6b894fa3be170bdd72522d377cd",
+    "semantic_hash": "cae0b6b894fa3be170bdd72522d377cd"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\AddIn\\AdsBlocker\\UserAdsWhitelist.cs": {
+    "mtime": 1781251031.2435236,
+    "ast_hash": "120d3dcea5e56a8b0e798b1ce7f43797",
+    "semantic_hash": "120d3dcea5e56a8b0e798b1ce7f43797"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\BanditBuildTasks.2010.sln": {
+    "mtime": 1781251031.2465324,
+    "ast_hash": "3dd6233b2fe05f324b5beddf07a6a46b",
+    "semantic_hash": "3dd6233b2fe05f324b5beddf07a6a46b"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\BanditBuildTasks.UnitTests\\BanditBuildTasks.UnitTests.csproj": {
+    "mtime": 1781251031.247533,
+    "ast_hash": "aa252e8cfe35810fb523d7b31913f6e6",
+    "semantic_hash": "aa252e8cfe35810fb523d7b31913f6e6"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\BanditBuildTasks.UnitTests\\MockBuild.cs": {
+    "mtime": 1781251031.247533,
+    "ast_hash": "35aed584904e425283c316a254cf1e77",
+    "semantic_hash": "35aed584904e425283c316a254cf1e77"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\BanditBuildTasks.UnitTests\\Properties\\AssemblyInfo.cs": {
+    "mtime": 1781251031.2485304,
+    "ast_hash": "9bcc511baa23cd9304bd51d19a4a47b4",
+    "semantic_hash": "9bcc511baa23cd9304bd51d19a4a47b4"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\BanditBuildTasks.UnitTests\\TaskUtility.cs": {
+    "mtime": 1781251031.24953,
+    "ast_hash": "d31f15a33ffea202b6a9591f7ecfc275",
+    "semantic_hash": "d31f15a33ffea202b6a9591f7ecfc275"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\BanditBuildTasks.UnitTests\\UnitTests.cs": {
+    "mtime": 1781251031.2505338,
+    "ast_hash": "99e55e118f01259bb2895d5c3bb36a3e",
+    "semantic_hash": "99e55e118f01259bb2895d5c3bb36a3e"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\BanditBuildTasks\\BanditBuildTasks.csproj": {
+    "mtime": 1781251031.2515342,
+    "ast_hash": "6ee2d08597589dcae0195a2935784189",
+    "semantic_hash": "6ee2d08597589dcae0195a2935784189"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\BanditBuildTasks\\BuildDayTask.cs": {
+    "mtime": 1781251031.2515342,
+    "ast_hash": "1729eb0ccd13ce2740816348d634b974",
+    "semantic_hash": "1729eb0ccd13ce2740816348d634b974"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\BanditBuildTasks\\Properties\\AssemblyInfo.cs": {
+    "mtime": 1781251031.2525299,
+    "ast_hash": "8ed042570fba7ebf6af04dbab6c6a635",
+    "semantic_hash": "8ed042570fba7ebf6af04dbab6c6a635"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\BanditBuildTasks\\SetEnvVar.cs": {
+    "mtime": 1781251031.2535312,
+    "ast_hash": "3a16f1128a9e93aeee2f92fd2216df6f",
+    "semantic_hash": "3a16f1128a9e93aeee2f92fd2216df6f"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\BanditBuildTasks\\SvnRepositoryPathTask.cs": {
+    "mtime": 1781251031.2546177,
+    "ast_hash": "8a63dcd99960342f832040c85f6605e0",
+    "semantic_hash": "8a63dcd99960342f832040c85f6605e0"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\BanditBuildTasks\\VersionInfoTask.cs": {
+    "mtime": 1781251031.2551234,
+    "ast_hash": "fa19f5817e325e7bb410c279610163a8",
+    "semantic_hash": "fa19f5817e325e7bb410c279610163a8"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\ChildProjects.sln": {
+    "mtime": 1781251031.2557135,
+    "ast_hash": "71c4d3523723f76cd53dfca8c4892b55",
+    "semantic_hash": "71c4d3523723f76cd53dfca8c4892b55"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\DiffPatchResources\\AssemblyInfo.cs": {
+    "mtime": 1781251031.2574055,
+    "ast_hash": "2baf333b6b8eb09562d4795006efa455",
+    "semantic_hash": "2baf333b6b8eb09562d4795006efa455"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\DiffPatchResources\\CleanupResources.cs": {
+    "mtime": 1781251031.2580566,
+    "ast_hash": "f2b42b28030f16188b0d15239d2268d8",
+    "semantic_hash": "f2b42b28030f16188b0d15239d2268d8"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\DiffPatchResources\\ConvertResources.cs": {
+    "mtime": 1781251031.258843,
+    "ast_hash": "fcbf6e72cfc5658fda8ae6c590f873b0",
+    "semantic_hash": "fcbf6e72cfc5658fda8ae6c590f873b0"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\DiffPatchResources\\DiffPatchResource.cs": {
+    "mtime": 1781251031.258843,
+    "ast_hash": "4caf9c043e4d5682935b793faa95a014",
+    "semantic_hash": "4caf9c043e4d5682935b793faa95a014"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\DiffPatchResources\\DiffPatchResources.csproj": {
+    "mtime": 1781251031.2607684,
+    "ast_hash": "9ed52c1456a5b64037afd1cb336c5416",
+    "semantic_hash": "9ed52c1456a5b64037afd1cb336c5416"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\DiffPatchResources\\DiffPatchResources.sln": {
+    "mtime": 1781251031.2618165,
+    "ast_hash": "1c5af27a3d1a14513ca6f27d7010121c",
+    "semantic_hash": "1c5af27a3d1a14513ca6f27d7010121c"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\DiffPatchResources\\DiffPatchTask.cs": {
+    "mtime": 1781251031.2623937,
+    "ast_hash": "518bae21629f4691d2019b9ebb91cfc3",
+    "semantic_hash": "518bae21629f4691d2019b9ebb91cfc3"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\DiffPatchResources\\DiffPatchTasks.cs": {
+    "mtime": 1781251031.2633336,
+    "ast_hash": "32294eeb6a8e3b542ac674466b22d92b",
+    "semantic_hash": "32294eeb6a8e3b542ac674466b22d92b"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\DiffPatchResources\\Factories.cs": {
+    "mtime": 1781251031.2637038,
+    "ast_hash": "fa0a2ddbecf835fee689f8d84b6a2240",
+    "semantic_hash": "fa0a2ddbecf835fee689f8d84b6a2240"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\DiffPatchResources\\Interfaces.cs": {
+    "mtime": 1781251031.2643661,
+    "ast_hash": "fecde189b4ca0c67ab938f9a74527de7",
+    "semantic_hash": "fecde189b4ca0c67ab938f9a74527de7"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\DiffPatchResources\\StringsFromResources.cs": {
+    "mtime": 1781251031.2653763,
+    "ast_hash": "1d226007ffc3ca6a478732e978cbc599",
+    "semantic_hash": "1d226007ffc3ca6a478732e978cbc599"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\ExceptionManagement\\Exception Management Application Block (CS).sln": {
+    "mtime": 1781251031.2673786,
+    "ast_hash": "a76c17fb167783d662664319e0e6231d",
+    "semantic_hash": "a76c17fb167783d662664319e0e6231d"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\ExceptionManagement\\Microsoft.ApplicationBlocks.ExceptionManagement.Interfaces\\AssemblyInfo.cs": {
+    "mtime": 1781251031.2673786,
+    "ast_hash": "d6ee2a604c98ac7800c85fbe3eee6671",
+    "semantic_hash": "d6ee2a604c98ac7800c85fbe3eee6671"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\ExceptionManagement\\Microsoft.ApplicationBlocks.ExceptionManagement.Interfaces\\InterfaceDefinitions.cs": {
+    "mtime": 1781251031.2683756,
+    "ast_hash": "c395071fb0f1812cef570ae98c1c44a7",
+    "semantic_hash": "c395071fb0f1812cef570ae98c1c44a7"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\ExceptionManagement\\Microsoft.ApplicationBlocks.ExceptionManagement\\AssemblyInfo.cs": {
+    "mtime": 1781251031.2693758,
+    "ast_hash": "66d27d6941d7348d831a21cda58e1faa",
+    "semantic_hash": "66d27d6941d7348d831a21cda58e1faa"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\ExceptionManagement\\Microsoft.ApplicationBlocks.ExceptionManagement\\BaseApplicationException.cs": {
+    "mtime": 1781251031.270376,
+    "ast_hash": "98fd976725595b1a29661335c7dfef32",
+    "semantic_hash": "98fd976725595b1a29661335c7dfef32"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\ExceptionManagement\\Microsoft.ApplicationBlocks.ExceptionManagement\\ExceptionManager.cs": {
+    "mtime": 1781251031.271374,
+    "ast_hash": "e87db19b0c516162d7a7e422fe0b981a",
+    "semantic_hash": "e87db19b0c516162d7a7e422fe0b981a"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\ExceptionManagement\\Microsoft.ApplicationBlocks.ExceptionManagement\\ExceptionManagerExceptions.cs": {
+    "mtime": 1781251031.271374,
+    "ast_hash": "beaf455a69d213a89295e4b4ecabf00e",
+    "semantic_hash": "beaf455a69d213a89295e4b4ecabf00e"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\ExceptionManagement\\Microsoft.ApplicationBlocks.ExceptionManagement\\ExceptionManagerInstaller.cs": {
+    "mtime": 1781251031.2723744,
+    "ast_hash": "161899ecc58bacd7d50db2b7fb0c0069",
+    "semantic_hash": "161899ecc58bacd7d50db2b7fb0c0069"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\ExceptionManagement\\Microsoft.ApplicationBlocks.ExceptionManagement\\ExceptionManagerSectionHandler.cs": {
+    "mtime": 1781251031.274376,
+    "ast_hash": "0b282599628ea701726b2e14e1dab337",
+    "semantic_hash": "0b282599628ea701726b2e14e1dab337"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\ExceptionManagement\\Microsoft.ApplicationBlocks.ExceptionManagement\\Microsoft.ApplicationBlocks.ExceptionManagement.csproj": {
+    "mtime": 1781251031.2773843,
+    "ast_hash": "b29acbe2bc56ca52638e192625400a6b",
+    "semantic_hash": "b29acbe2bc56ca52638e192625400a6b"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\FireFox Feed Context Menu\\feedsubscriber\\content\\feedsubscriber\\feedsubscribe.js": {
+    "mtime": 1781251031.2813816,
+    "ast_hash": "9f32b95c336e7903f9a8b8724788f5a6",
+    "semantic_hash": "9f32b95c336e7903f9a8b8724788f5a6"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\FireFox Feed Context Menu\\install.js": {
+    "mtime": 1781251031.2843843,
+    "ast_hash": "ca8d9af57ac5cdb94dbdb2c88688050c",
+    "semantic_hash": "ca8d9af57ac5cdb94dbdb2c88688050c"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\IE.Control.2010.sln": {
+    "mtime": 1781251031.2853856,
+    "ast_hash": "b87304284b32a36387676d3cb4d75531",
+    "semantic_hash": "b87304284b32a36387676d3cb4d75531"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\IEControl\\HtmlControl.cs": {
+    "mtime": 1781251031.2873836,
+    "ast_hash": "13e2d03dce5f517ebd5eeaeb8b5d0bfe",
+    "semantic_hash": "13e2d03dce5f517ebd5eeaeb8b5d0bfe"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\IEControl\\HtmlControlEvents.cs": {
+    "mtime": 1781251031.2873836,
+    "ast_hash": "cf3e5381aaa78c272f13e6fee1b69d56",
+    "semantic_hash": "cf3e5381aaa78c272f13e6fee1b69d56"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\IEControl\\IEControl.csproj": {
+    "mtime": 1781251031.288382,
+    "ast_hash": "1357891861fba7b5ed0b836a1e2fe152",
+    "semantic_hash": "1357891861fba7b5ed0b836a1e2fe152"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\IEControl\\Interop\\DocHostUIHandler.cs": {
+    "mtime": 1781251031.2893844,
+    "ast_hash": "f5b626bc8206d6cfedf6b40bd3d46eac",
+    "semantic_hash": "f5b626bc8206d6cfedf6b40bd3d46eac"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\IEControl\\Interop\\HTMLDispIDs.cs": {
+    "mtime": 1781251031.2908902,
+    "ast_hash": "54366e868fe0d5253c3dcbb09ceb9233",
+    "semantic_hash": "54366e868fe0d5253c3dcbb09ceb9233"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\IEControl\\Interop\\HTMLWindowEvents2.cs": {
+    "mtime": 1781251031.2908902,
+    "ast_hash": "c521030c2f8007a60ad0c386230728c4",
+    "semantic_hash": "c521030c2f8007a60ad0c386230728c4"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\IEControl\\Interop\\IHTMLDocument2.cs": {
+    "mtime": 1781251031.2919,
+    "ast_hash": "ac22a4b364b24c4936190afe94bfb645",
+    "semantic_hash": "ac22a4b364b24c4936190afe94bfb645"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\IEControl\\Interop\\IHTMLDocument3.cs": {
+    "mtime": 1781251031.2919,
+    "ast_hash": "b194b11129ff59475aae8f193a1f1e42",
+    "semantic_hash": "b194b11129ff59475aae8f193a1f1e42"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\IEControl\\Interop\\IHTMLElement.cs": {
+    "mtime": 1781251031.2930248,
+    "ast_hash": "65f39ce42f7d453920eb83a0a63ec99e",
+    "semantic_hash": "65f39ce42f7d453920eb83a0a63ec99e"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\IEControl\\Interop\\IHTMLEventObj.cs": {
+    "mtime": 1781251031.2940257,
+    "ast_hash": "678560e573f9324dac4e3833908ccd97",
+    "semantic_hash": "678560e573f9324dac4e3833908ccd97"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\IEControl\\Interop\\IHTMLWindow2.cs": {
+    "mtime": 1781251031.2949915,
+    "ast_hash": "14b5152119edf287bb861d48ee791960",
+    "semantic_hash": "14b5152119edf287bb861d48ee791960"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\IEControl\\Interop\\InternetFeatureSupport.cs": {
+    "mtime": 1781251031.2960682,
+    "ast_hash": "5a0cb7a41a521d2d1abfaeef6c36f827",
+    "semantic_hash": "5a0cb7a41a521d2d1abfaeef6c36f827"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\IEControl\\Interop\\Interop.cs": {
+    "mtime": 1781251031.297068,
+    "ast_hash": "997750275b9129d38d086407d5060718",
+    "semantic_hash": "997750275b9129d38d086407d5060718"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\IEControl\\Interop\\OSHelper.cs": {
+    "mtime": 1781251031.2980688,
+    "ast_hash": "8f09a2be42e8a25e72bbbf8c884d2030",
+    "semantic_hash": "8f09a2be42e8a25e72bbbf8c884d2030"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\Jumplist\\Jumplist.sln": {
+    "mtime": 1781251031.3020668,
+    "ast_hash": "9d3c09569d1c131bd814b0f00eeeaa37",
+    "semantic_hash": "9d3c09569d1c131bd814b0f00eeeaa37"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\Jumplist\\Jumplist\\Form1.Designer.cs": {
+    "mtime": 1781251031.3030684,
+    "ast_hash": "af478792886f5d882b5f426c64cc1ed9",
+    "semantic_hash": "af478792886f5d882b5f426c64cc1ed9"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\Jumplist\\Jumplist\\Form1.cs": {
+    "mtime": 1781251031.3040679,
+    "ast_hash": "0bf215c77b1c1d9b581573efecbf5e7f",
+    "semantic_hash": "0bf215c77b1c1d9b581573efecbf5e7f"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\Jumplist\\Jumplist\\Jumplist.csproj": {
+    "mtime": 1781251031.3050685,
+    "ast_hash": "add689e164a6e9a943fd5260b5f340b2",
+    "semantic_hash": "add689e164a6e9a943fd5260b5f340b2"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\Jumplist\\Jumplist\\Program.cs": {
+    "mtime": 1781251031.3050685,
+    "ast_hash": "71c88dd3df1197288b799e102d052c9d",
+    "semantic_hash": "71c88dd3df1197288b799e102d052c9d"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\Jumplist\\Jumplist\\Properties\\AssemblyInfo.cs": {
+    "mtime": 1781251031.306068,
+    "ast_hash": "2932c4ed672defcd9e6e8e005e76bc78",
+    "semantic_hash": "2932c4ed672defcd9e6e8e005e76bc78"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\Jumplist\\Jumplist\\Properties\\Resources.Designer.cs": {
+    "mtime": 1781251031.3070676,
+    "ast_hash": "a554297450bd6744068d12820d560990",
+    "semantic_hash": "a554297450bd6744068d12820d560990"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\Jumplist\\Jumplist\\Properties\\Settings.Designer.cs": {
+    "mtime": 1781251031.3080738,
+    "ast_hash": "f3f103d53fa8f84f75e10e5bcb7a4400",
+    "semantic_hash": "f3f103d53fa8f84f75e10e5bcb7a4400"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\MemeTracker\\MemeTracker\\MemeTracker.csproj": {
+    "mtime": 1781251031.314074,
+    "ast_hash": "d6e0609c9ee889c76d0b44b9447f3b30",
+    "semantic_hash": "d6e0609c9ee889c76d0b44b9447f3b30"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\MemeTracker\\MemeTracker\\Program.cs": {
+    "mtime": 1781251031.3150754,
+    "ast_hash": "4313f355dfba4c4710f646781d0869ee",
+    "semantic_hash": "4313f355dfba4c4710f646781d0869ee"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\MemeTracker\\MemeTracker\\Properties\\AssemblyInfo.cs": {
+    "mtime": 1781251031.3160758,
+    "ast_hash": "a1f41d6a668a4aff6fad413b7830852a",
+    "semantic_hash": "a1f41d6a668a4aff6fad413b7830852a"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\MemeTracker\\MemeTracker\\memetracker.py": {
+    "mtime": 1781251031.3170755,
+    "ast_hash": "4d699a6e4eac374ea825ff230fca314d",
+    "semantic_hash": "4d699a6e4eac374ea825ff230fca314d"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\RelationCosmos\\AssemblyInfo.cs": {
+    "mtime": 1781251031.3180761,
+    "ast_hash": "30f13277ea8f426f9c2b8d3beee26096",
+    "semantic_hash": "30f13277ea8f426f9c2b8d3beee26096"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\RelationCosmos\\Collections.cs": {
+    "mtime": 1781251031.3190763,
+    "ast_hash": "3733d8d8a09f60c560b2c06470b8c239",
+    "semantic_hash": "3733d8d8a09f60c560b2c06470b8c239"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\RelationCosmos\\RelationBase.cs": {
+    "mtime": 1781251031.3190763,
+    "ast_hash": "c94b5c160c85acf983a7e09f64fffcc8",
+    "semantic_hash": "c94b5c160c85acf983a7e09f64fffcc8"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\RelationCosmos\\RelationCosmos.cs": {
+    "mtime": 1781251031.3200767,
+    "ast_hash": "34361b81036449a4f558f560b99fe4ee",
+    "semantic_hash": "34361b81036449a4f558f560b99fe4ee"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\RelationCosmos\\RelationCosmos.csproj": {
+    "mtime": 1781251031.3210745,
+    "ast_hash": "2f598565fc9e29ade96b196311930215",
+    "semantic_hash": "2f598565fc9e29ade96b196311930215"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\ShellBasics\\ShellBasics.sln": {
+    "mtime": 1781251031.3220737,
+    "ast_hash": "3fb87f5cd0789c0c56f6a043629cac3a",
+    "semantic_hash": "3fb87f5cd0789c0c56f6a043629cac3a"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\ShellBasics\\ShellBasics\\ApplicationDesktopToolbar.cs": {
+    "mtime": 1781251031.3225808,
+    "ast_hash": "ac953bb4386e38306f88628b2349410e",
+    "semantic_hash": "ac953bb4386e38306f88628b2349410e"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\ShellBasics\\ShellBasics\\AssemblyInfo.cs": {
+    "mtime": 1781251031.3248734,
+    "ast_hash": "a3ff7054c432c90e256edc0592fc63bf",
+    "semantic_hash": "a3ff7054c432c90e256edc0592fc63bf"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\ShellBasics\\ShellBasics\\FilterByExtension.cs": {
+    "mtime": 1781251031.3248734,
+    "ast_hash": "0b64b111c7ef37181a4c490b42759fe0",
+    "semantic_hash": "0b64b111c7ef37181a4c490b42759fe0"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\ShellBasics\\ShellBasics\\IACList.cs": {
+    "mtime": 1781251031.3258746,
+    "ast_hash": "fe1e8ffefc938ae91607cffe2215dbb6",
+    "semantic_hash": "fe1e8ffefc938ae91607cffe2215dbb6"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\ShellBasics\\ShellBasics\\IACList2.cs": {
+    "mtime": 1781251031.326874,
+    "ast_hash": "a87380cb518d3719300084889eec0460",
+    "semantic_hash": "a87380cb518d3719300084889eec0460"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\ShellBasics\\ShellBasics\\IAutoComplete.cs": {
+    "mtime": 1781251031.326874,
+    "ast_hash": "db815ea41ec31a7e604ffb9570930ce9",
+    "semantic_hash": "db815ea41ec31a7e604ffb9570930ce9"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\ShellBasics\\ShellBasics\\IAutoComplete2.cs": {
+    "mtime": 1781251031.3278754,
+    "ast_hash": "37f1d95e7fd058927cc4020a78602330",
+    "semantic_hash": "37f1d95e7fd058927cc4020a78602330"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\ShellBasics\\ShellBasics\\ICurrentWorkingDirectory.cs": {
+    "mtime": 1781251031.3288753,
+    "ast_hash": "621bf339e81859e8b8a5c021aaea40ee",
+    "semantic_hash": "621bf339e81859e8b8a5c021aaea40ee"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\ShellBasics\\ShellBasics\\IFolderFilter.cs": {
+    "mtime": 1781251031.3298755,
+    "ast_hash": "15570b80668e22741030d117fa6a5f3e",
+    "semantic_hash": "15570b80668e22741030d117fa6a5f3e"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\ShellBasics\\ShellBasics\\IFolderFilterSite.cs": {
+    "mtime": 1781251031.3298755,
+    "ast_hash": "2b1d549a5f26fbc21d742bfcac97bf90",
+    "semantic_hash": "2b1d549a5f26fbc21d742bfcac97bf90"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\ShellBasics\\ShellBasics\\IMalloc.cs": {
+    "mtime": 1781251031.3308735,
+    "ast_hash": "e405a0f7e1381c5226098bea7ab729b9",
+    "semantic_hash": "e405a0f7e1381c5226098bea7ab729b9"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\ShellBasics\\ShellBasics\\IObjMgr.cs": {
+    "mtime": 1781251031.331878,
+    "ast_hash": "16adcc4da414d55036bc53b59c3ef53c",
+    "semantic_hash": "16adcc4da414d55036bc53b59c3ef53c"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\ShellBasics\\ShellBasics\\IShellFolder.cs": {
+    "mtime": 1781251031.331878,
+    "ast_hash": "6bd767aa90bc5dcb437692390b46f401",
+    "semantic_hash": "6bd767aa90bc5dcb437692390b46f401"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\ShellBasics\\ShellBasics\\ShellAddRecent.cs": {
+    "mtime": 1781251031.332874,
+    "ast_hash": "62a0f413e2d023d49c8585df0ed58277",
+    "semantic_hash": "62a0f413e2d023d49c8585df0ed58277"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\ShellBasics\\ShellBasics\\ShellApi.cs": {
+    "mtime": 1781251031.333875,
+    "ast_hash": "cd6db63635657d6489a64a16ae0f9a0a",
+    "semantic_hash": "cd6db63635657d6489a64a16ae0f9a0a"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\ShellBasics\\ShellBasics\\ShellAutoComplete.cs": {
+    "mtime": 1781251031.3348749,
+    "ast_hash": "3187a5708e6f7a540088191457b224d6",
+    "semantic_hash": "3187a5708e6f7a540088191457b224d6"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\ShellBasics\\ShellBasics\\ShellBrowseForFolderDialog.cs": {
+    "mtime": 1781251031.3358748,
+    "ast_hash": "f91e26bbf02dee0a86ebb0c37b812c7c",
+    "semantic_hash": "f91e26bbf02dee0a86ebb0c37b812c7c"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\ShellBasics\\ShellBasics\\ShellExecute.cs": {
+    "mtime": 1781251031.336876,
+    "ast_hash": "a778fddddfa728bf0ba729217ee6738f",
+    "semantic_hash": "a778fddddfa728bf0ba729217ee6738f"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\ShellBasics\\ShellBasics\\ShellFileOperation.cs": {
+    "mtime": 1781251031.3378751,
+    "ast_hash": "00747c8b49213c123cad6a10d6123275",
+    "semantic_hash": "00747c8b49213c123cad6a10d6123275"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\ShellBasics\\ShellBasics\\ShellFunctions.cs": {
+    "mtime": 1781251031.3378751,
+    "ast_hash": "cbeb4001ba9d63022c42118882dfd209",
+    "semantic_hash": "cbeb4001ba9d63022c42118882dfd209"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\ShellBasics\\ShellBasics\\ShellGUIDs.cs": {
+    "mtime": 1781251031.3388822,
+    "ast_hash": "a58004ec207de3167c50763c50dfd122",
+    "semantic_hash": "a58004ec207de3167c50763c50dfd122"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\ShellBasics\\ShellBasics\\ShellLib.csproj": {
+    "mtime": 1781251031.3398824,
+    "ast_hash": "22b3b883f6b17d341c5d112a3ba6aa4c",
+    "semantic_hash": "22b3b883f6b17d341c5d112a3ba6aa4c"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\ShellBasics\\ShellBasics\\SourceCustomList.cs": {
+    "mtime": 1781251031.3398824,
+    "ast_hash": "9d5e396aa10b48dac34bfa04cea42807",
+    "semantic_hash": "9d5e396aa10b48dac34bfa04cea42807"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\ShellBasics\\WinTester\\AssemblyInfo.cs": {
+    "mtime": 1781251031.3418846,
+    "ast_hash": "30f13277ea8f426f9c2b8d3beee26096",
+    "semantic_hash": "30f13277ea8f426f9c2b8d3beee26096"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\ShellBasics\\WinTester\\WinTester.csproj": {
+    "mtime": 1781251031.3418846,
+    "ast_hash": "cb5b0192e978268d2dc89fa1a2308b6d",
+    "semantic_hash": "cb5b0192e978268d2dc89fa1a2308b6d"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\ShellBasics\\WinTester\\frmMain.cs": {
+    "mtime": 1781251031.342883,
+    "ast_hash": "edbe63d7ca291cfcb20b23614901387d",
+    "semantic_hash": "edbe63d7ca291cfcb20b23614901387d"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\ShortcutsEditor\\AssemblyInfo.cs": {
+    "mtime": 1781251031.345882,
+    "ast_hash": "30f13277ea8f426f9c2b8d3beee26096",
+    "semantic_hash": "30f13277ea8f426f9c2b8d3beee26096"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\ShortcutsEditor\\MainForm.cs": {
+    "mtime": 1781251031.3468823,
+    "ast_hash": "6d1a63838bdc7388e21b0d0210ddff28",
+    "semantic_hash": "6d1a63838bdc7388e21b0d0210ddff28"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\ShortcutsEditor\\ShortcutEntryForm.cs": {
+    "mtime": 1781251031.350881,
+    "ast_hash": "8c12956addab4eec0396e6f5808e95aa",
+    "semantic_hash": "8c12956addab4eec0396e6f5808e95aa"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\ShortcutsEditor\\ShortcutHandler.cs": {
+    "mtime": 1781251031.3518822,
+    "ast_hash": "0731fdb153d74b8f6c7e694ecca53267",
+    "semantic_hash": "0731fdb153d74b8f6c7e694ecca53267"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\ShortcutsEditor\\ShortcutsEditor.csproj": {
+    "mtime": 1781251031.3533924,
+    "ast_hash": "782c1be59b934344a79a22b9a66849be",
+    "semantic_hash": "782c1be59b934344a79a22b9a66849be"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\ShortcutsEditor\\ShortcutsEditor.sln": {
+    "mtime": 1781251031.3533924,
+    "ast_hash": "420d6af40387e3a5c07059eb1c9546c5",
+    "semantic_hash": "420d6af40387e3a5c07059eb1c9546c5"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\ShortcutsEditor\\TestingForm.cs": {
+    "mtime": 1781251031.3543992,
+    "ast_hash": "aa43a08a08f57a6a1a1ac6161f62bb74",
+    "semantic_hash": "aa43a08a08f57a6a1a1ac6161f62bb74"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\Test_IEControl\\AssemblyInfo.cs": {
+    "mtime": 1781251031.357401,
+    "ast_hash": "39bf208e2b67e69573e9f8880ddb281e",
+    "semantic_hash": "39bf208e2b67e69573e9f8880ddb281e"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\Test_IEControl\\Form1.Designer.cs": {
+    "mtime": 1781251031.357401,
+    "ast_hash": "58ac924c18551720034aa7295bd48dda",
+    "semantic_hash": "58ac924c18551720034aa7295bd48dda"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\Test_IEControl\\Form1.cs": {
+    "mtime": 1781251031.3594177,
+    "ast_hash": "c455de395ec0b8af6c2b3c38f329270f",
+    "semantic_hash": "c455de395ec0b8af6c2b3c38f329270f"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\Test_IEControl\\Test.csproj": {
+    "mtime": 1781251031.3634398,
+    "ast_hash": "7dd1a115ec0114fe8c5f697ee1a48416",
+    "semantic_hash": "7dd1a115ec0114fe8c5f697ee1a48416"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\Test_IEControl\\VersionInfo.cs": {
+    "mtime": 1781251031.3654468,
+    "ast_hash": "6c1479eadb192893476f9ac5cb7362ee",
+    "semantic_hash": "6c1479eadb192893476f9ac5cb7362ee"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\Common\\ExceptionHelper.cs": {
+    "mtime": 1781251031.3654468,
+    "ast_hash": "9fdeea16280af03c8adac94a9946f724",
+    "semantic_hash": "9fdeea16280af03c8adac94a9946f724"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\Common\\Log.cs": {
+    "mtime": 1781251031.4076002,
+    "ast_hash": "a3650da9b93fdc799da53237ef6ad086",
+    "semantic_hash": "a3650da9b93fdc799da53237ef6ad086"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\Common\\ProfilerHelper.cs": {
+    "mtime": 1781251031.4076002,
+    "ast_hash": "5299a528259eb251158196c88bde51d0",
+    "semantic_hash": "5299a528259eb251158196c88bde51d0"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\Common\\UriHelper.cs": {
+    "mtime": 1781251031.4127114,
+    "ast_hash": "e3ccd08d63ab663fb2cd2986ff8f6214",
+    "semantic_hash": "e3ccd08d63ab663fb2cd2986ff8f6214"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\Common\\VersionInfo.cs": {
+    "mtime": 1781251031.4132178,
+    "ast_hash": "a0f599849f151f9b8c9eb247d0791886",
+    "semantic_hash": "a0f599849f151f9b8c9eb247d0791886"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents.UnitTests\\AsyncWebRequestTests.cs": {
+    "mtime": 1781251031.4152248,
+    "ast_hash": "f2ad72211dcee4346fac007def38913c",
+    "semantic_hash": "f2ad72211dcee4346fac007def38913c"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents.UnitTests\\BanditFeedSourceTests.cs": {
+    "mtime": 1781251031.4162302,
+    "ast_hash": "7d7785e86086fc893509622ac263f334",
+    "semantic_hash": "7d7785e86086fc893509622ac263f334"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents.UnitTests\\BaseTestFixture.cs": {
+    "mtime": 1781251031.4167366,
+    "ast_hash": "abfeae8f8125b9cf71eccd69615a2d34",
+    "semantic_hash": "abfeae8f8125b9cf71eccd69615a2d34"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents.UnitTests\\CassiniHelperTestFixture.cs": {
+    "mtime": 1781251031.4180167,
+    "ast_hash": "1fd80ed70f4f30890915f77eb9e3fe87",
+    "semantic_hash": "1fd80ed70f4f30890915f77eb9e3fe87"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents.UnitTests\\DataServiceFactoryTests.cs": {
+    "mtime": 1781251031.419021,
+    "ast_hash": "4bdebd15d7189660ed0a93112a9165ed",
+    "semantic_hash": "4bdebd15d7189660ed0a93112a9165ed"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents.UnitTests\\FileStorageDataServiceTests.cs": {
+    "mtime": 1781251031.4379356,
+    "ast_hash": "97c1f59c4916bac7b052e40530cccc32",
+    "semantic_hash": "97c1f59c4916bac7b052e40530cccc32"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents.UnitTests\\NewsComponents.UnitTests.csproj": {
+    "mtime": 1781251031.4554648,
+    "ast_hash": "0d3832cf11fa517ed9ff7c6db5b6d178",
+    "semantic_hash": "0d3832cf11fa517ed9ff7c6db5b6d178"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents.UnitTests\\Resources\\Resource.cs": {
+    "mtime": 1781251031.4604485,
+    "ast_hash": "e1885982e884d343f4eeb4511234c3f9",
+    "semantic_hash": "e1885982e884d343f4eeb4511234c3f9"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents.UnitTests\\RssItemTests.cs": {
+    "mtime": 1781251031.5265586,
+    "ast_hash": "4050f178b4ef2db73271975d1d110e96",
+    "semantic_hash": "4050f178b4ef2db73271975d1d110e96"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents.UnitTests\\RssLocaterTests.cs": {
+    "mtime": 1781251031.5265586,
+    "ast_hash": "96c97465fff8d0bb824d3b4d502aaf74",
+    "semantic_hash": "96c97465fff8d0bb824d3b4d502aaf74"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents.UnitTests\\RssParserTests.cs": {
+    "mtime": 1781251031.5275574,
+    "ast_hash": "a6bb5779630faf3fa7205246cabf64d0",
+    "semantic_hash": "a6bb5779630faf3fa7205246cabf64d0"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents.UnitTests\\Utils\\HtmlHelperTests.cs": {
+    "mtime": 1781251031.528558,
+    "ast_hash": "6e2a44385d960fc7b340986861798265",
+    "semantic_hash": "6e2a44385d960fc7b340986861798265"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents.UnitTests\\Utils\\NTFSTests.cs": {
+    "mtime": 1781251031.5295565,
+    "ast_hash": "75a796ebf02770e7a74e86206aa8e5fb",
+    "semantic_hash": "75a796ebf02770e7a74e86206aa8e5fb"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents.UnitTests\\Utils\\StringHelperTests.cs": {
+    "mtime": 1781251031.5295565,
+    "ast_hash": "1f602e4e0e98aed7ae5932309aa1e488",
+    "semantic_hash": "1f602e4e0e98aed7ae5932309aa1e488"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Collections\\DisposableItemCollection.cs": {
+    "mtime": 1781251031.5315585,
+    "ast_hash": "7cc6c32e27dfd4bbdda1235375c94da3",
+    "semantic_hash": "7cc6c32e27dfd4bbdda1235375c94da3"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Collections\\FeedsCollection.cs": {
+    "mtime": 1781251031.5325584,
+    "ast_hash": "93bd8ed1bbfa606ac6d868c6da307995",
+    "semantic_hash": "93bd8ed1bbfa606ac6d868c6da307995"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Collections\\KeyItemCollection.cs": {
+    "mtime": 1781251031.533558,
+    "ast_hash": "21ad75e0b26a717b84ad2a98612b7c95",
+    "semantic_hash": "21ad75e0b26a717b84ad2a98612b7c95"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Collections\\ObservableKeyItemCollection.cs": {
+    "mtime": 1781251031.533558,
+    "ast_hash": "a09036b6cf79a894276a1d83f6bf9cc3",
+    "semantic_hash": "a09036b6cf79a894276a1d83f6bf9cc3"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Collections\\ReadOnlyCollections.cs": {
+    "mtime": 1781251031.5345585,
+    "ast_hash": "6debc577fcc2ba0fd8f51ddbe7a545bd",
+    "semantic_hash": "6debc577fcc2ba0fd8f51ddbe7a545bd"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Collections\\RelationHRefEntry.cs": {
+    "mtime": 1781251031.535559,
+    "ast_hash": "32bb9f8ab0f388864d9b5a1d1fc87bfb",
+    "semantic_hash": "32bb9f8ab0f388864d9b5a1d1fc87bfb"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Core\\BackgroundDownloadManager.cs": {
+    "mtime": 1781251031.536559,
+    "ast_hash": "d32946e0e1d8c38ad5bf821fe932c1eb",
+    "semantic_hash": "d32946e0e1d8c38ad5bf821fe932c1eb"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Core\\BindableObject.cs": {
+    "mtime": 1781251031.5375586,
+    "ast_hash": "0b5e30fcbed0660fbdfa25eccf2cc1d2",
+    "semantic_hash": "0b5e30fcbed0660fbdfa25eccf2cc1d2"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Core\\Enclosure.cs": {
+    "mtime": 1781251031.538559,
+    "ast_hash": "b06f958144f5cf3b996094a939d31fdb",
+    "semantic_hash": "b06f958144f5cf3b996094a939d31fdb"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Core\\FeedSource.cs": {
+    "mtime": 1781251031.5431015,
+    "ast_hash": "68e23bdf3c9db341cef8dd1127a28098",
+    "semantic_hash": "68e23bdf3c9db341cef8dd1127a28098"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Core\\FeedSourceManager.cs": {
+    "mtime": 1781251031.5450757,
+    "ast_hash": "6dbdbbef9bfca6a69fda73399653ef26",
+    "semantic_hash": "6dbdbbef9bfca6a69fda73399653ef26"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Core\\INewsComponentsConfiguration.cs": {
+    "mtime": 1781251031.5470805,
+    "ast_hash": "6cd2dc581510f5e2343227239e2ad475",
+    "semantic_hash": "6cd2dc581510f5e2343227239e2ad475"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Core\\NewsChannelServices.cs": {
+    "mtime": 1781251031.5494401,
+    "ast_hash": "27a54a19d49cd115bb9dac04b3733379",
+    "semantic_hash": "27a54a19d49cd115bb9dac04b3733379"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Core\\NewsItem.cs": {
+    "mtime": 1781251031.5514429,
+    "ast_hash": "a93b422b367145b55df10f4e5f694fde",
+    "semantic_hash": "a93b422b367145b55df10f4e5f694fde"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Feed\\FeedInfo.cs": {
+    "mtime": 1781251031.554437,
+    "ast_hash": "5e61466bab8a1de927151c69887339a6",
+    "semantic_hash": "5e61466bab8a1de927151c69887339a6"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Feed\\RssLocater.cs": {
+    "mtime": 1781251031.5564315,
+    "ast_hash": "fe751becbabcdb69d90cd834ce219d36",
+    "semantic_hash": "fe751becbabcdb69d90cd834ce219d36"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Feed\\RssParser.cs": {
+    "mtime": 1781251031.5584536,
+    "ast_hash": "52ba147912f5b7fd1dde80370ae770f0",
+    "semantic_hash": "52ba147912f5b7fd1dde80370ae770f0"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Feed\\Sources\\BanditFeedSource.cs": {
+    "mtime": 1781251031.5604413,
+    "ast_hash": "d208625c55262d0db0e73276c558257d",
+    "semantic_hash": "d208625c55262d0db0e73276c558257d"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Feed\\Sources\\FacebookFeedSource.cs": {
+    "mtime": 1781251031.561441,
+    "ast_hash": "bb7a92571c53375cd3b1b82be1a2b2bd",
+    "semantic_hash": "bb7a92571c53375cd3b1b82be1a2b2bd"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Feed\\Sources\\FeedlyCloudFeedSource.cs": {
+    "mtime": 1781251031.5624442,
+    "ast_hash": "0a066c79aac9c6fea979573bd162554b",
+    "semantic_hash": "0a066c79aac9c6fea979573bd162554b"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Feed\\Sources\\FeedlyCloudUpdater.cs": {
+    "mtime": 1781251031.563449,
+    "ast_hash": "f8944bc10ec71c25098b8a6c2dfa7de4",
+    "semantic_hash": "f8944bc10ec71c25098b8a6c2dfa7de4"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Feed\\Sources\\GoogleReaderFeedSource.cs": {
+    "mtime": 1781251031.5664663,
+    "ast_hash": "cff95eb26f428625ec3198132493375c",
+    "semantic_hash": "cff95eb26f428625ec3198132493375c"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Feed\\Sources\\GoogleReaderModifier.cs": {
+    "mtime": 1781251031.5684552,
+    "ast_hash": "9c2d224bcf96de04a8b1bef8b82e773e",
+    "semantic_hash": "9c2d224bcf96de04a8b1bef8b82e773e"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Feed\\Sources\\NewsGatorFeedSource.cs": {
+    "mtime": 1781251031.5694542,
+    "ast_hash": "4a7612af010f779706665360a2d8e29b",
+    "semantic_hash": "4a7612af010f779706665360a2d8e29b"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Feed\\Sources\\NewsGatorModifier.cs": {
+    "mtime": 1781251031.5694542,
+    "ast_hash": "721dd221a05bb3786be225133e4016f2",
+    "semantic_hash": "721dd221a05bb3786be225133e4016f2"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Feed\\Sources\\WindowsRssFeedSource.cs": {
+    "mtime": 1781251031.5714526,
+    "ast_hash": "aa7910b572ff78861ecd03d98403d293",
+    "semantic_hash": "aa7910b572ff78861ecd03d98403d293"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Feed\\feeds.cs": {
+    "mtime": 1781251031.572456,
+    "ast_hash": "24d247a0a7a3a58b33a31fd306674f07",
+    "semantic_hash": "24d247a0a7a3a58b33a31fd306674f07"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Feed\\opml.cs": {
+    "mtime": 1781251031.5739715,
+    "ast_hash": "d93857febc7744ff40dd101957ef742e",
+    "semantic_hash": "d93857febc7744ff40dd101957ef742e"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Net\\AsyncWebRequest.cs": {
+    "mtime": 1781251031.5759706,
+    "ast_hash": "734f2f81708882a2c03e850a8eb3dd05",
+    "semantic_hash": "734f2f81708882a2c03e850a8eb3dd05"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Net\\BITSDownloader.cs": {
+    "mtime": 1781251031.576972,
+    "ast_hash": "5ce13ad691fbc2b8bbaec4d755a93827",
+    "semantic_hash": "5ce13ad691fbc2b8bbaec4d755a93827"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Net\\BITSInterop.cs": {
+    "mtime": 1781251031.5779734,
+    "ast_hash": "2553c7477d8df3e4cb884ae2f3f1eb41",
+    "semantic_hash": "2553c7477d8df3e4cb884ae2f3f1eb41"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Net\\DownloadFilesCollection.cs": {
+    "mtime": 1781251031.5789547,
+    "ast_hash": "0ad54256eb06ff86c00159ce5bbeade6",
+    "semantic_hash": "0ad54256eb06ff86c00159ce5bbeade6"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Net\\DownloadItem.cs": {
+    "mtime": 1781251031.5800366,
+    "ast_hash": "ccf1488ac1bc4d394ac2c8cab347b6f1",
+    "semantic_hash": "ccf1488ac1bc4d394ac2c8cab347b6f1"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Net\\DownloadRegistryManager.cs": {
+    "mtime": 1781251031.5811987,
+    "ast_hash": "d9b319acdb38ba203ccc2f1105f462d9",
+    "semantic_hash": "d9b319acdb38ba203ccc2f1105f462d9"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Net\\DownloadTask.cs": {
+    "mtime": 1781251031.5821967,
+    "ast_hash": "c2683c20ca0d785a20def0b432ced855",
+    "semantic_hash": "c2683c20ca0d785a20def0b432ced855"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Net\\DownloadTaskState.cs": {
+    "mtime": 1781251031.5821967,
+    "ast_hash": "0c0cabd90fc2240f133c0df18d864256",
+    "semantic_hash": "0c0cabd90fc2240f133c0df18d864256"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Net\\Events.cs": {
+    "mtime": 1781251031.5832002,
+    "ast_hash": "d61bb88fa38d30e162ecf6ca3175be02",
+    "semantic_hash": "d61bb88fa38d30e162ecf6ca3175be02"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Net\\HttpCookieManager.cs": {
+    "mtime": 1781251031.5842006,
+    "ast_hash": "aeff307e47d200d79bac2e306017acd0",
+    "semantic_hash": "aeff307e47d200d79bac2e306017acd0"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Net\\HttpDownloader.cs": {
+    "mtime": 1781251031.5853255,
+    "ast_hash": "629443066a84ac4048c3a35529130c7c",
+    "semantic_hash": "629443066a84ac4048c3a35529130c7c"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Net\\ProxyCredentialsPolicy.cs": {
+    "mtime": 1781251031.5853255,
+    "ast_hash": "955c5ca014993b49407edb225459e637",
+    "semantic_hash": "955c5ca014993b49407edb225459e637"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Net\\RequestExceptions.cs": {
+    "mtime": 1781251031.5863326,
+    "ast_hash": "7f239874c01443a16269535cdf107287",
+    "semantic_hash": "7f239874c01443a16269535cdf107287"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Net\\RequestParameter.cs": {
+    "mtime": 1781251031.5870874,
+    "ast_hash": "e28159c5960f5b37c226ff18b29dd785",
+    "semantic_hash": "e28159c5960f5b37c226ff18b29dd785"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Net\\RequestState.cs": {
+    "mtime": 1781251031.5880954,
+    "ast_hash": "0604559539f729846d9412c41564fdf7",
+    "semantic_hash": "0604559539f729846d9412c41564fdf7"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Net\\SyncWebRequest.cs": {
+    "mtime": 1781251031.5891044,
+    "ast_hash": "30f29c813bfa9a824265747bea1c2b7b",
+    "semantic_hash": "30f29c813bfa9a824265747bea1c2b7b"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Net\\TrustSelectedCertificatePolicy.cs": {
+    "mtime": 1781251031.5891044,
+    "ast_hash": "c972d6b2a5535d1ac2be526e9219052c",
+    "semantic_hash": "c972d6b2a5535d1ac2be526e9219052c"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Net\\WebRequestBase.cs": {
+    "mtime": 1781251031.5901048,
+    "ast_hash": "acdbf49d9d7284eb22bb88d4395172c9",
+    "semantic_hash": "acdbf49d9d7284eb22bb88d4395172c9"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\NewsComponents.csproj": {
+    "mtime": 1781251031.5951028,
+    "ast_hash": "fdb6259d4fc9bb6a07caecc227b00837",
+    "semantic_hash": "fdb6259d4fc9bb6a07caecc227b00837"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\News\\NntpClient.cs": {
+    "mtime": 1781251031.592102,
+    "ast_hash": "97b011976ce85d21379e83a6571775d3",
+    "semantic_hash": "97b011976ce85d21379e83a6571775d3"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\News\\NntpParser.cs": {
+    "mtime": 1781251031.592102,
+    "ast_hash": "4f3f3697af9196446dbec9481a207d14",
+    "semantic_hash": "4f3f3697af9196446dbec9481a207d14"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\News\\NntpWebRequest.cs": {
+    "mtime": 1781251031.5931013,
+    "ast_hash": "5f5ab500fa4cef67b0537821648731da",
+    "semantic_hash": "5f5ab500fa4cef67b0537821648731da"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\News\\NntpWebResponse.cs": {
+    "mtime": 1781251031.5941045,
+    "ast_hash": "99a85f51aa640b96677df10c0ae5a7e0",
+    "semantic_hash": "99a85f51aa640b96677df10c0ae5a7e0"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Properties\\AssemblyInfo.cs": {
+    "mtime": 1781251031.5961041,
+    "ast_hash": "5adbb1f458e715690f6a65896eef5ab9",
+    "semantic_hash": "5adbb1f458e715690f6a65896eef5ab9"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\RelationCosmos\\Collections\\StringTable.cs": {
+    "mtime": 1781251031.5981035,
+    "ast_hash": "d58db5db5389c11acac3942cec3f0126",
+    "semantic_hash": "d58db5db5389c11acac3942cec3f0126"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\RelationCosmos\\DummyCosmos.cs": {
+    "mtime": 1781251031.599106,
+    "ast_hash": "aeffb1b1848c87020b8c73a8a274b9de",
+    "semantic_hash": "aeffb1b1848c87020b8c73a8a274b9de"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\RelationCosmos\\IRelationCosmos.cs": {
+    "mtime": 1781251031.599106,
+    "ast_hash": "7a5554119f5810ccf2bc4e7b9674e3e3",
+    "semantic_hash": "7a5554119f5810ccf2bc4e7b9674e3e3"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\RelationCosmos\\RelationBase.cs": {
+    "mtime": 1781251031.6001043,
+    "ast_hash": "044e4e7f08f788db956c0ec9f42fcef7",
+    "semantic_hash": "044e4e7f08f788db956c0ec9f42fcef7"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\RelationCosmos\\RelationCosmos4.cs": {
+    "mtime": 1781251031.6011038,
+    "ast_hash": "06cd4c4dc77ac8e85109c23f62812a02",
+    "semantic_hash": "06cd4c4dc77ac8e85109c23f62812a02"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Resources\\ComponentsText.Designer.cs": {
+    "mtime": 1781251031.6021035,
+    "ast_hash": "6c6cb08682628be79464507f1103664c",
+    "semantic_hash": "6c6cb08682628be79464507f1103664c"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Resources\\Resource.cs": {
+    "mtime": 1781251031.6276014,
+    "ast_hash": "45882cf415620e7083dce87116097c3f",
+    "semantic_hash": "45882cf415620e7083dce87116097c3f"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Search\\BooleanSearch\\FileDocument.cs": {
+    "mtime": 1781251031.6416783,
+    "ast_hash": "7462a8e38ca9a74d277293f56cb974b2",
+    "semantic_hash": "7462a8e38ca9a74d277293f56cb974b2"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Search\\BooleanSearch\\IDocument.cs": {
+    "mtime": 1781251031.642679,
+    "ast_hash": "f789aac3f97381673956a3bf75f38325",
+    "semantic_hash": "f789aac3f97381673956a3bf75f38325"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Search\\BooleanSearch\\QueryBuilder.cs": {
+    "mtime": 1781251031.6436791,
+    "ast_hash": "821cddcbbb5f75aab4934602568995b8",
+    "semantic_hash": "821cddcbbb5f75aab4934602568995b8"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Search\\BooleanSearch\\QueryNode.cs": {
+    "mtime": 1781251031.645682,
+    "ast_hash": "fe64755c801df41a1dfb6a5252732d2e",
+    "semantic_hash": "fe64755c801df41a1dfb6a5252732d2e"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Search\\BooleanSearch\\QueryTree.cs": {
+    "mtime": 1781251031.6470237,
+    "ast_hash": "92d23a572f217c734be144a28311916b",
+    "semantic_hash": "92d23a572f217c734be144a28311916b"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Search\\BooleanSearch\\XMLDocument.cs": {
+    "mtime": 1781251031.6490166,
+    "ast_hash": "2678bc21e38f00c89e151533e717e208",
+    "semantic_hash": "2678bc21e38f00c89e151533e717e208"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Search\\LuceneIndexModifier.cs": {
+    "mtime": 1781251031.6507602,
+    "ast_hash": "62b6009285752293d0190723c61ffb2e",
+    "semantic_hash": "62b6009285752293d0190723c61ffb2e"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Search\\LuceneIndexer.cs": {
+    "mtime": 1781251031.6520147,
+    "ast_hash": "673cb6a553feff855c8a9d6301ed7404",
+    "semantic_hash": "673cb6a553feff855c8a9d6301ed7404"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Search\\LuceneNewsItemSearch.cs": {
+    "mtime": 1781251031.6520147,
+    "ast_hash": "3c808a492a80d5439425b171c94864ff",
+    "semantic_hash": "3c808a492a80d5439425b171c94864ff"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Search\\LuceneSearch.cs": {
+    "mtime": 1781251031.6540954,
+    "ast_hash": "a61a37ded814acd332afd78b31aced69",
+    "semantic_hash": "a61a37ded814acd332afd78b31aced69"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Search\\LuceneSettings.cs": {
+    "mtime": 1781251031.6551068,
+    "ast_hash": "d8114ef835c288d5430586a762bf0d4e",
+    "semantic_hash": "d8114ef835c288d5430586a762bf0d4e"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Search\\RssSearch.cs": {
+    "mtime": 1781251031.6561058,
+    "ast_hash": "6024cfe2c085a924d301fd65ebf7dca4",
+    "semantic_hash": "6024cfe2c085a924d301fd65ebf7dca4"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Storage\\DataServiceBase.cs": {
+    "mtime": 1781251031.6581185,
+    "ast_hash": "1daf2ea55985a1da0b4b8ae1ebea7bec",
+    "semantic_hash": "1daf2ea55985a1da0b4b8ae1ebea7bec"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Storage\\DataServiceFactory.cs": {
+    "mtime": 1781251031.6581185,
+    "ast_hash": "1be871dcdcd40a7efee7a53edbf38f66",
+    "semantic_hash": "1be871dcdcd40a7efee7a53edbf38f66"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Storage\\FileStorageDataService.cs": {
+    "mtime": 1781251031.659127,
+    "ast_hash": "7769544b33399310c1f3770c9dcec4ea",
+    "semantic_hash": "7769544b33399310c1f3770c9dcec4ea"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Storage\\IInitDataService.cs": {
+    "mtime": 1781251031.6601284,
+    "ast_hash": "059597ff0672caf99d621fbf7f9b6878",
+    "semantic_hash": "059597ff0672caf99d621fbf7f9b6878"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Storage\\IUserCacheDataService.cs": {
+    "mtime": 1781251031.660695,
+    "ast_hash": "df2881e890edc0338638ff9942587554",
+    "semantic_hash": "df2881e890edc0338638ff9942587554"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Threading\\BinaryHeap.cs": {
+    "mtime": 1781251031.6620052,
+    "ast_hash": "98c36bfcafbaee94be937ff261ad185d",
+    "semantic_hash": "98c36bfcafbaee94be937ff261ad185d"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Threading\\PrioritizingTaskScheduler.cs": {
+    "mtime": 1781251031.6630654,
+    "ast_hash": "4482d09490f18776df47151db8fde05a",
+    "semantic_hash": "4482d09490f18776df47151db8fde05a"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Threading\\PriorityQueue.cs": {
+    "mtime": 1781251031.6641786,
+    "ast_hash": "deb5b774a55f2fdcfdd39d7bb7f2861e",
+    "semantic_hash": "deb5b774a55f2fdcfdd39d7bb7f2861e"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Threading\\PriorityThread.cs": {
+    "mtime": 1781251031.6647272,
+    "ast_hash": "ce417f051827bef69ff795a9957cc9e6",
+    "semantic_hash": "ce417f051827bef69ff795a9957cc9e6"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Threading\\PriorityThreadPool.cs": {
+    "mtime": 1781251031.6653416,
+    "ast_hash": "2fe0900be8482f9e5a5ac4fef8edde91",
+    "semantic_hash": "2fe0900be8482f9e5a5ac4fef8edde91"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Threading\\Semaphore.cs": {
+    "mtime": 1781251031.6686256,
+    "ast_hash": "9a081c7f15b6bd40923e4623cd3895da",
+    "semantic_hash": "9a081c7f15b6bd40923e4623cd3895da"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Utils\\Common.cs": {
+    "mtime": 1781251031.6703327,
+    "ast_hash": "aac7db80aa63fcc17de25bc168885496",
+    "semantic_hash": "aac7db80aa63fcc17de25bc168885496"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Utils\\CryptHelper.cs": {
+    "mtime": 1781251031.6708703,
+    "ast_hash": "ea612bf5c2a7e8020592fa60242438de",
+    "semantic_hash": "ea612bf5c2a7e8020592fa60242438de"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Utils\\DataBindingHelper.cs": {
+    "mtime": 1781251031.6728816,
+    "ast_hash": "9d544fdd09c193ea35e3a9726f58dae7",
+    "semantic_hash": "9d544fdd09c193ea35e3a9726f58dae7"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Utils\\DateTimeExt.cs": {
+    "mtime": 1781251031.6728816,
+    "ast_hash": "ef5c6d6e8588a54cc4e5ee60b0832cd8",
+    "semantic_hash": "ef5c6d6e8588a54cc4e5ee60b0832cd8"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Utils\\FastSgmlXPathReader.cs": {
+    "mtime": 1781251031.67488,
+    "ast_hash": "f40634b0d6982d1c90881a55144277d1",
+    "semantic_hash": "f40634b0d6982d1c90881a55144277d1"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Utils\\FileHelper.cs": {
+    "mtime": 1781251031.677878,
+    "ast_hash": "86284e7e4f21a9549ef56e20cdec57db",
+    "semantic_hash": "86284e7e4f21a9549ef56e20cdec57db"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Utils\\HtmlHelper.cs": {
+    "mtime": 1781251031.6801732,
+    "ast_hash": "f723076bab6adac401fa3d2d251662d1",
+    "semantic_hash": "f723076bab6adac401fa3d2d251662d1"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Utils\\ImportFilter.cs": {
+    "mtime": 1781251031.6811733,
+    "ast_hash": "eb7795674ae61e4b1bfeeb908fd6fdf0",
+    "semantic_hash": "eb7795674ae61e4b1bfeeb908fd6fdf0"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Utils\\ListExtension.cs": {
+    "mtime": 1781251031.6821733,
+    "ast_hash": "fb694ea3ee7968f21c57b47a908f7181",
+    "semantic_hash": "fb694ea3ee7968f21c57b47a908f7181"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Utils\\MimeType.cs": {
+    "mtime": 1781251031.683184,
+    "ast_hash": "390dd3c897fcebeaff6ca2eb4a5fb38c",
+    "semantic_hash": "390dd3c897fcebeaff6ca2eb4a5fb38c"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Utils\\NTFS.cs": {
+    "mtime": 1781251031.6841817,
+    "ast_hash": "661a6cf1b1f9c455cb7fcf7111a87548",
+    "semantic_hash": "661a6cf1b1f9c455cb7fcf7111a87548"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Utils\\RssHelper.cs": {
+    "mtime": 1781251031.6841817,
+    "ast_hash": "18bcd4c8d687f2f345aa7879b65ca671",
+    "semantic_hash": "18bcd4c8d687f2f345aa7879b65ca671"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Utils\\SerializationInfoReader.cs": {
+    "mtime": 1781251031.686182,
+    "ast_hash": "a2a4eb3de3405a16600305cad6489240",
+    "semantic_hash": "a2a4eb3de3405a16600305cad6489240"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Utils\\SgmlParser.cs": {
+    "mtime": 1781251031.6891825,
+    "ast_hash": "71b4d66396ae13c17fa92c3bd0a4e8da",
+    "semantic_hash": "71b4d66396ae13c17fa92c3bd0a4e8da"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Utils\\SgmlReader.cs": {
+    "mtime": 1781251031.6901913,
+    "ast_hash": "56bf2c357b0b85becaf1dd5176a4699c",
+    "semantic_hash": "56bf2c357b0b85becaf1dd5176a4699c"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Utils\\StringHelper.cs": {
+    "mtime": 1781251031.6911922,
+    "ast_hash": "67603fa7192968005c6962514ce2f5cf",
+    "semantic_hash": "67603fa7192968005c6962514ce2f5cf"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Xml\\Namespaces.cs": {
+    "mtime": 1781251031.6926641,
+    "ast_hash": "6543582ce1d2c4cb933ff1f96a8434c6",
+    "semantic_hash": "6543582ce1d2c4cb933ff1f96a8434c6"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Xml\\Serialization\\CacheKeyFactory.cs": {
+    "mtime": 1781251031.6942487,
+    "ast_hash": "10efbb8151fbd0e504a8569084ba12d0",
+    "semantic_hash": "10efbb8151fbd0e504a8569084ba12d0"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Xml\\Serialization\\SignatureExtractor.cs": {
+    "mtime": 1781251031.6947725,
+    "ast_hash": "305cd6531ce70b3b032f95d558ffd57d",
+    "semantic_hash": "305cd6531ce70b3b032f95d558ffd57d"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Xml\\Serialization\\StringSorter.cs": {
+    "mtime": 1781251031.6952965,
+    "ast_hash": "4eb576435c35997c6dd429a25db9b39d",
+    "semantic_hash": "4eb576435c35997c6dd429a25db9b39d"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Xml\\Serialization\\XmlAttributeOverridesThumbprinter.cs": {
+    "mtime": 1781251031.6964996,
+    "ast_hash": "07106f09dee0aacf3c931986f53d7930",
+    "semantic_hash": "07106f09dee0aacf3c931986f53d7930"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents\\Xml\\Serialization\\XmlSerializerCache.cs": {
+    "mtime": 1781251031.6964996,
+    "ast_hash": "0cd07111677fbece7cab527cd22b82b1",
+    "semantic_hash": "0cd07111677fbece7cab527cd22b82b1"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RSS Bandit.sln": {
+    "mtime": 1781251031.6986647,
+    "ast_hash": "1556bdcd9d1205dd12e00fadc829287b",
+    "semantic_hash": "1556bdcd9d1205dd12e00fadc829287b"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit Installer\\Rssbandit Feed Installer\\AssemblyInfo.cs": {
+    "mtime": 1781251031.7539985,
+    "ast_hash": "30f13277ea8f426f9c2b8d3beee26096",
+    "semantic_hash": "30f13277ea8f426f9c2b8d3beee26096"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit Installer\\Rssbandit Feed Installer\\Installer1.cs": {
+    "mtime": 1781251031.7550483,
+    "ast_hash": "ecae58610a488509063fe6cc4ed68eba",
+    "semantic_hash": "ecae58610a488509063fe6cc4ed68eba"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit Installer\\Rssbandit Feed Installer\\Rssbandit Feed Installer.csproj": {
+    "mtime": 1781251031.7566652,
+    "ast_hash": "e63b53ade9e4ef458542c25457292fcb",
+    "semantic_hash": "e63b53ade9e4ef458542c25457292fcb"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit.AppServices\\AddIn\\AddInBase.cs": {
+    "mtime": 1781251032.3253438,
+    "ast_hash": "79b6e634e20a22aafaa936b464eaef6a",
+    "semantic_hash": "79b6e634e20a22aafaa936b464eaef6a"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit.AppServices\\AddIn\\AddInInterfaces.cs": {
+    "mtime": 1781251032.3263435,
+    "ast_hash": "7ac0d00738c665f608835f5c60d4c812",
+    "semantic_hash": "7ac0d00738c665f608835f5c60d4c812"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit.AppServices\\Channel\\FeedChannelBase.cs": {
+    "mtime": 1781251032.3273435,
+    "ast_hash": "982f82aca05d908404fc70d43927c35c",
+    "semantic_hash": "982f82aca05d908404fc70d43927c35c"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit.AppServices\\Channel\\IChannelProcessor.cs": {
+    "mtime": 1781251032.328343,
+    "ast_hash": "7bab74064f283e3838764157900f00b1",
+    "semantic_hash": "7bab74064f283e3838764157900f00b1"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit.AppServices\\Channel\\INewsChannel.cs": {
+    "mtime": 1781251032.329343,
+    "ast_hash": "a716e75b1b7a31f700b32b290e673c82",
+    "semantic_hash": "a716e75b1b7a31f700b32b290e673c82"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit.AppServices\\Channel\\NewsItemChannelBase.cs": {
+    "mtime": 1781251032.329343,
+    "ast_hash": "13b62eea15a0a2b26f9c5c8e0677e0e5",
+    "semantic_hash": "13b62eea15a0a2b26f9c5c8e0677e0e5"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit.AppServices\\Collections\\CollectionInterfaces.cs": {
+    "mtime": 1781251032.331347,
+    "ast_hash": "c9f042b7254d8a98321a1f7a385c847d",
+    "semantic_hash": "c9f042b7254d8a98321a1f7a385c847d"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit.AppServices\\Configuration\\IPersistedSettings.cs": {
+    "mtime": 1781251032.332348,
+    "ast_hash": "28f72eca4bb5c2d04ae982000f857cbd",
+    "semantic_hash": "28f72eca4bb5c2d04ae982000f857cbd"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit.AppServices\\Core\\EventsAndDelegates.cs": {
+    "mtime": 1781251032.3333461,
+    "ast_hash": "108bdaa0c0e1578eb58df3eed6cabe17",
+    "semantic_hash": "108bdaa0c0e1578eb58df3eed6cabe17"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit.AppServices\\Core\\ICoreApplication.cs": {
+    "mtime": 1781251032.3353453,
+    "ast_hash": "bc32451bfe18cf1926e16cb5939d3182",
+    "semantic_hash": "bc32451bfe18cf1926e16cb5939d3182"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit.AppServices\\Core\\IFeedDetails.cs": {
+    "mtime": 1781251032.3353453,
+    "ast_hash": "3d0b6996e03305f27d902cfa8f97e377",
+    "semantic_hash": "3d0b6996e03305f27d902cfa8f97e377"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit.AppServices\\Core\\IFeedSources.cs": {
+    "mtime": 1781251032.3363452,
+    "ast_hash": "e16475767a3270435599a192269d7f0a",
+    "semantic_hash": "e16475767a3270435599a192269d7f0a"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit.AppServices\\Core\\IInternetService.cs": {
+    "mtime": 1781251032.337345,
+    "ast_hash": "02d839b1b4290d85b483e731f3bffd4b",
+    "semantic_hash": "02d839b1b4290d85b483e731f3bffd4b"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit.AppServices\\Core\\INewsFeed.cs": {
+    "mtime": 1781251032.338344,
+    "ast_hash": "d883d88e23b22a6985c8c4d2f67dbb2e",
+    "semantic_hash": "d883d88e23b22a6985c8c4d2f67dbb2e"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit.AppServices\\Core\\INewsItem.cs": {
+    "mtime": 1781251032.338344,
+    "ast_hash": "1825a783218ec57f2c571bd5dcfc1433",
+    "semantic_hash": "1825a783218ec57f2c571bd5dcfc1433"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit.AppServices\\Core\\INntpServerDefinition.cs": {
+    "mtime": 1781251032.3393495,
+    "ast_hash": "029d40f0d9ac5ab763a69686a4073e19",
+    "semantic_hash": "029d40f0d9ac5ab763a69686a4073e19"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit.AppServices\\Core\\IRelation.cs": {
+    "mtime": 1781251032.3403525,
+    "ast_hash": "20f13feec23d94ec54a471a8cc863444",
+    "semantic_hash": "20f13feec23d94ec54a471a8cc863444"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit.AppServices\\Core\\ISearchEngine.cs": {
+    "mtime": 1781251032.3403525,
+    "ast_hash": "8dfc599becf99c6dcde63b56ba6be274",
+    "semantic_hash": "8dfc599becf99c6dcde63b56ba6be274"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit.AppServices\\Core\\ISharedProperty.cs": {
+    "mtime": 1781251032.3415897,
+    "ast_hash": "529cf2daf21d8b277796bfe2771eb51e",
+    "semantic_hash": "529cf2daf21d8b277796bfe2771eb51e"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit.AppServices\\Core\\IUserIdentity.cs": {
+    "mtime": 1781251032.342587,
+    "ast_hash": "b0837e45221652bc61b43d961ba9b044",
+    "semantic_hash": "b0837e45221652bc61b43d961ba9b044"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit.AppServices\\Core\\IUserPreferences.cs": {
+    "mtime": 1781251032.342587,
+    "ast_hash": "ca12b66d57362f19237bbc386cd21eb0",
+    "semantic_hash": "ca12b66d57362f19237bbc386cd21eb0"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit.AppServices\\Core\\NewsComponentEnums.cs": {
+    "mtime": 1781251032.3435893,
+    "ast_hash": "705daf0d62e654a024a0481af14fd042",
+    "semantic_hash": "705daf0d62e654a024a0481af14fd042"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit.AppServices\\Core\\RssBanditEnums.cs": {
+    "mtime": 1781251032.344587,
+    "ast_hash": "3a6fdf5f75115c49592bfedf1f37467f",
+    "semantic_hash": "3a6fdf5f75115c49592bfedf1f37467f"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit.AppServices\\Core\\TitledLink.cs": {
+    "mtime": 1781251032.344587,
+    "ast_hash": "749c5b436e9bd0f4de2979963fc29ba3",
+    "semantic_hash": "749c5b436e9bd0f4de2979963fc29ba3"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit.AppServices\\RssBandit.AppServices.csproj": {
+    "mtime": 1781251032.3455858,
+    "ast_hash": "0bfd41fba431279b5e4ee3fb4c75de7b",
+    "semantic_hash": "0bfd41fba431279b5e4ee3fb4c75de7b"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit.AppServices\\UI\\CommandBarInterfaces.cs": {
+    "mtime": 1781251032.3465855,
+    "ast_hash": "d3573a7c9ea378b8765a325a6a6f4eee",
+    "semantic_hash": "d3573a7c9ea378b8765a325a6a6f4eee"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit.AppServices\\UI\\WindowManagementInterfaces.cs": {
+    "mtime": 1781251032.347587,
+    "ast_hash": "8afc881ba2f53f28fe3e71d2edc33010",
+    "semantic_hash": "8afc881ba2f53f28fe3e71d2edc33010"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit.UnitTests\\AssemblyInfo.cs": {
+    "mtime": 1781251032.370625,
+    "ast_hash": "30f13277ea8f426f9c2b8d3beee26096",
+    "semantic_hash": "30f13277ea8f426f9c2b8d3beee26096"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit.UnitTests\\BaseTestFixture.cs": {
+    "mtime": 1781251032.370625,
+    "ast_hash": "a22e7c46a5ba4c9b66fc7421aa448f22",
+    "semantic_hash": "a22e7c46a5ba4c9b66fc7421aa448f22"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit.UnitTests\\RssBandit.UnitTests.csproj": {
+    "mtime": 1781251032.393664,
+    "ast_hash": "401f2bf620d674d27cbc5b6a06c4dc84",
+    "semantic_hash": "401f2bf620d674d27cbc5b6a06c4dc84"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit.UnitTests\\Utils\\ShortcutManager.cs": {
+    "mtime": 1781251032.4038098,
+    "ast_hash": "531417e88e3249add869340c73a0f25c",
+    "semantic_hash": "531417e88e3249add869340c73a0f25c"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit.UnitTests\\Utils\\ShortcutManagerTests.cs": {
+    "mtime": 1781251032.4038098,
+    "ast_hash": "cfac7f9e6552a9b4ec3309a20ffa9460",
+    "semantic_hash": "cfac7f9e6552a9b4ec3309a20ffa9460"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Converters\\BytesToMegabytesConverter.cs": {
+    "mtime": 1781251032.416159,
+    "ast_hash": "b2d5a9c6a7a16bdc2b7284f98069fd69",
+    "semantic_hash": "b2d5a9c6a7a16bdc2b7284f98069fd69"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Converters\\CountToVisibilityConverter.cs": {
+    "mtime": 1781251032.416159,
+    "ast_hash": "27790fe63d232ea9055ef6837c0e7c8b",
+    "semantic_hash": "27790fe63d232ea9055ef6837c0e7c8b"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Converters\\FileNameToIconConverter.cs": {
+    "mtime": 1781251032.416159,
+    "ast_hash": "564c94818236688bff8db4928dae8ecf",
+    "semantic_hash": "564c94818236688bff8db4928dae8ecf"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Converters\\NotVisibleConverter.cs": {
+    "mtime": 1781251032.416159,
+    "ast_hash": "a58574ed0197e45133a4fdc06c236c33",
+    "semantic_hash": "a58574ed0197e45133a4fdc06c236c33"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Core\\AdditionalElements.cs": {
+    "mtime": 1781251032.4195373,
+    "ast_hash": "ed8f05af8ccce8f900067968f70a6f99",
+    "semantic_hash": "ed8f05af8ccce8f900067968f70a6f99"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Core\\ApplicationExceptionHandler.cs": {
+    "mtime": 1781251032.4207728,
+    "ast_hash": "a17b4824a7c3e8aa24139d9af07a36f1",
+    "semantic_hash": "a17b4824a7c3e8aa24139d9af07a36f1"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Core\\BanditApplicationException.cs": {
+    "mtime": 1781251032.4227877,
+    "ast_hash": "cab970dff4f0b18156460a4ab2708bcd",
+    "semantic_hash": "cab970dff4f0b18156460a4ab2708bcd"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Core\\BanditExceptionPublisher.cs": {
+    "mtime": 1781251032.4227877,
+    "ast_hash": "d73f78a85bfd7fdce50f3860f1813a65",
+    "semantic_hash": "d73f78a85bfd7fdce50f3860f1813a65"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Core\\CommandLineParser.cs": {
+    "mtime": 1781251032.424804,
+    "ast_hash": "d0d0639cc766cd279c5ba7d79d4c1fc9",
+    "semantic_hash": "d0d0639cc766cd279c5ba7d79d4c1fc9"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Core\\ExceptionLog4NetRenderer.cs": {
+    "mtime": 1781251032.424804,
+    "ast_hash": "684ac97029185d5b044e5ba8cd142dc3",
+    "semantic_hash": "684ac97029185d5b044e5ba8cd142dc3"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Core\\ExceptionLog4netPublisher.cs": {
+    "mtime": 1781251032.4268126,
+    "ast_hash": "a86db94c7fee4d8164b3a86039fe94a2",
+    "semantic_hash": "a86db94c7fee4d8164b3a86039fe94a2"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Core\\Exceptions.cs": {
+    "mtime": 1781251032.4268126,
+    "ast_hash": "ad3d0c62184f857458cf6e5dd8baf5ad",
+    "semantic_hash": "ad3d0c62184f857458cf6e5dd8baf5ad"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Core\\GuiInvoker.cs": {
+    "mtime": 1781251032.4268126,
+    "ast_hash": "eed8be92955b3b60a295f17f33ff2de6",
+    "semantic_hash": "eed8be92955b3b60a295f17f33ff2de6"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Core\\IdentityNewsServerManager.cs": {
+    "mtime": 1781251032.4288263,
+    "ast_hash": "b5906f3c1ff9cc31fa42b6feca8455c6",
+    "semantic_hash": "b5906f3c1ff9cc31fa42b6feca8455c6"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Core\\Resource.cs": {
+    "mtime": 1781251032.4308386,
+    "ast_hash": "ee17cc41e5a4a99ce23a6096e4404c87",
+    "semantic_hash": "ee17cc41e5a4a99ce23a6096e4404c87"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Core\\RssBanditApplication.Commands.cs": {
+    "mtime": 1781251032.4328456,
+    "ast_hash": "93afc7ead51e4715bddb922be410d315",
+    "semantic_hash": "93afc7ead51e4715bddb922be410d315"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Core\\RssBanditApplication.EventHandlers.cs": {
+    "mtime": 1781251032.4348526,
+    "ast_hash": "5afa91f1455fdae21bc32998de65ab0c",
+    "semantic_hash": "5afa91f1455fdae21bc32998de65ab0c"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Core\\RssBanditApplication.Podcasts.cs": {
+    "mtime": 1781251032.4348526,
+    "ast_hash": "290b690b7dbed8900b9219dc945818fb",
+    "semantic_hash": "290b690b7dbed8900b9219dc945818fb"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Core\\RssBanditApplication.Statics.cs": {
+    "mtime": 1781251032.4368606,
+    "ast_hash": "14977b9ee9d4a9c018d5d78cf560fbb6",
+    "semantic_hash": "14977b9ee9d4a9c018d5d78cf560fbb6"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Core\\RssBanditApplication.cs": {
+    "mtime": 1781251032.4388747,
+    "ast_hash": "0618cd420ed5cca72394c7b151bb3e95",
+    "semantic_hash": "0618cd420ed5cca72394c7b151bb3e95"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Core\\RssBanditPreferences.cs": {
+    "mtime": 1781251032.4412394,
+    "ast_hash": "1f4d7b1e0e6c6839e0e76dc01e349be8",
+    "semantic_hash": "1f4d7b1e0e6c6839e0e76dc01e349be8"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Core\\RssItemFilters.cs": {
+    "mtime": 1781251032.4422357,
+    "ast_hash": "92b8ea9e7232e5a8803b623506ba965b",
+    "semantic_hash": "92b8ea9e7232e5a8803b623506ba965b"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Core\\SearchEngineHandler.cs": {
+    "mtime": 1781251032.4432373,
+    "ast_hash": "b2e1863443375eadea6f10d6411022cc",
+    "semantic_hash": "b2e1863443375eadea6f10d6411022cc"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Core\\ServiceContainerBase.cs": {
+    "mtime": 1781251032.444236,
+    "ast_hash": "4a7cbbe088e447d7b280b26942893f55",
+    "semantic_hash": "4a7cbbe088e447d7b280b26942893f55"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Core\\ServiceInfrastructure\\IServiceDependencyContainer.cs": {
+    "mtime": 1781251032.4452362,
+    "ast_hash": "59fe995ec9e1c5ef128d2abc6e550ef2",
+    "semantic_hash": "59fe995ec9e1c5ef128d2abc6e550ef2"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Core\\ServiceInfrastructure\\IServiceDependencyResolver.cs": {
+    "mtime": 1781251032.4462352,
+    "ast_hash": "0ed664e08579b1495e5a92f25cade125",
+    "semantic_hash": "0ed664e08579b1495e5a92f25cade125"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Core\\ServiceInfrastructure\\IoC.cs": {
+    "mtime": 1781251032.447537,
+    "ast_hash": "c63443eaa71117fdabbdcb5889755f39",
+    "semantic_hash": "c63443eaa71117fdabbdcb5889755f39"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Core\\ServiceInfrastructure\\ServiceProviderDependenyResolver.cs": {
+    "mtime": 1781251032.4505935,
+    "ast_hash": "3cbbb4ba5fb19bc9bf33067d79709e98",
+    "semantic_hash": "3cbbb4ba5fb19bc9bf33067d79709e98"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Core\\ServiceInfrastructure\\UnityDependencyResolver.cs": {
+    "mtime": 1781251032.4525864,
+    "ast_hash": "6ec677b197da54bb30138d815899fb3e",
+    "semantic_hash": "6ec677b197da54bb30138d815899fb3e"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Core\\ServiceManager.cs": {
+    "mtime": 1781251032.4535868,
+    "ast_hash": "346a05af8ee844d39494a8432fe28971",
+    "semantic_hash": "346a05af8ee844d39494a8432fe28971"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Core\\SpecialLocalFeeds.cs": {
+    "mtime": 1781251032.4545887,
+    "ast_hash": "8b4c539c6fa2b6acd58c0cabd0e1e218",
+    "semantic_hash": "8b4c539c6fa2b6acd58c0cabd0e1e218"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Core\\Storage\\DataServiceBase.cs": {
+    "mtime": 1781251032.4555888,
+    "ast_hash": "ec02959c51f67cdc54c748d53c035c1c",
+    "semantic_hash": "ec02959c51f67cdc54c748d53c035c1c"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Core\\Storage\\DataServiceFactory.cs": {
+    "mtime": 1781251032.4565895,
+    "ast_hash": "5277f61de5202570f507ff85bdd82763",
+    "semantic_hash": "5277f61de5202570f507ff85bdd82763"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Core\\Storage\\DataServiceInterfaces.cs": {
+    "mtime": 1781251032.4575891,
+    "ast_hash": "7722169c0bd2eb2e6855dc23e58a8516",
+    "semantic_hash": "7722169c0bd2eb2e6855dc23e58a8516"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Core\\Storage\\FileStorageDataService.cs": {
+    "mtime": 1781251032.4575891,
+    "ast_hash": "f4747d0afe5903a703f332d6c2230136",
+    "semantic_hash": "f4747d0afe5903a703f332d6c2230136"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Core\\Storage\\IInitDataService.cs": {
+    "mtime": 1781251032.4585862,
+    "ast_hash": "fff0b33d3771babf6fa72886a98c6bef",
+    "semantic_hash": "fff0b33d3771babf6fa72886a98c6bef"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Core\\Storage\\SerializableClasses.cs": {
+    "mtime": 1781251032.4595861,
+    "ast_hash": "129ced5a206f767cccbb7cdca3de6c35",
+    "semantic_hash": "129ced5a206f767cccbb7cdca3de6c35"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Core\\ThreadWorker.cs": {
+    "mtime": 1781251032.4605875,
+    "ast_hash": "9cb0fe3a264fb44fb3011d2de6d7a5f8",
+    "semantic_hash": "9cb0fe3a264fb44fb3011d2de6d7a5f8"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Core\\ThreadWorkerBase.cs": {
+    "mtime": 1781251032.4619682,
+    "ast_hash": "aaf3769c0c52ba3133d68531dddeb4fd",
+    "semantic_hash": "aaf3769c0c52ba3133d68531dddeb4fd"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Core\\UACManager.cs": {
+    "mtime": 1781251032.4624743,
+    "ast_hash": "23241b05004904e6efb9ec596fe2a304",
+    "semantic_hash": "23241b05004904e6efb9ec596fe2a304"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Program.cs": {
+    "mtime": 1781251032.4856682,
+    "ast_hash": "afdb492115ca5512f1998c63d8a15cf2",
+    "semantic_hash": "afdb492115ca5512f1998c63d8a15cf2"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Properties\\AssemblyInfo.cs": {
+    "mtime": 1781251032.4866683,
+    "ast_hash": "e3d23354b1d7927a4e927e55e2eb9820",
+    "semantic_hash": "e3d23354b1d7927a4e927e55e2eb9820"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Properties\\ResourceInfragistics.cs": {
+    "mtime": 1781251032.5361512,
+    "ast_hash": "3191d0c15f75d9bffb15619c22f07b08",
+    "semantic_hash": "3191d0c15f75d9bffb15619c22f07b08"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Properties\\Resources.Designer.cs": {
+    "mtime": 1781251032.5361512,
+    "ast_hash": "bd4ef3c17f70e744ab4332dcc37b007c",
+    "semantic_hash": "bd4ef3c17f70e744ab4332dcc37b007c"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Resources\\SR.Designer.cs": {
+    "mtime": 1781251032.5568666,
+    "ast_hash": "b0505146941de8d8b0c78ba9afede5bf",
+    "semantic_hash": "b0505146941de8d8b0c78ba9afede5bf"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\RssBandit.csproj": {
+    "mtime": 1781251032.635013,
+    "ast_hash": "1278a25f0542abe2d675ece0f2ae5ecf",
+    "semantic_hash": "1278a25f0542abe2d675ece0f2ae5ecf"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\ViewModel\\BindableBase.cs": {
+    "mtime": 1781251032.635013,
+    "ast_hash": "a2bc7f7b550a68f750ea8b69d664222a",
+    "semantic_hash": "a2bc7f7b550a68f750ea8b69d664222a"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\AutoDiscoverFeedsThreadHandler.cs": {
+    "mtime": 1781251032.635013,
+    "ast_hash": "3bc785d8760cea648e4a736fbc1dae67",
+    "semantic_hash": "3bc785d8760cea648e4a736fbc1dae67"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\AutoDiscoveredFeedsMenuHandler.cs": {
+    "mtime": 1781251032.635013,
+    "ast_hash": "d6467f97f336e4496b677d081ff86005",
+    "semantic_hash": "d6467f97f336e4496b677d081ff86005"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\ColumnLayoutManager.cs": {
+    "mtime": 1781251032.635013,
+    "ast_hash": "69e21c2954f35a7d6200a91dcd6eb884",
+    "semantic_hash": "69e21c2954f35a7d6200a91dcd6eb884"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\CommandBarManager.cs": {
+    "mtime": 1781251032.635013,
+    "ast_hash": "2e004bbbc604991a77584c9f5aee2060",
+    "semantic_hash": "2e004bbbc604991a77584c9f5aee2060"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Controls\\CollapsibleSplitter.cs": {
+    "mtime": 1781251032.635013,
+    "ast_hash": "0c28951e28509f3652fcd8f8dfc7cdb9",
+    "semantic_hash": "0c28951e28509f3652fcd8f8dfc7cdb9"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Controls\\Line.cs": {
+    "mtime": 1781251032.635013,
+    "ast_hash": "894fc156939b1847a486aed4d03b464f",
+    "semantic_hash": "894fc156939b1847a486aed4d03b464f"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Controls\\MenuCommands.cs": {
+    "mtime": 1781251032.650671,
+    "ast_hash": "87740d63f8b623947c40e3ebbe70f58b",
+    "semantic_hash": "87740d63f8b623947c40e3ebbe70f58b"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Controls\\NavigatorHeaderDrawFilter.cs": {
+    "mtime": 1781251032.650671,
+    "ast_hash": "6a19cfd5ac13c5b1a6d76ae05ea5f89a",
+    "semantic_hash": "6a19cfd5ac13c5b1a6d76ae05ea5f89a"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Controls\\NavigatorHeaderHelper.cs": {
+    "mtime": 1781251032.650671,
+    "ast_hash": "d7a9969ad2e6b5cca0b059080829465f",
+    "semantic_hash": "d7a9969ad2e6b5cca0b059080829465f"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Controls\\OptionSectionPanel.cs": {
+    "mtime": 1781251032.650671,
+    "ast_hash": "8c431f5f4040ba3986747d2d89d7a879",
+    "semantic_hash": "8c431f5f4040ba3986747d2d89d7a879"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Controls\\SearchPanel.Designer.cs": {
+    "mtime": 1781251032.650671,
+    "ast_hash": "cb58c46cf894a4117844d46fc2921c99",
+    "semantic_hash": "cb58c46cf894a4117844d46fc2921c99"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Controls\\SearchPanel.cs": {
+    "mtime": 1781251032.650671,
+    "ast_hash": "59aaae7c64e9be38d296150500f12d43",
+    "semantic_hash": "59aaae7c64e9be38d296150500f12d43"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Controls\\SmoothLabelDrawFilter.cs": {
+    "mtime": 1781251032.650671,
+    "ast_hash": "a917e60ea6a6df95c6fd4a76be87c72d",
+    "semantic_hash": "a917e60ea6a6df95c6fd4a76be87c72d"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Controls\\StateSerializationHelper.cs": {
+    "mtime": 1781251032.650671,
+    "ast_hash": "3e6f50a430297125d79d9f5db88bc5c3",
+    "semantic_hash": "3e6f50a430297125d79d9f5db88bc5c3"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Controls\\ThListView\\DesignerSupport.cs": {
+    "mtime": 1781251032.650671,
+    "ast_hash": "bd0ecf7b5e33d7708c48bcbb89f5fd58",
+    "semantic_hash": "bd0ecf7b5e33d7708c48bcbb89f5fd58"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Controls\\ThListView\\IListViewLayout.cs": {
+    "mtime": 1781251032.650671,
+    "ast_hash": "ce4eb8fd4150e203c88a1bcdd03811dd",
+    "semantic_hash": "ce4eb8fd4150e203c88a1bcdd03811dd"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Controls\\ThListView\\ListHelper.cs": {
+    "mtime": 1781251032.650671,
+    "ast_hash": "a0164fa489563f67d1c3d939ab72fa30",
+    "semantic_hash": "a0164fa489563f67d1c3d939ab72fa30"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Controls\\ThListView\\Sorting\\ThreadedListViewItemComparer.cs": {
+    "mtime": 1781251032.6660824,
+    "ast_hash": "7118ec1fde1dcf87e5080ede1e0465fa",
+    "semantic_hash": "7118ec1fde1dcf87e5080ede1e0465fa"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Controls\\ThListView\\Sorting\\ThreadedListViewSorter.cs": {
+    "mtime": 1781251032.6660824,
+    "ast_hash": "f99fbd83602852a8f09ab56cfedf31cb",
+    "semantic_hash": "f99fbd83602852a8f09ab56cfedf31cb"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Controls\\ThListView\\ThreadedListView.cs": {
+    "mtime": 1781251032.668091,
+    "ast_hash": "544c508badec5991c92b7a6d95b5e4e5",
+    "semantic_hash": "544c508badec5991c92b7a6d95b5e4e5"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Controls\\ThListView\\ThreadedListViewColumnHeader.cs": {
+    "mtime": 1781251032.668091,
+    "ast_hash": "eb1452a85626cd78dff6ec022a5be6b2",
+    "semantic_hash": "eb1452a85626cd78dff6ec022a5be6b2"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Controls\\ThListView\\ThreadedListViewColumnHeaderCollection.cs": {
+    "mtime": 1781251032.668091,
+    "ast_hash": "bd5bb85e1fc8e74fb680d5ea11528644",
+    "semantic_hash": "bd5bb85e1fc8e74fb680d5ea11528644"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Controls\\ThListView\\ThreadedListViewControl.csproj": {
+    "mtime": 1781251032.668091,
+    "ast_hash": "12bca9f20e9a63ebd143e107183fb440",
+    "semantic_hash": "12bca9f20e9a63ebd143e107183fb440"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Controls\\ThListView\\ThreadedListViewEnums.cs": {
+    "mtime": 1781251032.668091,
+    "ast_hash": "ca22c80102e2f960af2eaf20bb0182e0",
+    "semantic_hash": "ca22c80102e2f960af2eaf20bb0182e0"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Controls\\ThListView\\ThreadedListViewEventArgs.cs": {
+    "mtime": 1781251032.6745713,
+    "ast_hash": "b088799a64d85b8ed3bff477b48baf0f",
+    "semantic_hash": "b088799a64d85b8ed3bff477b48baf0f"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Controls\\ThListView\\ThreadedListViewGroup.cs": {
+    "mtime": 1781251032.6745713,
+    "ast_hash": "970c2ccd327d4ccab51bc3f0cd2f1b1d",
+    "semantic_hash": "970c2ccd327d4ccab51bc3f0cd2f1b1d"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Controls\\ThListView\\ThreadedListViewGroupCollection.cs": {
+    "mtime": 1781251032.6745713,
+    "ast_hash": "05572f69fafea4abefb100aa72d5ce90",
+    "semantic_hash": "05572f69fafea4abefb100aa72d5ce90"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Controls\\ThListView\\ThreadedListViewItem.cs": {
+    "mtime": 1781251032.6745713,
+    "ast_hash": "c032ff1b647e1dbb656ea1f1a6152d35",
+    "semantic_hash": "c032ff1b647e1dbb656ea1f1a6152d35"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Controls\\ThListView\\ThreadedListViewItemCollection.cs": {
+    "mtime": 1781251032.6745713,
+    "ast_hash": "ff9b49f2b780a99b12974de2ca15a18c",
+    "semantic_hash": "ff9b49f2b780a99b12974de2ca15a18c"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Controls\\ThListView\\Win32.cs": {
+    "mtime": 1781251032.6745713,
+    "ast_hash": "2204e5cd1be10c30e4b7af028c9571b5",
+    "semantic_hash": "2204e5cd1be10c30e4b7af028c9571b5"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Controls\\ToolCommands.cs": {
+    "mtime": 1781251032.6745713,
+    "ast_hash": "85dd6ae075ccd87c2befde654b6fcf3a",
+    "semantic_hash": "85dd6ae075ccd87c2befde654b6fcf3a"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Controls\\TrayAnimation.cs": {
+    "mtime": 1781251032.6819603,
+    "ast_hash": "3a780d1ac20cb2d1d5e313acb24885bf",
+    "semantic_hash": "3a780d1ac20cb2d1d5e313acb24885bf"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Controls\\TreeView\\ListFeedsDrawFilter.cs": {
+    "mtime": 1781251032.6819603,
+    "ast_hash": "0fb24757d8d32d3673a968d421ff8433",
+    "semantic_hash": "0fb24757d8d32d3673a968d421ff8433"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Controls\\TreeView\\SmartFolderNodeBase.cs": {
+    "mtime": 1781251032.6819603,
+    "ast_hash": "b534cfe4c4ebd047ba1010c47bb986ab",
+    "semantic_hash": "b534cfe4c4ebd047ba1010c47bb986ab"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Controls\\TreeView\\TreeFeedsDrawFilter.cs": {
+    "mtime": 1781251032.6819603,
+    "ast_hash": "e5702c48980d83ad77f15028d6ca8d50",
+    "semantic_hash": "e5702c48980d83ad77f15028d6ca8d50"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Controls\\TreeView\\TreeFeedsNodeBase.cs": {
+    "mtime": 1781251032.6819603,
+    "ast_hash": "37c51e678c8d1e8953c2f502c0ea0be7",
+    "semantic_hash": "37c51e678c8d1e8953c2f502c0ea0be7"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Controls\\TreeView\\TreeFeedsNodeGroupHeaderPainter.cs": {
+    "mtime": 1781251032.6819603,
+    "ast_hash": "fa81b70e199eb0469274b3af79b7f3b5",
+    "semantic_hash": "fa81b70e199eb0469274b3af79b7f3b5"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Controls\\TreeView\\TreeFeedsNodeImplementations.cs": {
+    "mtime": 1781251032.6819603,
+    "ast_hash": "df4bddc49e4b1398d4cbc1f14db3890f",
+    "semantic_hash": "df4bddc49e4b1398d4cbc1f14db3890f"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Controls\\TreeView\\TreeHelper.cs": {
+    "mtime": 1781251032.6819603,
+    "ast_hash": "ffdae06b7a5e824b8f3dbd25a475025a",
+    "semantic_hash": "ffdae06b7a5e824b8f3dbd25a475025a"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Controls\\TreeView\\UltraTreeExtended.cs": {
+    "mtime": 1781251032.6819603,
+    "ast_hash": "83d722e57d026579fda610787b73be4d",
+    "semantic_hash": "83d722e57d026579fda610787b73be4d"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Controls\\UltraToolTipContextHelperBase.cs": {
+    "mtime": 1781251032.6819603,
+    "ast_hash": "17dfa0a886d7dda2d7bc4d21ddec5b39",
+    "semantic_hash": "17dfa0a886d7dda2d7bc4d21ddec5b39"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Controls\\VerticalHeaderLabel.cs": {
+    "mtime": 1781251032.6819603,
+    "ast_hash": "1ff8ce090f360bc1e60cb8d8db843a11",
+    "semantic_hash": "1ff8ce090f360bc1e60cb8d8db843a11"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Controls\\WindowSerializer.cs": {
+    "mtime": 1781251032.6819603,
+    "ast_hash": "ed5f96073032f3c2b771ddbdb64e8fdb",
+    "semantic_hash": "ed5f96073032f3c2b771ddbdb64e8fdb"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Dialogs\\AddSubscriptionWizard.Designer.cs": {
+    "mtime": 1781251032.6819603,
+    "ast_hash": "e004318c194f24b5cf1ac09ea8048f33",
+    "semantic_hash": "e004318c194f24b5cf1ac09ea8048f33"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Dialogs\\AddSubscriptionWizard.cs": {
+    "mtime": 1781251032.6990478,
+    "ast_hash": "2bc5fa32fa21314e20be35d3d7e9706c",
+    "semantic_hash": "2bc5fa32fa21314e20be35d3d7e9706c"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Dialogs\\AskForDefaultAggregator.cs": {
+    "mtime": 1781251032.7129154,
+    "ast_hash": "5ea4029271f78f2a6a32c7145484e079",
+    "semantic_hash": "5ea4029271f78f2a6a32c7145484e079"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Dialogs\\CategoryProperties.Designer.cs": {
+    "mtime": 1781251032.7285297,
+    "ast_hash": "4337f12503cb30e2271e9b0c1eff9295",
+    "semantic_hash": "4337f12503cb30e2271e9b0c1eff9295"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Dialogs\\CategoryProperties.cs": {
+    "mtime": 1781251032.7285297,
+    "ast_hash": "ab70090e1d74905db0f4585be52907f2",
+    "semantic_hash": "ab70090e1d74905db0f4585be52907f2"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Dialogs\\DR.Designer.cs": {
+    "mtime": 1781251032.7441678,
+    "ast_hash": "69c93a41e0cbb0ab050b8add6992ade3",
+    "semantic_hash": "69c93a41e0cbb0ab050b8add6992ade3"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Dialogs\\DialogBase.cs": {
+    "mtime": 1781251032.7598772,
+    "ast_hash": "39964a30e835d6efadf0589f83d521aa",
+    "semantic_hash": "39964a30e835d6efadf0589f83d521aa"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Dialogs\\DiscoveredFeedsDialog.cs": {
+    "mtime": 1781251032.7756672,
+    "ast_hash": "54290ff75a117f6bf8fb43ec2958352a",
+    "semantic_hash": "54290ff75a117f6bf8fb43ec2958352a"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Dialogs\\DownloadManagerWindow.xaml.cs": {
+    "mtime": 1781251032.7910976,
+    "ast_hash": "d917b88b4929b20cdbbe8e320bec0018",
+    "semantic_hash": "d917b88b4929b20cdbbe8e320bec0018"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Dialogs\\EntertainmentDialog.cs": {
+    "mtime": 1781251032.7910976,
+    "ast_hash": "b96c1f7c58ed3d82d7b90bea37858013",
+    "semantic_hash": "b96c1f7c58ed3d82d7b90bea37858013"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Dialogs\\ExportFeedsDialog.Designer.cs": {
+    "mtime": 1781251032.8087986,
+    "ast_hash": "364f6d9e2c0fa498a356bb70ddd6a281",
+    "semantic_hash": "364f6d9e2c0fa498a356bb70ddd6a281"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Dialogs\\ExportFeedsDialog.cs": {
+    "mtime": 1781251032.8087986,
+    "ast_hash": "0601dd0231eb1ac8776935907c4a1677",
+    "semantic_hash": "0601dd0231eb1ac8776935907c4a1677"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Dialogs\\FeedFileContentSourceDialog.cs": {
+    "mtime": 1781251032.8108048,
+    "ast_hash": "ec3c9f6199dd4944ad7b921824d6cd5e",
+    "semantic_hash": "ec3c9f6199dd4944ad7b921824d6cd5e"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Dialogs\\FeedProperties.Designer.cs": {
+    "mtime": 1781251032.8128097,
+    "ast_hash": "0a74763b47ee1663dd903d10f9e07ca2",
+    "semantic_hash": "0a74763b47ee1663dd903d10f9e07ca2"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Dialogs\\FeedProperties.cs": {
+    "mtime": 1781251032.8128097,
+    "ast_hash": "2b371e765ae7e945a8ab1ff4bba6ee8d",
+    "semantic_hash": "2b371e765ae7e945a8ab1ff4bba6ee8d"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Dialogs\\FeedSourceProperties.Designer.cs": {
+    "mtime": 1781251032.8148153,
+    "ast_hash": "b077b5edbb1055d6b9acde365ac1d230",
+    "semantic_hash": "b077b5edbb1055d6b9acde365ac1d230"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Dialogs\\FeedSourceProperties.cs": {
+    "mtime": 1781251032.8168206,
+    "ast_hash": "a861d787256392da7148669dce9749dc",
+    "semantic_hash": "a861d787256392da7148669dce9749dc"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Dialogs\\ImportFeedsDialog.cs": {
+    "mtime": 1781251032.8188257,
+    "ast_hash": "3523e07b4fee50a7208b1b74ea1aeb5c",
+    "semantic_hash": "3523e07b4fee50a7208b1b74ea1aeb5c"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Dialogs\\ManageAddInDialog.cs": {
+    "mtime": 1781251032.8239245,
+    "ast_hash": "b680e4b3f7f265ab7647d056e5067732",
+    "semantic_hash": "b680e4b3f7f265ab7647d056e5067732"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Dialogs\\PodcastOptionsDialog.cs": {
+    "mtime": 1781251032.838053,
+    "ast_hash": "a336f1651a0131980a541856e9456985",
+    "semantic_hash": "a336f1651a0131980a541856e9456985"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Dialogs\\PostReplyForm.Designer.cs": {
+    "mtime": 1781251032.838053,
+    "ast_hash": "dbde724253b21d68c9aa770dba60c75d",
+    "semantic_hash": "dbde724253b21d68c9aa770dba60c75d"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Dialogs\\PostReplyForm.cs": {
+    "mtime": 1781251032.8534877,
+    "ast_hash": "2ec4b23c5e09ccb4d25fa10f1dcae059",
+    "semantic_hash": "2ec4b23c5e09ccb4d25fa10f1dcae059"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Dialogs\\PreferencesDialog.Designer.cs": {
+    "mtime": 1781251032.8659992,
+    "ast_hash": "a494ca08d054bffc2f8c2d78ab308c6f",
+    "semantic_hash": "a494ca08d054bffc2f8c2d78ab308c6f"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Dialogs\\PreferencesDialog.cs": {
+    "mtime": 1781251032.869221,
+    "ast_hash": "f1e8148cce3b4a637e9a83dd68d6ae71",
+    "semantic_hash": "f1e8148cce3b4a637e9a83dd68d6ae71"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Dialogs\\SearchEngineProperties.cs": {
+    "mtime": 1781251032.88473,
+    "ast_hash": "15ed7d3a40357d4e476e52cd58e08003",
+    "semantic_hash": "15ed7d3a40357d4e476e52cd58e08003"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Dialogs\\SecurityIssueDialog.Designer.cs": {
+    "mtime": 1781251032.9003558,
+    "ast_hash": "89cc9f43b319cc1679f17aca914e9fde",
+    "semantic_hash": "89cc9f43b319cc1679f17aca914e9fde"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Dialogs\\SecurityIssueDialog.cs": {
+    "mtime": 1781251032.9023674,
+    "ast_hash": "d362fb167424043b491fb4b98dc178fe",
+    "semantic_hash": "d362fb167424043b491fb4b98dc178fe"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Dialogs\\SynchronizeFeedsWizard.cs": {
+    "mtime": 1781251032.9220707,
+    "ast_hash": "f3683ab679c625667691e3a24a68227e",
+    "semantic_hash": "f3683ab679c625667691e3a24a68227e"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\DisplayingNewsChannelProcessor.cs": {
+    "mtime": 1781251032.938005,
+    "ast_hash": "526e14def3dfc896cef20d104dcbcb09",
+    "semantic_hash": "526e14def3dfc896cef20d104dcbcb09"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\EntertainmentThreadHandlerBase.cs": {
+    "mtime": 1781251032.940015,
+    "ast_hash": "46f3a5d6ff053b14c7905641c682a307",
+    "semantic_hash": "46f3a5d6ff053b14c7905641c682a307"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Forms\\ControlHelpers\\IdleTask.cs": {
+    "mtime": 1781251032.9420223,
+    "ast_hash": "36769b3cac5eb96b469545e223619116",
+    "semantic_hash": "36769b3cac5eb96b469545e223619116"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Forms\\ControlHelpers\\ToolbarHelper.cs": {
+    "mtime": 1781251032.9420223,
+    "ast_hash": "a3c413deb3f168a84b8a219c7ee76f66",
+    "semantic_hash": "a3c413deb3f168a84b8a219c7ee76f66"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Forms\\Enums.cs": {
+    "mtime": 1781251032.9440312,
+    "ast_hash": "8afd18bbdc27f456aa866340d0d8489c",
+    "semantic_hash": "8afd18bbdc27f456aa866340d0d8489c"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Forms\\NewsGroupsConfiguration.Designer.cs": {
+    "mtime": 1781251032.946041,
+    "ast_hash": "1bc203b6d9370c397cd084ef774ba545",
+    "semantic_hash": "1bc203b6d9370c397cd084ef774ba545"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Forms\\NewsGroupsConfiguration.cs": {
+    "mtime": 1781251032.9485455,
+    "ast_hash": "2e7583cfd252f2bda7566c8891713e98",
+    "semantic_hash": "2e7583cfd252f2bda7566c8891713e98"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Forms\\SplashScreen.Designer.cs": {
+    "mtime": 1781251032.970876,
+    "ast_hash": "be20ce4b3c4d92342dd26c84632cde1e",
+    "semantic_hash": "be20ce4b3c4d92342dd26c84632cde1e"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Forms\\SplashScreen.cs": {
+    "mtime": 1781251032.971879,
+    "ast_hash": "d6521f189286f4978604f06ecd8c762f",
+    "semantic_hash": "d6521f189286f4978604f06ecd8c762f"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Forms\\WinGUIMain.cs": {
+    "mtime": 1781251032.9738743,
+    "ast_hash": "0f83e71ef67d638e831c5e66dd5e4471",
+    "semantic_hash": "0f83e71ef67d638e831c5e66dd5e4471"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Forms\\WinGuiMain.Callbacks.cs": {
+    "mtime": 1781251032.9783797,
+    "ast_hash": "83e33de1a81e14ba9e4da81dfa815e13",
+    "semantic_hash": "83e33de1a81e14ba9e4da81dfa815e13"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Forms\\WinGuiMain.Helpers.cs": {
+    "mtime": 1781251032.9834316,
+    "ast_hash": "899cb33c7d943b806e68b9f1d38a2561",
+    "semantic_hash": "899cb33c7d943b806e68b9f1d38a2561"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Forms\\WinGuiMain.Init.cs": {
+    "mtime": 1781251032.9844427,
+    "ast_hash": "78dacb4582c4c779c369dca2147f5a0c",
+    "semantic_hash": "78dacb4582c4c779c369dca2147f5a0c"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Forms\\WinGuiMain.OwnerInteraction.cs": {
+    "mtime": 1781251032.9864297,
+    "ast_hash": "00d9c84c77d99ff98ab0e2d218ddccba",
+    "semantic_hash": "00d9c84c77d99ff98ab0e2d218ddccba"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Forms\\WinGuiMain.UITaskTimer.cs": {
+    "mtime": 1781251032.9874318,
+    "ast_hash": "5c65170b333e5b990f98093869132493",
+    "semantic_hash": "5c65170b333e5b990f98093869132493"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Genghis\\CursorChanger.cs": {
+    "mtime": 1781251032.98943,
+    "ast_hash": "f91b59d970496c7f63852cf48cb242ea",
+    "semantic_hash": "f91b59d970496c7f63852cf48cb242ea"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Genghis\\Preferences.cs": {
+    "mtime": 1781251032.9915788,
+    "ast_hash": "7521aa3d117acda1e707a7738eff61b5",
+    "semantic_hash": "7521aa3d117acda1e707a7738eff61b5"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\GuiStateManager.cs": {
+    "mtime": 1781251032.9921107,
+    "ast_hash": "76675d5ae9df80a914ee9ba829668805",
+    "semantic_hash": "76675d5ae9df80a914ee9ba829668805"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\HttpRequestFileThreadHandler.cs": {
+    "mtime": 1781251032.9926438,
+    "ast_hash": "0c4a1ce5a7c49089c821a1e51c86577b",
+    "semantic_hash": "0c4a1ce5a7c49089c821a1e51c86577b"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Interfaces.cs": {
+    "mtime": 1781251032.993703,
+    "ast_hash": "b1bfb549c430fdf8f0d50518ec3c8b08",
+    "semantic_hash": "b1bfb549c430fdf8f0d50518ec3c8b08"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Keyboard\\ShortcutHandler.cs": {
+    "mtime": 1781251032.9948118,
+    "ast_hash": "1ec18045e85457d80d51437f33135624",
+    "semantic_hash": "1ec18045e85457d80d51437f33135624"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\MenuExtensions.cs": {
+    "mtime": 1781251032.995344,
+    "ast_hash": "2cd0f1044aedffdb68eddcc92f1627aa",
+    "semantic_hash": "2cd0f1044aedffdb68eddcc92f1627aa"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\PostReplyThreadHandler.cs": {
+    "mtime": 1781251032.9964082,
+    "ast_hash": "a1671d43fd36d4d734833a829cd1ef4f",
+    "semantic_hash": "a1671d43fd36d4d734833a829cd1ef4f"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\PrefetchFeedThreadHandler.cs": {
+    "mtime": 1781251032.9969478,
+    "ast_hash": "e692fe67a3a0b3ae090fab067638bb30",
+    "semantic_hash": "e692fe67a3a0b3ae090fab067638bb30"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\RemoteFeedlistThreadHandler.cs": {
+    "mtime": 1781251032.9980793,
+    "ast_hash": "390e43ea9799165ad6814e849d0ac1b6",
+    "semantic_hash": "390e43ea9799165ad6814e849d0ac1b6"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\ToastNotifier.cs": {
+    "mtime": 1781251032.9996846,
+    "ast_hash": "e706fd8ee6d4cffdd1578dec5539165e",
+    "semantic_hash": "e706fd8ee6d4cffdd1578dec5539165e"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\TopStoriesThreadHandler.cs": {
+    "mtime": 1781251033.0002098,
+    "ast_hash": "6f73b8d8f583276cd6a06dd507e3a8a6",
+    "semantic_hash": "6f73b8d8f583276cd6a06dd507e3a8a6"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\TrayStateManager.cs": {
+    "mtime": 1781251033.0007412,
+    "ast_hash": "95fe12a255b6e46046b3af1be38daf6d",
+    "semantic_hash": "95fe12a255b6e46046b3af1be38daf6d"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Utility\\ClipboardHelper.cs": {
+    "mtime": 1781251033.0021932,
+    "ast_hash": "482b1305c2f7527505b2d703ab177368",
+    "semantic_hash": "482b1305c2f7527505b2d703ab177368"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Utility\\ColorEx.cs": {
+    "mtime": 1781251033.0027208,
+    "ast_hash": "f45464e8e4f84e1056f656a860ea936f",
+    "semantic_hash": "f45464e8e4f84e1056f656a860ea936f"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Utility\\CommandMediator.cs": {
+    "mtime": 1781251033.003729,
+    "ast_hash": "9ba97b99935604cdfab765e0056f263f",
+    "semantic_hash": "9ba97b99935604cdfab765e0056f263f"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Utility\\FaviconCache.cs": {
+    "mtime": 1781251033.003729,
+    "ast_hash": "19f7c8ab081839af72071c903cf8117c",
+    "semantic_hash": "19f7c8ab081839af72071c903cf8117c"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Utility\\FontColorHelper.cs": {
+    "mtime": 1781251033.0047295,
+    "ast_hash": "7a7fa890639f3730db087de3006562a1",
+    "semantic_hash": "7a7fa890639f3730db087de3006562a1"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Utility\\ImageExtensions.cs": {
+    "mtime": 1781251033.0057302,
+    "ast_hash": "8f0426fababe6b2d0c15d0bb6bf1a131",
+    "semantic_hash": "8f0426fababe6b2d0c15d0bb6bf1a131"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Utility\\NavigationHistory.cs": {
+    "mtime": 1781251033.0067296,
+    "ast_hash": "7eb3f8fef64a2da01d7ecbd0d9ca7be7",
+    "semantic_hash": "7eb3f8fef64a2da01d7ecbd0d9ca7be7"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Utility\\RssItemFormatter.cs": {
+    "mtime": 1781251033.0077279,
+    "ast_hash": "62be78649b131a4170cde38f00e9d32d",
+    "semantic_hash": "62be78649b131a4170cde38f00e9d32d"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Utility\\Settings.cs": {
+    "mtime": 1781251033.00873,
+    "ast_hash": "b63b6990054db294ad8eeb77531ac5c9",
+    "semantic_hash": "b63b6990054db294ad8eeb77531ac5c9"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Utility\\WheelSupport.cs": {
+    "mtime": 1781251033.009729,
+    "ast_hash": "1ba7cd370622dd62154df539d9f8d9a4",
+    "semantic_hash": "1ba7cd370622dd62154df539d9f8d9a4"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Utility\\Win32.cs": {
+    "mtime": 1781251033.0108316,
+    "ast_hash": "cf1a60532db4ec7e0cab0705829cac67",
+    "semantic_hash": "cf1a60532db4ec7e0cab0705829cac67"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Utility\\WinGUIWidgetHelpers.cs": {
+    "mtime": 1781251033.0120595,
+    "ast_hash": "498616836ded3ab9c2668b78ceef2cf7",
+    "semantic_hash": "498616836ded3ab9c2668b78ceef2cf7"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Utility\\WinInetAPI.cs": {
+    "mtime": 1781251033.0130599,
+    "ast_hash": "d6f6aec575d6ec4dc57cdeec8a052293",
+    "semantic_hash": "d6f6aec575d6ec4dc57cdeec8a052293"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Xml\\Namespaces.cs": {
+    "mtime": 1781251033.0140593,
+    "ast_hash": "d95113f9b5f5d182e5b42d1d68a5eae5",
+    "semantic_hash": "d95113f9b5f5d182e5b42d1d68a5eae5"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\BlogExtension.Plugins - 2008.sln": {
+    "mtime": 1781251033.0170593,
+    "ast_hash": "75165d83b0a230c013f45cd1e2ec9aee",
+    "semantic_hash": "75165d83b0a230c013f45cd1e2ec9aee"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\BlogExtension.Plugins.sln": {
+    "mtime": 1781251033.0180583,
+    "ast_hash": "c69aea3b6806f6e70014519502590670",
+    "semantic_hash": "c69aea3b6806f6e70014519502590670"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\BlogThis.LiveWriter\\AssemblyInfo.cs": {
+    "mtime": 1781251033.0190594,
+    "ast_hash": "4296a64053f3bd4aa416d277e49e67ce",
+    "semantic_hash": "4296a64053f3bd4aa416d277e49e67ce"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\BlogThis.LiveWriter\\BlogThis.LiveWriter.csproj": {
+    "mtime": 1781251033.0200605,
+    "ast_hash": "4089274485514361a893cc50d690e7a4",
+    "semantic_hash": "4089274485514361a893cc50d690e7a4"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\BlogThis.LiveWriter\\BlogThis.sln": {
+    "mtime": 1781251033.0200605,
+    "ast_hash": "b0cb3b1cac0db06fefaf78af9343dce1",
+    "semantic_hash": "b0cb3b1cac0db06fefaf78af9343dce1"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\BlogThis.LiveWriter\\BlogThisUsingLiveWriterPlugin.cs": {
+    "mtime": 1781251033.0210602,
+    "ast_hash": "9d31932a0c83fd03d1089b371562761e",
+    "semantic_hash": "9d31932a0c83fd03d1089b371562761e"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\BlogThis.LiveWriter\\Resources\\Resource.cs": {
+    "mtime": 1781251033.0220604,
+    "ast_hash": "15d8662f0c290a9e334ef1d2ed690c5e",
+    "semantic_hash": "15d8662f0c290a9e334ef1d2ed690c5e"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\BlogThis.WBloggar\\AssemblyInfo.cs": {
+    "mtime": 1781251033.02306,
+    "ast_hash": "260cb1cb519e6acc2f3e8672969728c7",
+    "semantic_hash": "260cb1cb519e6acc2f3e8672969728c7"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\BlogThis.WBloggar\\BlogThis.WBloggar.csproj": {
+    "mtime": 1781251033.0240614,
+    "ast_hash": "38597f717fea1e1663a7e8eb502b03ff",
+    "semantic_hash": "38597f717fea1e1663a7e8eb502b03ff"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\BlogThis.WBloggar\\BlogThisUsingWBloggarPlugin.cs": {
+    "mtime": 1781251033.0250583,
+    "ast_hash": "785b767130d501d5330efbfd85f90e7a",
+    "semantic_hash": "785b767130d501d5330efbfd85f90e7a"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\BlogThis.WBloggar\\Resources\\Resource.cs": {
+    "mtime": 1781251033.0260613,
+    "ast_hash": "bff506a8d47ad8e1928df7a8616549fd",
+    "semantic_hash": "bff506a8d47ad8e1928df7a8616549fd"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\Delicious\\AssemblyInfo.cs": {
+    "mtime": 1781251033.0270708,
+    "ast_hash": "3078f939fea295d7c642cb97b62e788a",
+    "semantic_hash": "3078f939fea295d7c642cb97b62e788a"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\Delicious\\Delicious.csproj": {
+    "mtime": 1781251033.0280685,
+    "ast_hash": "0723ab412be09833fbb5c4b7822cd483",
+    "semantic_hash": "0723ab412be09833fbb5c4b7822cd483"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\Delicious\\DeliciousPlugin.cs": {
+    "mtime": 1781251033.029069,
+    "ast_hash": "09b54d6ed9b9b8c557c598f31373ee8b",
+    "semantic_hash": "09b54d6ed9b9b8c557c598f31373ee8b"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\Delicious\\DeliciousPluginConfigurationForm.cs": {
+    "mtime": 1781251033.0300684,
+    "ast_hash": "759d541b2bbe7d0cf19da649a89b3906",
+    "semantic_hash": "759d541b2bbe7d0cf19da649a89b3906"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\Delicious\\DeliciousPostForm.cs": {
+    "mtime": 1781251033.031072,
+    "ast_hash": "eefbd44a02e8d075fcee42521f5dee47",
+    "semantic_hash": "eefbd44a02e8d075fcee42521f5dee47"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\Delicious\\Resources\\Resource.cs": {
+    "mtime": 1781251033.033069,
+    "ast_hash": "782096fb7ef51c545259b5b4ff5f5daf",
+    "semantic_hash": "782096fb7ef51c545259b5b4ff5f5daf"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\IBlogExtensionsSolution\\AmphetaRatePlugin\\AmphetaRatePlugin.csproj": {
+    "mtime": 1781251033.0350683,
+    "ast_hash": "794513e2c041386fedb51f48aedf7cdf",
+    "semantic_hash": "794513e2c041386fedb51f48aedf7cdf"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\IBlogExtensionsSolution\\AmphetaRatePlugin\\AmphetaRateThis.cs": {
+    "mtime": 1781251033.0350683,
+    "ast_hash": "c54a8d9877e9431af06130611011b325",
+    "semantic_hash": "c54a8d9877e9431af06130611011b325"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\IBlogExtensionsSolution\\AmphetaRatePlugin\\AssemblyInfo.cs": {
+    "mtime": 1781251033.0360692,
+    "ast_hash": "30f13277ea8f426f9c2b8d3beee26096",
+    "semantic_hash": "30f13277ea8f426f9c2b8d3beee26096"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\IBlogExtensionsSolution\\AmphetaRatePlugin\\ConfigurationForm.cs": {
+    "mtime": 1781251033.0370677,
+    "ast_hash": "889c9333b314311be6cb216c618b1bdb",
+    "semantic_hash": "889c9333b314311be6cb216c618b1bdb"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\IBlogExtensionsSolution\\AmphetaRatePlugin\\RatingForm.cs": {
+    "mtime": 1781251033.0400703,
+    "ast_hash": "2f798af53ec7ab8703ef95fc4c32e6cf",
+    "semantic_hash": "2f798af53ec7ab8703ef95fc4c32e6cf"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\IBlogExtensionsSolution\\BlogThisUsingWBloggarPlugin\\AssemblyInfo.cs": {
+    "mtime": 1781251033.0410686,
+    "ast_hash": "b8db9d99409e78adcc49fc14ddd42c00",
+    "semantic_hash": "b8db9d99409e78adcc49fc14ddd42c00"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\IBlogExtensionsSolution\\BlogThisUsingWBloggarPlugin\\BlogThisUsingWBloggarPlugin.cs": {
+    "mtime": 1781251033.0410686,
+    "ast_hash": "2b2bf11c1ff44076b7fdfc5e1e0a8dc8",
+    "semantic_hash": "2b2bf11c1ff44076b7fdfc5e1e0a8dc8"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\IBlogExtensionsSolution\\BlogThisUsingWBloggarPlugin\\BlogThisUsingWBloggarPlugin.csproj": {
+    "mtime": 1781251033.0410686,
+    "ast_hash": "85a0310788b3b796026fb2a8282b3353",
+    "semantic_hash": "85a0310788b3b796026fb2a8282b3353"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\IBlogExtensionsSolution\\BlogThisUsingWBloggarPlugin\\ConfigurationForm.cs": {
+    "mtime": 1781251033.0410686,
+    "ast_hash": "f6c944634b9084e51f777a94cb43b1c8",
+    "semantic_hash": "f6c944634b9084e51f777a94cb43b1c8"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\IBlogExtensionsSolution\\IBlogExtensionsSolution.sln": {
+    "mtime": 1781251033.0410686,
+    "ast_hash": "85719ce2f942cbe3f37de9f76348024e",
+    "semantic_hash": "85719ce2f942cbe3f37de9f76348024e"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\MailThis\\AssemblyInfo.cs": {
+    "mtime": 1781251033.0410686,
+    "ast_hash": "26c9a3db0f4a7a685f62b359519d78b1",
+    "semantic_hash": "26c9a3db0f4a7a685f62b359519d78b1"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\MailThis\\EmailThisPlugin.cs": {
+    "mtime": 1781251033.0410686,
+    "ast_hash": "99f607e1532989dd481b72d42d88f6bb",
+    "semantic_hash": "99f607e1532989dd481b72d42d88f6bb"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\MailThis\\MailThis.csproj": {
+    "mtime": 1781251033.0410686,
+    "ast_hash": "d4b7087af137aae73e7a30990af1bd84",
+    "semantic_hash": "d4b7087af137aae73e7a30990af1bd84"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\MailThis\\Resources\\Resource.cs": {
+    "mtime": 1781251033.0410686,
+    "ast_hash": "70c18b037f85ad438159b764690ea7e9",
+    "semantic_hash": "70c18b037f85ad438159b764690ea7e9"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\OneNote\\AssemblyInfo.cs": {
+    "mtime": 1781251033.0410686,
+    "ast_hash": "2f2b18a42d51b1e905d511875af017ac",
+    "semantic_hash": "2f2b18a42d51b1e905d511875af017ac"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\OneNote\\HtmlHelper.cs": {
+    "mtime": 1781251033.0410686,
+    "ast_hash": "01646162effb704afad79d045e70aab5",
+    "semantic_hash": "01646162effb704afad79d045e70aab5"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\OneNote\\OneNote.csproj": {
+    "mtime": 1781251033.0410686,
+    "ast_hash": "a49a1a37924433b9730b9c20c01db969",
+    "semantic_hash": "a49a1a37924433b9730b9c20c01db969"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\OneNote\\OneNoteImporter\\src\\OneNote.sln": {
+    "mtime": 1781251033.065578,
+    "ast_hash": "b55db1b68a2a1a4bc4eb56ff62d6a18b",
+    "semantic_hash": "b55db1b68a2a1a4bc4eb56ff62d6a18b"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\OneNote\\OneNoteImporter\\src\\OneNote\\Application.cs": {
+    "mtime": 1781251033.067165,
+    "ast_hash": "52bb71f3847540f3fefdd697b43c60ba",
+    "semantic_hash": "52bb71f3847540f3fefdd697b43c60ba"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\OneNote\\OneNoteImporter\\src\\OneNote\\AssemblyInfo.cs": {
+    "mtime": 1781251033.0676959,
+    "ast_hash": "be38cac5b3d9f9ee208b17b1bf886577",
+    "semantic_hash": "be38cac5b3d9f9ee208b17b1bf886577"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\OneNote\\OneNoteImporter\\src\\OneNote\\Data.cs": {
+    "mtime": 1781251033.068221,
+    "ast_hash": "409d83d3a31d70d87db9b17f80111e22",
+    "semantic_hash": "409d83d3a31d70d87db9b17f80111e22"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\OneNote\\OneNoteImporter\\src\\OneNote\\Html.cs": {
+    "mtime": 1781251033.068221,
+    "ast_hash": "dc505be910bca426d9add444303242fb",
+    "semantic_hash": "dc505be910bca426d9add444303242fb"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\OneNote\\OneNoteImporter\\src\\OneNote\\Image.cs": {
+    "mtime": 1781251033.068221,
+    "ast_hash": "fb564336abfdf4247be155bbea9264be",
+    "semantic_hash": "fb564336abfdf4247be155bbea9264be"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\OneNote\\OneNoteImporter\\src\\OneNote\\ImportException.cs": {
+    "mtime": 1781251033.068221,
+    "ast_hash": "569ba4f672d5d202f988720ff8eaf3ff",
+    "semantic_hash": "569ba4f672d5d202f988720ff8eaf3ff"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\OneNote\\OneNoteImporter\\src\\OneNote\\ImportNode.cs": {
+    "mtime": 1781251033.068221,
+    "ast_hash": "2be3ed8a9b2de6794615e0f0cee04d45",
+    "semantic_hash": "2be3ed8a9b2de6794615e0f0cee04d45"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\OneNote\\OneNoteImporter\\src\\OneNote\\Ink.cs": {
+    "mtime": 1781251033.0722303,
+    "ast_hash": "8ff36fde6e5ff7258f677538749923b9",
+    "semantic_hash": "8ff36fde6e5ff7258f677538749923b9"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\OneNote\\OneNoteImporter\\src\\OneNote\\NamespaceDoc.cs": {
+    "mtime": 1781251033.0722303,
+    "ast_hash": "1f1ef3dffb721fb65de9833196f02faf",
+    "semantic_hash": "1f1ef3dffb721fb65de9833196f02faf"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\OneNote\\OneNoteImporter\\src\\OneNote\\NativeMethods.cs": {
+    "mtime": 1781251033.0722303,
+    "ast_hash": "9e9818e16e68bea052a38db265df909d",
+    "semantic_hash": "9e9818e16e68bea052a38db265df909d"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\OneNote\\OneNoteImporter\\src\\OneNote\\ObjectId.cs": {
+    "mtime": 1781251033.0722303,
+    "ast_hash": "057db07a862a88cd9c80733c3bc8e8c9",
+    "semantic_hash": "057db07a862a88cd9c80733c3bc8e8c9"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\OneNote\\OneNoteImporter\\src\\OneNote\\OneNote.csproj": {
+    "mtime": 1781251033.0722303,
+    "ast_hash": "8ed82253b90047e86d18d499adafb120",
+    "semantic_hash": "8ed82253b90047e86d18d499adafb120"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\OneNote\\OneNoteImporter\\src\\OneNote\\Outline.cs": {
+    "mtime": 1781251033.0722303,
+    "ast_hash": "2e8c28e620892fe6f2a60545ec503dde",
+    "semantic_hash": "2e8c28e620892fe6f2a60545ec503dde"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\OneNote\\OneNoteImporter\\src\\OneNote\\Page.cs": {
+    "mtime": 1781251033.0722303,
+    "ast_hash": "deb02b68e2900410b2a2ecee0b84855f",
+    "semantic_hash": "deb02b68e2900410b2a2ecee0b84855f"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\OneNote\\OneNoteImporter\\src\\OneNote\\PageObject.cs": {
+    "mtime": 1781251033.0722303,
+    "ast_hash": "57d5e78f71f46ed20d5a43878f89b510",
+    "semantic_hash": "57d5e78f71f46ed20d5a43878f89b510"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\OneNote\\OneNoteImporter\\src\\OneNote\\Position.cs": {
+    "mtime": 1781251033.0722303,
+    "ast_hash": "48e9ca372c62430017d2f69fff72cc72",
+    "semantic_hash": "48e9ca372c62430017d2f69fff72cc72"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\OneNote\\OneNoteImporter\\src\\OneNote\\SimpleImporter.cs": {
+    "mtime": 1781251033.0722303,
+    "ast_hash": "9501f04bd3d86858cf5189aa06c6ac8e",
+    "semantic_hash": "9501f04bd3d86858cf5189aa06c6ac8e"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\OneNote\\OneNoteImporter\\src\\OneNote\\Size.cs": {
+    "mtime": 1781251033.0722303,
+    "ast_hash": "7dc98c9bc65c65cc9fb8911682de5e2d",
+    "semantic_hash": "7dc98c9bc65c65cc9fb8911682de5e2d"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\OneNote\\OneNoteImporter\\src\\OneNote\\UnitConversions.cs": {
+    "mtime": 1781251033.0722303,
+    "ast_hash": "4e2132aae28467e49f72e014bf36d2d0",
+    "semantic_hash": "4e2132aae28467e49f72e014bf36d2d0"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\OneNote\\OneNoteImporter\\src\\UnitTests\\ApplicationTest.cs": {
+    "mtime": 1781251033.0722303,
+    "ast_hash": "5eb1ccb53a2032eeef7cb8fd896dcaf5",
+    "semantic_hash": "5eb1ccb53a2032eeef7cb8fd896dcaf5"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\OneNote\\OneNoteImporter\\src\\UnitTests\\AssemblyInfo.cs": {
+    "mtime": 1781251033.0722303,
+    "ast_hash": "aa76560857747d97b0fbafe0c55b3d90",
+    "semantic_hash": "aa76560857747d97b0fbafe0c55b3d90"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\OneNote\\OneNoteImporter\\src\\UnitTests\\ObjectIdTest.cs": {
+    "mtime": 1781251033.0722303,
+    "ast_hash": "e2f6d70876e317b4edd7fae5b739a8c5",
+    "semantic_hash": "e2f6d70876e317b4edd7fae5b739a8c5"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\OneNote\\OneNoteImporter\\src\\UnitTests\\PageTest.cs": {
+    "mtime": 1781251033.0722303,
+    "ast_hash": "06f613b715319db303049125a2ff4ea0",
+    "semantic_hash": "06f613b715319db303049125a2ff4ea0"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\OneNote\\OneNoteImporter\\src\\UnitTests\\SizeTest.cs": {
+    "mtime": 1781251033.0722303,
+    "ast_hash": "4b5a625fa4c2ff0fa3fd80113e33ad19",
+    "semantic_hash": "4b5a625fa4c2ff0fa3fd80113e33ad19"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\OneNote\\OneNoteImporter\\src\\UnitTests\\UnitTests.csproj": {
+    "mtime": 1781251033.0722303,
+    "ast_hash": "10750c0afb1fcfef2241855ef5a8fac7",
+    "semantic_hash": "10750c0afb1fcfef2241855ef5a8fac7"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\OneNote\\OneNotePlugin.cs": {
+    "mtime": 1781251033.0878756,
+    "ast_hash": "3fff1b0b8ac5ec9cffb6476c6bb3e77c",
+    "semantic_hash": "3fff1b0b8ac5ec9cffb6476c6bb3e77c"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\OneNote\\Resources\\Resource.cs": {
+    "mtime": 1781251033.0878756,
+    "ast_hash": "9ca4dd267835ed393011513b5e783bb8",
+    "semantic_hash": "9ca4dd267835ed393011513b5e783bb8"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\Shared\\BlogExtensionException.cs": {
+    "mtime": 1781251033.1023097,
+    "ast_hash": "4c163ee3e0b3bb0c499bd84f29e6eb2a",
+    "semantic_hash": "4c163ee3e0b3bb0c499bd84f29e6eb2a"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\Twitter\\AssemblyInfo.cs": {
+    "mtime": 1781251033.103314,
+    "ast_hash": "18d52b5cdfe28fda91ecc84ef2147f6e",
+    "semantic_hash": "18d52b5cdfe28fda91ecc84ef2147f6e"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\Twitter\\Resources\\Resource.cs": {
+    "mtime": 1781251033.103314,
+    "ast_hash": "7108d2dddef5b9b9a36515eb166766aa",
+    "semantic_hash": "7108d2dddef5b9b9a36515eb166766aa"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\Twitter\\Twitter.csproj": {
+    "mtime": 1781251033.103314,
+    "ast_hash": "84c9add9203a29786d9173ff41ca4a83",
+    "semantic_hash": "84c9add9203a29786d9173ff41ca4a83"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\Twitter\\TwitterPlugin.cs": {
+    "mtime": 1781251033.103314,
+    "ast_hash": "9df69bb2f654cfea2251663ca464e084",
+    "semantic_hash": "9df69bb2f654cfea2251663ca464e084"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\Twitter\\TwitterPluginConfigurationForm.cs": {
+    "mtime": 1781251033.103314,
+    "ast_hash": "d32835e9fa708e61a542324fd45fcf8c",
+    "semantic_hash": "d32835e9fa708e61a542324fd45fcf8c"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\Twitter\\TwitterPostForm.cs": {
+    "mtime": 1781251033.103314,
+    "ast_hash": "6057f9a63411b8ef8d451c5f5c78821a",
+    "semantic_hash": "6057f9a63411b8ef8d451c5f5c78821a"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\global.json": {
+    "mtime": 1781251033.1506743,
+    "ast_hash": "c2ca73001c9f15c45286848c401d74ef",
+    "semantic_hash": "c2ca73001c9f15c45286848c401d74ef"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\AddIn\\AdsBlocker\\Readme.txt": {
+    "mtime": 1781251031.2425232,
+    "ast_hash": "a7ae703b61c6a8569d95804297f63bfa",
+    "semantic_hash": "a7ae703b61c6a8569d95804297f63bfa"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\AddIn\\AdsBlocker\\ads.blacklist.txt": {
+    "mtime": 1781251031.2445233,
+    "ast_hash": "08e4751d46d4f1145080419546a85f32",
+    "semantic_hash": "08e4751d46d4f1145080419546a85f32"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\DiffPatchResources\\Readme.txt": {
+    "mtime": 1781251031.2653763,
+    "ast_hash": "0d452056b4f96c3c22087dc6e784139e",
+    "semantic_hash": "0d452056b4f96c3c22087dc6e784139e"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\IEControl\\license.txt": {
+    "mtime": 1781251031.2990685,
+    "ast_hash": "5ded7ba820f6c39371b704cf9d96621b",
+    "semantic_hash": "5ded7ba820f6c39371b704cf9d96621b"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\IEControl\\readme.txt": {
+    "mtime": 1781251031.3000662,
+    "ast_hash": "04e1981a58c94399838751a5d9db6581",
+    "semantic_hash": "04e1981a58c94399838751a5d9db6581"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents.UnitTests\\Resources\\WebRoot\\RssLocaterTestFiles\\GetRssAutoDiscoveryLinks.html": {
+    "mtime": 1781251031.4774594,
+    "ast_hash": "b3aa8d4dddb62082fce14f12d8a26a3c",
+    "semantic_hash": "b3aa8d4dddb62082fce14f12d8a26a3c"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents.UnitTests\\Resources\\WebRoot\\RssLocaterTestFiles\\GetRssFeedsForUrl.html": {
+    "mtime": 1781251031.4784584,
+    "ast_hash": "96c9a07eb94d1679c8c50476b9dcb6a3",
+    "semantic_hash": "96c9a07eb94d1679c8c50476b9dcb6a3"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\NewsComponents.UnitTests\\Resources\\WebRoot\\RssLocaterTestFiles\\NoFeeds.html": {
+    "mtime": 1781251031.4799707,
+    "ast_hash": "4cd993b6a4147f70839fbd879865358f",
+    "semantic_hash": "4cd993b6a4147f70839fbd879865358f"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit Installer\\LICENSE.txt": {
+    "mtime": 1781251031.7322984,
+    "ast_hash": "e42df8a68149059074be09a9db70b414",
+    "semantic_hash": "e42df8a68149059074be09a9db70b414"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit.UnitTests\\Resources\\WebRoot\\RssLocaterTestFiles\\GetRssAutoDiscoveryLinks.html": {
+    "mtime": 1781251032.3864558,
+    "ast_hash": "b3aa8d4dddb62082fce14f12d8a26a3c",
+    "semantic_hash": "b3aa8d4dddb62082fce14f12d8a26a3c"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit.UnitTests\\Resources\\WebRoot\\RssLocaterTestFiles\\GetRssFeedsForUrl.html": {
+    "mtime": 1781251032.3869998,
+    "ast_hash": "96c9a07eb94d1679c8c50476b9dcb6a3",
+    "semantic_hash": "96c9a07eb94d1679c8c50476b9dcb6a3"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit.UnitTests\\Resources\\WebRoot\\RssLocaterTestFiles\\NoFeeds.html": {
+    "mtime": 1781251032.3886504,
+    "ast_hash": "4cd993b6a4147f70839fbd879865358f",
+    "semantic_hash": "4cd993b6a4147f70839fbd879865358f"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\SandBar.license.txt": {
+    "mtime": 1781251032.635013,
+    "ast_hash": "2a7e47efd7d181be20d6ea69fe456711",
+    "semantic_hash": "2a7e47efd7d181be20d6ea69fe456711"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\SandDock.license.txt": {
+    "mtime": 1781251032.635013,
+    "ast_hash": "58674f0fbdcdce8fd8f626100829f0db",
+    "semantic_hash": "58674f0fbdcdce8fd8f626100829f0db"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\WinGui\\Genghis\\Info.txt": {
+    "mtime": 1781251032.9904299,
+    "ast_hash": "25ed571c0346b6ce5787d26da31c704e",
+    "semantic_hash": "25ed571c0346b6ce5787d26da31c704e"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\OneNote\\OneNote.Readme.txt": {
+    "mtime": 1781251033.0410686,
+    "ast_hash": "e86db1039b4d27fcadf8a2f29bdfe52b",
+    "semantic_hash": "e86db1039b4d27fcadf8a2f29bdfe52b"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\readme.txt": {
+    "mtime": 1781251033.103314,
+    "ast_hash": "9a52be4e9cf6e622abf59d2929b69a00",
+    "semantic_hash": "9a52be4e9cf6e622abf59d2929b69a00"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\ChildProjects\\Jumplist\\Jumplist\\Resources\\feed.discovered.16.png": {
+    "mtime": 1781251031.3100765,
+    "ast_hash": "513bd1fd97ae8567d2fef45d4fb470ac",
+    "semantic_hash": "513bd1fd97ae8567d2fef45d4fb470ac"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit Installer\\Feed Files\\feedster.gif": {
+    "mtime": 1781251031.7091818,
+    "ast_hash": "cb963bc97884c6428849225e4a5e935e",
+    "semantic_hash": "cb963bc97884c6428849225e4a5e935e"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit Installer\\Resources\\banner.jpg": {
+    "mtime": 1781251031.7377186,
+    "ast_hash": "b08a5225398f4b4080bbc78057ac6c4b",
+    "semantic_hash": "b08a5225398f4b4080bbc78057ac6c4b"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit Installer\\Resources\\banner.png": {
+    "mtime": 1781251031.7407193,
+    "ast_hash": "d325525828518faa3660d8833afdc60b",
+    "semantic_hash": "d325525828518faa3660d8833afdc60b"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit Installer\\Resources\\welcome.png": {
+    "mtime": 1781251031.7499883,
+    "ast_hash": "9147cce3dd9bd6743736a2505ed421e7",
+    "semantic_hash": "9147cce3dd9bd6743736a2505ed421e7"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit Installer\\Setup.Banner.jpg": {
+    "mtime": 1781251031.7571948,
+    "ast_hash": "dcd5d82ce2ddcc3a252353e31629f3db",
+    "semantic_hash": "dcd5d82ce2ddcc3a252353e31629f3db"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit.Package\\Assets\\LargeTile.scale-100.png": {
+    "mtime": 1781251032.3495874,
+    "ast_hash": "4367a8981061853683bf3c0f6344098d",
+    "semantic_hash": "4367a8981061853683bf3c0f6344098d"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit.Package\\Assets\\LargeTile.scale-200.png": {
+    "mtime": 1781251032.3505898,
+    "ast_hash": "af1acb31bf9b600a7ac61e4b8507f737",
+    "semantic_hash": "af1acb31bf9b600a7ac61e4b8507f737"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit.Package\\Assets\\SmallTile.scale-100.png": {
+    "mtime": 1781251032.3505898,
+    "ast_hash": "ae7a1f61fead216cbcdc693a0876e9fc",
+    "semantic_hash": "ae7a1f61fead216cbcdc693a0876e9fc"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit.Package\\Assets\\SmallTile.scale-200.png": {
+    "mtime": 1781251032.3515882,
+    "ast_hash": "0ecaa7dc8a60b8421a444afdcdd82f0a",
+    "semantic_hash": "0ecaa7dc8a60b8421a444afdcdd82f0a"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit.Package\\Assets\\Square150x150Logo.scale-100.png": {
+    "mtime": 1781251032.352587,
+    "ast_hash": "85917da1c914e8a634d42bf0e138e041",
+    "semantic_hash": "85917da1c914e8a634d42bf0e138e041"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit.Package\\Assets\\Square150x150Logo.scale-200.png": {
+    "mtime": 1781251032.354098,
+    "ast_hash": "b0e6621d997d65c6e9c3cef90f2c94ee",
+    "semantic_hash": "b0e6621d997d65c6e9c3cef90f2c94ee"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit.Package\\Assets\\Square44x44Logo.altform-unplated_targetsize-16.png": {
+    "mtime": 1781251032.3551495,
+    "ast_hash": "9a576826f1f8df42d60c8ff456a0878c",
+    "semantic_hash": "9a576826f1f8df42d60c8ff456a0878c"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit.Package\\Assets\\Square44x44Logo.altform-unplated_targetsize-256.png": {
+    "mtime": 1781251032.3562007,
+    "ast_hash": "6c741ea5e80654bd0daeef7f92c275fe",
+    "semantic_hash": "6c741ea5e80654bd0daeef7f92c275fe"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit.Package\\Assets\\Square44x44Logo.altform-unplated_targetsize-48.png": {
+    "mtime": 1781251032.3572433,
+    "ast_hash": "3c2b1620c60b898a662fe884619041f9",
+    "semantic_hash": "3c2b1620c60b898a662fe884619041f9"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit.Package\\Assets\\Square44x44Logo.scale-100.png": {
+    "mtime": 1781251032.3577724,
+    "ast_hash": "8ce60c0bcc9106832a8f6347b43d7a73",
+    "semantic_hash": "8ce60c0bcc9106832a8f6347b43d7a73"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit.Package\\Assets\\Square44x44Logo.scale-200.png": {
+    "mtime": 1781251032.3582954,
+    "ast_hash": "df16e2fa346f14f49718ac1deb899ecc",
+    "semantic_hash": "df16e2fa346f14f49718ac1deb899ecc"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit.Package\\Assets\\Square44x44Logo.targetsize-16.png": {
+    "mtime": 1781251032.3588252,
+    "ast_hash": "aa38fe0d222faaeee2a739e497e86635",
+    "semantic_hash": "aa38fe0d222faaeee2a739e497e86635"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit.Package\\Assets\\Square44x44Logo.targetsize-256.png": {
+    "mtime": 1781251032.3604102,
+    "ast_hash": "3e508d6eecca710f5a59f3f156b74e97",
+    "semantic_hash": "3e508d6eecca710f5a59f3f156b74e97"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit.Package\\Assets\\Square44x44Logo.targetsize-48.png": {
+    "mtime": 1781251032.360936,
+    "ast_hash": "51404e700b4b05829cfbae61c8d1ddf7",
+    "semantic_hash": "51404e700b4b05829cfbae61c8d1ddf7"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit.Package\\Assets\\app.png": {
+    "mtime": 1781251032.3619938,
+    "ast_hash": "21f4db72f80b7245f6ca77317e199ab6",
+    "semantic_hash": "21f4db72f80b7245f6ca77317e199ab6"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit.Package\\Assets\\splashscreen.scale-100.png": {
+    "mtime": 1781251032.3630462,
+    "ast_hash": "03baf73e80acf82e1eba47a5bb042bc7",
+    "semantic_hash": "03baf73e80acf82e1eba47a5bb042bc7"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit.Package\\Assets\\splashscreen.scale-200.png": {
+    "mtime": 1781251032.3641,
+    "ast_hash": "0370ee76934c56f86803aaba4b6db6d4",
+    "semantic_hash": "0370ee76934c56f86803aaba4b6db6d4"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit.Package\\Assets\\storelogo.scale-100.png": {
+    "mtime": 1781251032.3646278,
+    "ast_hash": "5564f241e2342fd3687161418017a175",
+    "semantic_hash": "5564f241e2342fd3687161418017a175"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit.Package\\Assets\\storelogo.scale-200.png": {
+    "mtime": 1781251032.3656101,
+    "ast_hash": "081bf65424c4e72b1519156100528538",
+    "semantic_hash": "081bf65424c4e72b1519156100528538"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Resources\\2003Comment.png": {
+    "mtime": 1781251032.5361512,
+    "ast_hash": "5a62c82bc55cd399222592b5a8a1441f",
+    "semantic_hash": "5a62c82bc55cd399222592b5a8a1441f"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Resources\\2003Left.png": {
+    "mtime": 1781251032.5410185,
+    "ast_hash": "4f37ee5447e488722c363f9df353a6f4",
+    "semantic_hash": "4f37ee5447e488722c363f9df353a6f4"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Resources\\2003Minus.gif": {
+    "mtime": 1781251032.5430262,
+    "ast_hash": "bdfbb64af4b730645d2a8acf50743f94",
+    "semantic_hash": "bdfbb64af4b730645d2a8acf50743f94"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Resources\\2003Plus.gif": {
+    "mtime": 1781251032.5430262,
+    "ast_hash": "47c9c0166801e3fea1aeff80ffe771cf",
+    "semantic_hash": "47c9c0166801e3fea1aeff80ffe771cf"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Resources\\2003Right.png": {
+    "mtime": 1781251032.5430262,
+    "ast_hash": "b865399a6f6e00c275017cbbac756440",
+    "semantic_hash": "b865399a6f6e00c275017cbbac756440"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Resources\\AllToolImages.png": {
+    "mtime": 1781251032.548216,
+    "ast_hash": "6e9067642cce480b8644b0e8d9a68d95",
+    "semantic_hash": "6e9067642cce480b8644b0e8d9a68d95"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Resources\\Html.16.png": {
+    "mtime": 1781251032.548216,
+    "ast_hash": "02597c12d71632cad83c4ad4c3c6baa2",
+    "semantic_hash": "02597c12d71632cad83c4ad4c3c6baa2"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Resources\\Html.32.png": {
+    "mtime": 1781251032.548216,
+    "ast_hash": "1e9ad5637134ebf1a8d8bcc6ece5d382",
+    "semantic_hash": "1e9ad5637134ebf1a8d8bcc6ece5d382"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Resources\\ListImages.png": {
+    "mtime": 1781251032.548216,
+    "ast_hash": "add0625adbe3136b09b01e5c1704319a",
+    "semantic_hash": "add0625adbe3136b09b01e5c1704319a"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Resources\\New_Certificate_16.png": {
+    "mtime": 1781251032.548216,
+    "ast_hash": "b681e80be085abe8bd4a0a7ffa3a3b0f",
+    "semantic_hash": "b681e80be085abe8bd4a0a7ffa3a3b0f"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Resources\\TreeImages.png": {
+    "mtime": 1781251032.5896177,
+    "ast_hash": "bfa4f762fe743a444f1ee690c1b3a83c",
+    "semantic_hash": "bfa4f762fe743a444f1ee690c1b3a83c"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Resources\\View_Certificate_16.png": {
+    "mtime": 1781251032.5896177,
+    "ast_hash": "cf2238305c39f5d846fa50ef00b4175a",
+    "semantic_hash": "cf2238305c39f5d846fa50ef00b4175a"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Resources\\WizardTask.Failed.png": {
+    "mtime": 1781251032.5896177,
+    "ast_hash": "392ca18bb8c7f06d5c35afeddaf0502e",
+    "semantic_hash": "392ca18bb8c7f06d5c35afeddaf0502e"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Resources\\WizardTask.InProgress.png": {
+    "mtime": 1781251032.5896177,
+    "ast_hash": "05a42eb17b87e9f606181a4b8202bf7d",
+    "semantic_hash": "05a42eb17b87e9f606181a4b8202bf7d"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Resources\\WizardTask.Pending.png": {
+    "mtime": 1781251032.5896177,
+    "ast_hash": "98646647ba7e624481794ab3f17e28de",
+    "semantic_hash": "98646647ba7e624481794ab3f17e28de"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Resources\\WizardTask.Success.png": {
+    "mtime": 1781251032.5896177,
+    "ast_hash": "34bffefb9fda08cb8a23fda547b13f37",
+    "semantic_hash": "34bffefb9fda08cb8a23fda547b13f37"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Resources\\add.newsserver.16.png": {
+    "mtime": 1781251032.5896177,
+    "ast_hash": "5e13318fe87d68ee5f995fc3a0436c23",
+    "semantic_hash": "5e13318fe87d68ee5f995fc3a0436c23"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Resources\\add.user.16.png": {
+    "mtime": 1781251032.5896177,
+    "ast_hash": "93b29beb85e51f7303a893168b828b4d",
+    "semantic_hash": "93b29beb85e51f7303a893168b828b4d"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Resources\\delete.16.png": {
+    "mtime": 1781251032.5896177,
+    "ast_hash": "f622cbe0a13861f0ea5ed889c876ba33",
+    "semantic_hash": "f622cbe0a13861f0ea5ed889c876ba33"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Resources\\download.enclosure.32.png": {
+    "mtime": 1781251032.6035254,
+    "ast_hash": "46eb8e8e8073b321d964498dc984d359",
+    "semantic_hash": "46eb8e8e8073b321d964498dc984d359"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Resources\\envelope.open.reply.png": {
+    "mtime": 1781251032.6035254,
+    "ast_hash": "a785d1ee51b690f4127a09a0809db8a5",
+    "semantic_hash": "a785d1ee51b690f4127a09a0809db8a5"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Resources\\error.png": {
+    "mtime": 1781251032.6035254,
+    "ast_hash": "96f300189c4665b8514e30bd27c4ec87",
+    "semantic_hash": "96f300189c4665b8514e30bd27c4ec87"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Resources\\feed.discover.doc.png": {
+    "mtime": 1781251032.6035254,
+    "ast_hash": "d1a201158d2ff3297f7d79a7f23d9fa8",
+    "semantic_hash": "d1a201158d2ff3297f7d79a7f23d9fa8"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Resources\\feed.discovered.16.png": {
+    "mtime": 1781251032.6035254,
+    "ast_hash": "513bd1fd97ae8567d2fef45d4fb470ac",
+    "semantic_hash": "513bd1fd97ae8567d2fef45d4fb470ac"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Resources\\feed.discovered.32.png": {
+    "mtime": 1781251032.6035254,
+    "ast_hash": "f3b2f178bb0fa4f2701ff218f6a6930d",
+    "semantic_hash": "f3b2f178bb0fa4f2701ff218f6a6930d"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Resources\\feed.doc.png": {
+    "mtime": 1781251032.6035254,
+    "ast_hash": "e1b8250e56ecd2d3a089fe08374a8db8",
+    "semantic_hash": "e1b8250e56ecd2d3a089fe08374a8db8"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Resources\\feedsource_bandit_16.png": {
+    "mtime": 1781251032.6035254,
+    "ast_hash": "4aa35c33b53592632c20e4185518f4b8",
+    "semantic_hash": "4aa35c33b53592632c20e4185518f4b8"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Resources\\feedsource_bandit_32.png": {
+    "mtime": 1781251032.6035254,
+    "ast_hash": "43f6475438ce1c3a2d98e973e8c22fea",
+    "semantic_hash": "43f6475438ce1c3a2d98e973e8c22fea"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Resources\\feedsource_facebook_16.png": {
+    "mtime": 1781251032.6035254,
+    "ast_hash": "40331a3aec556bf4fbe6bee5227ac1da",
+    "semantic_hash": "40331a3aec556bf4fbe6bee5227ac1da"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Resources\\feedsource_facebook_32.png": {
+    "mtime": 1781251032.6035254,
+    "ast_hash": "e66da121d3a1c4fe603a9021f8e2df8e",
+    "semantic_hash": "e66da121d3a1c4fe603a9021f8e2df8e"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Resources\\feedsource_feedly_16.png": {
+    "mtime": 1781251032.6035254,
+    "ast_hash": "8bb2e5104b5d25a6c01fdd3fbc573c02",
+    "semantic_hash": "8bb2e5104b5d25a6c01fdd3fbc573c02"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Resources\\feedsource_feedly_32.png": {
+    "mtime": 1781251032.6035254,
+    "ast_hash": "e5262e709d03365956dc59b694156f64",
+    "semantic_hash": "e5262e709d03365956dc59b694156f64"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Resources\\feedsource_search_16.png": {
+    "mtime": 1781251032.6035254,
+    "ast_hash": "b50aaae7014b196be7c8792c8e299611",
+    "semantic_hash": "b50aaae7014b196be7c8792c8e299611"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Resources\\feedsource_search_32.png": {
+    "mtime": 1781251032.6035254,
+    "ast_hash": "82b2423903595972bf0e80eb6e528f30",
+    "semantic_hash": "82b2423903595972bf0e80eb6e528f30"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Resources\\feedsource_winRss_16.png": {
+    "mtime": 1781251032.6192596,
+    "ast_hash": "30c46b2cd6b2ca4d87711cdc882718a9",
+    "semantic_hash": "30c46b2cd6b2ca4d87711cdc882718a9"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Resources\\feedsource_winRss_32.png": {
+    "mtime": 1781251032.6192596,
+    "ast_hash": "60c3daaff1f677b25bfe5032de8248d9",
+    "semantic_hash": "60c3daaff1f677b25bfe5032de8248d9"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Resources\\hotnews.16.png": {
+    "mtime": 1781251032.6192596,
+    "ast_hash": "0821058beb821e83266a7f727055d02f",
+    "semantic_hash": "0821058beb821e83266a7f727055d02f"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Resources\\no.feed.discovered.16.png": {
+    "mtime": 1781251032.6192596,
+    "ast_hash": "fd3a0b59a49a8568e3bf8e1f769670be",
+    "semantic_hash": "fd3a0b59a49a8568e3bf8e1f769670be"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Resources\\no.feed.discovered.32.png": {
+    "mtime": 1781251032.6192596,
+    "ast_hash": "37b633f49355a3850df910cf6cb8a129",
+    "semantic_hash": "37b633f49355a3850df910cf6cb8a129"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Resources\\rssbandit.16.png": {
+    "mtime": 1781251032.6192596,
+    "ast_hash": "d39177fe3ff93d8695bc7d1c84a3ef90",
+    "semantic_hash": "d39177fe3ff93d8695bc7d1c84a3ef90"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Resources\\rssbandit.32.png": {
+    "mtime": 1781251032.6192596,
+    "ast_hash": "23d842f41fb668b0907c53a24ba67f32",
+    "semantic_hash": "23d842f41fb668b0907c53a24ba67f32"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Resources\\searches\\bing.png": {
+    "mtime": 1781251032.6192596,
+    "ast_hash": "5b188904e3bc002102653489e7ac4a4a",
+    "semantic_hash": "5b188904e3bc002102653489e7ac4a4a"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Resources\\splash2.png": {
+    "mtime": 1781251032.6192596,
+    "ast_hash": "3c70caa1cccaccf257290f371b83e43a",
+    "semantic_hash": "3c70caa1cccaccf257290f371b83e43a"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Resources\\subscription_wizard_finished.png": {
+    "mtime": 1781251032.6192596,
+    "ast_hash": "9ad80ae2b252feb57e0fc65eff6363a4",
+    "semantic_hash": "9ad80ae2b252feb57e0fc65eff6363a4"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Resources\\subscription_wizard_welcome.png": {
+    "mtime": 1781251032.635013,
+    "ast_hash": "2dc4a256ad096ba9837369c081d0e53e",
+    "semantic_hash": "2dc4a256ad096ba9837369c081d0e53e"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Resources\\subsription_banner_image.png": {
+    "mtime": 1781251032.635013,
+    "ast_hash": "598499fe7784943372da99c9480be191",
+    "semantic_hash": "598499fe7784943372da99c9480be191"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\plugins\\OneNote\\OneNoteImporter\\Class Diagram.png": {
+    "mtime": 1781251033.0592372,
+    "ast_hash": "5438b3b74031cd2e36193761cd02a162",
+    "semantic_hash": "5438b3b74031cd2e36193761cd02a162"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\templates\\images\\NextPage16.gif": {
+    "mtime": 1781251033.1191945,
+    "ast_hash": "fceb7d4caaa4d5d6fb329aed7d992da1",
+    "semantic_hash": "fceb7d4caaa4d5d6fb329aed7d992da1"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\templates\\images\\arrowdown-bw.gif": {
+    "mtime": 1781251033.1191945,
+    "ast_hash": "b31db272530c7261bdf698a4d5efc64b",
+    "semantic_hash": "b31db272530c7261bdf698a4d5efc64b"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\templates\\images\\arrowright-bw.gif": {
+    "mtime": 1781251033.1191945,
+    "ast_hash": "e85cce4299c342c79e2de9acf6dac081",
+    "semantic_hash": "e85cce4299c342c79e2de9acf6dac081"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\templates\\images\\aura-8.jpg": {
+    "mtime": 1781251033.1191945,
+    "ast_hash": "b219b24fb9a381d3e7138e67d00f90ad",
+    "semantic_hash": "b219b24fb9a381d3e7138e67d00f90ad"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\templates\\images\\been.watched.gif": {
+    "mtime": 1781251033.1191945,
+    "ast_hash": "e267cea76cd28b56535d239ab5cc590f",
+    "semantic_hash": "e267cea76cd28b56535d239ab5cc590f"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\templates\\images\\bg_fb_comment.gif": {
+    "mtime": 1781251033.1191945,
+    "ast_hash": "67a41ae5318d3075ff3c7425421d8dca",
+    "semantic_hash": "67a41ae5318d3075ff3c7425421d8dca"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\templates\\images\\bg_film_left.gif": {
+    "mtime": 1781251033.1191945,
+    "ast_hash": "1263acda052c62d276aef7e6d4eb8305",
+    "semantic_hash": "1263acda052c62d276aef7e6d4eb8305"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\templates\\images\\bg_film_right.gif": {
+    "mtime": 1781251033.1191945,
+    "ast_hash": "a7bbd8df53f42e3f2d90ca8f09bb4bb2",
+    "semantic_hash": "a7bbd8df53f42e3f2d90ca8f09bb4bb2"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\templates\\images\\clip.gif": {
+    "mtime": 1781251033.1191945,
+    "ast_hash": "1751194e3100c9d561ecadf6c2c55756",
+    "semantic_hash": "1751194e3100c9d561ecadf6c2c55756"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\templates\\images\\comments-bw.gif": {
+    "mtime": 1781251033.1191945,
+    "ast_hash": "acb9abbdc0e08a06347abb97e7bffe95",
+    "semantic_hash": "acb9abbdc0e08a06347abb97e7bffe95"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\templates\\images\\enclosure-bw.png": {
+    "mtime": 1781251033.1289742,
+    "ast_hash": "4053f88a399c0183f29bcc5e3b4b9bb6",
+    "semantic_hash": "4053f88a399c0183f29bcc5e3b4b9bb6"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\templates\\images\\fb_play_button.png": {
+    "mtime": 1781251033.1289742,
+    "ast_hash": "48a0d20b7c7aa8caf1b6a93c0c3851b8",
+    "semantic_hash": "48a0d20b7c7aa8caf1b6a93c0c3851b8"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\templates\\images\\flag.blue.gif": {
+    "mtime": 1781251033.1289742,
+    "ast_hash": "2cf8b0649dcb0bd6aed5a82424c59fc9",
+    "semantic_hash": "2cf8b0649dcb0bd6aed5a82424c59fc9"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\templates\\images\\flag.clear.gif": {
+    "mtime": 1781251033.1289742,
+    "ast_hash": "38d38c122499e7b34f8728718dac7c5c",
+    "semantic_hash": "38d38c122499e7b34f8728718dac7c5c"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\templates\\images\\flag.complete.gif": {
+    "mtime": 1781251033.1289742,
+    "ast_hash": "7331d8f1aeb222c8da30aadc4bc82d36",
+    "semantic_hash": "7331d8f1aeb222c8da30aadc4bc82d36"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\templates\\images\\flag.gif": {
+    "mtime": 1781251033.1289742,
+    "ast_hash": "11acd324d423fb13aeb58c391ba23975",
+    "semantic_hash": "11acd324d423fb13aeb58c391ba23975"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\templates\\images\\flag.green.gif": {
+    "mtime": 1781251033.1289742,
+    "ast_hash": "4e849b72e0bf562e5687d64d56f34bac",
+    "semantic_hash": "4e849b72e0bf562e5687d64d56f34bac"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\templates\\images\\flag.orange.gif": {
+    "mtime": 1781251033.1289742,
+    "ast_hash": "b352a3a6be41fa4170bcae6ad93036e4",
+    "semantic_hash": "b352a3a6be41fa4170bcae6ad93036e4"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\templates\\images\\flag.purple.gif": {
+    "mtime": 1781251033.1340277,
+    "ast_hash": "98ebc7d30b33ac37e50e179f315b4f03",
+    "semantic_hash": "98ebc7d30b33ac37e50e179f315b4f03"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\templates\\images\\flag.red.gif": {
+    "mtime": 1781251033.1350322,
+    "ast_hash": "70ecc99eb7eb23740fcf83133b30f0c4",
+    "semantic_hash": "70ecc99eb7eb23740fcf83133b30f0c4"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\templates\\images\\flag.reply.gif": {
+    "mtime": 1781251033.1350322,
+    "ast_hash": "ac9fc9426458f590570d41ea9c452685",
+    "semantic_hash": "ac9fc9426458f590570d41ea9c452685"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\templates\\images\\flag.yellow.gif": {
+    "mtime": 1781251033.1350322,
+    "ast_hash": "fe93e0145c6625f787273e9f778e3bc9",
+    "semantic_hash": "fe93e0145c6625f787273e9f778e3bc9"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\templates\\images\\leftarrow.GIF": {
+    "mtime": 1781251033.1350322,
+    "ast_hash": "e8be50b0f06cb7c9a28e8addda6fa2b1",
+    "semantic_hash": "e8be50b0f06cb7c9a28e8addda6fa2b1"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\templates\\images\\linknew-bw.gif": {
+    "mtime": 1781251033.1350322,
+    "ast_hash": "2c1026a6a5d8722043085764e547b94d",
+    "semantic_hash": "2c1026a6a5d8722043085764e547b94d"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\templates\\images\\newsbin.gif": {
+    "mtime": 1781251033.1350322,
+    "ast_hash": "60d37a5336377bf3d266594826339395",
+    "semantic_hash": "60d37a5336377bf3d266594826339395"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\templates\\images\\not.watched.gif": {
+    "mtime": 1781251033.1350322,
+    "ast_hash": "f475d1e5e1f6bcb2c85ecfcb6e3f5518",
+    "semantic_hash": "f475d1e5e1f6bcb2c85ecfcb6e3f5518"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\templates\\images\\play.gif": {
+    "mtime": 1781251033.1350322,
+    "ast_hash": "934844cd74ef83c05927234a8c99f7bf",
+    "semantic_hash": "934844cd74ef83c05927234a8c99f7bf"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\templates\\images\\prevpage16.gif": {
+    "mtime": 1781251033.1350322,
+    "ast_hash": "63214cf80fdf482196f95f02b619cc02",
+    "semantic_hash": "63214cf80fdf482196f95f02b619cc02"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\templates\\images\\read.gif": {
+    "mtime": 1781251033.1350322,
+    "ast_hash": "f8f1e815e072da0b86c5d4095ea0153d",
+    "semantic_hash": "f8f1e815e072da0b86c5d4095ea0153d"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\templates\\images\\rightarrow.GIF": {
+    "mtime": 1781251033.1350322,
+    "ast_hash": "ab59528760d2be67b90fa02e9a79b15c",
+    "semantic_hash": "ab59528760d2be67b90fa02e9a79b15c"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\templates\\images\\shared.png": {
+    "mtime": 1781251033.1350322,
+    "ast_hash": "4e7abcf243f68a2dca7fe40a2879706e",
+    "semantic_hash": "4e7abcf243f68a2dca7fe40a2879706e"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\templates\\images\\unflag.GIF": {
+    "mtime": 1781251033.1350322,
+    "ast_hash": "38d38c122499e7b34f8728718dac7c5c",
+    "semantic_hash": "38d38c122499e7b34f8728718dac7c5c"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\templates\\images\\unread.gif": {
+    "mtime": 1781251033.1350322,
+    "ast_hash": "c3b618fc42109aa5b23174a51e648478",
+    "semantic_hash": "c3b618fc42109aa5b23174a51e648478"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\templates\\images\\unreaditem.gif": {
+    "mtime": 1781251033.1350322,
+    "ast_hash": "a82005374cb51ff7da817c3c92b85929",
+    "semantic_hash": "a82005374cb51ff7da817c3c92b85929"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\templates\\images\\unshared.gif": {
+    "mtime": 1781251033.1350322,
+    "ast_hash": "7918c545eb83d685017db7142bd0c697",
+    "semantic_hash": "7918c545eb83d685017db7142bd0c697"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Media\\Feed Discovered.wav": {
+    "mtime": 1781251032.463482,
+    "ast_hash": "94f139c13358bc3e4de27cfda595905b",
+    "semantic_hash": "94f139c13358bc3e4de27cfda595905b"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Media\\New Attachment Downloaded.wav": {
+    "mtime": 1781251032.4660506,
+    "ast_hash": "108025b17f67e61946df5d7fbf713cdb",
+    "semantic_hash": "108025b17f67e61946df5d7fbf713cdb"
+  },
+  "C:\\Users\\Chris\\Documents\\GitHub\\RssBandit\\.claude\\worktrees\\nice-solomon-7976d9\\source\\RssBandit\\Media\\New Feed Items Received.wav": {
+    "mtime": 1781251032.4743187,
+    "ast_hash": "108025b17f67e61946df5d7fbf713cdb",
+    "semantic_hash": "108025b17f67e61946df5d7fbf713cdb"
+  }
+}

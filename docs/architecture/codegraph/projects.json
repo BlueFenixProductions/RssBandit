@@ -1,0 +1,632 @@
+[
+  {
+    "path": "source/AddIn/AdsBlocker/AdsBlocker2.AddIn.csproj",
+    "name": "AdsBlocker2.AddIn",
+    "sdk_style": false,
+    "tools_version": "4.0",
+    "target_framework": "net-fx v4.0",
+    "output_type": "Library",
+    "use_windows_forms": false,
+    "project_references": [
+      "source/NewsComponents/NewsComponents.csproj",
+      "source/RssBandit.AppServices/RssBandit.AppServices.csproj"
+    ],
+    "binary_references": [],
+    "package_references": [],
+    "in_main_solution": false
+  },
+  {
+    "path": "source/ChildProjects/BanditBuildTasks.UnitTests/BanditBuildTasks.UnitTests.csproj",
+    "name": "BanditBuildTasks.UnitTests",
+    "sdk_style": false,
+    "tools_version": "4.0",
+    "target_framework": "net-fx v4.0",
+    "output_type": "Library",
+    "use_windows_forms": false,
+    "project_references": [
+      "source/ChildProjects/BanditBuildTasks/BanditBuildTasks.csproj"
+    ],
+    "binary_references": [
+      {
+        "name": "nunit.framework",
+        "hint_path": "../../RssBandit.UnitTests/ExternalDependencies/nunit.framework.dll"
+      }
+    ],
+    "package_references": [],
+    "in_main_solution": false
+  },
+  {
+    "path": "source/ChildProjects/BanditBuildTasks/BanditBuildTasks.csproj",
+    "name": "BanditBuildTasks",
+    "sdk_style": false,
+    "tools_version": "4.0",
+    "target_framework": "net-fx v4.0",
+    "output_type": "Library",
+    "use_windows_forms": false,
+    "project_references": [],
+    "binary_references": [],
+    "package_references": [],
+    "in_main_solution": false
+  },
+  {
+    "path": "source/ChildProjects/DiffPatchResources/DiffPatchResources.csproj",
+    "name": "DiffPatchResources",
+    "sdk_style": false,
+    "tools_version": "3.5",
+    "target_framework": null,
+    "output_type": "Exe",
+    "use_windows_forms": false,
+    "project_references": [],
+    "binary_references": [],
+    "package_references": [],
+    "in_main_solution": false
+  },
+  {
+    "path": "source/ChildProjects/ExceptionManagement/Microsoft.ApplicationBlocks.ExceptionManagement/Microsoft.ApplicationBlocks.ExceptionManagement.csproj",
+    "name": "Microsoft.ApplicationBlocks.ExceptionManagement",
+    "sdk_style": false,
+    "tools_version": null,
+    "target_framework": null,
+    "output_type": "Library",
+    "use_windows_forms": false,
+    "project_references": [],
+    "binary_references": [],
+    "package_references": [],
+    "in_main_solution": false
+  },
+  {
+    "path": "source/ChildProjects/IEControl/IEControl.csproj",
+    "name": "IEControl",
+    "sdk_style": true,
+    "tools_version": null,
+    "target_framework": "net5.0-windows10.0.19041",
+    "output_type": "Library",
+    "use_windows_forms": false,
+    "project_references": [],
+    "binary_references": [],
+    "package_references": [],
+    "in_main_solution": false
+  },
+  {
+    "path": "source/ChildProjects/Jumplist/Jumplist/Jumplist.csproj",
+    "name": "Jumplist",
+    "sdk_style": false,
+    "tools_version": "3.5",
+    "target_framework": "net-fx v3.5",
+    "output_type": "WinExe",
+    "use_windows_forms": false,
+    "project_references": [],
+    "binary_references": [
+      {
+        "name": "Microsoft.WindowsAPICodePack",
+        "hint_path": "../../../../../../../Downloads/WindowsAPICodePack/WindowsAPICodePack/Core/bin/Debug/Microsoft.WindowsAPICodePack.dll"
+      },
+      {
+        "name": "Microsoft.WindowsAPICodePack.Shell",
+        "hint_path": "../../../../../../../Downloads/WindowsAPICodePack/WindowsAPICodePack/Shell/bin/Debug/Microsoft.WindowsAPICodePack.Shell.dll"
+      }
+    ],
+    "package_references": [],
+    "in_main_solution": false
+  },
+  {
+    "path": "source/ChildProjects/MemeTracker/MemeTracker/MemeTracker.csproj",
+    "name": "MemeTracker",
+    "sdk_style": false,
+    "tools_version": null,
+    "target_framework": null,
+    "output_type": "Exe",
+    "use_windows_forms": false,
+    "project_references": [],
+    "binary_references": [
+      {
+        "name": "IronPython",
+        "hint_path": "../../../../../../../../IronPython-1.1/IronPython.dll"
+      }
+    ],
+    "package_references": [],
+    "in_main_solution": false
+  },
+  {
+    "path": "source/ChildProjects/RelationCosmos/RelationCosmos.csproj",
+    "name": "RelationCosmos",
+    "sdk_style": false,
+    "tools_version": null,
+    "target_framework": null,
+    "output_type": "Library",
+    "use_windows_forms": false,
+    "project_references": [],
+    "binary_references": [],
+    "package_references": [],
+    "in_main_solution": false
+  },
+  {
+    "path": "source/ChildProjects/ShellBasics/ShellBasics/ShellLib.csproj",
+    "name": "ShellLib",
+    "sdk_style": false,
+    "tools_version": null,
+    "target_framework": null,
+    "output_type": "Library",
+    "use_windows_forms": false,
+    "project_references": [],
+    "binary_references": [],
+    "package_references": [],
+    "in_main_solution": false
+  },
+  {
+    "path": "source/ChildProjects/ShellBasics/WinTester/WinTester.csproj",
+    "name": "WinTester",
+    "sdk_style": false,
+    "tools_version": null,
+    "target_framework": null,
+    "output_type": "Library",
+    "use_windows_forms": false,
+    "project_references": [],
+    "binary_references": [],
+    "package_references": [],
+    "in_main_solution": false
+  },
+  {
+    "path": "source/ChildProjects/ShortcutsEditor/ShortcutsEditor.csproj",
+    "name": "ShortcutsEditor",
+    "sdk_style": false,
+    "tools_version": null,
+    "target_framework": null,
+    "output_type": "Library",
+    "use_windows_forms": false,
+    "project_references": [],
+    "binary_references": [],
+    "package_references": [],
+    "in_main_solution": false
+  },
+  {
+    "path": "source/ChildProjects/Test_IEControl/Test.csproj",
+    "name": "Test",
+    "sdk_style": false,
+    "tools_version": "4.0",
+    "target_framework": "net-fx v4.0",
+    "output_type": "WinExe",
+    "use_windows_forms": false,
+    "project_references": [
+      "source/ChildProjects/IEControl/IEControl.csproj"
+    ],
+    "binary_references": [
+      {
+        "name": "Interop.SHDocVw",
+        "hint_path": "../IEControl/Libraries/Interop.SHDocVw.dll"
+      },
+      {
+        "name": "nunit.framework",
+        "hint_path": "C:/Program Files/PROCOS.NET/nunit.framework.dll"
+      }
+    ],
+    "package_references": [],
+    "in_main_solution": false
+  },
+  {
+    "path": "source/NewsComponents.UnitTests/NewsComponents.UnitTests.csproj",
+    "name": "NewsComponents.UnitTests",
+    "sdk_style": true,
+    "tools_version": null,
+    "target_framework": "net5.0-windows10.0.19041",
+    "output_type": "Library",
+    "use_windows_forms": false,
+    "project_references": [
+      "source/RssBandit.AppServices/RssBandit.AppServices.csproj",
+      "source/NewsComponents/NewsComponents.csproj"
+    ],
+    "binary_references": [
+      {
+        "name": "Cassini",
+        "hint_path": "ExternalDependencies/Cassini.dll"
+      }
+    ],
+    "package_references": [
+      {
+        "name": "Microsoft.NETCore.Targets",
+        "version": "5.0.0"
+      },
+      {
+        "name": "NUnit",
+        "version": "3.13.1"
+      },
+      {
+        "name": "NUnit3TestAdapter",
+        "version": "3.17.0"
+      },
+      {
+        "name": "xunit",
+        "version": "2.4.1"
+      },
+      {
+        "name": "xunit.runner.visualstudio",
+        "version": "2.4.3"
+      },
+      {
+        "name": "Microsoft.NET.Test.Sdk",
+        "version": "16.8.3"
+      }
+    ],
+    "in_main_solution": true
+  },
+  {
+    "path": "source/NewsComponents/NewsComponents.csproj",
+    "name": "NewsComponents",
+    "sdk_style": true,
+    "tools_version": null,
+    "target_framework": "net5.0-windows10.0.19041",
+    "output_type": "Library",
+    "use_windows_forms": false,
+    "project_references": [
+      "source/RssBandit.AppServices/RssBandit.AppServices.csproj"
+    ],
+    "binary_references": [
+      {
+        "name": "Org.Mime4Net",
+        "hint_path": "../Common/Libraries/Org.Mime4Net.dll"
+      }
+    ],
+    "package_references": [
+      {
+        "name": "Microsoft.NETCore.Targets",
+        "version": "5.0.0"
+      },
+      {
+        "name": "Facebook",
+        "version": "7.0.6"
+      },
+      {
+        "name": "log4net",
+        "version": "2.0.12"
+      },
+      {
+        "name": "Lucene.Net",
+        "version": "2.9.4.1"
+      },
+      {
+        "name": "Lucene.Net.Contrib",
+        "version": "2.9.4.1"
+      },
+      {
+        "name": "Newtonsoft.Json",
+        "version": "12.0.3"
+      },
+      {
+        "name": "System.Windows.Extensions",
+        "version": "5.0.0"
+      },
+      {
+        "name": "WindowsAPICodePack-Core",
+        "version": "1.1.2"
+      },
+      {
+        "name": "WindowsAPICodePack-Shell",
+        "version": "1.1.1"
+      }
+    ],
+    "in_main_solution": true
+  },
+  {
+    "path": "source/RssBandit Installer/Rssbandit Feed Installer/Rssbandit Feed Installer.csproj",
+    "name": "Rssbandit Feed Installer",
+    "sdk_style": false,
+    "tools_version": "3.5",
+    "target_framework": "net-fx v3.5",
+    "output_type": "Library",
+    "use_windows_forms": false,
+    "project_references": [],
+    "binary_references": [],
+    "package_references": [],
+    "in_main_solution": false
+  },
+  {
+    "path": "source/RssBandit.AppServices/RssBandit.AppServices.csproj",
+    "name": "RssBandit.AppServices",
+    "sdk_style": true,
+    "tools_version": null,
+    "target_framework": "net5.0-windows10.0.19041",
+    "output_type": "Library",
+    "use_windows_forms": false,
+    "project_references": [],
+    "binary_references": [],
+    "package_references": [],
+    "in_main_solution": true
+  },
+  {
+    "path": "source/RssBandit.UnitTests/RssBandit.UnitTests.csproj",
+    "name": "RssBandit.UnitTests",
+    "sdk_style": false,
+    "tools_version": "4.0",
+    "target_framework": "net-fx v4.0",
+    "output_type": "Library",
+    "use_windows_forms": false,
+    "project_references": [
+      "source/RssBandit.AppServices/RssBandit.AppServices.csproj",
+      "source/RssBandit/RssBandit.csproj",
+      "source/NewsComponents/NewsComponents.csproj"
+    ],
+    "binary_references": [
+      {
+        "name": "nunit.framework",
+        "hint_path": "../packages/NUnit.2.6.2/lib/nunit.framework.dll"
+      }
+    ],
+    "package_references": [],
+    "in_main_solution": false
+  },
+  {
+    "path": "source/RssBandit/RssBandit.csproj",
+    "name": "RssBandit",
+    "sdk_style": true,
+    "tools_version": null,
+    "target_framework": "net5.0-windows10.0.19041",
+    "output_type": "WinExe",
+    "use_windows_forms": false,
+    "project_references": [
+      "source/NewsComponents/NewsComponents.csproj",
+      "source/RssBandit.AppServices/RssBandit.AppServices.csproj"
+    ],
+    "binary_references": [
+      {
+        "name": "blogExtension",
+        "hint_path": "../Common/Libraries/blogExtension.dll"
+      },
+      {
+        "name": "Eyefinder",
+        "hint_path": "../Common/Libraries/Eyefinder.dll"
+      },
+      {
+        "name": "Interop.iTunesLib",
+        "hint_path": "../Common/Libraries/Interop.iTunesLib.dll"
+      },
+      {
+        "name": "Interop.ThumbCache",
+        "hint_path": "../Common/Libraries/Interop.ThumbCache.dll"
+      },
+      {
+        "name": "Interop.WMPLib",
+        "hint_path": "../Common/Libraries/Interop.WMPLib.dll"
+      },
+      {
+        "name": "Microsoft.ApplicationBlocks.ExceptionManagement",
+        "hint_path": "../Common/Libraries/Microsoft.ApplicationBlocks.ExceptionManagement.dll"
+      },
+      {
+        "name": "Microsoft.ApplicationBlocks.ExceptionManagement.Interfaces",
+        "hint_path": "../Common/Libraries/Microsoft.ApplicationBlocks.ExceptionManagement.Interfaces.dll"
+      },
+      {
+        "name": "SandDock",
+        "hint_path": "../Common/Libraries/SandDock.dll"
+      }
+    ],
+    "package_references": [
+      {
+        "name": "Microsoft.Web.WebView2",
+        "version": "1.0.774.44"
+      },
+      {
+        "name": "CommonServiceLocator",
+        "version": "2.0.6"
+      },
+      {
+        "name": "Divelements.WizardFramework",
+        "version": "1.2.22"
+      },
+      {
+        "name": "Infragistics.WinForms.Editors",
+        "version": "20.2.14"
+      },
+      {
+        "name": "Infragistics.WinForms.ExplorerBar",
+        "version": "20.2.14"
+      },
+      {
+        "name": "Infragistics.WinForms.StatusBar",
+        "version": "20.2.14"
+      },
+      {
+        "name": "Infragistics.WinForms.TabControl",
+        "version": "20.2.14"
+      },
+      {
+        "name": "Infragistics.WinForms.Toolbars",
+        "version": "20.2.14"
+      },
+      {
+        "name": "Infragistics.WinForms.Tree",
+        "version": "20.2.14"
+      },
+      {
+        "name": "SingleInstanceHelper",
+        "version": "1.0.3"
+      },
+      {
+        "name": "SoapFormatter",
+        "version": "1.0.11"
+      },
+      {
+        "name": "Unity",
+        "version": "5.11.9"
+      }
+    ],
+    "in_main_solution": true
+  },
+  {
+    "path": "source/RssBandit/WinGui/Controls/ThListView/ThreadedListViewControl.csproj",
+    "name": "ThreadedListViewControl",
+    "sdk_style": false,
+    "tools_version": null,
+    "target_framework": null,
+    "output_type": "Library",
+    "use_windows_forms": false,
+    "project_references": [],
+    "binary_references": [],
+    "package_references": [],
+    "in_main_solution": false
+  },
+  {
+    "path": "source/RssBandit/plugins/BlogThis.LiveWriter/BlogThis.LiveWriter.csproj",
+    "name": "BlogThis.LiveWriter",
+    "sdk_style": false,
+    "tools_version": "4.0",
+    "target_framework": "net-fx v4.0",
+    "output_type": "Library",
+    "use_windows_forms": false,
+    "project_references": [],
+    "binary_references": [
+      {
+        "name": "blogExtension",
+        "hint_path": "../../../Common/Libraries/blogExtension.dll"
+      }
+    ],
+    "package_references": [],
+    "in_main_solution": false
+  },
+  {
+    "path": "source/RssBandit/plugins/BlogThis.WBloggar/BlogThis.WBloggar.csproj",
+    "name": "BlogThis.WBloggar",
+    "sdk_style": false,
+    "tools_version": "4.0",
+    "target_framework": "net-fx v4.0",
+    "output_type": "Library",
+    "use_windows_forms": false,
+    "project_references": [],
+    "binary_references": [
+      {
+        "name": "blogExtension",
+        "hint_path": "../../../Common/Libraries/blogExtension.dll"
+      }
+    ],
+    "package_references": [],
+    "in_main_solution": false
+  },
+  {
+    "path": "source/RssBandit/plugins/Delicious/Delicious.csproj",
+    "name": "Delicious",
+    "sdk_style": false,
+    "tools_version": "4.0",
+    "target_framework": "net-fx v4.0",
+    "output_type": "Library",
+    "use_windows_forms": false,
+    "project_references": [],
+    "binary_references": [
+      {
+        "name": "blogExtension",
+        "hint_path": "../../../Common/Libraries/blogExtension.dll"
+      }
+    ],
+    "package_references": [],
+    "in_main_solution": false
+  },
+  {
+    "path": "source/RssBandit/plugins/IBlogExtensionsSolution/AmphetaRatePlugin/AmphetaRatePlugin.csproj",
+    "name": "AmphetaRatePlugin",
+    "sdk_style": false,
+    "tools_version": null,
+    "target_framework": null,
+    "output_type": "Library",
+    "use_windows_forms": false,
+    "project_references": [],
+    "binary_references": [],
+    "package_references": [],
+    "in_main_solution": false
+  },
+  {
+    "path": "source/RssBandit/plugins/IBlogExtensionsSolution/BlogThisUsingWBloggarPlugin/BlogThisUsingWBloggarPlugin.csproj",
+    "name": "BlogThisUsingWBloggarPlugin",
+    "sdk_style": false,
+    "tools_version": null,
+    "target_framework": null,
+    "output_type": "Library",
+    "use_windows_forms": false,
+    "project_references": [],
+    "binary_references": [],
+    "package_references": [],
+    "in_main_solution": false
+  },
+  {
+    "path": "source/RssBandit/plugins/MailThis/MailThis.csproj",
+    "name": "MailThis",
+    "sdk_style": false,
+    "tools_version": "4.0",
+    "target_framework": "net-fx v4.0",
+    "output_type": "Library",
+    "use_windows_forms": false,
+    "project_references": [],
+    "binary_references": [
+      {
+        "name": "blogExtension",
+        "hint_path": "../../../Common/Libraries/blogExtension.dll"
+      }
+    ],
+    "package_references": [],
+    "in_main_solution": false
+  },
+  {
+    "path": "source/RssBandit/plugins/OneNote/OneNote.csproj",
+    "name": "OneNote",
+    "sdk_style": false,
+    "tools_version": "4.0",
+    "target_framework": "net-fx v4.0",
+    "output_type": "Library",
+    "use_windows_forms": false,
+    "project_references": [],
+    "binary_references": [
+      {
+        "name": "blogExtension",
+        "hint_path": "../../../Common/Libraries/blogExtension.dll"
+      },
+      {
+        "name": "OneNoteImporter",
+        "hint_path": "../../../Common/Libraries/OneNoteImporter.dll"
+      }
+    ],
+    "package_references": [],
+    "in_main_solution": false
+  },
+  {
+    "path": "source/RssBandit/plugins/OneNote/OneNoteImporter/src/OneNote/OneNote.csproj",
+    "name": "OneNote",
+    "sdk_style": false,
+    "tools_version": null,
+    "target_framework": null,
+    "output_type": "Library",
+    "use_windows_forms": false,
+    "project_references": [],
+    "binary_references": [],
+    "package_references": [],
+    "in_main_solution": false
+  },
+  {
+    "path": "source/RssBandit/plugins/OneNote/OneNoteImporter/src/UnitTests/UnitTests.csproj",
+    "name": "UnitTests",
+    "sdk_style": false,
+    "tools_version": null,
+    "target_framework": null,
+    "output_type": "Library",
+    "use_windows_forms": false,
+    "project_references": [],
+    "binary_references": [],
+    "package_references": [],
+    "in_main_solution": false
+  },
+  {
+    "path": "source/RssBandit/plugins/Twitter/Twitter.csproj",
+    "name": "Twitter",
+    "sdk_style": false,
+    "tools_version": "4.0",
+    "target_framework": "net-fx v4.0",
+    "output_type": "Library",
+    "use_windows_forms": false,
+    "project_references": [],
+    "binary_references": [
+      {
+        "name": "blogExtension",
+        "hint_path": "../../../Common/Libraries/blogExtension.dll"
+      }
+    ],
+    "package_references": [],
+    "in_main_solution": false
+  }
+]
