@@ -781,8 +781,7 @@ namespace RssBandit.WinGui.Forms
 
         public void CmdOpenConfigIdentitiesDialog(ICommand sender)
         {
-            var imng = new IdentityNewsServerManager(owner);
-            imng.ShowIdentityDialog(this);
+            owner.IdentityManager.ShowIdentityDialog(this);
         }
 
 

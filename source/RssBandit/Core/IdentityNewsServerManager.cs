@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 
 using RssBandit.Core.Storage;
+using RssBandit.WinGui.Dialogs;
 
 using UserIdentity = RssBandit.Core.Storage.Serialization.UserIdentity;
 
@@ -172,8 +173,20 @@ namespace RssBandit
 
 		#region ShowDialog()'s
 		public void ShowIdentityDialog(IWin32Window owner) {
-			//TODO: the identity editor UI was part of the (removed) NNTP newsgroups
-			// configuration dialog. Provide a standalone identity editor dialog.
+			using (IdentitiesDialog dialog = new IdentitiesDialog(Identities.Values))
+			{
+				if (dialog.ShowDialog(owner) != DialogResult.OK)
+					return;
+
+				IdentitiesDictionary edited = new IdentitiesDictionary(dialog.Identities.Count);
+				foreach (UserIdentity identity in dialog.Identities)
+					edited.Add(identity.Name, identity);
+				edited.Modified = true;
+
+				Identities = edited;
+				Save();
+				RaiseIdentityDefinitionsModified();
+			}
 		}
 		#endregion
 
