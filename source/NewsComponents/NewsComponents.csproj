@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>net5.0-windows10.0.19041</TargetFramework>
+        <TargetFramework>net10.0-windows10.0.19041</TargetFramework>
+        <EnableUnsafeBinaryFormatterSerialization>true</EnableUnsafeBinaryFormatterSerialization>
         <Title>News Components</Title>
         <Description>News Components</Description>
     </PropertyGroup>
@@ -47,28 +48,13 @@
     <ProjectReference Include="..\RssBandit.AppServices\RssBandit.AppServices.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <COMReference Include="Microsoft.Feeds.Interop">
-      <Guid>{9CDCD9C9-BC40-41C6-89C5-230466DB0BD0}</Guid>
-      <VersionMajor>2</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
-  </ItemGroup>
-  <ItemGroup>
-    <!-- workaround for https://github.com/dotnet/sdk/issues/3044 -->
-    <PackageReference Include="Microsoft.NETCore.Targets" Version="5.0.0" ExcludeAssets="all" PrivateAssets="all">
-      <IncludeAssets>none</IncludeAssets>
-    </PackageReference>
     <PackageReference Include="Facebook" Version="7.0.6" />
-    <PackageReference Include="log4net" Version="2.0.12" />
+    <PackageReference Include="log4net" Version="2.0.17" />
     <PackageReference Include="Lucene.Net" Version="2.9.4.1" />
     <PackageReference Include="Lucene.Net.Contrib" Version="2.9.4.1" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="System.Windows.Extensions" Version="5.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+    <PackageReference Include="System.Runtime.Serialization.Formatters" Version="10.0.9" />
     <PackageReference Include="WindowsAPICodePack-Core" Version="1.1.2" />
-    <PackageReference Include="WindowsAPICodePack-Shell" Version="1.1.1" /> 
+    <PackageReference Include="WindowsAPICodePack-Shell" Version="1.1.1" />
   </ItemGroup>
 </Project>

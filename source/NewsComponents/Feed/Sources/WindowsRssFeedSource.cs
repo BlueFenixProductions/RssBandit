@@ -247,8 +247,8 @@ namespace NewsComponents.Feed
 			IFeedFolder folder = feedManager.RootFolder as IFeedFolder;
 		 	if (folder != null) 
 			{
-		 		fw = (IFeedFolderEvents_Event)folder.GetWatcher(
-		 		    FEEDS_EVENTS_SCOPE.FES_ALL, FEEDS_EVENTS_MASK.FEM_FOLDEREVENTS);
+		 		fw = new IFeedFolderEvents_Event(folder.GetWatcher(
+		 		    FEEDS_EVENTS_SCOPE.FES_ALL, FEEDS_EVENTS_MASK.FEM_FOLDEREVENTS));
 
 				fw.Error += Error;
 				fw.FeedAdded += FeedAdded;
@@ -284,8 +284,8 @@ namespace NewsComponents.Feed
         {
             IFeedFolder folder = feedManager.RootFolder as IFeedFolder;
 			if (folder != null) {
-				fw = (IFeedFolderEvents_Event)folder.GetWatcher(
-					FEEDS_EVENTS_SCOPE.FES_ALL, FEEDS_EVENTS_MASK.FEM_FOLDEREVENTS);
+				fw = new IFeedFolderEvents_Event(folder.GetWatcher(
+					FEEDS_EVENTS_SCOPE.FES_ALL, FEEDS_EVENTS_MASK.FEM_FOLDEREVENTS));
 
 				fw.Error -= Error;
 				fw.FeedAdded -= FeedAdded;

@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net5.0-windows10.0.19041</TargetFramework>
+    <TargetFramework>net10.0-windows10.0.19041</TargetFramework>
+    <EnableUnsafeBinaryFormatterSerialization>true</EnableUnsafeBinaryFormatterSerialization>
     <ApplicationIcon>Resources\App.ico</ApplicationIcon>
     <AssemblyOriginatorKeyFile>..\rssbandit.org.snk</AssemblyOriginatorKeyFile>
     <OutputType>WinExe</OutputType>
@@ -17,7 +18,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.774.44" />
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.4022.49" />
     <Reference Include="blogExtension">
       <Name>blogExtension</Name>
       <HintPath>..\Common\Libraries\blogExtension.dll</HintPath>
@@ -166,17 +167,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <COMReference Include="stdole">
-      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
-      <VersionMajor>2</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>primary</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
-  </ItemGroup>
-  <ItemGroup>    
     <PackageReference Include="CommonServiceLocator" Version="2.0.6" />        
     <PackageReference Include="Divelements.WizardFramework" Version="1.2.22" />        
     <PackageReference Include="Infragistics.WinForms.Editors" Version="20.2.14" />
@@ -188,7 +178,8 @@
     
     <PackageReference Include="SingleInstanceHelper" Version="1.0.3" />
     <PackageReference Include="SoapFormatter" Version="1.0.11" />
-    <PackageReference Include="Unity" Version="5.11.9" />
+    <PackageReference Include="System.Runtime.Serialization.Formatters" Version="10.0.9" />
+    <PackageReference Include="Unity" Version="5.11.10" />
   </ItemGroup>
 
   <Target Name="ClearLicenseFiles" BeforeTargets="Compile">

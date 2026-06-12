@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net5.0-windows10.0.19041</TargetFramework>
+    <TargetFramework>net10.0-windows10.0.19041</TargetFramework>
     <AssemblyOriginatorKeyFile>..\rssbandit.org.snk</AssemblyOriginatorKeyFile>
     <SignAssembly>true</SignAssembly>
     <Title>RSS Bandit Application Services</Title>
