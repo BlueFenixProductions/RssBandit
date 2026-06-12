@@ -66,9 +66,9 @@ app already migrated to WebView2 (old IEControl calls are commented out).
 7. ✅ Dead sources removed (−8.3k lines): Google Reader, NewsGator, Facebook implementations, their UI chains and the Facebook package; FeedSourceType enum members kept for feedsources.xml compat; live migration shims kept. All commented MSHTML/IEControl corpse code deleted; `CreateAndInitIEControl`→`CreateAndInitWebView`, `ScrollHtmlControl`→`ScrollWebBrowser`.
 8. ✅ Lucene.Net 4.8.0-beta00017 (+Analysis.Common, +QueryParser; SharpZipLib explicit at 1.4.2 fixing the 0.86 advisory). Field semantics and date format preserved; old/corrupt index auto-wiped at startup and rebuilt via the existing re-index path (harness + in-app verified).
 
-**Phase C — health**
-9. Replace Cassini with WireMock.Net; consolidate tests on NUnit; wire up CI (`dotnet build` + `dotnet test` on the 4-project solution).
-10. Mime4Net → MimeKit if NNTP support is kept; otherwise drop NNTP.
+**Phase C — health** — ✅ **DONE 2026-06-12** (commits `afe2feee`..`87fd3134` on develop)
+9. ✅ Cassini replaced with WireMock.Net 2.11.0 (`WebServerTestFixture` serves the unpacked WebRoot from disk per request; `FailWithStatus.aspx?code=NNN` emulated as a stub; binds `localhost` so 127.0.0.1 = same-server and localhost = external-host cases both work). The one live-internet test (`LinksToExternalFeed.htm` → rssbandit.org) made hermetic via the localhost alias. Tests consolidated on NUnit (xUnit packages dropped, 3 Utils fixtures converted). **36/36 pass** (was 19/17). CI: `.github/workflows/ci.yml` builds RssBandit.csproj + tests in Release on windows-latest (csproj builds, not the .sln — wapproj is not CLI-buildable; fetch-depth 0 for Nerdbank.GitVersioning).
+10. ✅ NNTP dropped (decision 2026-06-12) incl. Org.Mime4Net.dll (−19.9k lines): News/* protocol stack, NntpServerDefinition persistence + DataEntityName machinery, INntpServerDefinition/IBanditFeedSource contracts, NewsGroupsConfiguration form (+19 resx), wizard NNTP pages/modes, post-to-newsgroup path. Tolerant-read shims: XSD still allows `<nntp-servers>`/`<news-account>`, XmlSerializer ignores them. **Follow-up owed:** the deleted newsgroups dialog doubled as the identity editor — `IdentityNewsServerManager.ShowIdentityDialog` is a no-op stub until a standalone identities dialog is built.
 
 ## MAUI feasibility (the longer game)
 
