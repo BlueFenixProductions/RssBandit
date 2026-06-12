@@ -11,18 +11,15 @@
 
 using System;
 using System.IO;
-using System.Runtime.Serialization;
-using System.Security.Permissions;
+using System.Text.Json.Serialization;
 using NewsComponents.Core;
-using NewsComponents.Utils;
 
 namespace NewsComponents.Net
 {
     /// <summary>
     /// Holds the state information about an download in progress.
     /// </summary>
-    [Serializable]
-    public class DownloadTask : BindableObject, ISerializable
+    public class DownloadTask : BindableObject
     {
         #region Private fields
 
@@ -299,56 +296,93 @@ namespace NewsComponents.Net
 
         #endregion
 
-        #region ISerializable Members
+        #region JSON persistence
 
         /// <summary>
-        /// Constructor to support serialization required for storing the task.
+        /// Constructor used when loading a task from its JSON persistence shape.
         /// </summary>
-        /// <param name="info">The serialization information.</param>
-        /// <param name="context">The serialization context.</param>
-        protected DownloadTask(SerializationInfo info, StreamingContext context)
+        private DownloadTask(DownloadTaskDto dto)
         {
-            var reader = new SerializationInfoReader(info, context);
-            DownloadItem =  reader.Get("_manifest", (DownloadItem)null);
-            _state = reader.Get("_state", DownloadTaskState.None);
-            _id = reader.Get("_id",  Guid.Empty);
-            JobId = reader.Get("_jobId",(Guid?) null);
-            TransferredSize = reader.Get("_transferSize", 0);
-            FileSize = reader.Get("_fileSize", 0);
-            _createDate = TimeZoneInfo.ConvertTime(reader.Get("_createDate", DateTime.Now), TimeZoneInfo.Local);
-            _fileName = reader.Get("_fileName", (string)null);
-            _errorText = reader.Get("_errorText", (string) null);
-            _supportsBITS = reader.Get("_supportsBITS", false); 
-
-            if (reader.Contains("_downloadFilesBase"))
-                DownloadFilesBase = reader.Get("_downloadFilesBase", (string)null);
-            else /* there used to be a typo in the field name */
-                DownloadFilesBase = reader.Get("_donwnloadFilesBase", (string)null);
-	        if (reader.Contains("_downloadErrorResumeCount"))
-		        _downloadErrorResumeCount = reader.Get("_downloadErrorResumeCount", 0);
+            DownloadItem = dto.Item != null ? new DownloadItem(dto.Item) : null;
+            _state = dto.State;
+            _id = dto.Id;
+            JobId = dto.JobId;
+            TransferredSize = dto.TransferredSize;
+            FileSize = dto.FileSize;
+            _createDate = TimeZoneInfo.ConvertTime(
+                DateTime.SpecifyKind(dto.CreatedDateUtc, DateTimeKind.Utc), TimeZoneInfo.Local);
+            _fileName = dto.FileName;
+            _errorText = dto.ErrorText;
+            _supportsBITS = dto.SupportsBits;
+            DownloadFilesBase = dto.DownloadFilesBase;
+            _downloadErrorResumeCount = dto.DownloadErrorResumeCount;
         }
 
         /// <summary>
-        /// Method used by the serialization mechanism to retrieve the serialized information.
+        /// Recreates a task from its JSON persistence shape.
         /// </summary>
-        /// <param name="info">The serialization information.</param>
-        /// <param name="context">The serialization context.</param>
-        public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
+        internal static DownloadTask FromDto(DownloadTaskDto dto)
         {
-            info.AddValue("_manifest", DownloadItem);
-            info.AddValue("_state", _state.ToString());
-            info.AddValue("_id", _id);
-            info.AddValue("_downloadFilesBase", DownloadFilesBase);
-            info.AddValue("_jobId", JobId);
-            info.AddValue("_transferSize", TransferredSize);
-            info.AddValue("_fileSize", FileSize);
-            info.AddValue("_createDate", TimeZoneInfo.ConvertTimeToUtc(_createDate));
-            info.AddValue("_fileName", _fileName);
-            info.AddValue("_errorText", _errorText);
-            info.AddValue("_supportsBITS", _supportsBITS);
-			info.AddValue("_downloadErrorResumeCount", DownloadErrorResumeCount);
+            if (dto == null)
+                throw new ArgumentNullException(nameof(dto));
+            return new DownloadTask(dto);
+        }
+
+        /// <summary>
+        /// Maps the task to its JSON persistence shape.
+        /// </summary>
+        internal DownloadTaskDto ToDto()
+        {
+            return new DownloadTaskDto
+            {
+                Item = DownloadItem?.ToDto(),
+                State = _state,
+                Id = _id,
+                JobId = JobId,
+                TransferredSize = TransferredSize,
+                FileSize = FileSize,
+                CreatedDateUtc = TimeZoneInfo.ConvertTimeToUtc(_createDate),
+                FileName = _fileName,
+                ErrorText = _errorText,
+                SupportsBits = _supportsBITS,
+                DownloadFilesBase = DownloadFilesBase,
+                DownloadErrorResumeCount = DownloadErrorResumeCount,
+            };
         }
 
         #endregion
+    }
+
+    /// <summary>
+    /// JSON persistence shape of a <see cref="DownloadTask"/> (the *.task files in
+    /// the download.registry folder). Replaced the BinaryFormatter format in Phase B;
+    /// task files in the legacy binary format are discarded on load.
+    /// </summary>
+    internal sealed class DownloadTaskDto
+    {
+        public Guid Id { get; set; }
+
+        public Guid? JobId { get; set; }
+
+        [JsonConverter(typeof(JsonStringEnumConverter))]
+        public DownloadTaskState State { get; set; }
+
+        public long TransferredSize { get; set; }
+
+        public long FileSize { get; set; }
+
+        public DateTime CreatedDateUtc { get; set; }
+
+        public string FileName { get; set; }
+
+        public string ErrorText { get; set; }
+
+        public bool SupportsBits { get; set; }
+
+        public string DownloadFilesBase { get; set; }
+
+        public int DownloadErrorResumeCount { get; set; }
+
+        public DownloadItemDto Item { get; set; }
     }
 }

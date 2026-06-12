@@ -11,8 +11,6 @@
 
 using System;
 using System.Net;
-using System.Runtime.Serialization;
-using System.Security.Permissions;
 using NewsComponents.Feed;
 
 namespace NewsComponents.Net
@@ -21,8 +19,7 @@ namespace NewsComponents.Net
     /// This class mantains all the information needed to describe
     /// a downloadable item.
     /// </summary>
-    [Serializable]
-    public sealed class DownloadItem : ISerializable
+    public sealed class DownloadItem
     {
         #region Private fields
 
@@ -169,39 +166,36 @@ namespace NewsComponents.Net
 
         #endregion
 
-        #region ISerializable Members
+        #region JSON persistence
 
         /// <summary>
-        /// Constructor used by the serialization infrastructure.
+        /// Constructor used when loading an item from its JSON persistence shape.
         /// </summary>
-        /// <param name="info">The serialization information.</param>
-        /// <param name="context">The serialization context.</param>
-        private DownloadItem(SerializationInfo info, StreamingContext context)
+        internal DownloadItem(DownloadItemDto dto)
         {
-            downloadItemId = (Guid) info.GetValue("_id", typeof (Guid));
-            ownerItemId = info.GetString("_itemId");
-            ownerFeedId = info.GetString("_ownerId");
-            enclosure = new Enclosure(info.GetString("_mimetype"), info.GetInt64("_length"), info.GetString("_url"),
-                                      info.GetString("_description"));
+            downloadItemId = dto.Id;
+            ownerItemId = dto.OwnerItemId;
+            ownerFeedId = dto.OwnerFeedId;
+            enclosure = new Enclosure(dto.EnclosureMimeType, dto.EnclosureLength, dto.EnclosureUrl,
+                                      dto.EnclosureDescription);
             file = new DownloadFile(enclosure);
-
         }
 
         /// <summary>
-        /// Method used by the serialization infrastructure.
+        /// Maps the item to its JSON persistence shape.
         /// </summary>
-        /// <param name="info">The serialization information.</param>
-        /// <param name="context">The serialization context.</param>
-		void ISerializable.GetObjectData(SerializationInfo info, StreamingContext context)
+        internal DownloadItemDto ToDto()
         {
-            info.AddValue("_id", downloadItemId);
-            info.AddValue("_itemId", OwnerItemId);
-            info.AddValue("_ownerId", OwnerFeedId);
-            info.AddValue("_url", enclosure.Url);
-            info.AddValue("_mimetype", enclosure.MimeType);
-            info.AddValue("_length", enclosure.Length);
-            info.AddValue("_description", enclosure.Description);
-
+            return new DownloadItemDto
+            {
+                Id = downloadItemId,
+                OwnerItemId = OwnerItemId,
+                OwnerFeedId = OwnerFeedId,
+                EnclosureUrl = enclosure.Url,
+                EnclosureMimeType = enclosure.MimeType,
+                EnclosureLength = enclosure.Length,
+                EnclosureDescription = enclosure.Description,
+            };
         }
 
         #endregion
@@ -218,5 +212,26 @@ namespace NewsComponents.Net
         }
 
         #endregion
+    }
+
+    /// <summary>
+    /// JSON persistence shape of a <see cref="DownloadItem"/>, nested in
+    /// <see cref="DownloadTaskDto"/>.
+    /// </summary>
+    internal sealed class DownloadItemDto
+    {
+        public Guid Id { get; set; }
+
+        public string OwnerItemId { get; set; }
+
+        public string OwnerFeedId { get; set; }
+
+        public string EnclosureUrl { get; set; }
+
+        public string EnclosureMimeType { get; set; }
+
+        public long EnclosureLength { get; set; }
+
+        public string EnclosureDescription { get; set; }
     }
 }

@@ -705,13 +705,19 @@ namespace RssBandit
         }
 
         /// <summary>
-        /// Gets the name of the preferences file.
+        /// Gets the name of the preferences file (legacy SOAP format, read-only migration shim).
         /// </summary>
         /// <returns></returns>
         public static string GetPreferencesFileName()
         {
             return Path.Combine(GetUserPath(), ".preferences.xml");
         }
+
+        /// <summary>
+        /// Gets the name of the preferences file (current JSON format).
+        /// </summary>
+        /// <returns></returns>
+        public static string GetPreferencesFileNameJson() => Path.Combine(GetUserPath(), ".preferences.json");
 
         /// <summary>
         /// Gets the path to the (add) RSS icon used in the Windows 7 jump list

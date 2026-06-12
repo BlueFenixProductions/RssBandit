@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>net10.0-windows10.0.19041</TargetFramework>
-        <EnableUnsafeBinaryFormatterSerialization>true</EnableUnsafeBinaryFormatterSerialization>
         <Title>News Components</Title>
         <Description>News Components</Description>
     </PropertyGroup>
@@ -51,7 +50,6 @@
     <PackageReference Include="Lucene.Net" Version="2.9.4.1" />
     <PackageReference Include="Lucene.Net.Contrib" Version="2.9.4.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
-    <PackageReference Include="System.Runtime.Serialization.Formatters" Version="10.0.9" />
     <PackageReference Include="WindowsAPICodePack-Core" Version="1.1.2" />
     <PackageReference Include="WindowsAPICodePack-Shell" Version="1.1.1" />
   </ItemGroup>

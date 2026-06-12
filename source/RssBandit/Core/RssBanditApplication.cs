@@ -38,6 +38,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization.Formatters.Soap;
 using System.Security;
 using System.Text;
+using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
@@ -2249,8 +2250,35 @@ namespace RssBandit
 
         internal void LoadPreferences()
         {
+            // Primary format: JSON (.preferences.json)
+            string pJsonName = GetPreferencesFileNameJson();
+            if (File.Exists(pJsonName))
+            {
+                try
+                {
+                    using (Stream stream = FileHelper.OpenForRead(pJsonName))
+                    {
+                        var dto = JsonSerializer.Deserialize<PreferencesDto>(stream);
+                        if (dto == null)
+                            throw new InvalidOperationException("Preferences JSON deserialized to null");
+                        Preferences = RssBanditPreferences.FromDto(dto);
+                    }
+                }
+                catch (Exception e)
+                {
+                    _log.Error("Preferences JSON DeserializationException", e);
+                    Preferences = DefaultPreferences;
+                }
+                return;
+            }
+
+            // Legacy read shim (one-time migration to JSON): the SoapFormatter
+            // (.preferences.xml) and BinaryFormatter (.preferences/.preferences.v13)
+            // code below - incl. the SoapFormatter and System.Runtime.Serialization.Formatters
+            // packages and the EnableUnsafeBinaryFormatterSerialization project flag - is
+            // kept exclusively to read old preferences files and migrate them to JSON.
             string pName = GetPreferencesFileName();
-            bool migrate = false;
+            bool migrate = true; // any successfully read legacy format gets migrated to JSON
 			SoapFormatter sf = new SoapFormatter();
         	// we don't rely on strong assembly names for prefs.:
 			sf.AssemblyFormat = FormatterAssemblyStyle.Simple;
@@ -2267,13 +2295,11 @@ namespace RssBandit
                 if (File.Exists(pTempNew))
                 {
                     pName = pTempNew; // migrate from in-between
-                    migrate = true;
                     formatter = new BinaryFormatter();
                 }
                 else if (File.Exists(pOldName))
                 {
                     pName = pOldName;
-                    migrate = true;
                     formatter = new BinaryFormatter();
                 }
             }
@@ -2313,16 +2339,11 @@ namespace RssBandit
         {
             using (var stream = new MemoryStream())
             {
-				SoapFormatter sf = new SoapFormatter();
-				// we don't rely on strong assembly names for prefs.:
-				sf.AssemblyFormat = FormatterAssemblyStyle.Simple;
-				sf.TypeFormat = FormatterTypeStyle.TypesWhenNeeded;
-
-				IFormatter formatter = sf;
                 try
                 {
-                    formatter.Serialize(stream, Preferences);
-                    string pName = GetPreferencesFileName();
+                    var options = new JsonSerializerOptions { WriteIndented = true };
+                    JsonSerializer.Serialize(stream, Preferences.ToDto(), options);
+                    string pName = GetPreferencesFileNameJson();
                     if (FileHelper.WriteStreamWithBackup(pName, stream))
                     {
                         // on success, raise event:

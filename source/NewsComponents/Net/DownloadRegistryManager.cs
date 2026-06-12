@@ -15,8 +15,7 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Security.Permissions;
+using System.Text.Json;
 using System.Threading;
 using log4net;
 using NewsComponents.Utils;
@@ -64,6 +63,11 @@ namespace NewsComponents.Net
         /// Indicates if the list of tasks is loaded
         /// </summary>
         private bool loaded;
+
+        private static readonly JsonSerializerOptions TaskSerializationOptions = new JsonSerializerOptions
+        {
+            WriteIndented = true,
+        };
 
         #endregion
 
@@ -301,41 +305,44 @@ namespace NewsComponents.Net
         private DownloadTask LoadTask(string taskFilePath)
         {
             DownloadTask task = null;
-            var formatter = new BinaryFormatter();
-            using (var stream = new FileStream(taskFilePath, FileMode.Open, FileAccess.Read, FileShare.Read))
+            try
             {
-                try
+                DownloadTaskDto dto;
+                using (var stream = new FileStream(taskFilePath, FileMode.Open, FileAccess.Read, FileShare.Read))
                 {
-                    task = (DownloadTask) formatter.Deserialize(stream);
-                    task.Downloader = (task.SupportsBITS ? (IDownloader) bitsDownloader : (IDownloader) httpDownloader); 
-               
-                    lock (registry)
-                    {
-                        //TODO: Once we have a UI for managing enclosures we'll need to 
-                        //always load all tasks. 
-                        if (!registry.ContainsKey(task.DownloadItem.Enclosure.Url))
-                        {
-                            // Revert to pending if it was in a downloading state
-                            if (task.State == DownloadTaskState.Downloading)
-                                task.State = DownloadTaskState.Pending; 
+                    dto = JsonSerializer.Deserialize<DownloadTaskDto>(stream);
+                }
 
-                            registry.Add(task.DownloadItem.Enclosure.Url, task);
-                            AddTask(task);
-                        }
-                        else
-                        {
-							string fileName = Path.Combine(RootDir.FullName, task.TaskId + ".task");
-							// it might be currrently opened:
-							if (String.Equals(taskFilePath, fileName,StringComparison.OrdinalIgnoreCase))
-								stream.Close();
-                            FileHelper.DestroyFile(fileName);
-                        }
+                task = DownloadTask.FromDto(dto);
+                task.Downloader = (task.SupportsBITS ? (IDownloader) bitsDownloader : (IDownloader) httpDownloader);
+
+                lock (registry)
+                {
+                    //TODO: Once we have a UI for managing enclosures we'll need to
+                    //always load all tasks.
+                    if (!registry.ContainsKey(task.DownloadItem.Enclosure.Url))
+                    {
+                        // Revert to pending if it was in a downloading state
+                        if (task.State == DownloadTaskState.Downloading)
+                            task.State = DownloadTaskState.Pending;
+
+                        registry.Add(task.DownloadItem.Enclosure.Url, task);
+                        AddTask(task);
+                    }
+                    else
+                    {
+                        FileHelper.DestroyFile(Path.Combine(RootDir.FullName, task.TaskId + ".task"));
                     }
                 }
-                catch (Exception e)
-                {
-                    Logger.Error("Error in DownloadRegistryManager.LoadTask():", e);
-                }
+            }
+            catch (Exception e)
+            {
+                // not a readable JSON task file: either corrupt, or written by the
+                // legacy BinaryFormatter format (pre Phase B) - discard it; the
+                // enclosure can simply be downloaded again.
+                Logger.Error("DownloadRegistryManager.LoadTask(): unreadable task file gets removed: " + taskFilePath, e);
+                task = null;
+                FileHelper.DestroyFile(taskFilePath);
             }
             return task;
         }
@@ -352,8 +359,7 @@ namespace NewsComponents.Net
 	        {
 		        using (Stream stream = FileHelper.OpenForWrite(filename))
 		        {
-			        var formatter = new BinaryFormatter();
-			        formatter.Serialize(stream, task);
+			        JsonSerializer.Serialize(stream, task.ToDto(), TaskSerializationOptions);
 		        }
 	        }
 	        catch (IOException ex)

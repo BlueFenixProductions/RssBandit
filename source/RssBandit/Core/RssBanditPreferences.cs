@@ -14,6 +14,7 @@ using System.ComponentModel;
 using System.Configuration;
 using System.Diagnostics;
 using System.Drawing;
+using System.Globalization;
 using System.Runtime.Serialization;
 using System.Security.Cryptography;
 using System.Security.Permissions;
@@ -1294,6 +1295,188 @@ namespace RssBandit
 		}
 		#endregion
 
+		#region JSON persistence (current format)
+
+		/// <summary>
+		/// Maps this instance to the JSON persistence shape (<see cref="PreferencesDto"/>).
+		/// Mirrors <see cref="GetObjectData"/>: secrets are stored encrypted, fonts as
+		/// FontConverter strings, colors as HTML color strings, enums and the optional
+		/// flags as strings.
+		/// </summary>
+		internal PreferencesDto ToDto()
+		{
+			// new encryption key (version 21 and higher), same as GetObjectData:
+			EncryptionHelper.CompatibilityMode = false;
+			return new PreferencesDto
+			{
+				PrefsVersion = 25,
+				ProxyAddress = ProxyAddress,
+				ProxyPort = ProxyPort,
+				ProxyUserEncrypted = EncryptionHelper.Encrypt(ProxyUser),
+				ProxyPasswordEncrypted = EncryptionHelper.Encrypt(ProxyPassword),
+				ProxyBypassList = ProxyBypassList,
+				NewsItemStylesheetFile = NewsItemStylesheetFile,
+				HideToTrayAction = HideToTrayAction.ToString(),
+				NormalFontString = SerializationInfoReader.ConvertFont(NormalFont),
+				UnreadFontString = SerializationInfoReader.ConvertFont(UnreadFont),
+				FlagFontString = SerializationInfoReader.ConvertFont(FlagFont),
+				ErrorFontString = SerializationInfoReader.ConvertFont(ErrorFont),
+				ReferrerFontString = SerializationInfoReader.ConvertFont(ReferrerFont),
+				NewCommentsFontString = SerializationInfoReader.ConvertFont(NewCommentsFont),
+				NormalFontColor = ColorTranslator.ToHtml(NormalFontColor),
+				UnreadFontColor = ColorTranslator.ToHtml(UnreadFontColor),
+				FlagFontColor = ColorTranslator.ToHtml(FlagFontColor),
+				ErrorFontColor = ColorTranslator.ToHtml(ErrorFontColor),
+				ReferrerFontColor = ColorTranslator.ToHtml(ReferrerFontColor),
+				NewCommentsFontColor = ColorTranslator.ToHtml(NewCommentsFontColor),
+				MaxItemAge = MaxItemAge,
+				RemoteStorageUserNameEncrypted = EncryptionHelper.Encrypt(RemoteStorageUserName),
+				RemoteStoragePasswordEncrypted = EncryptionHelper.Encrypt(RemoteStoragePassword),
+				RemoteStorageProtocol = RemoteStorageProtocol.ToString(),
+				RemoteStorageLocation = RemoteStorageLocation,
+				BrowserOnNewWindow = BrowserOnNewWindow.ToString(),
+				BrowserCustomExecOnNewWindow = BrowserCustomExecOnNewWindow,
+				ShowAlertWindow = ShowAlertWindow.ToString(),
+				UserIdentityForComments = UserIdentityForComments,
+				AllOptionalFlags = this.allOptionalFlags.ToString(),
+				NumNewsItemsPerPage = NumNewsItemsPerPage,
+				ReadingPaneTextSize = ReadingPaneTextSize.ToString(),
+				RefreshRate = RefreshRate,
+				EnclosureFolder = EnclosureFolder,
+				NumEnclosuresToDownloadOnNewFeed = NumEnclosuresToDownloadOnNewFeed,
+				EnclosureCacheSize = EnclosureCacheSize,
+				PodcastFolder = PodcastFolder,
+				PodcastFileExtensions = PodcastFileExtensions
+			};
+		}
+
+		/// <summary>
+		/// Creates a <see cref="RssBanditPreferences"/> instance from the JSON
+		/// persistence shape, applying the same null/empty tolerance and fallback
+		/// defaults as the legacy <see cref="SerializationInfo"/> constructor.
+		/// </summary>
+		internal static RssBanditPreferences FromDto(PreferencesDto dto)
+		{
+			if (dto == null)
+				throw new ArgumentNullException(nameof(dto));
+
+			var p = new RssBanditPreferences();	// runs InitDefaults()
+
+			// JSON prefs are always written with the new encryption key (version >= 21):
+			EncryptionHelper.CompatibilityMode = false;
+
+			// booleans all live inside the flags enum:
+			OptionalFlags flags;
+			if (String.IsNullOrEmpty(dto.AllOptionalFlags) || !Enum.TryParse(dto.AllOptionalFlags, out flags))
+				flags = DefaultOptionalFlags;
+			p.allOptionalFlags = flags;
+
+			p.ProxyAddress = dto.ProxyAddress ?? String.Empty;
+			p.ProxyPort = dto.ProxyPort;
+			p.ProxyUser = EncryptionHelper.Decrypt(dto.ProxyUserEncrypted ?? String.Empty);
+			p.ProxyPassword = EncryptionHelper.Decrypt(dto.ProxyPasswordEncrypted ?? String.Empty);
+			p.ProxyBypassList = dto.ProxyBypassList ?? new string[] { };
+
+			p.NewsItemStylesheetFile = dto.NewsItemStylesheetFile ?? String.Empty;
+			p.HideToTrayAction = ParseEnum(dto.HideToTrayAction, HideToTray.OnMinimize);
+
+			p.NormalFont = ParseFont(dto.NormalFontString, FontColorHelper.DefaultNormalFont);
+			p.UnreadFont = ParseFont(dto.UnreadFontString, FontColorHelper.DefaultUnreadFont);
+			p.FlagFont = ParseFont(dto.FlagFontString, FontColorHelper.DefaultHighlightFont);
+			p.ErrorFont = ParseFont(dto.ErrorFontString, FontColorHelper.DefaultFailureFont);
+			p.ReferrerFont = ParseFont(dto.ReferrerFontString, FontColorHelper.DefaultReferenceFont);
+			p.NewCommentsFont = ParseFont(dto.NewCommentsFontString, FontColorHelper.DefaultNewCommentsFont);
+
+			p.NormalFontColor = ParseColor(dto.NormalFontColor, FontColorHelper.DefaultNormalColor);
+			p.UnreadFontColor = ParseColor(dto.UnreadFontColor, FontColorHelper.DefaultUnreadColor);
+			p.FlagFontColor = ParseColor(dto.FlagFontColor, FontColorHelper.DefaultHighlightColor);
+			p.ErrorFontColor = ParseColor(dto.ErrorFontColor, FontColorHelper.DefaultFailureColor);
+			p.ReferrerFontColor = ParseColor(dto.ReferrerFontColor, FontColorHelper.DefaultReferenceColor);
+			p.NewCommentsFontColor = ParseColor(dto.NewCommentsFontColor, FontColorHelper.DefaultNewCommentsColor);
+
+			p.MaxItemAge = dto.MaxItemAge;
+
+			p.RemoteStorageUserName = EncryptionHelper.Decrypt(dto.RemoteStorageUserNameEncrypted ?? String.Empty);
+			p.RemoteStoragePassword = EncryptionHelper.Decrypt(dto.RemoteStoragePasswordEncrypted ?? String.Empty);
+			p.RemoteStorageProtocol = ParseEnum(dto.RemoteStorageProtocol, RemoteStorageProtocolType.Unknown);
+			p.RemoteStorageLocation = dto.RemoteStorageLocation ?? String.Empty;
+			// dasBlog_1_3 is not anymore supported:
+			if (p.UseRemoteStorage && p.RemoteStorageProtocol == RemoteStorageProtocolType.dasBlog_1_3)
+			{
+				p.UseRemoteStorage = false;
+			}
+
+			p.BrowserOnNewWindow = ParseEnum(dto.BrowserOnNewWindow, BrowserBehaviorOnNewWindow.OpenDefaultBrowser);
+			p.BrowserCustomExecOnNewWindow = dto.BrowserCustomExecOnNewWindow ?? String.Empty;
+			p.ShowAlertWindow = ParseEnum(dto.ShowAlertWindow, DisplayFeedAlertWindow.AsConfiguredPerFeed);
+			p.UserIdentityForComments = dto.UserIdentityForComments ?? String.Empty;
+			p.NumNewsItemsPerPage = dto.NumNewsItemsPerPage;
+			p.ReadingPaneTextSize = ParseEnum(dto.ReadingPaneTextSize, TextSize.Medium);
+			p.RefreshRate = dto.RefreshRate;
+
+			p.EnclosureFolder = String.IsNullOrWhiteSpace(dto.EnclosureFolder)
+				? RssBanditApplication.GetDefaultEnclosuresPath()
+				: dto.EnclosureFolder;
+			p.NumEnclosuresToDownloadOnNewFeed = dto.NumEnclosuresToDownloadOnNewFeed;
+			p.EnclosureCacheSize = dto.EnclosureCacheSize;
+			p.PodcastFolder = String.IsNullOrWhiteSpace(dto.PodcastFolder)
+				? RssBanditApplication.GetDefaultPodcastPath()
+				: dto.PodcastFolder;
+			p.PodcastFileExtensions = dto.PodcastFileExtensions ?? RssBanditApplication.DefaultPodcastFileExts;
+
+			return p;
+		}
+
+		/// <summary>
+		/// Parses a font string created by <see cref="SerializationInfoReader.ConvertFont"/>
+		/// (inverse operation, same logic as <see cref="SerializationInfoReader.GetFont"/>).
+		/// </summary>
+		private static Font ParseFont(string fontString, Font defaultValue)
+		{
+			if (String.IsNullOrEmpty(fontString))
+				return defaultValue;
+			try
+			{
+				var converter = new FontConverter();
+				return converter.ConvertFromString(null, CultureInfo.InvariantCulture, fontString) as Font ?? defaultValue;
+			}
+			catch
+			{
+				return defaultValue;
+			}
+		}
+
+		/// <summary>
+		/// Parses an HTML color string created by <see cref="ColorTranslator.ToHtml"/>.
+		/// </summary>
+		private static Color ParseColor(string htmlColor, Color defaultValue)
+		{
+			if (String.IsNullOrEmpty(htmlColor))
+				return defaultValue;
+			try
+			{
+				return ColorTranslator.FromHtml(htmlColor);
+			}
+			catch
+			{
+				return defaultValue;
+			}
+		}
+
+		/// <summary>
+		/// Parses an enum stored as string, falling back to the given default
+		/// (same tolerance as the legacy SerializationInfoReader.Get).
+		/// </summary>
+		private static T ParseEnum<T>(string value, T defaultValue) where T : struct, Enum
+		{
+			T parsed;
+			if (!String.IsNullOrEmpty(value) && Enum.TryParse(value, out parsed))
+				return parsed;
+			return defaultValue;
+		}
+
+		#endregion
+
 		
 		#region helper classes
 		private class EncryptionHelper {
@@ -1527,5 +1710,54 @@ namespace RssBandit
 
 		}
 		#endregion
+	}
+
+	/// <summary>
+	/// JSON persistence shape for <see cref="RssBanditPreferences"/> (the current
+	/// preferences format, replacing the legacy SOAP/BinaryFormatter formats).
+	/// Property initializers carry the same fallback defaults the legacy
+	/// <see cref="SerializationInfo"/> reader used for missing values.
+	/// Secrets (proxy/remote storage credentials) are stored encrypted.
+	/// </summary>
+	public class PreferencesDto
+	{
+		public int PrefsVersion { get; set; } = 25;
+		public string ProxyAddress { get; set; } = String.Empty;
+		public int ProxyPort { get; set; } = 8080;
+		public string ProxyUserEncrypted { get; set; } = String.Empty;
+		public string ProxyPasswordEncrypted { get; set; } = String.Empty;
+		public string[] ProxyBypassList { get; set; } = new string[] { };
+		public string NewsItemStylesheetFile { get; set; } = String.Empty;
+		public string HideToTrayAction { get; set; }
+		public string NormalFontString { get; set; }
+		public string UnreadFontString { get; set; }
+		public string FlagFontString { get; set; }
+		public string ErrorFontString { get; set; }
+		public string ReferrerFontString { get; set; }
+		public string NewCommentsFontString { get; set; }
+		public string NormalFontColor { get; set; }
+		public string UnreadFontColor { get; set; }
+		public string FlagFontColor { get; set; }
+		public string ErrorFontColor { get; set; }
+		public string ReferrerFontColor { get; set; }
+		public string NewCommentsFontColor { get; set; }
+		public TimeSpan MaxItemAge { get; set; } = TimeSpan.FromDays(90);
+		public string RemoteStorageUserNameEncrypted { get; set; } = String.Empty;
+		public string RemoteStoragePasswordEncrypted { get; set; } = String.Empty;
+		public string RemoteStorageProtocol { get; set; }
+		public string RemoteStorageLocation { get; set; } = String.Empty;
+		public string BrowserOnNewWindow { get; set; }
+		public string BrowserCustomExecOnNewWindow { get; set; } = String.Empty;
+		public string ShowAlertWindow { get; set; }
+		public string UserIdentityForComments { get; set; } = String.Empty;
+		public string AllOptionalFlags { get; set; }
+		public int NumNewsItemsPerPage { get; set; } = 10;
+		public string ReadingPaneTextSize { get; set; }
+		public int RefreshRate { get; set; } = FeedSource.DefaultRefreshRate;
+		public string EnclosureFolder { get; set; } = String.Empty;
+		public int NumEnclosuresToDownloadOnNewFeed { get; set; } = FeedSource.DefaultNumEnclosuresToDownloadOnNewFeed;
+		public int EnclosureCacheSize { get; set; } = FeedSource.DefaultEnclosureCacheSize;
+		public string PodcastFolder { get; set; } = String.Empty;
+		public string PodcastFileExtensions { get; set; }
 	}
 }
