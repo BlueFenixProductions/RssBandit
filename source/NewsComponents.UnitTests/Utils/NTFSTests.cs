@@ -4,15 +4,16 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using NewsComponents.Utils;
-using Xunit;
+using NUnit.Framework;
 
 namespace NewsComponents.UnitTests.Utils
 {
+	[TestFixture]
 	public class NTFSTests
 	{
 		/// <summary>
 		/// </summary>
-		[Fact]
+		[Test]
 		public void TestAssignInternetZoneIdentifierToFile()
 		{
 			var testFile = Path.Combine(Path.GetTempPath(), "ZoneTest" + Guid.NewGuid().ToString("N") + ".txt");

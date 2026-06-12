@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using NewsComponents.Utils;
-using Xunit;
+using NUnit.Framework;
 
 namespace NewsComponents.UnitTests.Utils
 {
 	/// <summary>
-	/// Summary description for StringHelperTests.
+	/// Summary description for HtmlHelperTests.
 	/// </summary>
+	[TestFixture]
 	public class HtmlHelperTests
 	{
 		#region test consts
@@ -39,27 +40,27 @@ Schuetz - TU Chemnitz)!
 		/// <summary>
 		/// Tests the ShortenByEllipsis method.
 		/// </summary>
-		[Fact]
+		[Test]
 		public void RetrieveTitledLinks()
 		{
 			var links = HtmlHelper.RetrieveTitledLinks(htmlFragments[0]);
-			Assert.NotNull(links);
-			Assert.Equal(2, links.Count);
+			Assert.IsNotNull(links);
+			Assert.AreEqual(2, links.Count);
 
 			// Note: Urls should be lower case:
-			Assert.Equal("http://www.live.com", links[0].Url);
-			Assert.Equal("live.com", links[0].Title);
-			Assert.Equal("http://search.live.com/results.aspx?q=%2blivewhacking", links[1].Url);
-			Assert.Equal("Search livewhacking", links[1].Title);
+			Assert.AreEqual("http://www.live.com", links[0].Url);
+			Assert.AreEqual("live.com", links[0].Title);
+			Assert.AreEqual("http://search.live.com/results.aspx?q=%2blivewhacking", links[1].Url);
+			Assert.AreEqual("Search livewhacking", links[1].Title);
 
 			links = HtmlHelper.RetrieveTitledLinks(htmlFragments[1]);
-			Assert.Equal("http://www.live.com", links[0].Url);
-			Assert.Equal("Hi Live", links[0].Title);
-			Assert.Equal("http://search.live.com/results.aspx?q=%2blivewhacking", links[1].Url);
-			Assert.Equal("livewhacking", links[1].Title);
+			Assert.AreEqual("http://www.live.com", links[0].Url);
+			Assert.AreEqual("Hi Live", links[0].Title);
+			Assert.AreEqual("http://search.live.com/results.aspx?q=%2blivewhacking", links[1].Url);
+			Assert.AreEqual("livewhacking", links[1].Title);
 
 			links = HtmlHelper.RetrieveTitledLinks(htmlFragments[2]);
-			Assert.Equal(2, links.Count);
+			Assert.AreEqual(2, links.Count);
 		}
 	}
 }
