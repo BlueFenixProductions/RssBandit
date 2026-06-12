@@ -2140,7 +2140,7 @@ namespace RssBandit
             SavePreferences();
         }
 
-        private static string[] ParseProxyBypassList(string proxyBypassString)
+        internal static string[] ParseProxyBypassList(string proxyBypassString)
         {
             return ListHelper.StripEmptyEntries(proxyBypassString.Split(';', ' ', ','));
         }
@@ -2207,8 +2207,9 @@ namespace RssBandit
                     proxy = new WebProxy(p.ProxyAddress);
 
                 (proxy).BypassProxyOnLocal = p.BypassProxyOnLocal;
-                //Get rid of String.Empty in by pass list because it means bypass on all URLs
-                (proxy).BypassList = ListHelper.StripEmptyEntries(p.ProxyBypassList);
+                //Empty entries must not get through (would mean bypass on all URLs), and
+                //invalid regex patterns would make the BypassList setter throw:
+                (proxy).BypassList = SanitizeProxyBypassList(p.ProxyBypassList);
 
                 if (p.ProxyCustomCredentials)
                 {
@@ -2246,6 +2247,84 @@ namespace RssBandit
 
             // force switch to system default proxy:
             return null;
+        }
+
+        /// <summary>
+        /// Validates and normalizes proxy bypass list entries taken from preferences.
+        /// </summary>
+        /// <remarks>
+        /// <see cref="WebProxy.BypassList"/> treats each entry as a regular expression
+        /// and throws on the first invalid pattern, which would crash
+        /// <see cref="ApplyPreferences"/> at startup. Entries in the common wildcard
+        /// form (e.g. "*.example.com") are converted to an equivalent regular
+        /// expression; entries that are neither valid nor convertible are dropped
+        /// and logged instead of taking down preference application.
+        /// </remarks>
+        internal static string[] SanitizeProxyBypassList(IEnumerable<string> bypassEntries)
+        {
+            var sanitized = new List<string>();
+            foreach (string entry in bypassEntries)
+            {
+                if (TryNormalizeProxyBypassEntry(entry, out string pattern))
+                    sanitized.Add(pattern);
+                else if (!string.IsNullOrWhiteSpace(entry))
+                    _log.WarnFormat(
+                        "Ignoring invalid proxy bypass list entry '{0}': neither a valid regular expression nor a plain wildcard pattern.",
+                        entry);
+            }
+            return sanitized.ToArray();
+        }
+
+        // regex metacharacters (besides '*', '?' and '.') that indicate an entry was
+        // meant as a regular expression, so a broken one should not be re-interpreted
+        // as a wildcard pattern:
+        private static readonly char[] regexOnlyChars = { '(', ')', '[', ']', '{', '}', '\\', '|', '+', '^', '$' };
+
+        /// <summary>
+        /// Validates a single proxy bypass entry, converting plain wildcard syntax
+        /// (e.g. "*.example.com") to the regular expression form expected by
+        /// <see cref="WebProxy.BypassList"/>. Returns false for entries that cannot
+        /// be used (empty, or an invalid regular expression).
+        /// </summary>
+        internal static bool TryNormalizeProxyBypassEntry(string entry, out string pattern)
+        {
+            pattern = null;
+            if (string.IsNullOrWhiteSpace(entry))
+                return false;
+
+            entry = entry.Trim();
+            if (IsValidRegexPattern(entry))
+            {
+                pattern = entry;
+                return true;
+            }
+
+            if (entry.IndexOfAny(regexOnlyChars) < 0)
+            {
+                // WebProxy matches bypass patterns against "scheme://host[:port]";
+                // anchor the end (allowing a port) so "*.example.com" cannot
+                // accidentally bypass e.g. "x.example.com.evil.net":
+                string converted = Regex.Escape(entry).Replace(@"\*", ".*").Replace(@"\?", ".") + @"(?::\d+)?$";
+                if (IsValidRegexPattern(converted))
+                {
+                    pattern = converted;
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private static bool IsValidRegexPattern(string pattern)
+        {
+            try
+            {
+                new Regex(pattern);
+                return true;
+            }
+            catch (ArgumentException)
+            {
+                return false;
+            }
         }
 
         internal void LoadPreferences()

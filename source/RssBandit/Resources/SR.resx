@@ -352,6 +352,10 @@ Detail: {1}</value>
   <data name="ExceptionNoProxyUrl" xml:space="preserve">
     <value>Provide the proxy address (IP or Host name), please.</value>
   </data>
+  <data name="ExceptionInvalidProxyBypassEntry" xml:space="preserve">
+    <value>'{0}' is not a valid proxy bypass entry. Use a regular expression or a simple wildcard like *.example.com, please.</value>
+    <comment>Parameters: 0 - the invalid bypass list entry (string)</comment>
+  </data>
   <data name="ExceptionInvalidEnclosurePath" xml:space="preserve">
     <value>Invalid path to download directory specified</value>
   </data>

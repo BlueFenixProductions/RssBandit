@@ -1092,6 +1092,8 @@ namespace RssBandit.WinGui.Dialogs
             resources.ApplyResources(this.textProxyBypassList, "textProxyBypassList");
             this.textProxyBypassList.Name = "textProxyBypassList";
             this.toolTip1.SetToolTip(this.textProxyBypassList, resources.GetString("textProxyBypassList.ToolTip"));
+            this.textProxyBypassList.Validated += new System.EventHandler(this.OnControlValidated);
+            this.textProxyBypassList.Validating += new System.ComponentModel.CancelEventHandler(this.OnControlValidating);
             // 
             // checkNoProxy
             // 

@@ -646,6 +646,15 @@ namespace RssBandit.Resources {
                 return ResourceManager.GetString("ExceptionInvalidPlaylistName", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to &apos;{0}&apos; is not a valid proxy bypass entry. Use a regular expression or a simple wildcard like *.example.com, please..
+        /// </summary>
+        internal static string ExceptionInvalidProxyBypassEntry {
+            get {
+                return ResourceManager.GetString("ExceptionInvalidProxyBypassEntry", resourceCulture);
+            }
+        }
         
         /// <summary>
         ///   Looks up a localized string similar to Validation error while loading search configuration.

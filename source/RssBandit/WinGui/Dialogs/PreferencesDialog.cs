@@ -931,6 +931,18 @@ namespace RssBandit.WinGui.Dialogs {
 					}
 				}
 
+			} else if (sender == textProxyBypassList && checkUseProxy.Checked) {
+
+				// each entry must be usable as a WebProxy.BypassList regular expression
+				// (simple wildcard forms like "*.example.com" get converted on apply):
+				foreach (string entry in RssBanditApplication.ParseProxyBypassList(textProxyBypassList.Text)) {
+					if (!RssBanditApplication.TryNormalizeProxyBypassEntry(entry, out _)) {
+						errorProvider1.SetError(textProxyBypassList, String.Format(SR.ExceptionInvalidProxyBypassEntry, entry));
+						e.Cancel = true;
+						break;
+					}
+				}
+
 			} else if(sender == textEnclosureDirectory){
 
 				textEnclosureDirectory.Text = textEnclosureDirectory.Text.Trim();
