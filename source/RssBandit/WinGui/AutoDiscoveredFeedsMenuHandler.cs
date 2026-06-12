@@ -285,12 +285,6 @@ namespace RssBandit.WinGui
 				List<string> feeds = null;
 				try
 				{
-					// You can use this to simplify debugging IEControl HTML output.
-					// That is slightly different than the HTML we would get from a direct request!
-					//					using(System.IO.StreamWriter writer = System.IO.File.CreateText(System.IO.Path.Combine(System.IO.Path.GetTempPath(), "IEContent.htm"))) {
-					//						writer.Write(htmlContent);
-					//						writer.Flush();
-					//					}
 					feeds = locator.GetRssFeedsForUrlContent(pageUrl, htmlContent, false);
 				}
 				catch (Exception)

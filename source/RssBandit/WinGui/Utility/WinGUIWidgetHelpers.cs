@@ -356,13 +356,13 @@ namespace RssBandit.WinGui.Utility
 #if !PHOENIX
         public ITextImageItem[] GoBackHistoryItems(int maxItems)
         {
-            //TODO: impl. by IEControl
+            //TODO: implement via WebView2 history
             return EmptyHistoryItems;
         }
 
         public ITextImageItem[] GoForwardHistoryItems(int maxItems)
         {
-            //TODO: impl. by IEControl
+            //TODO: implement via WebView2 history
             return EmptyHistoryItems;
         }
 #endif

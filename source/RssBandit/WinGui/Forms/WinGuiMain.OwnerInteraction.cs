@@ -722,7 +722,7 @@ namespace RssBandit.WinGui.Forms
             {
                 // create new doc tab with a contained web browser
 
-                hc = await CreateAndInitIEControl(tab);
+                hc = await CreateAndInitWebView(tab);
                 var doc = new DockControl(hc, tab)
                               {
                                   Tag = new WebTabState(tab, url)
@@ -764,33 +764,18 @@ namespace RssBandit.WinGui.Forms
             hc.Source = uri;
         }
 
-        private async Task<WebView2> CreateAndInitIEControl(string tabName)
+        private async Task<WebView2> CreateAndInitWebView(string tabName)
         {
             var hc = new WebView2();
             await hc.EnsureCoreWebView2Async();
 
             var resources = new ComponentResourceManager(typeof (WinGuiMain));
 
-            //hc.BeginInit();
-            // we just take over some generic resource settings from htmlDetail:
-            //hc.AllowDrop = true;            
-        //    resources.ApplyResources(hc, "htmlDetail");
             hc.Name = tabName ?? String.Empty;
-            // hc.OcxState = ((AxHost.State) (resources.GetObject("htmlDetail.OcxState")));
-            //  hc.ContainingControl = this;
-            //hc.EndInit();
 
             hc.CoreWebView2.Settings.IsScriptEnabled = owner.Preferences.BrowserJavascriptAllowed;
             hc.CoreWebView2.Settings.AreHostObjectsAllowed = false;
             hc.CoreWebView2.Settings.IsWebMessageEnabled = false;
-
-                       
-            
-            //hc.BackroundSoundEnabled = owner.Preferences.BrowserBGSoundAllowed;
-            //hc.VideoEnabled = owner.Preferences.BrowserVideoAllowed;
-            //hc.ImagesDownloadEnabled = owner.Preferences.BrowserImagesAllowed;
-            //hc.SilentModeEnabled = true;
-            //hc.Border3d = true;
 
         	AttachEvents(hc, true);
             

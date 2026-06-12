@@ -1657,7 +1657,7 @@ namespace RssBandit.WinGui.Forms
                                      !listFeedItems.Focused)
                             {
                                 // browser detail pane has focus
-                                // IEControl behavior is different depending on the !DOCTYPE:
+                                // Embedded browser behavior is different depending on the !DOCTYPE:
 								// internal stylesheet uses HTML 5 now, others use "older modes".
 								// We might introduce a advanced flag "custom stylesheets use HTML5" to get a 
 								// more "user controlled" behavior.
@@ -1677,32 +1677,6 @@ namespace RssBandit.WinGui.Forms
 								}
 
                                 // TODO: WebView2 enable scroll via javascript
-
-	       //                     IHTMLElement2 htbody = null;
-	       //                     if (internalStylesheetUsed)
-	       //                     {
-								//	IHTMLDocument3 htdoc3 = htmlDetail.Document as IHTMLDocument3;
-		      //                      if (htdoc3 != null)
-			     //                       htbody = htdoc3.documentElement() as IHTMLElement2;
-	       //                     }
-	       //                     else
-	       //                     {
-								//	IHTMLDocument2 htdoc2 = htmlDetail.Document2;
-								//	if (htdoc2 != null)
-								//		htbody = htdoc2.GetBody();
-	       //                     }
-
-								//if (htbody != null)
-								//{
-								//	int num1 = htbody.getScrollTop();
-								//	htbody.setScrollTop(num1 + 20);
-								//	int num2 = htbody.getScrollTop();
-								//	if (num1 == num2)
-								//	{
-								//		MoveToNextUnreadItem(true);
-								//		processed = true;
-								//	}
-								//}
                             }
                             else
                             {
@@ -1764,37 +1738,6 @@ namespace RssBandit.WinGui.Forms
                             }
                         }
                 }
-                //else if (m.Msg == (int) Win32.NativeMethods.Message.WM_LBUTTONDBLCLK ||
-                //         m.Msg == (int) Win32.NativeMethods.Message.WM_RBUTTONDBLCLK ||
-                //         m.Msg == (int) Win32.NativeMethods.Message.WM_MBUTTONDBLCLK ||
-                //         m.Msg == (int) Win32.NativeMethods.Message.WM_LBUTTONUP ||
-                //         m.Msg == (int) Win32.NativeMethods.Message.WM_MBUTTONUP ||
-                //         m.Msg == (int) Win32.NativeMethods.Message.WM_RBUTTONUP ||
-                //         m.Msg == (int) Win32.NativeMethods.Message.WM_XBUTTONDBLCLK ||
-                //         m.Msg == (int) Win32.NativeMethods.Message.WM_XBUTTONUP)
-                //{
-                //    _lastMousePosition = new Point(Win32.LOWORD(m.LParam), Win32.HIWORD(m.LParam));
-
-                //    Control mouseControl = wheelSupport.GetTopmostVisibleChild(this, MousePosition);
-                //    _webUserNavigated = (mouseControl is WebView2); // set
-                //    _webForceNewTab = false;
-                //    if (_webUserNavigated)
-                //    {
-                //        // CONTROL-Click opens a new Tab
-                //        //_webForceNewTab = (IEControl.Interop.GetAsyncKeyState(IEControl.Interop.VK_CONTROL) < 0);
-                //    }
-                //}
-                //else if (m.Msg == (int) Win32.NativeMethods.Message.WM_MOUSEMOVE)
-                //{
-                //    var p = new Point(Win32.LOWORD(m.LParam), Win32.HIWORD(m.LParam));
-                //    if (Math.Abs(p.X - _lastMousePosition.X) > 5 ||
-                //        Math.Abs(p.Y - _lastMousePosition.Y) > 5)
-                //    {
-                //        //Trace.WriteLine(String.Format("Reset mouse pos. Old: {0} New: {1}", _lastMousePosition, p));
-                //        _webForceNewTab = _webUserNavigated = false; // reset
-                //        _lastMousePosition = p;
-                //    }
-                //}
             }
             catch (Exception ex)
             {
@@ -4043,27 +3986,6 @@ namespace RssBandit.WinGui.Forms
 
         #region html control events
 
-   //     private void OnHtmlWindowError(string description, string url, int line)
-   //     {
-   //         /* don't show script error dialog and don't disable script due to a single script error */
-			//if (_docContainer.ActiveDocument != null && _docContainer.ActiveDocument.Controls.Count > 0)
-			//{
-   //             WebView2 hc = FindControl<WebView2>(_docContainer.ActiveDocument.Controls);
-				
-			//	if (hc != null)
-			//	{
-			//		var window = (IHTMLWindow2)hc.Document2.GetParentWindow();
-			//		IHTMLEventObj eventObj = window.eventobj;
-			//		if (eventObj != null)
-			//			eventObj.ReturnValue = true;
-			//	} 
-			//	else
-			//	{
-			//		_log.Error("FindControl<HtmlControl>() returned null");
-			//	}
-			//}
-   //     }
-
 		private static T FindControl<T>(Control.ControlCollection collection) where T: class
 		{
 			if (collection != null && collection.Count > 0)
@@ -4177,10 +4099,6 @@ namespace RssBandit.WinGui.Forms
                 var wv2 = (CoreWebView2) sender;
                 var hc = webViewInstanceMap[wv2];
 
-                //handle script errors on page
-                //var window = (HTMLWindowEvents2_Event) hc.Document2.GetParentWindow();
-                //window.onerror += OnHtmlWindowError;
-
                 if(navigationMap.TryRemove(e.NavigationId, out var url))
                 {
                     if (!string.IsNullOrEmpty(url) && !"about:blank".Equals(url, StringComparison.OrdinalIgnoreCase) && !string.IsNullOrEmpty(url) && !url.StartsWith("data:", StringComparison.OrdinalIgnoreCase))
@@ -4219,35 +4137,6 @@ namespace RssBandit.WinGui.Forms
                 _log.Error("OnWebNavigateComplete(): " + e.NavigationId, ex);
             }
         }
-
-
-        //private void OnWebDocumentComplete(object sender, BrowserDocumentCompleteEvent e)
-        //{
-        //    try
-        //    {
-        //        var hc = (HtmlControl) sender;
-
-        //        //handle script errors on page
-        //        var window = (HTMLWindowEvents2_Event) hc.Document2.GetParentWindow();
-        //        window.onerror += OnHtmlWindowError;
-
-        //        if (!string.IsNullOrEmpty(e.url) && e.url != "about:blank" && e.IsRootPage)
-        //        {
-        //            AddUrlToHistoryDropdown(e.url);
-
-        //            var doc = (DockControl) hc.Tag;
-        //            var state = (ITabState) doc.Tag;
-        //            state.Url = e.url;
-        //            RefreshDocumentState(doc);
-        //            owner.BackgroundDiscoverFeedsHandler.DiscoverFeedInContent(hc.DocumentInnerHTML, state.Url,
-        //                                                                       state.Title);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        _log.Error("OnWebDocumentComplete(): " + e.url, ex);
-        //    }
-        //}
 
         private void OnWebTitleChanged(object sender, object e)
         {
@@ -4309,40 +4198,11 @@ namespace RssBandit.WinGui.Forms
 			//e.Cancel = true;
         }
 
-		//// because this event gets fired without a BeforeNavigate(), we
-		//// have to handle such things like "Ctrl-Click" again here
-		//private void OnWebNewWindow3(object sender, BrowserNewWindow3Event e)
-		//{
-  //          if (IEControl.Interop.NWMF.NWMF_USERINITED == (e.dwFlags & IEControl.Interop.NWMF.NWMF_USERINITED))
-  //          {
-  //              if (IEControl.Interop.NWMF.NWMF_FORCEWINDOW == (e.dwFlags & IEControl.Interop.NWMF.NWMF_FORCEWINDOW))
-  //              {
-  //                  owner.NavigateToUrlInExternalBrowser(e.bstrUrl);
-  //              } 
-  //              else
-  //              {
-  //                  bool forceSetFocus = true;
-  //                  // if Ctrl-Click is true, Tab should open in background:
-  //                  if ((ModifierKeys & Keys.Control) == Keys.Control)
-  //                      forceSetFocus = false;
-  //                  ConfiguredWebBrowserNewWindowAction(e.bstrUrl, forceSetFocus);
-  //              }
-  //          }
-		//    // if we do not cancel here, we would get the OnWebNewWindow event too:
-		//	e.Cancel = true;
-		//}
-
 		private void ConfiguredWebBrowserNewWindowAction(string url, bool forceSetFocus, bool isUserInitiated, bool forceNewTab)
 		{
 			try
 			{
 				bool userNavigates = isUserInitiated;
-				//bool forceNewTab = forceNewTab;
-
-				//_webForceNewTab = _webUserNavigated = false; // reset
-
-				//const bool forceSetFocus = true;
-				// Tab in background, but IEControl does NOT display/render!!!    !(Interop.GetAsyncKeyState(Interop.VK_MENU) < 0);
 
 				if (UrlRequestHandledExternally(url, forceNewTab))
 				{
@@ -4373,118 +4233,6 @@ namespace RssBandit.WinGui.Forms
                 _log.Error("OnWebQuit()", ex);
             }
         }
-
-        //private void OnWebTranslateAccelerator(object sender, KeyEventArgs e)
-        //{
-        //    try
-        //    {
-        //        WebView2 htmlControl = (WebView2) sender;
-        //        // we use Control.ModifierKeys, because e.Shift etc. is not always set!
-        //        bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
-        //        bool ctrl = (ModifierKeys & Keys.Control) == Keys.Control;
-        //        bool alt = (ModifierKeys & Keys.Alt) == Keys.Alt;
-        //        bool noModifier = (!shift && !ctrl && !alt);
-
-        //        bool shiftOnly = (shift && !ctrl && !alt);
-        //        bool ctrlOnly = (ctrl && !shift && !alt);
-        //        bool ctrlShift = (ctrl && shift && !alt);
-
-        //        // Fix 504646: do not capture "RIGHT-ALT-N" (https://sourceforge.net/tracker/?func=detail&aid=1504646&group_id=96589&atid=615248)
-        //        if (ctrlOnly && _shortcutHandler.IsCommandInvoked("BrowserCreateNewTab", e.KeyData))
-        //        {
-        //            // capture Ctrl-N event or whichever combination is configured (new window)
-        //            owner.CmdBrowserCreateNewTab(null);
-        //            e.Handled = true;
-        //        }
-        //        if (_shortcutHandler.IsCommandInvoked("Help", e.KeyData))
-        //        {
-        //            // capture F1 (or whichever keys are configured) event (help)
-        //            Help.ShowHelp(this, helpProvider1.HelpNamespace, HelpNavigator.TableOfContents);
-        //            e.Handled = true;
-        //        }
-
-        //        if (!e.Handled)
-        //        {
-        //            // prevent double handling of shortcuts:
-        //            // IE will handle this codes by itself even if a user configures other shortcuts
-        //            // than Ctrl-N and F1.
-        //            e.Handled = (e.KeyCode == Keys.N && ctrlOnly ||
-        //                         e.KeyCode == Keys.F1);
-        //        }
-
-        //        if (!e.Handled)
-        //        {
-        //            // support: continue tab order throw the other controls than IEControl
-        //            if (e.KeyCode == Keys.Tab && noModifier)
-        //            {
-        //                if (htmlControl.Document2 != null && null == htmlControl.Document2.GetActiveElement())
-        //                {
-        //                    // one turn around within ALink element classes
-        //                    if (treeFeeds.Visible)
-        //                    {
-        //                        treeFeeds.Focus();
-        //                        e.Handled = true;
-        //                    }
-        //                    else if (listFeedItems.Visible)
-        //                    {
-        //                        listFeedItems.Focus();
-        //                        e.Handled = true;
-        //                    }
-        //                }
-        //            }
-        //            else if (e.KeyCode == Keys.Tab && shiftOnly)
-        //            {
-
-        //                if (htmlControl.Document2 != null)
-        //                {
-        //                    object element = htmlControl.Document2.GetActiveElement();
-                            
-        //                    if (null == element || element.GetType().Name == "HTMLBodyClass")
-        //                    {
-        //                        // one reverse turn around within ALink element classes
-        //                        if (listFeedItems.Visible)
-        //                        {
-        //                            listFeedItems.Focus();
-        //                            e.Handled = true;
-        //                        }
-        //                        else if (treeFeeds.Visible)
-        //                        {
-        //                            treeFeeds.Focus();
-        //                            e.Handled = true;
-        //                        }
-        //                    }
-        //                }
-        //            }
-        //        }
-
-        //        if (!e.Handled)
-        //        {
-        //            // support: Ctrl-Tab/Shift-Ctrl-Tab switch Browser Tabs
-        //            if (e.KeyCode == Keys.Tab && ctrlOnly)
-        //            {
-        //                // step forward:
-        //                if (_docContainer.Documents.Length > 1)
-        //                {
-        //                    InvokeProcessCmdKey(_docContainer.ActiveDocument, Keys.Next | Keys.Control);
-        //                    e.Handled = true;
-        //                }
-        //            }
-        //            else if (e.KeyCode == Keys.Tab && ctrlShift)
-        //            {
-        //                // step backward:
-        //                if (_docContainer.Documents.Length > 1)
-        //                {
-        //                    InvokeProcessCmdKey(_docContainer.ActiveDocument, Keys.Prior | Keys.Control);
-        //                    e.Handled = true;
-        //                }
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        _log.Error("OnWebTranslateAccelerator(): " + e.KeyCode, ex);
-        //    }
-        //}
 
         private void InvokeProcessCmdKey(DockControl c, Keys keyData)
         {

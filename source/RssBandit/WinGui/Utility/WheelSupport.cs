@@ -80,7 +80,7 @@ namespace RssBandit.WinGui.Utility
 	
 						// thanks to http://sourceforge.net/users/kevindente/:
 						if (child is WebView2)	{
-							return ScrollHtmlControl(child as WebView2, m);
+							return ScrollWebBrowser(child as WebView2, m);
 						}
 
 						if (child is UltraTree) {
@@ -129,34 +129,14 @@ namespace RssBandit.WinGui.Utility
 		}
 		
 		/// <summary>
-		/// Mouse wheel scrolling on IEControl support.
+		/// Mouse wheel scrolling on WebView2 support.
 		/// Thanks to // thanks to http://sourceforge.net/users/kevindente/:
 		/// </summary>
 		/// <param name="control"></param>
 		/// <param name="m"></param>
 		/// <returns></returns>
-		private bool ScrollHtmlControl(WebView2 control, Message m) {
-			//IntPtr hwnd;
-
-            //IEControl.Interop.IOleWindow oleWindow = null;
-            //try {
-            //	oleWindow = control.Document2 as IEControl.Interop.IOleWindow;
-            //} catch {}
-
-            //if (oleWindow == null)
-            //	return false;
-
-            //oleWindow.GetWindow(out hwnd);
+		private bool ScrollWebBrowser(WebView2 control, Message m) {
             return false;
-
-			//if (m.HWnd == hwnd) { 
-			// 	// avoid recursion
-			//	return false;
-			//}
-
-			//NativeMethods.PostMessage(hwnd, NativeMethods.WM_MOUSEWHEEL, m.WParam, m.LParam);
-
-			//return true;	
 		}
 
 		#region Win32 interop/helpers

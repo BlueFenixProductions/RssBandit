@@ -322,8 +322,6 @@ namespace RssBandit.WinGui.Forms
 
         public void ResetHtmlDetail()
         {
-            /* NOTE: ActiveX security band behavior isn't reset in this case because it seems Internet Feature
-             * Settings only applies on newly created IE Controls and cannot be changed after creation */
             ResetHtmlDetail(false);
         }
 
@@ -335,27 +333,6 @@ namespace RssBandit.WinGui.Forms
 
         private void ResetHtmlDetail(bool initializeControlUsage)
         {
-            // enable enhanced browser security available with XP SP2:
-            //  htmlDetail.EnhanceBrowserSecurityForProcess();
-
-            // configurable settings:
-            //     htmlDetail.ActiveXEnabled = owner.Preferences.BrowserActiveXAllowed;
-            //(bool)RssBanditApplication.ReadAppSettingsEntry("FeedDetailPane.ActiveXEnabled", typeof(bool), false);
-            //HtmlControl.SetInternetFeatureEnabled(
-            //    InternetFeatureList.FEATURE_RESTRICT_ACTIVEXINSTALL,
-            //    SetFeatureFlag.SET_FEATURE_ON_PROCESS,
-            //    htmlDetail.ActiveXEnabled);
-            //   htmlDetail.ImagesDownloadEnabled = owner.Preferences.BrowserImagesAllowed;
-            //(bool)RssBanditApplication.ReadAppSettingsEntry("FeedDetailPane.ImagesDownloadEnabled", typeof(bool), true);
-            //   htmlDetail.JavaEnabled = owner.Preferences.BrowserJavaAllowed;
-            //(bool)RssBanditApplication.ReadAppSettingsEntry("FeedDetailPane.JavaEnabled", typeof(bool), false);
-            //     htmlDetail.VideoEnabled = owner.Preferences.BrowserVideoAllowed;
-            //(bool)RssBanditApplication.ReadAppSettingsEntry("FeedDetailPane.VideoEnabled", typeof(bool), false);
-            //  htmlDetail.FrameDownloadEnabled =
-            //       RssBanditApplication.ReadAppSettingsEntry("FeedDetailPane.FrameDownloadEnabled", false);
-            // hardcoded settings:
-            //htmlDetail.Border3d = true;
-            //htmlDetail.FlatScrollBars = true;
 
             htmlDetail.CoreWebView2.Settings.AreHostObjectsAllowed = false;
             htmlDetail.CoreWebView2.Settings.IsWebMessageEnabled = false;
@@ -363,11 +340,6 @@ namespace RssBandit.WinGui.Forms
             htmlDetail.CoreWebView2.Settings.IsScriptEnabled = owner.Preferences.BrowserJavascriptAllowed;
             
             htmlDetail.CoreWebView2.Settings.AreDefaultScriptDialogsEnabled = false;
-            //(bool)RssBanditApplication.ReadAppSettingsEntry("FeedDetailPane.ScriptEnabled", typeof(bool), true); //maybe this should be false by default?
-            //  htmlDetail.ScriptObject = null; // set this later to enable inner-HTML function calls
-            //   htmlDetail.ScrollBarsEnabled = true;
-
-            //   htmlDetail.AllowInPlaceNavigation = false;
 
 
             htmlDetail.Tag = _docFeedDetails;
@@ -396,13 +368,10 @@ namespace RssBandit.WinGui.Forms
             wv2.NavigationStarting += OnWebBeforeNavigate;
             wv2.NavigationCompleted += OnWebNavigateComplete;
                         
-			//hc.DocumentComplete += OnWebDocumentComplete;
-			
 			wv2.NewWindowRequested += OnWebNewWindow;
 	
 
 			//hc.ProgressChanged += OnWebProgressChanged;
-			//hc.TranslateAccelerator += OnWebTranslateAccelerator;
 
 			if (isClosableWindow)
 			{
@@ -427,7 +396,6 @@ namespace RssBandit.WinGui.Forms
 
 
 			//hc.ProgressChanged -= OnWebProgressChanged;
-			//hc.TranslateAccelerator -= OnWebTranslateAccelerator;
 
 			if (isClosableWindow)
 			{
