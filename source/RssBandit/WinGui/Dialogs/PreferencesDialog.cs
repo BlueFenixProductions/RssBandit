@@ -68,8 +68,6 @@ namespace RssBandit.WinGui.Dialogs {
             MaximumSize = MinimumSize;
 
             //sectionPanelEnclosurePodcasts.Height = (int)(sectionPanelEnclosurePodcasts.Height * scale);
-            // Hide comments / idenitity / nntp related info
-            sectionPanelFeedsCommentDefs.Visible = false;
 
             itemStateFonts = new Font[lstItemStates.Items.Count];
 			itemStateColors = new Color[lstItemStates.Items.Count];

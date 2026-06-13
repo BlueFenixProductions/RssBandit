@@ -138,24 +138,13 @@ namespace RssBandit
         /// <returns></returns>
         private static Control GetMarshalingControl()
         {
-            // Must be constructed on the UI thread: the control's handle owns the
-            // thread affinity that Invoke/BeginInvoke marshal to.
-            return new MarshalingControl();
-        }
+            // Reflecting on the internal Application.ThreadContext.MarshalingControl
+            // (as done up to the .NET Framework builds) fails on modern .NET. A plain
+            // control whose handle is created on the UI thread serves the same purpose.
+            var control = new Control();
+            GC.KeepAlive(control.Handle); // force handle creation on the calling (UI) thread
 
-        /// <summary>
-        /// Hidden top-level control whose only purpose is to own a window handle
-        /// on the UI thread, so Invoke/BeginInvoke marshal onto that thread even
-        /// when no target control is supplied.
-        /// </summary>
-        private sealed class MarshalingControl : Control
-        {
-            internal MarshalingControl()
-            {
-                Visible = false;
-                SetTopLevel(true);
-                CreateHandle();
-            }
+            return control;
         }
 
         #endregion
