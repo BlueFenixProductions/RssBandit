@@ -3398,10 +3398,20 @@ namespace RssBandit
 				// script might be changed in this new version:
 
                 // Disable the startup task by default since it'll be enabled initially
-                var startupTask = await StartupTask.GetAsync("RssBanditStartupTask");
-			    if (startupTask.State == StartupTaskState.Enabled)
-			    {
-			        startupTask.Disable();
+                try
+                {
+                    var startupTask = await StartupTask.GetAsync("RssBanditStartupTask");
+                    if (startupTask.State == StartupTaskState.Enabled)
+                    {
+                        startupTask.Disable();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // StartupTask needs MSIX package identity; unpackaged runs throw
+                    // COMException 0x80070490 and would crash the process from this
+                    // async continuation on the UI thread
+                    _log.Error("Failed to query/disable the Windows startup task", ex);
                 }
 
                 //reset first app start flag:
