@@ -27,10 +27,6 @@
       <Name>Eyefinder</Name>
       <HintPath>..\Common\Libraries\Eyefinder.dll</HintPath>
     </Reference>
-    <Reference Include="Interop.ThumbCache, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Common\Libraries\Interop.ThumbCache.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.ApplicationBlocks.ExceptionManagement">
       <Name>Microsoft.ApplicationBlocks.ExceptionManagement</Name>
       <HintPath>..\Common\Libraries\Microsoft.ApplicationBlocks.ExceptionManagement.dll</HintPath>
