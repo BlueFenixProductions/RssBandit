@@ -274,33 +274,19 @@ namespace NewsComponents
                 return task.Downloader;
             }
 
-            bool contentLengthSpecified = UpdateTaskFromHttpHeaders(task);
+            // Probe headers to populate the displayed size / MIME type / file name up front.
+            UpdateTaskFromHttpHeaders(task);
 
-            //We only support HTTP and HTTPS
-            if (IsOSAtLeastWindowsXP && !FileHelper.IsUncPath(task.DownloadItem.File.Source))
+            // We only support HTTP and HTTPS enclosure downloads, not UNC paths. HttpDownloader
+            // streams the body straight to disk (any size) and resumes partial files via HTTP
+            // range requests, so it now covers every case the old BITS downloader handled.
+            if (!FileHelper.IsUncPath(task.DownloadItem.File.Source))
             {
-                /* If no Content-Length then use HttpDownloader since BITS can't handle files 
-				 * without Content-Length specified 
-				 */
-                if (contentLengthSpecified)
-                {
-                    downloader = new BITSDownloader();
-                    task.SupportsBITS = true; 
-                }
-                else if (task.DownloadItem.Enclosure.Length <= (15*1024*1024))
-                {
-                    //To avoid consuming excess resources we limit direct HTTP downloads to no greater than 15MB 
-                    //See http://blogs.msdn.com/rssteam/archive/2006/12/06/enclosure-download.aspx for more details
-                    downloader = new HttpDownloader();
-                }
-
-                if (downloader != null)
-                {
-                    downloader.DownloadStarted += OnDownloadStarted;
-                    downloader.DownloadProgress += OnDownloadProgress;
-                    downloader.DownloadCompleted += OnDownloadCompleted;
-                    downloader.DownloadError += OnDownloadError;
-                }
+                downloader = new HttpDownloader();
+                downloader.DownloadStarted += OnDownloadStarted;
+                downloader.DownloadProgress += OnDownloadProgress;
+                downloader.DownloadCompleted += OnDownloadCompleted;
+                downloader.DownloadError += OnDownloadError;
             }
 
             task.Downloader = downloader;
@@ -388,20 +374,6 @@ namespace NewsComponents
             return (contentLength > 0) && supportsRange;
         }
 
-
-        /// <summary>
-        /// Returns true, if the OS is at least Windows XP (or higher), else false.
-        /// </summary>
-        private static bool IsOSAtLeastWindowsXP
-        {
-            get
-            {
-                return
-                    (Environment.OSVersion.Platform == PlatformID.Win32NT &&
-                     (Environment.OSVersion.Version.Major > 5 ||
-                      (Environment.OSVersion.Version.Major == 5 && Environment.OSVersion.Version.Minor >= 1)));
-            }
-        }
 
         #endregion
 

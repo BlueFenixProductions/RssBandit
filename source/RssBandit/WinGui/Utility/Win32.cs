@@ -12,7 +12,6 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Windows.Interop;
 using System.Windows.Media.Imaging;
-using Interop.ThumbCache;
 using log4net;
 using Microsoft.Win32;
 using NewsComponents.Utils;
@@ -1823,30 +1822,22 @@ namespace RssBandit
 			if (fileName == null)
 				throw new ArgumentNullException("fileName");
 
-			BitmapSource src = null;
-			if (IsOSAtLeastWindowsVista)
-			{
-				src = GetVistaIconCache(fileName);
-			}
+			// Returns the standard shell icon for the file's type. (The richer
+			// IThumbnailCache COM path was removed 2026-06-14 with the rest of the
+			// COM interop; SHGetFileInfo - plain P/Invoke - is the managed-friendly
+			// fallback that was already in place.)
+			var info = new NativeMethods.SHFILEINFO();
 
-			// fall back to regular
+			NativeMethods.SHGetFileInfo(fileName, 0, ref info, (uint)Marshal.SizeOf(info),
+						  NativeMethods.ShellFileInfoFlags.Icon | NativeMethods.ShellFileInfoFlags.LargeIcon |
+						  NativeMethods.ShellFileInfoFlags.UseFileAttributes);
 
-			if (src == null)
-			{
+			BitmapSource src = Imaging.CreateBitmapSourceFromHIcon(info.hIcon, Int32Rect.Empty,
+													  BitmapSizeOptions.FromEmptyOptions());
 
-				var info = new NativeMethods.SHFILEINFO();
+			NativeMethods.DestroyIcon(info.hIcon);
 
-				NativeMethods.SHGetFileInfo(fileName, 0, ref info, (uint)Marshal.SizeOf(info),
-							  NativeMethods.ShellFileInfoFlags.Icon | NativeMethods.ShellFileInfoFlags.LargeIcon |
-							  NativeMethods.ShellFileInfoFlags.UseFileAttributes);
-
-				src = Imaging.CreateBitmapSourceFromHIcon(info.hIcon, Int32Rect.Empty,
-														  BitmapSizeOptions.FromEmptyOptions());
-
-				NativeMethods.DestroyIcon(info.hIcon);
-
-				src.Freeze();
-			}
+			src.Freeze();
 
 			return src;
 		}
@@ -1938,58 +1929,6 @@ namespace RssBandit
 		#endregion
 
 		#region internal/private
-
-		private static BitmapSource GetVistaIconCache(string fileName)
-		{
-			try
-			{
-
-				//int attrs = 0;
-				IShellItem ppsi = null;
-				IntPtr ppidl;
-
-				NativeMethods.SHILCreateFromPath(fileName, out ppidl, ref ppsi);
-
-
-				if (ppidl == IntPtr.Zero)
-					return null;
-
-
-				NativeMethods.SHCreateShellItem(IntPtr.Zero, IntPtr.Zero, ppidl, out ppsi);
-
-				IThumbnailCache cache = new LocalThumbnailCacheClass();
-
-				SharedBitmap sb;
-
-				uint size = 100;
-				uint flag = 0; //WTS_EXTRACT
-				uint outFlags = 0;
-
-				tagTHUMBNAILID ttid = new tagTHUMBNAILID();
-				cache.GetThumbnail(ppsi, size, flag, out sb, ref outFlags, ref ttid);
-
-				// according to the docs, sb might be null
-				if (sb != null)
-				{
-					IntPtr hbmap = IntPtr.Zero;
-
-					NativeMethods.ISharedBitmap1 sb1 = (NativeMethods.ISharedBitmap1)sb;
-
-					sb1.GetSharedBitmap(out hbmap);
-
-					BitmapSource bs = Imaging.CreateBitmapSourceFromHBitmap(hbmap, IntPtr.Zero, Int32Rect.Empty,
-						BitmapSizeOptions.FromEmptyOptions());
-
-					NativeMethods.DeleteObject(hbmap);
-
-					return bs;
-				}
-			}
-			catch
-			{
-			}
-			return null;
-		}
 
 		internal class NativeMethods
 		{
@@ -3297,13 +3236,6 @@ namespace RssBandit
 			[DllImport("Comctl32.dll")]
 			public static extern int DllGetVersion(ref DLLVERSIONINFO pdvi);
 
-			[DllImport("shell32.dll", SetLastError = true)]
-			public static extern bool SHILCreateFromPath([MarshalAs(UnmanagedType.LPWStr)] string path, out IntPtr ppidl,
-				ref IShellItem rgflnOut);
-
-			[DllImport("shell32.dll", SetLastError = true)]
-			public static extern bool SHCreateShellItem(IntPtr pidlParent, IntPtr psfParent, IntPtr ppidl, out IShellItem ppsi);
-
 			internal const int GWL_STYLE = -16;
 
 			[StructLayout(LayoutKind.Sequential)]
@@ -3338,26 +3270,6 @@ namespace RssBandit
 
 			[DllImport("gdi32.dll")]
 			internal static extern bool DeleteObject(IntPtr handle);
-
-			[ComImport, InterfaceType((short)1), SuppressUnmanagedCodeSecurity, Guid("091162A4-BC96-411F-AAE8-C5122CD03363"),
-			 ComConversionLoss]
-			internal interface ISharedBitmap1
-			{
-				[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-				void GetSharedBitmap([Out, ComAliasName("Interop.ThumbCache.wireHBITMAP")] out IntPtr phbm);
-
-				[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-				void GetSize(out tagSIZE pSize);
-
-				[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-				void GetFormat(out uint pat);
-
-				[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-				void InitializeBitmap([In, ComAliasName("Interop.ThumbCache.wireHBITMAP")] ref _userHBITMAP hbm, [In] uint wtsAT);
-
-				[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-				void Detach([Out, ComAliasName("Interop.ThumbCache.wireHBITMAP")] IntPtr phbm);
-			}
 
 			/// <summary>
 			/// Plays a sound.

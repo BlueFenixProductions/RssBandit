@@ -112,7 +112,9 @@ namespace NewsComponents.Net
                 // redirects (301) must surface the new Uri to the caller(s):
                 AllowAutoRedirect = false,
                 AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate,
-                // cookies are managed per request by HttpCookieManager (WinInet/IE cookies):
+                // no implicit cookie container: the engine no longer shares the IE/WinInet
+                // cookie jar (that bridge was retired with the WebView2 migration). Explicit
+                // per-request cookies (RequestParameter.Cookies) are still applied as headers.
                 UseCookies = false,
                 PooledConnectionLifetime = PooledConnectionLifetime,
             };

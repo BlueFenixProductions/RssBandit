@@ -10,195 +10,161 @@
 #endregion
 
 using System;
+using System.Collections.Concurrent;
 using System.IO;
 using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading;
+using System.Threading.Tasks;
 using log4net;
-using NewsComponents.Utils;
 using RssBandit.Common.Logging;
 
 namespace NewsComponents.Net
 {
     /// <summary>
-    /// This downloader uses HTTP to download files.
+    /// Downloads enclosure files over HTTP(S) by streaming the response body straight
+    /// to disk, so arbitrarily large podcasts are never buffered in memory, with
+    /// transparent resume of partially-downloaded files via HTTP range requests.
+    /// <para>
+    /// Replaced the COM-based BITS downloader on 2026-06-14: BITS was the only reason
+    /// large enclosures could not go through managed HTTP (the old buffered path capped
+    /// direct downloads at 15&#160;MB). The engine's pooled <see cref="HttpClientCache"/>
+    /// handlers are reused for proxy, credential, client-certificate, decompression and
+    /// certificate-trust handling. Because those handlers disable auto-redirect, this
+    /// class follows redirects itself, the same way <see cref="AsyncWebRequest"/> does.
+    /// </para>
     /// </summary>
     public sealed class HttpDownloader : IDownloader, IDisposable
     {
-        #region private members
+        #region constants / fields
 
         private static readonly ILog Logger = Log.GetLogger(typeof (HttpDownloader));
 
-        /// <summary>
-        /// An IDownloader is only associated with a single DownloadTask. 
-        /// </summary>
-        private DownloadTask currentTask = null;
+        /// <summary>Copy buffer size (80&#160;KiB) — large enough for efficient disk writes.</summary>
+        private const int BufferSize = 81920;
 
+        /// <summary>Raise a progress event roughly every quarter-megabyte transferred.</summary>
+        private const long ProgressReportInterval = 256 * 1024;
 
-        /// <summary>
-        /// The current state of the download task
-        /// </summary>
-        private RequestState state = null;
+        /// <summary>Upper bound on redirect hops while resolving an enclosure Url.</summary>
+        private const int MaxRedirects = 10;
 
         /// <summary>
-        /// Guards against double-dispose.
+        /// Per-task cancellation sources. A single <see cref="HttpDownloader"/> instance is
+        /// shared across registry-loaded tasks (see <c>DownloadRegistryManager.httpDownloader</c>),
+        /// so cancellation must be tracked per <see cref="DownloadTask.TaskId"/> rather than in
+        /// instance fields.
         /// </summary>
+        private readonly ConcurrentDictionary<Guid, CancellationTokenSource> _active =
+            new ConcurrentDictionary<Guid, CancellationTokenSource>();
+
         private bool _disposed;
 
         #endregion
 
-        #region Constructors
+        #region IDownloader events
+
+        /// <summary>Notifies about the download progress for the update.</summary>
+        public event EventHandler<DownloadTaskProgressEventArgs> DownloadProgress;
+
+        /// <summary>Notifies that the downloading for a DownloadTask has started.</summary>
+        public event EventHandler<TaskEventArgs> DownloadStarted;
+
+        /// <summary>Notifies that the downloading for a DownloadTask has finished.</summary>
+        public event EventHandler<TaskEventArgs> DownloadCompleted;
+
+        /// <summary>Notifies that an error occurred while downloading the files for a DownloadTask.</summary>
+        public event EventHandler<DownloadTaskErrorEventArgs> DownloadError;
+
+        private void OnDownloadStarted(TaskEventArgs e)
+        {
+            DownloadStarted?.Invoke(this, e);
+        }
+
+        private void OnDownloadProgress(DownloadTaskProgressEventArgs e)
+        {
+            DownloadProgress?.Invoke(this, e);
+        }
+
+        private void OnDownloadCompleted(TaskEventArgs e)
+        {
+            DownloadCompleted?.Invoke(this, e);
+        }
+
+        private void OnDownloadError(DownloadTaskErrorEventArgs e)
+        {
+            DownloadError?.Invoke(this, e);
+        }
 
         #endregion
 
         #region IDownloader implementation
 
-        #region Downloader events
-
         /// <summary>
-        /// Notifies about the download progress for the update.
-        /// </summary>
-        public event EventHandler<DownloadTaskProgressEventArgs> DownloadProgress;
-
-        /// <summary>
-        /// Notifies that the downloading for an DownloadTask has started.
-        /// </summary>
-        public event EventHandler<TaskEventArgs> DownloadStarted;
-
-        /// <summary>
-        /// Notifies that the downloading for an DownloadTask has finished.
-        /// </summary>
-        public event EventHandler<TaskEventArgs> DownloadCompleted;
-
-        /// <summary>
-        /// Notifies that an error ocurred while downloading the files for an DownloadTask.
-        /// </summary>
-        public event EventHandler<DownloadTaskErrorEventArgs> DownloadError;
-
-        /// <summary>
-        /// Helper method to fire the event.
-        /// </summary>
-        /// <param name="e">The event information.</param>
-        private void OnDownloadStarted(TaskEventArgs e)
-        {
-            if (DownloadStarted != null)
-            {
-                DownloadStarted(this, e);
-            }
-        }
-
-        /// <summary>
-        /// Helper method to fire the event.
-        /// </summary>
-        /// <param name="e">The event information.</param>
-        private void OnDownloadProgress(DownloadTaskProgressEventArgs e)
-        {
-            if (DownloadProgress != null)
-            {
-                DownloadProgress(this, e);
-            }
-        }
-
-        /// <summary>
-        /// Helper method to fire the event.
-        /// </summary>
-        /// <param name="e">The event information.</param>
-        private void OnDownloadCompleted(TaskEventArgs e)
-        {
-            if (DownloadCompleted != null)
-            {
-                DownloadCompleted(this, e);
-            }
-        }
-
-        /// <summary>
-        /// Helper method to fire the event.
-        /// </summary>
-        /// <param name="e">The event information.</param>
-        private void OnDownloadError(DownloadTaskErrorEventArgs e)
-        {
-            if (DownloadError != null)
-            {
-                DownloadError(this, e);
-            }
-        }
-
-        #endregion
-
-        /// <summary>
-        /// Synchronous download method implementation.
+        /// Synchronous download. Blocks until the file is fully downloaded, an error is
+        /// raised, or <paramref name="maxWaitTime"/> elapses.
         /// </summary>
         /// <param name="task">The DownloadTask to process.</param>
-        /// <param name="maxWaitTime">The maximum wait time.</param>
+        /// <param name="maxWaitTime">The maximum wait time (TimeSpan.Zero means no timeout).</param>
         public void Download(DownloadTask task, TimeSpan maxWaitTime)
         {
-            currentTask = task;
+            if (CheckForResumeAndProceed(task))
+                return;
 
-			// If we resume way too often, just return
-			if (CheckForResumeAndProceed(currentTask))
-	        {
-		        return;
-	        }
+            var cts = Register(task);
+            if (maxWaitTime > TimeSpan.Zero)
+                cts.CancelAfter(maxWaitTime);
 
-	        using (WebResponse response = SyncWebRequest.GetResponse(HttpMethod.Get, task.DownloadItem.Enclosure.Url,
-                                                                   task.DownloadItem.Credentials,
-                                                                   FeedSource.UserAgentString(String.Empty),
-                                                                   task.DownloadItem.Proxy,
-                                                                   DateTime.MinValue,
-                                                                   null /* eTag */,
-                                                                   Convert.ToInt32(maxWaitTime.TotalSeconds),
-                                                                   null /* cookie */, null /* body */, null /* additionalHeaders */))
+            try
             {
-                OnRequestComplete(new Uri(task.DownloadItem.Enclosure.Url), response.GetResponseStream(), response, null, null,
-                                  DateTime.MinValue, RequestResult.OK, 0);
+                DownloadToFileAsync(task, cts.Token, cancelIsTimeout: true)
+                    .ConfigureAwait(false).GetAwaiter().GetResult();
+            }
+            finally
+            {
+                Unregister(task);
             }
         }
 
-
         /// <summary>
-        /// Asynchronous download method implementation.
+        /// Asynchronous download. Returns immediately; progress and completion are reported
+        /// through the events.
         /// </summary>
         /// <param name="task">The DownloadTask to process.</param>
         public void BeginDownload(DownloadTask task)
         {
-            currentTask = task;
+            if (CheckForResumeAndProceed(task))
+                return;
 
-			// If we resume way too often, just return
-			if (CheckForResumeAndProceed(currentTask))
-			{
-				return;
-			}
+            var cts = Register(task);
+            CancellationToken token = cts.Token;
 
-            Uri reqUri = new Uri(task.DownloadItem.Enclosure.Url);
-            int priority = 10;
-
-            RequestParameter reqParam = RequestParameter.Create(reqUri, FeedSource.UserAgentString(String.Empty),
-                                                                task.DownloadItem.Proxy, task.DownloadItem.Credentials,
-                                                                DateTime.MinValue, null);
-            // global cookie handling:
-            reqParam.SetCookies = FeedSource.SetCookies;
-
-
-            state = BackgroundDownloadManager.AsyncWebRequest.QueueRequest(reqParam,
-                                                                           OnRequestStart,
-                                                                           OnRequestComplete,
-                                                                           OnRequestException,
-                                                                           OnRequestProgress,
-                                                                           priority);
+            _ = Task.Run(async () =>
+            {
+                try
+                {
+                    await DownloadToFileAsync(task, token, cancelIsTimeout: false).ConfigureAwait(false);
+                }
+                finally
+                {
+                    Unregister(task);
+                }
+            });
         }
 
-
         /// <summary>
-        /// Terminates or cancels an unfinished asynchronous download.
+        /// Cancels an unfinished download. The partially downloaded file is kept on disk so a
+        /// later attempt can resume it.
         /// </summary>
-        /// <param name="task">The associated <see cref="DownloadTask"/> that holds a reference to the manifest to process</param>
-        /// <returns>Returns true if the task was cancelled.</returns>
+        /// <param name="task">The associated <see cref="DownloadTask"/>.</param>
+        /// <returns>Always true.</returns>
         public bool CancelDownload(DownloadTask task)
         {
-            currentTask = task;
-            Uri requestUri = new Uri(task.DownloadItem.Enclosure.Url);
-
-            if (state != null && state.InitialRequestUri.Equals(requestUri))
+            if (task != null && _active.TryGetValue(task.TaskId, out CancellationTokenSource cts))
             {
-                BackgroundDownloadManager.AsyncWebRequest.FinalizeWebRequest(state);
+                try { cts.Cancel(); }
+                catch (ObjectDisposedException) { }
             }
 
             return true;
@@ -206,124 +172,188 @@ namespace NewsComponents.Net
 
         #endregion
 
-		#region private 
+        #region download core
 
-	    private bool CheckForResumeAndProceed(DownloadTask task)
-	    {
-		    if (task != null && task.DownloadErrorResumeCount >= BackgroundDownloadManager.MaxDownloadErrorResumes)
-			    return true;
-
-		    return false;
-	    }
-
-	    #endregion
-
-		#region IDisposable implementation
-
-		//  take care of IDisposable too   
-        /// <summary>
-        /// Allows graceful cleanup of hard resources
-        /// </summary>
-        public void Dispose()
+        private async Task DownloadToFileAsync(DownloadTask task, CancellationToken token, bool cancelIsTimeout)
         {
-            Dispose(true);
-            GC.SuppressFinalize(this);
+            string targetFile = Path.Combine(task.DownloadFilesBase, task.DownloadItem.File.LocalName);
+            string partialFile = targetFile + ".partial";
+
+            try
+            {
+                OnDownloadStarted(new TaskEventArgs(task));
+
+                var enclosureUri = new Uri(task.DownloadItem.Enclosure.Url);
+
+                long resumeOffset = 0;
+                if (File.Exists(partialFile))
+                {
+                    try { resumeOffset = new FileInfo(partialFile).Length; }
+                    catch { resumeOffset = 0; }
+                }
+
+                using (HttpResponseMessage response =
+                       await SendWithRedirectsAsync(task, enclosureUri, resumeOffset, token).ConfigureAwait(false))
+                {
+                    bool append;
+                    if (response.StatusCode == HttpStatusCode.PartialContent)
+                    {
+                        // server honored our Range request: append to the existing .partial
+                        append = true;
+                    }
+                    else
+                    {
+                        // 200 OK (no resume, or the server ignored the Range header): start over
+                        response.EnsureSuccessStatusCode();
+                        append = false;
+                        resumeOffset = 0;
+                    }
+
+                    long bodyLength = response.Content.Headers.ContentLength ?? -1;
+                    long totalSize = bodyLength >= 0
+                                         ? bodyLength + (append ? resumeOffset : 0)
+                                         : task.DownloadItem.Enclosure.Length;
+
+                    long transferred = append ? resumeOffset : 0;
+                    long sinceReport = 0;
+
+                    using (Stream body = await response.Content.ReadAsStreamAsync(token).ConfigureAwait(false))
+                    using (var file = new FileStream(partialFile,
+                                                     append ? FileMode.Append : FileMode.Create,
+                                                     FileAccess.Write, FileShare.None, BufferSize, useAsync: true))
+                    {
+                        var buffer = new byte[BufferSize];
+                        int read;
+                        while ((read = await body.ReadAsync(buffer, 0, buffer.Length, token).ConfigureAwait(false)) > 0)
+                        {
+                            await file.WriteAsync(buffer, 0, read, token).ConfigureAwait(false);
+                            transferred += read;
+                            sinceReport += read;
+
+                            if (sinceReport >= ProgressReportInterval)
+                            {
+                                sinceReport = 0;
+                                OnDownloadProgress(new DownloadTaskProgressEventArgs(totalSize, transferred, 1, 0, task));
+                            }
+                        }
+
+                        await file.FlushAsync(token).ConfigureAwait(false);
+                    }
+
+                    // final progress tick so the UI shows 100%
+                    OnDownloadProgress(new DownloadTaskProgressEventArgs(totalSize, transferred, 1, 0, task));
+                }
+
+                // Atomically promote the completed .partial to the name the
+                // BackgroundDownloadManager expects; it then moves it to TargetFolder.
+                File.Move(partialFile, targetFile, overwrite: true);
+
+                OnDownloadCompleted(new TaskEventArgs(task));
+            }
+            catch (OperationCanceledException) when (!cancelIsTimeout)
+            {
+                // user cancelled: keep the .partial file so the next attempt can resume
+                Logger.InfoFormat("Enclosure download cancelled (partial kept for resume): {0}",
+                                  task.DownloadItem.Enclosure.Url);
+            }
+            catch (OperationCanceledException ex)
+            {
+                OnDownloadError(new DownloadTaskErrorEventArgs(task,
+                    new WebException(
+                        string.Format("The enclosure download from '{0}' timed out.",
+                                      task.DownloadItem.Enclosure.Url),
+                        ex, WebExceptionStatus.Timeout, null)));
+            }
+            catch (Exception ex)
+            {
+                OnDownloadError(new DownloadTaskErrorEventArgs(task, ex));
+            }
         }
 
+        /// <summary>
+        /// Issues the GET (with a Range header when resuming) and manually follows redirects,
+        /// because the pooled <see cref="HttpClientCache"/> handlers have auto-redirect disabled.
+        /// </summary>
+        private static async Task<HttpResponseMessage> SendWithRedirectsAsync(DownloadTask task, Uri requestUri,
+                                                                              long resumeOffset, CancellationToken token)
+        {
+            for (int hop = 0; ; hop++)
+            {
+                if (hop > MaxRedirects)
+                    throw new WebException("Too many redirects while downloading " + requestUri);
+
+                HttpClient client = HttpClientCache.GetClient(task.DownloadItem.Proxy, task.DownloadItem.Credentials,
+                                                              requestUri, null);
+
+                var request = new HttpRequestMessage(System.Net.Http.HttpMethod.Get, requestUri);
+                string userAgent = FeedSource.UserAgentString(string.Empty);
+                if (!string.IsNullOrEmpty(userAgent))
+                    request.Headers.TryAddWithoutValidation("User-Agent", userAgent);
+                if (resumeOffset > 0)
+                    request.Headers.Range = new RangeHeaderValue(resumeOffset, null);
+
+                HttpResponseMessage response = await client
+                    .SendAsync(request, HttpCompletionOption.ResponseHeadersRead, token).ConfigureAwait(false);
+
+                int status = (int) response.StatusCode;
+                if (status >= 300 && status < 400 && response.Headers.Location != null)
+                {
+                    Uri location = response.Headers.Location;
+                    requestUri = location.IsAbsoluteUri ? location : new Uri(requestUri, location);
+                    response.Dispose();
+                    continue;
+                }
+
+                return response;
+            }
+        }
+
+        private static bool CheckForResumeAndProceed(DownloadTask task)
+        {
+            return task != null && task.DownloadErrorResumeCount >= BackgroundDownloadManager.MaxDownloadErrorResumes;
+        }
+
+        private CancellationTokenSource Register(DownloadTask task)
+        {
+            var cts = new CancellationTokenSource();
+            // replace (and tear down) any prior source still tracked for this task
+            if (_active.TryRemove(task.TaskId, out CancellationTokenSource previous))
+            {
+                try { previous.Cancel(); }
+                catch (ObjectDisposedException) { }
+                previous.Dispose();
+            }
+            _active[task.TaskId] = cts;
+            return cts;
+        }
+
+        private void Unregister(DownloadTask task)
+        {
+            if (_active.TryRemove(task.TaskId, out CancellationTokenSource cts))
+                cts.Dispose();
+        }
+
+        #endregion
+
+        #region IDisposable implementation
 
         /// <summary>
-        /// used by externally visible overload.
+        /// Cancels any in-flight downloads and releases their cancellation sources.
         /// </summary>
-        /// <param name="isDisposing">whether or not to clean up managed + unmanaged/large (true) or just unmanaged(false)</param>
-        private void Dispose(bool isDisposing)
+        public void Dispose()
         {
             if (_disposed)
                 return;
             _disposed = true;
 
-            if (isDisposing)
+            foreach (var kvp in _active)
             {
-                if (currentTask != null &&
-                    (currentTask.State == DownloadTaskState.Downloading || currentTask.State == DownloadTaskState.Pending))
-                {
-                    try
-                    {
-                        CancelDownload(currentTask);
-                    }
-                    catch (Exception e)
-                    {
-                        Logger.Error(e.Message, e);
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Destructor/Finalizer
-        /// </summary>
-        ~HttpDownloader()
-        {
-            // Simply call Dispose(false).
-            Dispose(false);
-        }
-
-        #endregion
-
-        #region Event Handling Methods 
-
-        /// <summary>
-        /// Notification that the download of the file has started. 
-        /// </summary>
-        /// <param name="requestUri"></param>
-        /// <param name="cancel"></param>
-        public void OnRequestStart(Uri requestUri, ref bool cancel)
-        {
-            OnDownloadStarted(new TaskEventArgs(currentTask));
-        }
-
-        /// <summary>
-        /// Called, if the web request caused an exception, that is not yet handled by the class itself.
-        /// </summary>
-        public void OnRequestException(Uri requestUri, Exception e, int priority)
-        {
-            OnDownloadError(new DownloadTaskErrorEventArgs(currentTask, e));
-        }
-
-
-        /// <summary>
-        /// Called on every queued request, when the real fetch is finished.
-        /// </summary>
-        public void OnRequestComplete(Uri requestUri, Stream responseStream, WebResponse response, Uri newUri, string eTag, DateTime lastModified,
-                                      RequestResult result, int priority)
-        {
-            string fileLocation = Path.Combine(currentTask.DownloadFilesBase, currentTask.DownloadItem.File.LocalName);
-
-            //write file to disk from memory stream
-            using (responseStream)
-            {
-                FileHelper.WriteStreamWithRename(fileLocation, responseStream);
+                try { kvp.Value.Cancel(); }
+                catch (ObjectDisposedException) { }
+                kvp.Value.Dispose();
             }
 
-            OnDownloadCompleted(new TaskEventArgs(currentTask));
-        }
-
-        /// <summary>
-        /// Called infrequently as bytes are transferred for the file. 
-        /// </summary>
-        public void OnRequestProgress(Uri requestUri, long bytesTransferred)
-        {
-            long size;
-
-            if (currentTask.DownloadItem.File.FileSize > currentTask.DownloadItem.Enclosure.Length)
-            {
-                size = currentTask.DownloadItem.File.FileSize;
-            }
-            else
-            {
-                size = currentTask.DownloadItem.Enclosure.Length;
-            }
-
-            OnDownloadProgress(new DownloadTaskProgressEventArgs(size, bytesTransferred, 1, 0, currentTask));
+            _active.Clear();
         }
 
         #endregion

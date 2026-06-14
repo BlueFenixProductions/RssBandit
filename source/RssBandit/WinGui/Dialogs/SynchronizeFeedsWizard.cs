@@ -40,7 +40,6 @@ namespace RssBandit.WinGui.Dialogs
         private TextBox textPassword;
         private WizardPage pageStartImport;
         private RadioButton radioFeedlyCloud;
-        private RadioButton radioCommonFeedlist;
         private Button _btnImmediateFinish;
         private Wizard wizard;
 		private Label label1;
@@ -55,11 +54,7 @@ namespace RssBandit.WinGui.Dialogs
         {
             get
             {
-                if (radioCommonFeedlist.Checked)
-                {
-                    return FeedSourceType.WindowsRSS;
-                }
-                else if (radioFeedlyCloud.Checked)
+                if (radioFeedlyCloud.Checked)
                 {
                     return FeedSourceType.FeedlyCloud;
                 }
@@ -72,11 +67,7 @@ namespace RssBandit.WinGui.Dialogs
 
             private set
             {
-                if (value == FeedSourceType.WindowsRSS)
-                {
-                    radioCommonFeedlist.Checked = true;
-                }
-                else if (value == FeedSourceType.FeedlyCloud)
+                if (value == FeedSourceType.FeedlyCloud)
                 {
                     radioFeedlyCloud.Checked = true;
                 }
@@ -169,7 +160,6 @@ namespace RssBandit.WinGui.Dialogs
 			this.fbrssLinkHelp = new System.Windows.Forms.LinkLabel();
 			this.label1 = new System.Windows.Forms.Label();
 			this.radioFeedlyCloud = new System.Windows.Forms.RadioButton();
-			this.radioCommonFeedlist = new System.Windows.Forms.RadioButton();
 			this._btnImmediateFinish = new System.Windows.Forms.Button();
 			this.wizard = new Divelements.WizardFramework.Wizard();
 			this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
@@ -258,7 +248,6 @@ namespace RssBandit.WinGui.Dialogs
 			this.pageStartImport.Controls.Add(this.fbrssLinkHelp);
 			this.pageStartImport.Controls.Add(this.label1);
 			this.pageStartImport.Controls.Add(this.radioFeedlyCloud);
-			this.pageStartImport.Controls.Add(this.radioCommonFeedlist);
 			resources.ApplyResources(this.pageStartImport, "pageStartImport");
 			this.pageStartImport.Name = "pageStartImport";
 			this.pageStartImport.NextPage = this.pageFeedCredentials;
@@ -284,14 +273,7 @@ namespace RssBandit.WinGui.Dialogs
 			this.radioFeedlyCloud.Name = "radioFeedlyCloud";
 			this.radioFeedlyCloud.UseVisualStyleBackColor = true;
 			this.radioFeedlyCloud.CheckedChanged += new System.EventHandler(this.radioFeedlyCloud_CheckedChanged);
-			// 
-			// radioCommonFeedlist
-			// 
-			resources.ApplyResources(this.radioCommonFeedlist, "radioCommonFeedlist");
-			this.radioCommonFeedlist.Name = "radioCommonFeedlist";
-			this.radioCommonFeedlist.UseVisualStyleBackColor = true;
-			this.radioCommonFeedlist.CheckedChanged += new System.EventHandler(this.radioCommonFeedlist_CheckedChanged);
-			// 
+			//
 			// _btnImmediateFinish
 			// 
 			resources.ApplyResources(this._btnImmediateFinish, "_btnImmediateFinish");
@@ -385,11 +367,6 @@ namespace RssBandit.WinGui.Dialogs
             Close();
         }
 
-        private void radioCommonFeedlist_CheckedChanged(object sender, EventArgs e)
-        {
-            this.pageStartImport.NextPage = this.pageSourceName;             
-        }
-
         private void textUser_TextChanged(object sender, EventArgs e)
         {
             this.pageFeedCredentials.AllowMoveNext = false;                
@@ -424,10 +401,6 @@ namespace RssBandit.WinGui.Dialogs
             this._btnImmediateFinish.Visible = false;
             switch (this.SelectedFeedSource)
             {
-                case FeedSourceType.WindowsRSS:
-                    this.textFeedSourceName.Text = SR.FeedNodeMyWindowsRssFeedsCaption;
-                    this.pageSourceName.PreviousPage = this.pageStartImport;
-                    break; 
                 case FeedSourceType.FeedlyCloud:
                     this.textFeedSourceName.Text = SR.FeedNodeMyFeedlyCloudFeedsCaption;
 					this.pageSourceName.PreviousPage = this.pageStartImport;

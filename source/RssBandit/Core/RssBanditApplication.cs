@@ -171,7 +171,6 @@ namespace RssBandit
 
         private FinderSearchNodes findersSearchRoot;
         private NewsItemFormatter NewsItemFormatter;
-        private CachedImageLocater cachedImageLocater; 
 
 
         // as defined in the installer for Product ID
@@ -411,8 +410,6 @@ namespace RssBandit
             NewsItemFormatter.TransformError += OnNewsItemTransformationError;
             NewsItemFormatter.StylesheetError += OnNewsItemFormatterStylesheetError;
             NewsItemFormatter.StylesheetValidationError += OnNewsItemFormatterStylesheetValidationError;
-
-            cachedImageLocater = new CachedImageLocater(); 
 
             // init all common components with the current preferences. 
             // also apply some settings to each feed source instance, so they have
@@ -5294,13 +5291,16 @@ namespace RssBandit
         }
 
         /// <summary>
-        /// Replaces references to images on the Web with references to cached versions from the browser cache
+        /// Previously rewrote &lt;img&gt; references to cached copies from the Internet Explorer
+        /// URL cache for offline viewing. That WinInet/IE-cache path was retired 2026-06-14
+        /// (the app renders through WebView2, which keeps its own cache), so the HTML is now
+        /// returned unchanged.
         /// </summary>
         /// <param name="html">The input HTML</param>
-        /// <returns>The HTML with the URLs to all images found in the browser cache replaced</returns>
+        /// <returns>The HTML, unmodified.</returns>
         public string ReplaceImagesWithCachedVersions(string html)
         {
-            return HtmlHelper.ReplaceImageLinks(html, new MatchEvaluator(cachedImageLocater.GetCachedImageLocation)); 
+            return html;
         }
 
         /// <summary>
