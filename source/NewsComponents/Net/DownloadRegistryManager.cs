@@ -82,12 +82,7 @@ namespace NewsComponents.Net
         /// </summary>
         public static readonly HttpDownloader httpDownloader = new HttpDownloader();
 
-        /// <summary>
-        /// The BITS downloader used by tasks loaded on startup
-        /// </summary>
-        public static readonly BITSDownloader bitsDownloader = new BITSDownloader();
-
-        #endregion 
+        #endregion
 
 
         #region Singleton implementation
@@ -324,7 +319,7 @@ namespace NewsComponents.Net
                 }
 
                 task = DownloadTask.FromDto(dto);
-                task.Downloader = (task.SupportsBITS ? (IDownloader) bitsDownloader : (IDownloader) httpDownloader);
+                task.Downloader = httpDownloader;
 
                 lock (registry)
                 {
