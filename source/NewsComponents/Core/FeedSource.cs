@@ -86,7 +86,9 @@ namespace NewsComponents
         NewsGator,
 
         /// <summary>
-        /// The feeds are sourced from the Windows RSS platform.
+        /// Obsolete. The feeds were sourced from the Windows RSS platform / Internet
+        /// Explorer Common Feed List (msfeeds.dll), removed 2026-06-14 along with its
+        /// hand-written COM interop. Kept only so older feedsources.xml deserializes.
         /// </summary>
         WindowsRSS,
 
@@ -225,9 +227,6 @@ namespace NewsComponents
             {
                 case FeedSourceType.DirectAccess:
                     handler = new BanditFeedSource(configuration, location);
-                    break;
-                case FeedSourceType.WindowsRSS:
-                    handler = new WindowsRssFeedSource(configuration, location);
                     break;
 				case FeedSourceType.FeedlyCloud:
 					handler = new FeedlyCloudFeedSource(configuration, location);
