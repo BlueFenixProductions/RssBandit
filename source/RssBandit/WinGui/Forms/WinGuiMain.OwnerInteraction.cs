@@ -944,17 +944,7 @@ namespace RssBandit.WinGui.Forms
 
                     foreach (Enclosure enc in item.Enclosures)
                     {
-                        int index = enc.Url.LastIndexOf("/");
-                        string fileName;
-
-                        if ((index != -1) && (index + 1 < enc.Url.Length))
-                        {
-                            fileName = enc.Url.Substring(index + 1);
-                        }
-                        else
-                        {
-                            fileName = enc.Url;
-                        }
+                        string fileName = EnclosureLinkLabel(enc.Url);
 
                         var downloadFileMenuItem =
                             new AppContextMenuCommand("cmdDownloadAttachment<" + fileName,

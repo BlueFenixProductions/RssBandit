@@ -759,20 +759,44 @@ namespace RssBandit.WinGui.Forms
         {
             string fileName = sender.CommandID.Split(new[] {'<'})[1];
             INewsItem item = CurrentSelectedFeedItem;
-            FeedSource source = FeedSourceOf(CurrentSelectedFeedsNode); 
 
-            try
+            if (item == null || item.Enclosures == null)
+                return;
+
+            // The submenu entry is keyed by the enclosure URL's last path segment. Hand the
+            // matching enclosure to the user's default handler (browser / media / podcast app)
+            // rather than downloading it ourselves - RSS Bandit is no longer a podcatcher.
+            foreach (Enclosure enc in item.Enclosures)
             {
-                if (item != null)
-                {                    
-                    source.DownloadEnclosure(item, fileName);
+                if (EnclosureLinkLabel(enc.Url) != fileName)
+                    continue;
+
+                try
+                {
+                    using (var process = new Process())
+                    {
+                        process.StartInfo = new ProcessStartInfo(enc.Url) { UseShellExecute = true };
+                        process.Start();
+                    }
                 }
+                catch (Exception ex)
+                {
+                    _log.Error("Failed to open enclosure " + enc.Url, ex);
+                }
+                break;
             }
-            catch (DownloaderException de)
-            {
-                MessageBox.Show(de.Message, SR.ExceptionEnclosureDownloadError, MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
-            }
+        }
+
+        /// <summary>
+        /// The label used for an enclosure in the context menu: the URL's last path
+        /// segment, or the whole URL when it has none.
+        /// </summary>
+        internal static string EnclosureLinkLabel(string url)
+        {
+            int index = url.LastIndexOf("/");
+            if (index != -1 && index + 1 < url.Length)
+                return url.Substring(index + 1);
+            return url;
         }
 
         internal void CmdToggleListviewColumn(ICommand sender)
