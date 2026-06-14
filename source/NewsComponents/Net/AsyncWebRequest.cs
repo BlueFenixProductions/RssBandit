@@ -536,11 +536,6 @@ namespace NewsComponents.Net
                 request.Headers.TryAddWithoutValidation("A-IM", "feed");
             }
 
-            if (requestParameter.SetCookies)
-            {
-                HttpCookieManager.SetCookies(request);
-            }
-
             if (requestParameter.Cookies != null)
             {
                 var container = new CookieContainer();
@@ -577,8 +572,6 @@ namespace NewsComponents.Net
                 if (HttpStatusCode.OK == httpResponse.StatusCode ||
                     HttpExtendedStatusCode.IMUsed == (HttpExtendedStatusCode)httpResponse.StatusCode)
                 {
-                    HttpCookieManager.GetCookies(httpResponse);
-
                     // provide last request Uri and ETag:
                     state.RequestParams.ETag = GetETagHeader(httpResponse);
                     state.RequestParams.LastModified = GetLastModifiedHeader(httpResponse,
@@ -596,8 +589,6 @@ namespace NewsComponents.Net
 
                 if (httpResponse.StatusCode == HttpStatusCode.NotModified)
                 {
-                    HttpCookieManager.GetCookies(httpResponse);
-
                     string eTag = GetETagHeader(httpResponse);
                     // also if it was not modified, we receive a httpResponse.LastModified with current date!
                     // so we did not store it (is is just the same as last-retrived)
@@ -619,9 +610,6 @@ namespace NewsComponents.Net
                     }
 
                     string url2 = GetLocationHeader(httpResponse);
-                    //Check for any cookies
-                    HttpCookieManager.GetCookies(httpResponse);
-
                     state.MovedPermanently = true;
                     //Remove Url from queue
                     _queuedRequests.Remove(state.InitialRequestUri.CanonicalizedUri());
@@ -662,9 +650,6 @@ namespace NewsComponents.Net
                     }
 
                     string url2 = GetLocationHeader(httpResponse);
-                    //Check for any cookies
-                    HttpCookieManager.GetCookies(httpResponse);
-
                     //Remove Url from queue
                     _queuedRequests.Remove(state.InitialRequestUri.CanonicalizedUri());
 

@@ -526,11 +526,6 @@ namespace NewsComponents.Utils
             request.Credentials = credentials; 
             request.Timeout     = 5 * 1000 /* 5 second timeout */;
 
-            if(FeedSource.SetCookies)
-            {
-                HttpCookieManager.SetCookies(request);
-            }
-            
             /* use bogus user agent since some sites will bounce you to unsupported browser page otherwise */ 
             request.UserAgent = "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1;)"; 
            
@@ -577,11 +572,6 @@ namespace NewsComponents.Utils
 			request.Proxy = proxy;
 			request.Credentials = credentials;
 			request.Timeout = 5 * 1000 /* 5 second timeout */;
-
-			if (FeedSource.SetCookies)
-			{
-				HttpCookieManager.SetCookies(request);
-			}
 
 			/* use bogus user agent since some sites will bounce you to unsupported browser page otherwise */
 			request.UserAgent = "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1;)";
