@@ -7,7 +7,7 @@ plus MSBuild-layer extraction and per-module agent briefs.*
 
 | Artifact | What it is |
 |---|---|
-| `graphify-out/graph.json` | Type/member-level knowledge graph: 10,124 nodes, 16,287 edges, 613 Leiden communities. Query it with `/graphify query "<question>"` (~9k tokens/query vs ~890k naive — 100× cheaper). |
+| `graphify-out/graph.json` | Type/member-level knowledge graph: 9,253 nodes, 14,826 edges, 573 Leiden communities (AST rebuild 2026-06-14 at `c6c7824f`, post COM/WinInet/MIME arc; was 10,124/16,287/613 at the Phase-B build). Query it with `/graphify query "<question>"` (~9k tokens/query vs ~890k naive — 100× cheaper). See `modernization-next-steps.md` for the graph-driven plan. |
 | `graphify-out/GRAPH_REPORT.md` | Audit report: god nodes, cohesion scores, surprising connections. |
 | `docs/architecture/codegraph/projects.json` | MSBuild layer: all 30 csproj — TFMs, references, packages. |
 | `docs/architecture/codegraph/msbuild_graph.md` | Project dependency Mermaid diagram + binary-dep and package inventories. |
