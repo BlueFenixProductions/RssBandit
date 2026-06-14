@@ -1,9 +1,8 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
-using iTunesLib;
 using NewsComponents;
 using NewsComponents.Net;
-using WMPLib;
 
 namespace RssBandit
 {
@@ -103,153 +102,63 @@ namespace RssBandit
         }
 
         /// <summary>
-        /// Tests whether a file type is supported by Windows Media Player by checking the 
-        /// file extension. 
+        /// Tests whether a downloaded file is one of the user's configured podcast
+        /// types (the semicolon-delimited <see cref="PodcastFileExtensions"/> list).
         /// </summary>
-        /// <param name="fileExt">The file extension to test</param>
-        /// <returns>True if the file extension is supported by Windows Media Player</returns>
-        private static bool IsWMPFile(IEquatable<string> fileExt)
+        /// <param name="fileExtension">The file extension to test (with or without a leading dot).</param>
+        /// <returns>True if the extension matches a configured podcast type.</returns>
+        private bool IsPodcastFile(string fileExtension)
         {
-            if (fileExt.Equals(".asf") || fileExt.Equals(".wma") || fileExt.Equals(".avi")
-                || fileExt.Equals(".mpg") || fileExt.Equals(".mpeg") || fileExt.Equals(".m1v")
-                || fileExt.Equals(".wmv") || fileExt.Equals(".wm") || fileExt.Equals(".asx")
-                || fileExt.Equals(".wax") || fileExt.Equals(".wpl") || fileExt.Equals(".wvx")
-                || fileExt.Equals(".wmd") || fileExt.Equals(".dvr-ms") || fileExt.Equals(".m3u")
-                || fileExt.Equals(".mp3") || fileExt.Equals(".mp2") || fileExt.Equals(".mpa")
-                || fileExt.Equals(".mpe") || fileExt.Equals(".mpv2") || fileExt.Equals(".wms")
-                || fileExt.Equals(".mid") || fileExt.Equals(".midi") || fileExt.Equals(".rmi")
-                || fileExt.Equals(".aif") || fileExt.Equals(".aifc") || fileExt.Equals(".aiff")
-                || fileExt.Equals(".wav") || fileExt.Equals(".au") || fileExt.Equals(".snd")
-                || fileExt.Equals(".ivf") || fileExt.Equals(".wmz"))
-            {
-                return true;
-            }
-            else
-            {
+            if (string.IsNullOrEmpty(fileExtension))
                 return false;
+
+            string ext = fileExtension.TrimStart('.');
+            foreach (string podcastExt in PodcastFileExtensions.Split(new[] { ';' },
+                                                                      StringSplitOptions.RemoveEmptyEntries))
+            {
+                if (string.Equals(podcastExt.Trim().TrimStart('.'), ext, StringComparison.OrdinalIgnoreCase))
+                    return true;
             }
+
+            return false;
         }
 
         /// <summary>
-        /// Adds the downloaded item to a playlist in Windows Media Player. 
+        /// Opens a freshly downloaded podcast in the user's default media application via
+        /// the Windows shell file association.
         /// </summary>
-        /// <remarks>The title of the playlist is the name of the feed in RSS Bandit.</remarks>
-        /// <param name="podcast"></param>
-        private void AddPodcastToWMP(DownloadItem podcast)
+        /// <remarks>
+        /// Replaced the iTunes/WMP COM "add to playlist" integration on 2026-06-14: both
+        /// players are legacy (iTunes-for-Windows has been split into Apple's Music/Podcasts
+        /// apps; Windows Media Player by the Media Player app), and a shell-open hands the
+        /// file to whatever the user has set as their default podcast/media player - with no
+        /// COM interop.
+        /// </remarks>
+        /// <param name="podcast">The downloaded item to open.</param>
+        private void OpenPodcastInDefaultPlayer(DownloadItem podcast)
         {
             try
             {
-                if (!IsWMPFile(Path.GetExtension(podcast.File.LocalName)))
+                if (!IsPodcastFile(Path.GetExtension(podcast.File.LocalName)))
                 {
                     return;
                 }
 
-                string playlistName = Preferences.SinglePlaylistName;
-                FeedSource source = guiMain.FeedSourceOf(podcast.OwnerFeedId); 
-
-                if (!Preferences.SinglePodcastPlaylist && source != null)
-                {                    
-                    playlistName = source.GetFeeds()[podcast.OwnerFeedId].title;
-                }
-
-                WindowsMediaPlayer wmp = new WindowsMediaPlayer();
-
-                //get a handle to the playlist if it exists or create it if it doesn't				
-                IWMPPlaylist podcastPlaylist = null;
-                IWMPPlaylistArray playlists = wmp.playlistCollection.getAll();
-
-                for (int i = 0; i < playlists.count; i++)
-                {
-                    IWMPPlaylist pl = playlists.Item(i);
-
-                    if (pl.name.Equals(playlistName))
-                    {
-                        podcastPlaylist = pl;
-                    }
-                }
-
-                if (podcastPlaylist == null)
-                {
-                    podcastPlaylist = wmp.playlistCollection.newPlaylist(playlistName);
-                }
-
-                IWMPMedia wm = wmp.newMedia(Path.Combine(podcast.TargetFolder, podcast.File.LocalName));
-                podcastPlaylist.appendItem(wm);
-            }
-            catch (Exception e)
-            {
-                _log.Error("The following error occured in AddPodcastToWMP(): ", e);
-            }
-        }
-
-        /// <summary>
-        /// Tests whether a file type is supported by iTunesby checking the 
-        /// file extension. 
-        /// </summary>
-        /// <param name="fileExt">The file extension to test</param>
-        /// <returns>True if the file extension is supported by iTunes</returns>
-        private static bool IsITunesFile(IEquatable<string> fileExt)
-        {
-            if (fileExt.Equals(".mov") || fileExt.Equals(".mp4") || fileExt.Equals(".mp3")
-                || fileExt.Equals(".m4v") || fileExt.Equals(".m4a") || fileExt.Equals(".m4b")
-                || fileExt.Equals(".m4p") || fileExt.Equals(".wav") || fileExt.Equals(".aiff")
-                || fileExt.Equals(".aif") || fileExt.Equals(".aifc") || fileExt.Equals(".aa"))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// Adds the downloaded item to a playlist in iTunes. 
-        /// </summary>
-        /// <remarks>The title of the playlist is the name of the feed in RSS Bandit.</remarks>
-        /// <param name="podcast"></param>
-        private void AddPodcastToITunes(DownloadItem podcast)
-        {
-            try
-            {
-                if (!IsITunesFile(Path.GetExtension(podcast.File.LocalName)))
+                string fullPath = Path.Combine(podcast.TargetFolder, podcast.File.LocalName);
+                if (!File.Exists(fullPath))
                 {
                     return;
                 }
 
-                string playlistName = Preferences.SinglePlaylistName;
-                FeedSource source = guiMain.FeedSourceOf(podcast.OwnerFeedId); 
-
-                if (!Preferences.SinglePodcastPlaylist && source != null)
+                using (var process = new Process())
                 {
-                    playlistName = source.GetFeeds()[podcast.OwnerFeedId].title;
+                    process.StartInfo = new ProcessStartInfo(fullPath) { UseShellExecute = true };
+                    process.Start();
                 }
-
-                // initialize iTunes application connection
-                iTunesApp itunes = new iTunesApp();
-
-                //get a handle to the playlist if it exists or create it if it doesn't				
-                IITUserPlaylist podcastPlaylist = null;
-
-                foreach (IITPlaylist pl in itunes.LibrarySource.Playlists)
-                {
-                    if (pl.Name.Equals(playlistName))
-                    {
-                        podcastPlaylist = (IITUserPlaylist) pl;
-                    }
-                }
-
-                if (podcastPlaylist == null)
-                {
-                    podcastPlaylist = (IITUserPlaylist) itunes.CreatePlaylist(playlistName);
-                }
-
-                //add podcast to our playlist for this feed							
-                podcastPlaylist.AddFile(Path.Combine(podcast.TargetFolder, podcast.File.LocalName));
             }
             catch (Exception e)
             {
-                _log.Error("The following error occured in AddPodcastToITunes(): ", e);
+                _log.Error("The following error occurred in OpenPodcastInDefaultPlayer(): ", e);
             }
         }
 

@@ -301,15 +301,13 @@ namespace RssBandit
         {
 			FeedSourceEntry entry = sourceManager.SourceOfFeed(e.DownloadItem.OwnerFeedId);
 			
-			/* create playlists in media players if that option is selected */
-            if (Preferences.AddPodcasts2WMP)
+			/* open the downloaded podcast in the default media player if that option is selected.
+			 * (The two preferences predate the COM iTunes/WMP playlist integration that was
+			 * replaced by a shell-open on 2026-06-14; either one now means "hand it to the
+			 * default player".) */
+            if (Preferences.AddPodcasts2WMP || Preferences.AddPodcasts2ITunes)
             {
-                AddPodcastToWMP(e.DownloadItem);
-            }
-
-            if (Preferences.AddPodcasts2ITunes)
-            {
-                AddPodcastToITunes(e.DownloadItem);
+                OpenPodcastInDefaultPlayer(e.DownloadItem);
             }
 
             /* update GUI if needed */
