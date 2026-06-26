@@ -33,14 +33,10 @@ namespace RssBandit.WinGui.Dialogs
 			this.labelFormatters = new System.Windows.Forms.Label();
 			this.label9 = new System.Windows.Forms.Label();
 			this.checkMarkItemsReadOnExit = new System.Windows.Forms.CheckBox();
-			this.tabAttachments = new System.Windows.Forms.TabPage();
-			this.checkDownloadEnclosures = new System.Windows.Forms.CheckBox();
-			this.checkEnableEnclosureAlerts = new System.Windows.Forms.CheckBox();
 			this.tabControl.SuspendLayout();
 			this.tabItemControl.SuspendLayout();
 			this.panelFeeds.SuspendLayout();
 			this.tabDisplay.SuspendLayout();
-			this.tabAttachments.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// button2
@@ -105,7 +101,6 @@ namespace RssBandit.WinGui.Dialogs
 			resources.ApplyResources(this.tabControl, "tabControl");
 			this.tabControl.Controls.Add(this.tabItemControl);
 			this.tabControl.Controls.Add(this.tabDisplay);
-			this.tabControl.Controls.Add(this.tabAttachments);
 			this.tabControl.HotTrack = true;
 			this.tabControl.Name = "tabControl";
 			this.tabControl.SelectedIndex = 0;
@@ -171,24 +166,7 @@ namespace RssBandit.WinGui.Dialogs
 			// 
 			resources.ApplyResources(this.checkMarkItemsReadOnExit, "checkMarkItemsReadOnExit");
 			this.checkMarkItemsReadOnExit.Name = "checkMarkItemsReadOnExit";
-			// 
-			// tabAttachments
-			// 
-			this.tabAttachments.Controls.Add(this.checkDownloadEnclosures);
-			this.tabAttachments.Controls.Add(this.checkEnableEnclosureAlerts);
-			resources.ApplyResources(this.tabAttachments, "tabAttachments");
-			this.tabAttachments.Name = "tabAttachments";
-			// 
-			// checkDownloadEnclosures
-			// 
-			resources.ApplyResources(this.checkDownloadEnclosures, "checkDownloadEnclosures");
-			this.checkDownloadEnclosures.Name = "checkDownloadEnclosures";
-			// 
-			// checkEnableEnclosureAlerts
-			// 
-			resources.ApplyResources(this.checkEnableEnclosureAlerts, "checkEnableEnclosureAlerts");
-			this.checkEnableEnclosureAlerts.Name = "checkEnableEnclosureAlerts";
-			// 
+			//
 			// CategoryProperties
 			// 
 			this.AcceptButton = this.button1;
@@ -210,7 +188,6 @@ namespace RssBandit.WinGui.Dialogs
 			this.tabItemControl.ResumeLayout(false);
 			this.panelFeeds.ResumeLayout(false);
 			this.tabDisplay.ResumeLayout(false);
-			this.tabAttachments.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

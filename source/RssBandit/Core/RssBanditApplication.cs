@@ -620,10 +620,6 @@ namespace RssBandit
             SynchronizationContext.SetSynchronizationContext(new DispatcherSynchronizationContext());
             DownloadRegistryManager.Current.Initialize();
 
-            // create this here to pre-load the WPF libraries
-            var dm = new DownloadManagerWindow();
-            dm.Close();
-
             Dispatcher.Run();
         }
 
@@ -2076,54 +2072,6 @@ namespace RssBandit
             {
                 guiMain.ResetHtmlDetail();
             }
-
-            if (
-                !String.Equals(Preferences.EnclosureFolder, propertiesDialog.textEnclosureDirectory.Text,
-                               StringComparison.OrdinalIgnoreCase))
-            {
-                Preferences.EnclosureFolder = propertiesDialog.textEnclosureDirectory.Text;
-            }
-
-            if (Preferences.DownloadEnclosures != propertiesDialog.checkDownloadEnclosures.Checked)
-            {
-                Preferences.DownloadEnclosures = propertiesDialog.checkDownloadEnclosures.Checked;
-            }
-
-            if (Preferences.EnclosureAlert != propertiesDialog.checkEnableEnclosureAlerts.Checked)
-            {
-                Preferences.EnclosureAlert = propertiesDialog.checkEnableEnclosureAlerts.Checked;
-            }
-
-            if (Preferences.CreateSubfoldersForEnclosures !=
-                propertiesDialog.checkDownloadCreateFolderPerFeed.Checked)
-            {
-                Preferences.CreateSubfoldersForEnclosures =
-                    propertiesDialog.checkDownloadCreateFolderPerFeed.Checked;
-            }
-
-            if (propertiesDialog.checkOnlyDownloadLastXAttachments.Checked)
-            {
-                Preferences.NumEnclosuresToDownloadOnNewFeed =
-                    Convert.ToInt32(propertiesDialog.numOnlyDownloadLastXAttachments.Value);
-            }
-            else
-            {
-                Preferences.NumEnclosuresToDownloadOnNewFeed =
-                    FeedSource.DefaultNumEnclosuresToDownloadOnNewFeed;
-            }
-
-
-            if (propertiesDialog.checkEnclosureSizeOnDiskLimited.Checked)
-            {
-                Preferences.EnclosureCacheSize =
-                    Convert.ToInt32(propertiesDialog.numEnclosureCacheSize.Value);
-            }
-            else
-            {
-                Preferences.EnclosureCacheSize =
-                    FeedSource.DefaultEnclosureCacheSize;
-            }
-
 
             ApplyPreferences();
             SavePreferences();
@@ -5847,56 +5795,14 @@ namespace RssBandit
         #region ICoreApplication Members
 
         /// <summary>
-        /// Shows the podcast options.
+        /// Shows the podcast options dialog — removed in Task 1 (UI simplification).
+        /// Interface member kept; engine removal in Task 2.
         /// </summary>
         /// <param name="owner">The owner.</param>
         /// <param name="optionsChangedHandler">The options changed handler.</param>
         public void ShowPodcastOptionsDialog(IWin32Window owner, EventHandler optionsChangedHandler)
         {
-            using (var optionDialog = new PodcastOptionsDialog(Preferences, this))
-            {
-                optionDialog.ShowDialog(owner ?? guiMain);
-                if (optionDialog.DialogResult == DialogResult.OK)
-                {
-                    //modify preferences with data from dialog
-                    Preferences.PodcastFileExtensions = 
-						FeedSource.PodcastFileExtensionsAsString = optionDialog.textPodcastFilesExtensions.Text;
-					 
-                    if (optionDialog.chkCopyPodcastToFolder.Checked)
-                    {
-						Preferences.PodcastFolder =
-							FeedSource.PodcastFolder = optionDialog.txtCopyPodcastToFolder.Text;
-                    }
-                    else
-                    {
-						FeedSource.PodcastFolder = FeedSource.EnclosureFolder;
-                    }
-
-                    Preferences.AddPodcasts2Folder = optionDialog.chkCopyPodcastToFolder.Checked;
-                    Preferences.AddPodcasts2ITunes = optionDialog.chkCopyPodcastToITunesPlaylist.Checked;
-                    Preferences.AddPodcasts2WMP = optionDialog.chkCopyPodcastToWMPlaylist.Checked;
-
-                    Preferences.SinglePodcastPlaylist = optionDialog.optSinglePlaylistName.Checked;
-                    Preferences.SinglePlaylistName = optionDialog.textSinglePlaylistName.Text;
-
-                    // apply to backend, UI etc. and save:
-                    ApplyPreferences();
-                    SavePreferences();
-
-                    // notify service callbacks:
-                    if (optionsChangedHandler != null)
-                    {
-                        try
-                        {
-                            optionsChangedHandler.Invoke(this, EventArgs.Empty);
-                        }
-                        catch (Exception ex)
-                        {
-                            _log.Error("ShowPodcastOptions() change handler caused exception", ex);
-                        }
-                    }
-                }
-            }
+            // Podcast options dialog removed; engine removal in Task 2
         }
 
         /// <summary>
@@ -6389,34 +6295,6 @@ namespace RssBandit
                 }
             }
         }
-
-        public void LaunchDownloadManagerWindow()
-        {
-            //var coords = 
-
-            _dispatcher.BeginInvoke(DispatcherPriority.Normal,
-                (SendOrPostCallback)delegate
-                {
-                    if (_downloadManager == null)
-                    {
-
-                        _downloadManager = new DownloadManagerWindow { Visibility = System.Windows.Visibility.Visible };
-                        _downloadManager.Closed += delegate
-                                                       {
-                                                           _downloadManager = null;
-                                                       };
-
-                        //ElementHost.EnableModelessKeyboardInterop(_downloadManager);
-                        _downloadManager.Show();
-                    }
-                    else
-                    {
-                        _downloadManager.Activate();
-                    }
-                }, null);
-        }
-
-        private DownloadManagerWindow _downloadManager;
 
         #region NewsChannel Manangement		
 

@@ -42,11 +42,6 @@ namespace RssBandit.WinGui.Dialogs
 			this.tabDisplay = new System.Windows.Forms.TabPage();
 			this.labelFormatters = new System.Windows.Forms.Label();
 			this.label9 = new System.Windows.Forms.Label();
-			this.tabAttachments = new System.Windows.Forms.TabPage();
-			this.checkDownloadEnclosures = new System.Windows.Forms.CheckBox();
-			this.checkEnableEnclosureAlerts = new System.Windows.Forms.CheckBox();
-			this.textBox3 = new System.Windows.Forms.TextBox();
-			this.label11 = new System.Windows.Forms.Label();
 			this.label8 = new System.Windows.Forms.Label();
 			this.checkEnableAlerts = new System.Windows.Forms.CheckBox();
 			this.checkMarkItemsReadOnExit = new System.Windows.Forms.CheckBox();
@@ -56,7 +51,6 @@ namespace RssBandit.WinGui.Dialogs
 			this.panelItemControl.SuspendLayout();
 			this.tabAuthentication.SuspendLayout();
 			this.tabDisplay.SuspendLayout();
-			this.tabAttachments.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// btnCancel
@@ -179,7 +173,6 @@ namespace RssBandit.WinGui.Dialogs
 			this.tabControl.Controls.Add(this.tabItemControl);
 			this.tabControl.Controls.Add(this.tabAuthentication);
 			this.tabControl.Controls.Add(this.tabDisplay);
-			this.tabControl.Controls.Add(this.tabAttachments);
 			this.tabControl.HotTrack = true;
 			this.tabControl.Location = new System.Drawing.Point(5, 150);
 			this.tabControl.Name = "tabControl";
@@ -396,70 +389,7 @@ namespace RssBandit.WinGui.Dialogs
 			this.label9.Size = new System.Drawing.Size(392, 26);
 			this.label9.TabIndex = 11;
 			this.label9.Text = "Use the default item formatting or select a custom XSLT formatter.";
-			// 
-			// tabAttachments
-			// 
-			this.tabAttachments.Controls.Add(this.checkDownloadEnclosures);
-			this.tabAttachments.Controls.Add(this.checkEnableEnclosureAlerts);
-			this.tabAttachments.Controls.Add(this.textBox3);
-			this.tabAttachments.Controls.Add(this.label11);
-			this.tabAttachments.Location = new System.Drawing.Point(4, 22);
-			this.tabAttachments.Name = "tabAttachments";
-			this.tabAttachments.Size = new System.Drawing.Size(417, 115);
-			this.tabAttachments.TabIndex = 4;
-			this.tabAttachments.Text = "Attachments/Podcasts";
-			// 
-			// checkDownloadEnclosures
-			// 
-			this.checkDownloadEnclosures.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
-			this.checkDownloadEnclosures.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.checkDownloadEnclosures.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-			this.checkDownloadEnclosures.Location = new System.Drawing.Point(10, 10);
-			this.checkDownloadEnclosures.Name = "checkDownloadEnclosures";
-			this.checkDownloadEnclosures.Size = new System.Drawing.Size(400, 27);
-			this.checkDownloadEnclosures.TabIndex = 7;
-			this.checkDownloadEnclosures.Text = "Automatically download attachments and podcasts";
-			// 
-			// checkEnableEnclosureAlerts
-			// 
-			this.checkEnableEnclosureAlerts.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
-			this.checkEnableEnclosureAlerts.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.checkEnableEnclosureAlerts.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-			this.checkEnableEnclosureAlerts.Location = new System.Drawing.Point(10, 45);
-			this.checkEnableEnclosureAlerts.Name = "checkEnableEnclosureAlerts";
-			this.checkEnableEnclosureAlerts.Size = new System.Drawing.Size(400, 27);
-			this.checkEnableEnclosureAlerts.TabIndex = 8;
-			this.checkEnableEnclosureAlerts.Text = "&Enable alert windows for newly downloaded attachments and podcasts";
-			// 
-			// textBox3
-			// 
-			this.textBox3.AllowDrop = true;
-			this.textBox3.Anchor = System.Windows.Forms.AnchorStyles.None;
-			this.textBox3.Enabled = false;
-			this.textBox3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-			this.textBox3.Location = new System.Drawing.Point(20, 10);
-			this.textBox3.MaxLength = 0;
-			this.textBox3.Name = "textBox3";
-			this.textBox3.RightToLeft = System.Windows.Forms.RightToLeft.No;
-			this.textBox3.Size = new System.Drawing.Size(0, 21);
-			this.textBox3.TabIndex = 0;
-			this.textBox3.Visible = false;
-			this.textBox3.WordWrap = false;
-			// 
-			// label11
-			// 
-			this.label11.Anchor = System.Windows.Forms.AnchorStyles.None;
-			this.label11.Enabled = false;
-			this.label11.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-			this.label11.Location = new System.Drawing.Point(20, 10);
-			this.label11.Name = "label11";
-			this.label11.RightToLeft = System.Windows.Forms.RightToLeft.No;
-			this.label11.Size = new System.Drawing.Size(0, 0);
-			this.label11.TabIndex = 0;
-			this.label11.Visible = false;
-			// 
+			//
 			// label8
 			// 
 			this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
@@ -536,8 +466,6 @@ namespace RssBandit.WinGui.Dialogs
 			this.tabAuthentication.ResumeLayout(false);
 			this.tabAuthentication.PerformLayout();
 			this.tabDisplay.ResumeLayout(false);
-			this.tabAttachments.ResumeLayout(false);
-			this.tabAttachments.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

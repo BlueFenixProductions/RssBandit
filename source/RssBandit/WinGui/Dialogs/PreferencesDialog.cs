@@ -67,8 +67,6 @@ namespace RssBandit.WinGui.Dialogs {
 
             MaximumSize = MinimumSize;
 
-            //sectionPanelEnclosurePodcasts.Height = (int)(sectionPanelEnclosurePodcasts.Height * scale);
-
             itemStateFonts = new Font[lstItemStates.Items.Count];
 			itemStateColors = new Color[lstItemStates.Items.Count];
 
@@ -250,29 +248,6 @@ namespace RssBandit.WinGui.Dialogs {
             checkBrowserBGSoundAllowed.Visible = false;
             checkBrowserVideoAllowed.Visible = false;
             checkBrowserImagesAllowed.Visible = false;
-
-            //set enclosure related settings 
-            ICoreApplication rssBanditApp = IoC.Resolve<ICoreApplication>();
-			textEnclosureDirectory.Text = rssBanditApp.EnclosureFolder; 
-			checkDownloadCreateFolderPerFeed.Checked = rssBanditApp.DownloadCreateFolderPerFeed;			
-			checkEnableEnclosureAlerts.Checked = rssBanditApp.EnableEnclosureAlerts;
-			checkDownloadEnclosures.Checked = rssBanditApp.DownloadEnclosures;
-
-			if(!checkDownloadEnclosures.Checked){
-				this.checkOnlyDownloadLastXAttachments.Checked = false;
-				this.checkOnlyDownloadLastXAttachments.Enabled = false; 
-			}else if(rssBanditApp.NumEnclosuresToDownloadOnNewFeed != Int32.MaxValue){
-				this.checkOnlyDownloadLastXAttachments.Checked = true; 
-				this.numOnlyDownloadLastXAttachments.Value   = Convert.ToDecimal(rssBanditApp.NumEnclosuresToDownloadOnNewFeed);
-			}
-			
-			if(rssBanditApp.EnclosureCacheSize != Int32.MaxValue){
-				this.checkEnclosureSizeOnDiskLimited.Checked = true; 
-				this.numEnclosureCacheSize.Value = Convert.ToDecimal(rssBanditApp.EnclosureCacheSize);
-			}
-				
-			checkOnlyDownloadLastXAttachments_CheckedChanged(this, EventArgs.Empty);
-			checkEnclosureSizeOnDiskLimited_CheckedChanged(this, EventArgs.Empty);
 
 			this.SetElevatedOptionIndicators();
 			
@@ -941,15 +916,7 @@ namespace RssBandit.WinGui.Dialogs {
 					}
 				}
 
-			} else if(sender == textEnclosureDirectory){
-
-				textEnclosureDirectory.Text = textEnclosureDirectory.Text.Trim();
-				if ((textEnclosureDirectory.Text.Length == 0) || !Directory.Exists(textEnclosureDirectory.Text)) {
-					errorProvider1.SetError(textEnclosureDirectory, SR.ExceptionInvalidEnclosurePath);
-					e.Cancel = true;
-				}
-			
-			}else if (sender == textProxyPort && checkUseProxy.Checked) {
+			} else if (sender == textProxyPort && checkUseProxy.Checked) {
 
 				textProxyPort.Text = textProxyPort.Text.Trim();
 				if (textProxyPort.Text.Length == 0)
@@ -1156,49 +1123,6 @@ namespace RssBandit.WinGui.Dialogs {
 					o.Links[o.Links.IndexOf(e.Link)].Visited = true;	
 				}
 			}
-		}
-
-		private void OnPodcastOptionsButtonClick(object sender, EventArgs e) {
-			ICoreApplication coreApp = IoC.Resolve<ICoreApplication>();
-			coreApp.ShowPodcastOptionsDialog(this, null);
-		}
-
-		private void btnSelectEnclosureFolder2_Click(object sender, EventArgs e)
-		{
-
-			using (FolderBrowserDialog dlg = new FolderBrowserDialog())
-			{
-				dlg.RootFolder = Environment.SpecialFolder.Desktop;
-				dlg.Description = SR.BrowseForFolderEnclosureDownloadLocation;
-
-				if (!string.IsNullOrEmpty(this.textEnclosureDirectory.Text) &&
-					Directory.Exists(this.textEnclosureDirectory.Text))
-				{
-					dlg.SelectedPath = this.textEnclosureDirectory.Text;
-				}
-
-				DialogResult result = dlg.ShowDialog();
-
-				if (result == DialogResult.OK)
-				{
-					this.textEnclosureDirectory.Text = dlg.SelectedPath;
-				}
-			}
-		}
-
-		private void checkOnlyDownloadLastXAttachments_CheckedChanged(object sender, EventArgs e) {
-			lblDownloadXAttachmentsPostfix.Enabled = numOnlyDownloadLastXAttachments.Enabled = checkOnlyDownloadLastXAttachments.Checked;
-			OnControlValidated(this, EventArgs.Empty);
-		}
-
-		private void checkEnclosureSizeOnDiskLimited_CheckedChanged(object sender, EventArgs e) {
-			lblDownloadAttachmentsSmallerThanPostfix.Enabled = numEnclosureCacheSize.Enabled = checkEnclosureSizeOnDiskLimited.Checked;
-			OnControlValidated(this, EventArgs.Empty);
-		}
-
-		private void checkDownloadEnclosures_CheckedChanged(object sender, EventArgs e) {
-            lblDownloadXAttachmentsPostfix.Enabled = numOnlyDownloadLastXAttachments.Enabled = checkOnlyDownloadLastXAttachments.Checked = checkOnlyDownloadLastXAttachments.Enabled = this.checkDownloadEnclosures.Checked;
-			OnControlValidated(this, EventArgs.Empty);
 		}
 
 		private void OnEnableAppSoundsCheckedChanged(object sender, EventArgs e) {

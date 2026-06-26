@@ -73,11 +73,6 @@ namespace RssBandit.WinGui.Forms
             toolbarHelper.SetToolbarVisible(Resource.Toolbar.SearchTools, enable);
         }
 
-        internal void CmdLauchDownloadManager(ICommand sender)
-        {
-            owner.LaunchDownloadManagerWindow();
-        }
-
         /// <summary>
         /// Called before IG view menu tool dropdown.
         /// </summary>
