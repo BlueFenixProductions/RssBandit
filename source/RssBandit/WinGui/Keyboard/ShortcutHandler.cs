@@ -527,7 +527,6 @@ namespace RssBandit.Utility.Keyboard
 						"cmdToggleMainTBViewState",
 						"cmdToggleWebTBViewState",
 						"cmdToggleWebSearchTBViewState",
-                        "cmdLauchDownloadManager",
 						"cmdRefreshFeeds",
 						"cmdAutoDiscoverFeed",	// wizard for search
 						"cmdFeedItemPostReply",
