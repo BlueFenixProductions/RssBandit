@@ -1981,14 +1981,6 @@ referrer-url: {2}</value>
     <value>Показывает колонку числа комментариев к сообщению...</value>
     <comment>Description within context menu</comment>
   </data>
-  <data name="MenuColumnChooserEnclosureCaption" xml:space="preserve">
-    <value>Показывать вложения</value>
-    <comment>Caption within context menu</comment>
-  </data>
-  <data name="MenuColumnChooserEnclosureDesc" xml:space="preserve">
-    <value>Показывать колонку вложений...</value>
-    <comment>Description within context menu</comment>
-  </data>
   <data name="MenuColumnChooserFlagCaption" xml:space="preserve">
     <value>Показывать флаги</value>
     <comment>Caption within context menu</comment>
@@ -2323,15 +2315,6 @@ Settings are reset to use no proxy.</value>
   <data name="CmdLineResetUIDesc" xml:space="preserve">
     <value>Вернет интерфейс пользователя в исходное положение</value>
   </data>
-  <data name="ExceptionProcessStartToPlayEnclosure" xml:space="preserve">
-    <value>При попытке проиграть вложение произошла ошибка:
-
-{0}
-
-Ошибка:{1}.</value>
-    <comment>.
- Parameters: 0 - enclosureFileName (string), 1 - error (string) </comment>
-  </data>
   <data name="FeedNodeUnreadItemsCaption" xml:space="preserve">
     <value>Непрочтенные сообщения</value>
     <comment> Special local feed for unread items</comment>
@@ -2339,18 +2322,11 @@ Settings are reset to use no proxy.</value>
   <data name="FeedNodeUnreadItemsDesc" xml:space="preserve">
     <value>Контейнер для непрочтенных сообщений</value>
   </data>
-  <data name="BrowseForFolderEnclosureDownloadLocation" xml:space="preserve">
-    <value>Выберите или создайте папку для хранения загруженных вложений</value>
-    <comment> Text in the browse for folder dialog</comment>
-  </data>
   <data name="MenuDownloadAttachmentCaption" xml:space="preserve">
     <value>Загрузить вложение</value>
   </data>
   <data name="MenuDownloadAttachmentDesc" xml:space="preserve">
     <value>Загрузить вложение в сообщении в папку для подкастов</value>
-  </data>
-  <data name="ExceptionInvalidEnclosurePath" xml:space="preserve">
-    <value>Неверный путь к папке загруженных вложений</value>
   </data>
   <data name="ExceptionProcessCommandlineCulture" xml:space="preserve">
     <value>Не удалось переключить приложение на другую культуру '{0}':
@@ -2358,10 +2334,6 @@ Settings are reset to use no proxy.</value>
 Ошибка:{1}.</value>
     <comment>.
  Parameters: 0 - cultureProvided (string), 1 - error (string) </comment>
-  </data>
-  <data name="GUIStatusEnclosureJustReceivedItemsMessage" xml:space="preserve">
-    <value>Получено: 1 файл</value>
-    <comment> displayed in the Toast window(s)</comment>
   </data>
   <data name="MainForm_MainMenuToolbarCaption" xml:space="preserve">
     <value>Основное меню</value>
@@ -2582,9 +2554,6 @@ Settings are reset to use no proxy.</value>
     <value>{0} лет</value>
     <comment>.
  Parameters: 0 - years (int) </comment>
-  </data>
-  <data name="ExceptionEnclosureDownloadError" xml:space="preserve">
-    <value>Сбой загрузки</value>
   </data>
   <data name="MenuFinderShowExcerptsCaption" xml:space="preserve">
     <value>Показать отрывки в результатах поиска</value>

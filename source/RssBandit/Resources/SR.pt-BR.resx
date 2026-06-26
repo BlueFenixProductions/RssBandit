@@ -1983,14 +1983,6 @@ Não é necessário ter eles toda vez que executar a aplicação. Desculpe pela 
     <value>Apresenta a coluna do contador de comentário de um item de notícia...</value>
     <comment>Description within context menu</comment>
   </data>
-  <data name="MenuColumnChooserEnclosureCaption" xml:space="preserve">
-    <value>Apresentar o estado do Anexo</value>
-    <comment>Caption within context menu</comment>
-  </data>
-  <data name="MenuColumnChooserEnclosureDesc" xml:space="preserve">
-    <value>Apresenta a coluna de estado do anexo de um item de notícia...</value>
-    <comment>Description within context menu</comment>
-  </data>
   <data name="MenuColumnChooserFlagCaption" xml:space="preserve">
     <value>Apresentar Bandeira de estado</value>
     <comment>Caption within context menu</comment>
@@ -2329,15 +2321,6 @@ Pasta de cache antiga continuará a ser usada...</value>
   <data name="CmdLineResetUIDesc" xml:space="preserve">
     <value>Interface do usuário será redefinida para o padrão</value>
   </data>
-  <data name="ExceptionProcessStartToPlayEnclosure" xml:space="preserve">
-    <value>O sistema reportou um erro enquanto tentava tocar o anexo:
-
-{0}
-
-Erro:{1}.</value>
-    <comment>.
- Parameters: 0 - enclosureFileName (string), 1 - error (string) </comment>
-  </data>
   <data name="FeedNodeUnreadItemsCaption" xml:space="preserve">
     <value>Itens não lidos</value>
     <comment> Special local feed for unread items</comment>
@@ -2345,18 +2328,11 @@ Erro:{1}.</value>
   <data name="FeedNodeUnreadItemsDesc" xml:space="preserve">
     <value>Repositório para itens não lidos</value>
   </data>
-  <data name="BrowseForFolderEnclosureDownloadLocation" xml:space="preserve">
-    <value>Selecionar ou criar uma pasta para armazenar anexos baixados</value>
-    <comment> Text in the browse for folder dialog</comment>
-  </data>
   <data name="MenuDownloadAttachmentCaption" xml:space="preserve">
     <value>Baixar anexos</value>
   </data>
   <data name="MenuDownloadAttachmentDesc" xml:space="preserve">
     <value>Baixar os arquivos anexos do item para a pasta de Podcasts especificada</value>
-  </data>
-  <data name="ExceptionInvalidEnclosurePath" xml:space="preserve">
-    <value>Caminho inválido para o diretório de baixa foi especificado</value>
   </data>
   <data name="ExceptionProcessCommandlineCulture" xml:space="preserve">
     <value>Não é possível alterar a cultura da aplicação para '{0}':
@@ -2364,10 +2340,6 @@ Erro:{1}.</value>
 Erro:{1}.</value>
     <comment>.
  Parameters: 0 - cultureProvided (string), 1 - error (string) </comment>
-  </data>
-  <data name="GUIStatusEnclosureJustReceivedItemsMessage" xml:space="preserve">
-    <value>Recebido: 1 arquivo</value>
-    <comment> displayed in the Toast window(s)</comment>
   </data>
   <data name="MainForm_MainMenuToolbarCaption" xml:space="preserve">
     <value>Barra de Menu principal</value>
@@ -2588,9 +2560,6 @@ Por favor tente abrir o Painel manualmente usando o menu Inicial &gt; Painel de 
     <value>{0} anos</value>
     <comment>.
  Parameters: 0 - years (int) </comment>
-  </data>
-  <data name="ExceptionEnclosureDownloadError" xml:space="preserve">
-    <value>Falha ao baixar</value>
   </data>
   <data name="MenuFinderShowExcerptsCaption" xml:space="preserve">
     <value>Apresentar fragmentso nos resultados de pesquisasearch results</value>

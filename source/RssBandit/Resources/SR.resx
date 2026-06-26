@@ -348,9 +348,6 @@ Detail: {1}</value>
     <value>'{0}' is not a valid proxy bypass entry. Use a regular expression or a simple wildcard like *.example.com, please.</value>
     <comment>Parameters: 0 - the invalid bypass list entry (string)</comment>
   </data>
-  <data name="ExceptionInvalidEnclosurePath" xml:space="preserve">
-    <value>Invalid path to download directory specified</value>
-  </data>
   <data name="ExceptionNoRemoteStorageAuthUser" xml:space="preserve">
     <value>Provide a remote storage authentication user name, please.</value>
   </data>
@@ -459,22 +456,11 @@ on a new Tab?</value>
 {0}.</value>
     <comment>Parameters: 0 - error (string) </comment>
   </data>
-  <data name="ExceptionProcessStartToPlayEnclosure" xml:space="preserve">
-    <value>The system reported an error while attempting to play enclosure:
-
-{0}
-
-Error:{1}.</value>
-    <comment>Parameters: 0 - enclosureFileName (string), 1 - error (string) </comment>
-  </data>
   <data name="ExceptionProcessCommandlineCulture" xml:space="preserve">
     <value>Cannot switch application culture to '{0}':
 
 Error:{1}.</value>
     <comment>Parameters: 0 - cultureProvided (string), 1 - error (string) </comment>
-  </data>
-  <data name="ExceptionEnclosureDownloadError" xml:space="preserve">
-    <value>Download Failure</value>
   </data>
   <data name="FeedDefaultCategory" xml:space="preserve">
     <value>[Unclassified Feeds]</value>
@@ -584,10 +570,6 @@ Error:{1}.</value>
   </data>
   <data name="FileDialogFilterXMLFiles" xml:space="preserve">
     <value>XML Files</value>
-  </data>
-  <data name="BrowseForFolderEnclosureDownloadLocation" xml:space="preserve">
-    <value>Select or create a folder to store downloaded attachments</value>
-    <comment> Text in the browse for folder dialog</comment>
   </data>
   <data name="FormatExceptionProxyPort" xml:space="preserve">
     <value>Proxy port is not a number.</value>
@@ -735,10 +717,6 @@ failed with error:
   </data>
   <data name="GUIStatusErrorReadingFeedlistFile" xml:space="preserve">
     <value>Error on loading feedlist file.</value>
-  </data>
-  <data name="GUIStatusEnclosureJustReceivedItemsMessage" xml:space="preserve">
-    <value>Received: 1 file</value>
-    <comment> displayed in the Toast window(s)</comment>
   </data>
   <data name="GUIStatusFeedJustReceivedItemsMessage" xml:space="preserve">
     <value>Received: {0} item(s)</value>
@@ -1147,12 +1125,6 @@ for detailed information about the error occured.</value>
   </data>
   <data name="MenuColumnChooserDesc" xml:space="preserve">
     <value>Manage displayed columns and layout...</value>
-  </data>
-  <data name="MenuColumnChooserEnclosureCaption" xml:space="preserve">
-    <value>Show Enclosure State</value>
-  </data>
-  <data name="MenuColumnChooserEnclosureDesc" xml:space="preserve">
-    <value>Display the enclosure state column of a news item...</value>
   </data>
   <data name="MenuColumnChooserFeedTitleCaption" xml:space="preserve">
     <value>Show Subscription Title</value>
@@ -2313,9 +2285,6 @@ Please try to open the Panel manually using the Control Panel Start Menu.</value
   <data name="MenuSynchronizeFeedsDesc" xml:space="preserve">
     <value>Launches the Synchronize Feeds Wizard</value>
   </data>
-  <data name="ExceptionInvalidPlaylistName" xml:space="preserve">
-    <value>Please specify a valid playlist name</value>
-  </data>
   <data name="NoTopStoriesMessage" xml:space="preserve">
     <value>No stories found that have been linked from your subscriptions in '{0}' over the past week.</value>
   </data>
@@ -2330,12 +2299,6 @@ Please try to open the Panel manually using the Control Panel Start Menu.</value
   </data>
   <data name="ExceptionNoUserName" xml:space="preserve">
     <value>Please provide a valid username</value>
-  </data>
-  <data name="MenuDownloadManager" xml:space="preserve">
-    <value>Download Manager...</value>
-  </data>
-  <data name="MenuDownloadManagerDesc" xml:space="preserve">
-    <value>Launches the download manager</value>
   </data>
   <data name="MenuDeleteFeedSourceCaption" xml:space="preserve">
     <value>Delete Feed Source...</value>

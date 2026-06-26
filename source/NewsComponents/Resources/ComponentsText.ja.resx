@@ -135,11 +135,6 @@
   <data name="ExceptionNoProcessingHandlerMessage" xml:space="preserve">
     <value>フィードURL '{0}' は、処理できません。ハンドラが実装されていません。</value>
   </data>
-  <data name="ExceptionEnclosureCacheLimitReached" xml:space="preserve">
-    <value>ファイル {0} のダウンロードに失敗しました。添付ファイルとポッドキャストの合計サイズ制限 {1} MB を超えるためです。サイズ制限を大きくするか、ダウンロード済みの不要な添付ファイルを削除してください。</value>
-    <comment>.
- Parameters: 0 - fileName (string), 1 - sizeLimit (int) </comment>
-  </data>
   <data name="ExceptionSearchNoSearchCriteria" xml:space="preserve">
     <value>検索条件が指定されていません</value>
   </data>
@@ -169,11 +164,6 @@
   </data>
   <data name="ExceptionHelpFeedDesc" xml:space="preserve">
     <value>エラーのヘルプを提供</value>
-  </data>
-  <data name="ExceptionNntpServerAuthenticationFailed" xml:space="preserve">
-    <value>NNTP Server '{0}' の認証に失敗しました。ユーザー名またはパスワードが間違っています</value>
-    <comment>.
- Parameters: 0 - nntpServer (string) </comment>
   </data>
   <data name="ExceptionResourceAuthorization" xml:space="preserve">
     <value>アクセスが拒否されました。認証が必要であるか、認証情報が間違っています (HTTP エラー 401)</value>

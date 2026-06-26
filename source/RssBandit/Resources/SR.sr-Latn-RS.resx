@@ -1973,14 +1973,6 @@ neugodnostima.</value>
     <value>Pokaži kolonu brojača komentara predmeta vesti...</value>
     <comment>Opis unutar kontekst menija</comment>
   </data>
-  <data name="MenuColumnChooserEnclosureCaption" xml:space="preserve">
-    <value>Pokaži stanje omotača</value>
-    <comment>Zaglavlje unutar kontekst menija</comment>
-  </data>
-  <data name="MenuColumnChooserEnclosureDesc" xml:space="preserve">
-    <value>Pokaži kolonu stanja omotača predmeta vesti...</value>
-    <comment>Opis unutar kontekst menija</comment>
-  </data>
   <data name="MenuColumnChooserFlagCaption" xml:space="preserve">
     <value>Pokaži stanje zastavice</value>
     <comment>Zaglavlje unutar kontekst menija</comment>
@@ -2323,15 +2315,6 @@ Nastavićemo da koristimo stari folder za keš...</value>
   <data name="CmdLineResetUIDesc" xml:space="preserve">
     <value>Resetovaće korisnički interfejs na osnovni</value>
   </data>
-  <data name="ExceptionProcessStartToPlayEnclosure" xml:space="preserve">
-    <value>Sistem je prijavio grešku orilikom pokušaja da pusti ugrađeni fajl:
-
-{0}
-
-Greška:{1}.</value>
-    <comment>.
- Parametri: 0 - ime ugrađenog fajla (string), 1 - greška (string) </comment>
-  </data>
   <data name="FeedNodeUnreadItemsCaption" xml:space="preserve">
     <value>Nepročitane stavke</value>
     <comment> Specijalni lokalni feed za nepročitane stavke</comment>
@@ -2339,18 +2322,11 @@ Greška:{1}.</value>
   <data name="FeedNodeUnreadItemsDesc" xml:space="preserve">
     <value>Spremnik za nepročitane stavke</value>
   </data>
-  <data name="BrowseForFolderEnclosureDownloadLocation" xml:space="preserve">
-    <value>zaberi ili naprvi folder za smeštanje preuzetik dodatka</value>
-    <comment> Tekstu u pregledu za folder dijalog</comment>
-  </data>
   <data name="MenuDownloadAttachmentCaption" xml:space="preserve">
     <value>Preuzmi dodatak</value>
   </data>
   <data name="MenuDownloadAttachmentDesc" xml:space="preserve">
     <value>Preuzmi ugrađene fajlove u stavku u navedeni podkast folder</value>
-  </data>
-  <data name="ExceptionInvalidEnclosurePath" xml:space="preserve">
-    <value>Nevalidna putanja direktorija za preuzimanje fajlova</value>
   </data>
   <data name="ExceptionProcessCommandlineCulture" xml:space="preserve">
     <value>Ne mogu prebaciti kulturu aplikacije na  '{0}':
@@ -2358,10 +2334,6 @@ Greška:{1}.</value>
 Greška:{1}.</value>
     <comment>.
  Parametri: 0 - obezbeđeni od strane kulture (string), 1 - grepka (string) </comment>
-  </data>
-  <data name="GUIStatusEnclosureJustReceivedItemsMessage" xml:space="preserve">
-    <value>Primljen: 1 fajl</value>
-    <comment> prikazano u Toast prozorima</comment>
   </data>
   <data name="MainForm_MainMenuToolbarCaption" xml:space="preserve">
     <value>Bar glavnog menija</value>
@@ -2582,9 +2554,6 @@ Molim vas pokušajte ručno otvoriti panel preko kontrol panel-a iz start menija
     <value>{0} godine</value>
     <comment>.
  Parametri: 0 - godine (int) </comment>
-  </data>
-  <data name="ExceptionEnclosureDownloadError" xml:space="preserve">
-    <value>Greška u preuzimanju</value>
   </data>
   <data name="MenuFinderShowExcerptsCaption" xml:space="preserve">
     <value>Pokaži isečke iz rezultata pretrage</value>

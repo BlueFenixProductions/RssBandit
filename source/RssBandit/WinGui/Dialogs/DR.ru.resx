@@ -117,57 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="PodcastOptionDialog_Title" xml:space="preserve">
-    <value>Настройки подкаста</value>
-    <comment>Podcast option dialog title</comment>
-  </data>
-  <data name="PodcastOptionDialog_GeneralSectionCaption" xml:space="preserve">
-    <value>Общие</value>
-    <comment>Podcast option dialog general section</comment>
-  </data>
-  <data name="PodcastOptionDialog_TreatFileTypesCaption" xml:space="preserve">
-    <value>Считать следующие типы файлов подкастами - используйте точку с запятой (';') как разделитель:</value>
-  </data>
-  <data name="PodcastOptionDialog_TreatFileTypesTip" xml:space="preserve">
-    <value>Список расширений файлов подкастов разделенный точкой с запятой</value>
-  </data>
-  <data name="PodcastOptionDialog_CopyPodcastFilesLabelCaption" xml:space="preserve">
-    <value>После загрузки скопировать файлы подкаста в:</value>
-  </data>
-  <data name="PodcastOptionDialog_CopyPodcastFilesLocationTip" xml:space="preserve">
-    <value>Папка для подкастов</value>
-  </data>
-  <data name="PodcastOptionDialog_CopyPodcastFilesLocationBrowseTip" xml:space="preserve">
-    <value>Щелкните здесь для выбора папки для подкастов</value>
-  </data>
-  <data name="PodcastOptionDialog_CopyPodcastFiles2WMPOptionCaption" xml:space="preserve">
-    <value>Плейлист Windows Media Player</value>
-  </data>
-  <data name="PodcastOptionDialog_CopyPodcastFiles2iTunesOptionCaption" xml:space="preserve">
-    <value>Плейлист iTunes</value>
-  </data>
-  <data name="PodcastOptionDialog_CopyPodcastFiles2FolderOptionCaption" xml:space="preserve">
-    <value>Эта папка:</value>
-  </data>
-  <data name="PodcastOptionDialog_PlaylistSectionCaption" xml:space="preserve">
-    <value>Плейлист</value>
-    <comment>Podcast option dialog playlist section</comment>
-  </data>
-  <data name="PodcastOptionDialog_PlaylistSectionLabelCaption" xml:space="preserve">
-    <value>Название плейлиста:</value>
-  </data>
-  <data name="PodcastOptionDialog_PlaylistFromFileSourceOptionCaption" xml:space="preserve">
-    <value>Не использовать исходное имя файла</value>
-  </data>
-  <data name="PodcastOptionDialog_PlaylistFromFeedOptionCaption" xml:space="preserve">
-    <value>Использовать название ленты</value>
-  </data>
-  <data name="PodcastOptionDialog_PlaylistFromCustomNameOptionCaption" xml:space="preserve">
-    <value>Добавить все файлы в плейлист с именем:</value>
-  </data>
-  <data name="PodcastOptionDialog_PlaylistCustomNameTip" xml:space="preserve">
-    <value>Задайте имя плейлиста</value>
-  </data>
   <data name="DialogBase_CancelButtonCaption" xml:space="preserve">
     <value>Отмена</value>
   </data>
@@ -289,14 +238,8 @@
   <data name="FeedProperties_checkCustomFormatter_ToolTip" xml:space="preserve">
     <value>Выберите эту опцию для специального форматирования</value>
   </data>
-  <data name="FeedProperties_checkDownloadEnclosures_Text" xml:space="preserve">
-    <value>Автоматически загружать вложения и подкасты</value>
-  </data>
   <data name="FeedProperties_checkEnableAlerts_Text" xml:space="preserve">
     <value>Разрешить извещения при получении сообщений</value>
-  </data>
-  <data name="FeedProperties_checkEnableEnclosureAlerts_Text" xml:space="preserve">
-    <value>Извещать о загруженных вложениях и подкастах</value>
   </data>
   <data name="FeedProperties_checkMarkItemsReadOnExit_Text" xml:space="preserve">
     <value>&amp;Помечать сообщения как прочтенные при выходе</value>
@@ -336,9 +279,6 @@
   </data>
   <data name="FeedProperties_labelFormatters_Text" xml:space="preserve">
     <value>Стиль &amp;форматирования:</value>
-  </data>
-  <data name="FeedProperties_tabAttachments_Text" xml:space="preserve">
-    <value>Подкасты/Вложения</value>
   </data>
   <data name="FeedProperties_tabAuthentication_Text" xml:space="preserve">
     <value>Аутентификация</value>

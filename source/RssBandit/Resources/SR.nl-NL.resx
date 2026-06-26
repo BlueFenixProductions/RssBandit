@@ -365,9 +365,6 @@ Detail: {1}</value>
   <data name="ExceptionNoProxyUrl" xml:space="preserve">
     <value>Geef het proxyadres (IP adres of hostnaam).</value>
   </data>
-  <data name="ExceptionInvalidEnclosurePath" xml:space="preserve">
-    <value>De gegeven download map is ongeldig.</value>
-  </data>
   <data name="ExceptionNoRemoteStorageAuthUser" xml:space="preserve">
     <value>Geef de loginnaam voor de externe opslag lokatie.</value>
   </data>
@@ -489,24 +486,12 @@ openen in een nieuwe Tab?</value>
     <comment>.
  Parameters: 0 - error (string) </comment>
   </data>
-  <data name="ExceptionProcessStartToPlayEnclosure" xml:space="preserve">
-    <value>Fout opgetreden bij het sluiten:
-
-{0}
-
-Fout:{1}.</value>
-    <comment>.
- Parameters: 0 - enclosureFileName (string), 1 - error (string) </comment>
-  </data>
   <data name="ExceptionProcessCommandlineCulture" xml:space="preserve">
     <value>Kan niet switchen naar programma setting '{0}':
 
 Error:{1}.</value>
     <comment>.
  Parameters: 0 - cultureProvided (string), 1 - error (string) </comment>
-  </data>
-  <data name="ExceptionEnclosureDownloadError" xml:space="preserve">
-    <value>Download fout</value>
   </data>
   <data name="FeedDefaultCategory" xml:space="preserve">
     <value>[Naamloze categorie]</value>
@@ -605,10 +590,6 @@ Error:{1}.</value>
   </data>
   <data name="FileDialogFilterXMLFiles" xml:space="preserve">
     <value>XML-bestanden</value>
-  </data>
-  <data name="BrowseForFolderEnclosureDownloadLocation" xml:space="preserve">
-    <value>Selecteer of maak een map voor het opslaan van gedownloade bijlagen</value>
-    <comment> Text in the browse for folder dialog</comment>
   </data>
   <data name="FormatExceptionProxyPort" xml:space="preserve">
     <value>Proxyserver poort is geen nummer.</value>
@@ -748,10 +729,6 @@ RSS Bandit zal de oude cache map blijven gebruiken...</value>
   </data>
   <data name="GUIStatusErrorReadingFeedlistFile" xml:space="preserve">
     <value>Fout bij laden feed bestand.</value>
-  </data>
-  <data name="GUIStatusEnclosureJustReceivedItemsMessage" xml:space="preserve">
-    <value>Ontvangen: 1 bestand</value>
-    <comment> displayed in the Toast window(s)</comment>
   </data>
   <data name="GUIStatusFeedJustReceivedItemsMessage" xml:space="preserve">
     <value>Ontvangen: {0} item(s)</value>
@@ -1171,12 +1148,6 @@ voor meer informatie over de fout.</value>
   </data>
   <data name="MenuColumnChooserDesc" xml:space="preserve">
     <value>Beheer getoonde kolommen en layout</value>
-  </data>
-  <data name="MenuColumnChooserEnclosureCaption" xml:space="preserve">
-    <value>Toon bijlage</value>
-  </data>
-  <data name="MenuColumnChooserEnclosureDesc" xml:space="preserve">
-    <value>Geeft aan of er een toevoeging beschikbaar is</value>
   </data>
   <data name="MenuColumnChooserFeedTitleCaption" xml:space="preserve">
     <value>Toon feedtitel</value>

@@ -135,11 +135,6 @@
   <data name="ExceptionNoProcessingHandlerMessage" xml:space="preserve">
     <value>Adres URL kanału '{0}' nie może zostać obsłużony. Nie zaimplementowano procedury obsługi.</value>
   </data>
-  <data name="ExceptionEnclosureCacheLimitReached" xml:space="preserve">
-    <value>Próba pobrania pliku '{0}' nie powiodła się, ponieważ przekroczyłby on limit {1}MB miejsca ustalonego dla podcastów i załączników. Możesz albo zwiększyć limit zajmowanego przez nie miejsca, lub skasować poprzednio pobrane załączniki aby zrobić miejsce dla tego pliku.</value>
-    <comment>.
- Parameters: 0 - fileName (string), 1 - sizeLimit (int) </comment>
-  </data>
   <data name="ExceptionSearchNoSearchCriteria" xml:space="preserve">
     <value>Brak sprecyzowanych kryteriów wyszukiwania</value>
   </data>
@@ -169,11 +164,6 @@
   </data>
   <data name="ExceptionHelpFeedDesc" xml:space="preserve">
     <value>Udostępnia pomoc o błędach</value>
-  </data>
-  <data name="ExceptionNntpServerAuthenticationFailed" xml:space="preserve">
-    <value>Podłączenie do servera NNTP '{0}' z użyciem autentykacji nie powiodło się: nieprawidłowa nazwa użytkownika lub hasło.</value>
-    <comment>.
- Parameters: 0 - nntpServer (string) </comment>
   </data>
   <data name="ExceptionResourceAuthorization" xml:space="preserve">
     <value>Dostęp zabroniony, wymagana nazwa użytkownika i hasło lub nieprawidłowe dane zostały użyte (Błąd HTTP 401)</value>

@@ -117,57 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="PodcastOptionDialog_Title" xml:space="preserve">
-    <value>Opciones de Podcast</value>
-    <comment> Podcast option dialog title</comment>
-  </data>
-  <data name="PodcastOptionDialog_GeneralSectionCaption" xml:space="preserve">
-    <value>General</value>
-    <comment> Podcast option dialog general section</comment>
-  </data>
-  <data name="PodcastOptionDialog_TreatFileTypesCaption" xml:space="preserve">
-    <value>Tratar estos tipos de archivo como podcasts - use punto y coma (';') para separar las entradas:</value>
-  </data>
-  <data name="PodcastOptionDialog_TreatFileTypesTip" xml:space="preserve">
-    <value>La lista de extensiones de archivos podcast separada por punto y coma</value>
-  </data>
-  <data name="PodcastOptionDialog_CopyPodcastFilesLabelCaption" xml:space="preserve">
-    <value>Después de descargar la copia del podcast a:</value>
-  </data>
-  <data name="PodcastOptionDialog_CopyPodcastFilesLocationTip" xml:space="preserve">
-    <value>Carpeta destino de podcasts</value>
-  </data>
-  <data name="PodcastOptionDialog_CopyPodcastFilesLocationBrowseTip" xml:space="preserve">
-    <value>Clic para seleccionar la carpeta destino de podcasts</value>
-  </data>
-  <data name="PodcastOptionDialog_CopyPodcastFiles2WMPOptionCaption" xml:space="preserve">
-    <value>Lista de reproducción de Windows Media Player</value>
-  </data>
-  <data name="PodcastOptionDialog_CopyPodcastFiles2iTunesOptionCaption" xml:space="preserve">
-    <value>Lista de reproducción de iTunes</value>
-  </data>
-  <data name="PodcastOptionDialog_CopyPodcastFiles2FolderOptionCaption" xml:space="preserve">
-    <value>Esta carpeta:</value>
-  </data>
-  <data name="PodcastOptionDialog_PlaylistSectionCaption" xml:space="preserve">
-    <value>Lista de reproducción</value>
-    <comment> Podcast option dialog playlist section</comment>
-  </data>
-  <data name="PodcastOptionDialog_PlaylistSectionLabelCaption" xml:space="preserve">
-    <value>Como el nombre de la lista de reproducción:</value>
-  </data>
-  <data name="PodcastOptionDialog_PlaylistFromFileSourceOptionCaption" xml:space="preserve">
-    <value>Usar el nombre de la fuente del archivo</value>
-  </data>
-  <data name="PodcastOptionDialog_PlaylistFromFeedOptionCaption" xml:space="preserve">
-    <value>Usar el nombre de la fuente</value>
-  </data>
-  <data name="PodcastOptionDialog_PlaylistFromCustomNameOptionCaption" xml:space="preserve">
-    <value>Añadir todos los archivos a una sola lista de reproducción con este nombre:</value>
-  </data>
-  <data name="PodcastOptionDialog_PlaylistCustomNameTip" xml:space="preserve">
-    <value>Escriba el nombre de la lista de reproducción</value>
-  </data>
   <data name="DialogBase_CancelButtonCaption" xml:space="preserve">
     <value>Cancelar</value>
   </data>
@@ -289,14 +238,8 @@
   <data name="FeedProperties_checkCustomFormatter_ToolTip" xml:space="preserve">
     <value>Marque esta opción para usar un formateador personalizado</value>
   </data>
-  <data name="FeedProperties_checkDownloadEnclosures_Text" xml:space="preserve">
-    <value>Descargar automáticamente adjuntos y podcasts</value>
-  </data>
   <data name="FeedProperties_checkEnableAlerts_Text" xml:space="preserve">
     <value>Activar ventanas de alerta para nuevos &amp;elementos</value>
-  </data>
-  <data name="FeedProperties_checkEnableEnclosureAlerts_Text" xml:space="preserve">
-    <value>&amp;Activar las ventanas de alerta para adjuntos y podcasts recientemente descargados</value>
   </data>
   <data name="FeedProperties_checkMarkItemsReadOnExit_Text" xml:space="preserve">
     <value>&amp;Marcar elementos como leídos al salir de la fuente</value>
@@ -336,9 +279,6 @@
   </data>
   <data name="FeedProperties_labelFormatters_Text" xml:space="preserve">
     <value>Hola de estilo del &amp;formateador:</value>
-  </data>
-  <data name="FeedProperties_tabAttachments_Text" xml:space="preserve">
-    <value>Adjuntos/Podcasts</value>
   </data>
   <data name="FeedProperties_tabAuthentication_Text" xml:space="preserve">
     <value>Autentificación</value>

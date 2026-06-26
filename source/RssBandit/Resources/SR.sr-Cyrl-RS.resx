@@ -1973,14 +1973,6 @@ referrer-url: {2}</value>
     <value>Покажи колону бројача коментара предмета вести...</value>
     <comment>Опис унутар контекст менија</comment>
   </data>
-  <data name="MenuColumnChooserEnclosureCaption" xml:space="preserve">
-    <value>Покажи стање омотача</value>
-    <comment>Заглавље унутар контекст менија</comment>
-  </data>
-  <data name="MenuColumnChooserEnclosureDesc" xml:space="preserve">
-    <value>Покажи колону стања омотача предмета вести...</value>
-    <comment>Опис унутар контекст менија</comment>
-  </data>
   <data name="MenuColumnChooserFlagCaption" xml:space="preserve">
     <value>Покажи стање заставице</value>
     <comment>Заглавље унутар контекст менија</comment>
@@ -2323,15 +2315,6 @@ referrer-url: {2}</value>
   <data name="CmdLineResetUIDesc" xml:space="preserve">
     <value>Ресетоваће кориснички интерфејс на основни</value>
   </data>
-  <data name="ExceptionProcessStartToPlayEnclosure" xml:space="preserve">
-    <value>Систем је пријавио грешку ориликом покушаја да пусти уграђени фајл:
-
-{0}
-
-Грешка:{1}.</value>
-    <comment>.
- Параметри: 0 - име уграђеног фајла (string), 1 - грешка (string) </comment>
-  </data>
   <data name="FeedNodeUnreadItemsCaption" xml:space="preserve">
     <value>Непрочитане ставке</value>
     <comment> Специјални локални feed за непрочитане ставке</comment>
@@ -2339,18 +2322,11 @@ referrer-url: {2}</value>
   <data name="FeedNodeUnreadItemsDesc" xml:space="preserve">
     <value>Спремник за непрочитане ставке</value>
   </data>
-  <data name="BrowseForFolderEnclosureDownloadLocation" xml:space="preserve">
-    <value>забери или напрви фолдер за смештање преузетик додатка</value>
-    <comment> Тексту у прегледу за фолдер дијалог</comment>
-  </data>
   <data name="MenuDownloadAttachmentCaption" xml:space="preserve">
     <value>Преузми додатак</value>
   </data>
   <data name="MenuDownloadAttachmentDesc" xml:space="preserve">
     <value>Преузми уграђене фајлове у ставку у наведени подкаст фолдер</value>
-  </data>
-  <data name="ExceptionInvalidEnclosurePath" xml:space="preserve">
-    <value>Невалидна путања директорија за преузимање фајлова</value>
   </data>
   <data name="ExceptionProcessCommandlineCulture" xml:space="preserve">
     <value>Не могу пребацити културу апликације на  '{0}':
@@ -2358,10 +2334,6 @@ referrer-url: {2}</value>
 Грешка:{1}.</value>
     <comment>.
  Параметри: 0 - обезбеђени од стране културе (string), 1 - грепка (string) </comment>
-  </data>
-  <data name="GUIStatusEnclosureJustReceivedItemsMessage" xml:space="preserve">
-    <value>Примљен: 1 фајл</value>
-    <comment> приказано у Toast прозорима</comment>
   </data>
   <data name="MainForm_MainMenuToolbarCaption" xml:space="preserve">
     <value>Бар главног менија</value>
@@ -2582,9 +2554,6 @@ referrer-url: {2}</value>
     <value>{0} године</value>
     <comment>.
  Параметри: 0 - године (int) </comment>
-  </data>
-  <data name="ExceptionEnclosureDownloadError" xml:space="preserve">
-    <value>Грешка у преузимању</value>
   </data>
   <data name="MenuFinderShowExcerptsCaption" xml:space="preserve">
     <value>Покажи исечке из резултата претраге</value>

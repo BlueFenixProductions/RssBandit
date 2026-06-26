@@ -402,14 +402,6 @@ namespace RssBandit.WinGui.Dialogs {
             }
         }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Automatically download attachments and podcasts.
-        /// </summary>
-        internal static string FeedProperties_checkDownloadEnclosures_Text {
-            get {
-                return ResourceManager.GetString("FeedProperties_checkDownloadEnclosures_Text", resourceCulture);
-            }
-        }
         
         /// <summary>
         ///   Looks up a localized string similar to &amp;Enable alert windows for new items.
@@ -420,14 +412,6 @@ namespace RssBandit.WinGui.Dialogs {
             }
         }
         
-        /// <summary>
-        ///   Looks up a localized string similar to &amp;Enable alert windows for newly downloaded attachments and podcasts.
-        /// </summary>
-        internal static string FeedProperties_checkEnableEnclosureAlerts_Text {
-            get {
-                return ResourceManager.GetString("FeedProperties_checkEnableEnclosureAlerts_Text", resourceCulture);
-            }
-        }
         
         /// <summary>
         ///   Looks up a localized string similar to &amp;Mark items as read on exiting feed.
@@ -564,14 +548,6 @@ namespace RssBandit.WinGui.Dialogs {
             }
         }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Attachments/Podcasts.
-        /// </summary>
-        internal static string FeedProperties_tabAttachments_Text {
-            get {
-                return ResourceManager.GetString("FeedProperties_tabAttachments_Text", resourceCulture);
-            }
-        }
         
         /// <summary>
         ///   Looks up a localized string similar to Authentication.
@@ -654,148 +630,20 @@ namespace RssBandit.WinGui.Dialogs {
             }
         }
         
-        /// <summary>
-        ///   Looks up a localized string similar to This folder:.
-        /// </summary>
-        internal static string PodcastOptionDialog_CopyPodcastFiles2FolderOptionCaption {
-            get {
-                return ResourceManager.GetString("PodcastOptionDialog_CopyPodcastFiles2FolderOptionCaption", resourceCulture);
-            }
-        }
         
-        /// <summary>
-        ///   Looks up a localized string similar to iTunes playlist.
-        /// </summary>
-        internal static string PodcastOptionDialog_CopyPodcastFiles2iTunesOptionCaption {
-            get {
-                return ResourceManager.GetString("PodcastOptionDialog_CopyPodcastFiles2iTunesOptionCaption", resourceCulture);
-            }
-        }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Windows Media Player playlist.
-        /// </summary>
-        internal static string PodcastOptionDialog_CopyPodcastFiles2WMPOptionCaption {
-            get {
-                return ResourceManager.GetString("PodcastOptionDialog_CopyPodcastFiles2WMPOptionCaption", resourceCulture);
-            }
-        }
         
-        /// <summary>
-        ///   Looks up a localized string similar to After downloading copy the podcast to:.
-        /// </summary>
-        internal static string PodcastOptionDialog_CopyPodcastFilesLabelCaption {
-            get {
-                return ResourceManager.GetString("PodcastOptionDialog_CopyPodcastFilesLabelCaption", resourceCulture);
-            }
-        }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Click to select the destination folder of podcasts.
-        /// </summary>
-        internal static string PodcastOptionDialog_CopyPodcastFilesLocationBrowseTip {
-            get {
-                return ResourceManager.GetString("PodcastOptionDialog_CopyPodcastFilesLocationBrowseTip", resourceCulture);
-            }
-        }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Destination folder of podcasts.
-        /// </summary>
-        internal static string PodcastOptionDialog_CopyPodcastFilesLocationTip {
-            get {
-                return ResourceManager.GetString("PodcastOptionDialog_CopyPodcastFilesLocationTip", resourceCulture);
-            }
-        }
         
-        /// <summary>
-        ///   Looks up a localized string similar to General.
-        /// </summary>
-        internal static string PodcastOptionDialog_GeneralSectionCaption {
-            get {
-                return ResourceManager.GetString("PodcastOptionDialog_GeneralSectionCaption", resourceCulture);
-            }
-        }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Provide the name of the playlist.
-        /// </summary>
-        internal static string PodcastOptionDialog_PlaylistCustomNameTip {
-            get {
-                return ResourceManager.GetString("PodcastOptionDialog_PlaylistCustomNameTip", resourceCulture);
-            }
-        }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Add all files to a single playlist with this name:.
-        /// </summary>
-        internal static string PodcastOptionDialog_PlaylistFromCustomNameOptionCaption {
-            get {
-                return ResourceManager.GetString("PodcastOptionDialog_PlaylistFromCustomNameOptionCaption", resourceCulture);
-            }
-        }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Use the Feed name.
-        /// </summary>
-        internal static string PodcastOptionDialog_PlaylistFromFeedOptionCaption {
-            get {
-                return ResourceManager.GetString("PodcastOptionDialog_PlaylistFromFeedOptionCaption", resourceCulture);
-            }
-        }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Use the file&apos;s source name.
-        /// </summary>
-        internal static string PodcastOptionDialog_PlaylistFromFileSourceOptionCaption {
-            get {
-                return ResourceManager.GetString("PodcastOptionDialog_PlaylistFromFileSourceOptionCaption", resourceCulture);
-            }
-        }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Playlist.
-        /// </summary>
-        internal static string PodcastOptionDialog_PlaylistSectionCaption {
-            get {
-                return ResourceManager.GetString("PodcastOptionDialog_PlaylistSectionCaption", resourceCulture);
-            }
-        }
         
-        /// <summary>
-        ///   Looks up a localized string similar to As playlist name:.
-        /// </summary>
-        internal static string PodcastOptionDialog_PlaylistSectionLabelCaption {
-            get {
-                return ResourceManager.GetString("PodcastOptionDialog_PlaylistSectionLabelCaption", resourceCulture);
-            }
-        }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Podcast Options.
-        /// </summary>
-        internal static string PodcastOptionDialog_Title {
-            get {
-                return ResourceManager.GetString("PodcastOptionDialog_Title", resourceCulture);
-            }
-        }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Treat these file types as podcasts - use semicolons (&apos;;&apos;) to separate entries:.
-        /// </summary>
-        internal static string PodcastOptionDialog_TreatFileTypesCaption {
-            get {
-                return ResourceManager.GetString("PodcastOptionDialog_TreatFileTypesCaption", resourceCulture);
-            }
-        }
         
-        /// <summary>
-        ///   Looks up a localized string similar to List of podcast file extensions separated by semicolons.
-        /// </summary>
-        internal static string PodcastOptionDialog_TreatFileTypesTip {
-            get {
-                return ResourceManager.GetString("PodcastOptionDialog_TreatFileTypesTip", resourceCulture);
-            }
-        }
     }
 }

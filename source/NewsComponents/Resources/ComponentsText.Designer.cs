@@ -88,26 +88,6 @@ namespace NewsComponents.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error has occured downloading the enclosure:
-        ///
-        ///{0}.
-        /// </summary>
-        internal static string ExceptionDownloadingEnclosure {
-            get {
-                return ResourceManager.GetString("ExceptionDownloadingEnclosure", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The attempt to download the file &apos;{0}&apos; failed because it would exceed the size limit of {1}MB dedicated to podcasts and attachments. Either increase the size limit or delete previously downloaded attachments to make room for this download..
-        /// </summary>
-        internal static string ExceptionEnclosureCacheLimitReached {
-            get {
-                return ResourceManager.GetString("ExceptionEnclosureCacheLimitReached", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The Facebook subscriptions file has been tampered with and cannot be loaded. Delete Facebook as a feed source and add it again from &quot;Synchronize Feeds&quot; to fix this problem..
         /// </summary>
         internal static string ExceptionFacebookFeedlistCorrupted {
@@ -152,23 +132,6 @@ namespace NewsComponents.Resources {
             }
         }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Unauthorized access, credentials required or invalid credentials (NNTP status 480).
-        /// </summary>
-        internal static string ExceptionNntpResourceAuthorization {
-            get {
-                return ResourceManager.GetString("ExceptionNntpResourceAuthorization", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Connect to NNTP server &apos;{0}&apos; with authentication failed: invalid username/password.
-        /// </summary>
-        internal static string ExceptionNntpServerAuthenticationFailed {
-            get {
-                return ResourceManager.GetString("ExceptionNntpServerAuthenticationFailed", resourceCulture);
-            }
-        }
         
         /// <summary>
         ///   Looks up a localized string similar to Feed Url &apos;{0}&apos; cannot be processed. No handler implemented..

@@ -117,57 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="PodcastOptionDialog_Title" xml:space="preserve">
-    <value>Опције подкаста</value>
-    <comment> Наслов дијалога опција подкаста</comment>
-  </data>
-  <data name="PodcastOptionDialog_GeneralSectionCaption" xml:space="preserve">
-    <value>General</value>
-    <comment> Дијалог генералне секције опција подкаста</comment>
-  </data>
-  <data name="PodcastOptionDialog_TreatFileTypesCaption" xml:space="preserve">
-    <value>Третирај ове типове фајлова као подкасте - користите тачкузарез (';') да одвојите уносе :</value>
-  </data>
-  <data name="PodcastOptionDialog_TreatFileTypesTip" xml:space="preserve">
-    <value>Листа екстензија фајлова подкаста одвојена тачкомзарезом</value>
-  </data>
-  <data name="PodcastOptionDialog_CopyPodcastFilesLabelCaption" xml:space="preserve">
-    <value>После преузимања копирај подкаст:</value>
-  </data>
-  <data name="PodcastOptionDialog_CopyPodcastFilesLocationTip" xml:space="preserve">
-    <value>Циљни фолдер за подкасте</value>
-  </data>
-  <data name="PodcastOptionDialog_CopyPodcastFilesLocationBrowseTip" xml:space="preserve">
-    <value>Кликните да изаберете циљни фолдер за подкасте</value>
-  </data>
-  <data name="PodcastOptionDialog_CopyPodcastFiles2WMPOptionCaption" xml:space="preserve">
-    <value>Windows Media Player листа</value>
-  </data>
-  <data name="PodcastOptionDialog_CopyPodcastFiles2iTunesOptionCaption" xml:space="preserve">
-    <value>iTunes листа</value>
-  </data>
-  <data name="PodcastOptionDialog_CopyPodcastFiles2FolderOptionCaption" xml:space="preserve">
-    <value>Овај фолдер:</value>
-  </data>
-  <data name="PodcastOptionDialog_PlaylistSectionCaption" xml:space="preserve">
-    <value>Листа</value>
-    <comment> Дијалог опција подкаста секција листе</comment>
-  </data>
-  <data name="PodcastOptionDialog_PlaylistSectionLabelCaption" xml:space="preserve">
-    <value>Као име листе:</value>
-  </data>
-  <data name="PodcastOptionDialog_PlaylistFromFileSourceOptionCaption" xml:space="preserve">
-    <value>Користи име фајла</value>
-  </data>
-  <data name="PodcastOptionDialog_PlaylistFromFeedOptionCaption" xml:space="preserve">
-    <value>Користи име Feed-а</value>
-  </data>
-  <data name="PodcastOptionDialog_PlaylistFromCustomNameOptionCaption" xml:space="preserve">
-    <value>Додај све фајлове у једну листу са овим именом:</value>
-  </data>
-  <data name="PodcastOptionDialog_PlaylistCustomNameTip" xml:space="preserve">
-    <value>Обезбедите име за листу</value>
-  </data>
   <data name="DialogBase_CancelButtonCaption" xml:space="preserve">
     <value>Откажи</value>
   </data>
@@ -289,14 +238,8 @@
   <data name="FeedProperties_checkCustomFormatter_ToolTip" xml:space="preserve">
     <value>Селектујте ову опцију да користите прилагођени форматер</value>
   </data>
-  <data name="FeedProperties_checkDownloadEnclosures_Text" xml:space="preserve">
-    <value>Аутоматски преузми додатке и подкасте</value>
-  </data>
   <data name="FeedProperties_checkEnableAlerts_Text" xml:space="preserve">
     <value>&amp;Омогући прозор упозорења за нове предмете</value>
-  </data>
-  <data name="FeedProperties_checkEnableEnclosureAlerts_Text" xml:space="preserve">
-    <value>&amp;Омогући прозор упозорења за нове преузете додатке и подкасте</value>
   </data>
   <data name="FeedProperties_checkMarkItemsReadOnExit_Text" xml:space="preserve">
     <value>&amp;Маркирај предмете као прочитане на постојећим пољима</value>
@@ -336,9 +279,6 @@
   </data>
   <data name="FeedProperties_labelFormatters_Text" xml:space="preserve">
     <value>&amp;Каскадни стил форматера:</value>
-  </data>
-  <data name="FeedProperties_tabAttachments_Text" xml:space="preserve">
-    <value>Додатак/Подкаст</value>
   </data>
   <data name="FeedProperties_tabAuthentication_Text" xml:space="preserve">
     <value>Аутентификација</value>

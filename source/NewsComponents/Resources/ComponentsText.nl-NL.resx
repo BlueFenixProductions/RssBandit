@@ -72,11 +72,6 @@
     <comment>.
  Parameters: 0 - url (string) </comment>
   </data>
-  <data name="ExceptionEnclosureCacheLimitReached" >
-    <value>Downloaden van '{0}' is niet gelukt, omdat het de grootte limiet van {1}MB gereserveerd voor podcasts en bijlagen zou overschreiden. Verkleind de grootte limiet of verwijder eerder gedownloade bijlagen.</value>
-    <comment>.
- Parameters: 0 - fileName (string), 1 - sizeLimit (int) </comment>
-  </data>
   <data name="ExceptionSearchNoSearchCriteria" >
     <value>Geen zoekterm opgegeven</value>
   </data>

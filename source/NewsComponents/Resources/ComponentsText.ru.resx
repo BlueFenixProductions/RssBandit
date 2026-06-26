@@ -115,11 +115,6 @@
   <data name="ExceptionNoProcessingHandlerMessage">
     <value>Url '{0}' не может быть обработан.</value>
   </data>
-  <data name="ExceptionEnclosureCacheLimitReached">
-    <value>Файл '{0}' не будет загружен, потому что его размер ({1}MB) превышает лимит для вложений и подкастов. Либо увеличьте лимит либо освободите место удалив некоторые ранее загруженные вложения и подкасты.</value>
-    <comment>.
- Parameters: 0 - fileName (string), 1 - sizeLimit (int) </comment>
-  </data>
   <data name="ExceptionSearchNoSearchCriteria">
     <value>Критерий поиска не указан</value>
   </data>

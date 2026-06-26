@@ -115,11 +115,6 @@
   <data name="ExceptionNoProcessingHandlerMessage">
     <value>L'url du flux '{0}' ne peut être traitée. Aucun handler implémenté pour ce flux.</value>
   </data>
-  <data name="ExceptionEnclosureCacheLimitReached">
-    <value>La tentative de téléchargement du fichier '{0}' a échouée car il semble dépasser la taille limite de {1}Mo dédiée au podcasts et fichiers liés. Augmentez la limite de taille ou supprimez les fichiers liés téléchargés précédemment afin de faire de la place pour ce téléchargement.</value>
-    <comment>.
- Parameters: 0 - fileName (string), 1 - sizeLimit (int) </comment>
-  </data>
   <data name="ExceptionSearchNoSearchCriteria">
     <value>Aucun critère de recherche spécifié</value>
     <comment>No search criteria specified</comment>

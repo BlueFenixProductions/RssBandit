@@ -117,57 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="PodcastOptionDialog_Title" xml:space="preserve">
-    <value>Podcast Opties</value>
-    <comment> Podcast option dialog title</comment>
-  </data>
-  <data name="PodcastOptionDialog_GeneralSectionCaption" xml:space="preserve">
-    <value>Algemeen</value>
-    <comment> Podcast option dialog general section</comment>
-  </data>
-  <data name="PodcastOptionDialog_TreatFileTypesCaption" xml:space="preserve">
-    <value>Behandel deze bestanden als podcasts - gebruik een puntkomma (';') om vermeldingen van elkaar te scheiden:</value>
-  </data>
-  <data name="PodcastOptionDialog_TreatFileTypesTip" xml:space="preserve">
-    <value>Podcast bestandsextentie lijst gescheiden voor puntkomma</value>
-  </data>
-  <data name="PodcastOptionDialog_CopyPodcastFilesLabelCaption" xml:space="preserve">
-    <value>na downloaden podcast kopiëren naar:</value>
-  </data>
-  <data name="PodcastOptionDialog_CopyPodcastFilesLocationTip" xml:space="preserve">
-    <value>Doelmap voor podcasts</value>
-  </data>
-  <data name="PodcastOptionDialog_CopyPodcastFilesLocationBrowseTip" xml:space="preserve">
-    <value>Klik om de doelmap van podcasts te selecteren</value>
-  </data>
-  <data name="PodcastOptionDialog_CopyPodcastFiles2WMPOptionCaption" xml:space="preserve">
-    <value>Windows Media Player afspeellijst</value>
-  </data>
-  <data name="PodcastOptionDialog_CopyPodcastFiles2iTunesOptionCaption" xml:space="preserve">
-    <value>iTunes afspeellijst</value>
-  </data>
-  <data name="PodcastOptionDialog_CopyPodcastFiles2FolderOptionCaption" xml:space="preserve">
-    <value>Deze map:</value>
-  </data>
-  <data name="PodcastOptionDialog_PlaylistSectionCaption" xml:space="preserve">
-    <value>Afspeellijst</value>
-    <comment> Podcast option dialog playlist section</comment>
-  </data>
-  <data name="PodcastOptionDialog_PlaylistSectionLabelCaption" xml:space="preserve">
-    <value>Naam voor afspeellijst:</value>
-  </data>
-  <data name="PodcastOptionDialog_PlaylistFromFileSourceOptionCaption" xml:space="preserve">
-    <value>Gebruik bronnaam van bestand</value>
-  </data>
-  <data name="PodcastOptionDialog_PlaylistFromFeedOptionCaption" xml:space="preserve">
-    <value>Gebruik feednaam</value>
-  </data>
-  <data name="PodcastOptionDialog_PlaylistFromCustomNameOptionCaption" xml:space="preserve">
-    <value>Voeg alle bestanden aan een afspeellijst met deze naam toe:</value>
-  </data>
-  <data name="PodcastOptionDialog_PlaylistCustomNameTip" xml:space="preserve">
-    <value>Geef de naam van de afspeellijst in</value>
-  </data>
   <data name="DialogBase_CancelButtonCaption" xml:space="preserve">
     <value>Annuleren</value>
   </data>
@@ -289,14 +238,8 @@
   <data name="FeedProperties_checkCustomFormatter_ToolTip" xml:space="preserve">
     <value>Vink aan indien je een opmaak-sjabloon wilt gebruiken</value>
   </data>
-  <data name="FeedProperties_checkDownloadEnclosures_Text" xml:space="preserve">
-    <value>&amp;Bijlagen en podcasts automatisch downloaden</value>
-  </data>
   <data name="FeedProperties_checkEnableAlerts_Text" xml:space="preserve">
     <value>&amp;Kennisgevingsvenster bij nieuw ontvangen item(s)</value>
-  </data>
-  <data name="FeedProperties_checkEnableEnclosureAlerts_Text" xml:space="preserve">
-    <value>&amp;Kennisgevingsvenster bij nieuw gedownloade bijlagen en podcasts</value>
   </data>
   <data name="FeedProperties_checkMarkItemsReadOnExit_Text" xml:space="preserve">
     <value>&amp;Markeer items als gelezen bij verlaten feed</value>
@@ -336,9 +279,6 @@
   </data>
   <data name="FeedProperties_labelFormatters_Text" xml:space="preserve">
     <value>Opmaak-&amp;sjabloon:</value>
-  </data>
-  <data name="FeedProperties_tabAttachments_Text" xml:space="preserve">
-    <value>Bijlagen/Podcasts</value>
   </data>
   <data name="FeedProperties_tabAuthentication_Text" xml:space="preserve">
     <value>Authenticatie</value>

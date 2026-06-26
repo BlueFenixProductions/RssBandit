@@ -115,11 +115,6 @@
   <data name="ExceptionNoProcessingHandlerMessage">
     <value>El archivo de la URL '{0}' no puede ser procesado. No hay ningún gestor implementado.</value>
   </data>
-  <data name="ExceptionEnclosureCacheLimitReached">
-    <value>El intento para descargar el archivo '{0}' ha fallado porque excedería el límite de tamaño de {1}MB reservado para adjuntos y podcasts. Aumente el límite de tamaño o borre adjuntos previamente descargados para dejar espacio para esta descarga.</value>
-    <comment>.
- Parameters: 0 - fileName (string), 1 - sizeLimit (int) </comment>
-  </data>
   <data name="ExceptionSearchNoSearchCriteria">
     <value>Ninguno criterio de búsqueda especificado</value>
   </data>

@@ -1576,12 +1576,6 @@
   <data name="MenuColumnChooserCommentCountDesc" xml:space="preserve">
     <value>显示新闻条目的注释计数器列...</value>
   </data>
-  <data name="MenuColumnChooserEnclosureCaption" xml:space="preserve">
-    <value>显示其他附件状态</value>
-  </data>
-  <data name="MenuColumnChooserEnclosureDesc" xml:space="preserve">
-    <value>显示新闻条目的其他附件状态列...</value>
-  </data>
   <data name="MenuColumnChooserFlagCaption" xml:space="preserve">
     <value>显示标志状态</value>
   </data>
@@ -1854,21 +1848,11 @@
   <data name="CmdLineResetUIDesc" xml:space="preserve">
     <value>将用户界面重置为缺省设置</value>
   </data>
-  <data name="ExceptionProcessStartToPlayEnclosure" xml:space="preserve">
-    <value>系统在尝试打开补充附件时报告一个错误：
-
-{0}
-
-错误：{1}.</value>
-  </data>
   <data name="FeedNodeUnreadItemsCaption" xml:space="preserve">
     <value>未读条目</value>
   </data>
   <data name="FeedNodeUnreadItemsDesc" xml:space="preserve">
     <value>未读条目容器</value>
-  </data>
-  <data name="BrowseForFolderEnclosureDownloadLocation" xml:space="preserve">
-    <value>选择或创建一个文件夹来存储下载的附件</value>
   </data>
   <data name="MenuDownloadAttachmentCaption" xml:space="preserve">
     <value>下载附件</value>
@@ -1876,16 +1860,10 @@
   <data name="MenuDownloadAttachmentDesc" xml:space="preserve">
     <value>下载条目所包含的文件到指定的播客文件夹</value>
   </data>
-  <data name="ExceptionInvalidEnclosurePath" xml:space="preserve">
-    <value>下载指定目录的路径无效</value>
-  </data>
   <data name="ExceptionProcessCommandlineCulture" xml:space="preserve">
     <value>不能将应用的语言切换到 '{0}'：
 
 错误：{1}.</value>
-  </data>
-  <data name="GUIStatusEnclosureJustReceivedItemsMessage" xml:space="preserve">
-    <value>收到 1 个文件</value>
   </data>
   <data name="MainForm_MainMenuToolbarCaption" xml:space="preserve">
     <value>主菜单条</value>
@@ -2085,9 +2063,6 @@
   </data>
   <data name="SearchPanel_comboRssSearchItemAge_x_years" xml:space="preserve">
     <value>{0} 年</value>
-  </data>
-  <data name="ExceptionEnclosureDownloadError" xml:space="preserve">
-    <value>下载失败</value>
   </data>
   <data name="MenuFinderShowExcerptsCaption" xml:space="preserve">
     <value>在搜索结果中显示摘录</value>

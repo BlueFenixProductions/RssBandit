@@ -135,11 +135,6 @@
   <data name="ExceptionNoProcessingHandlerMessage" xml:space="preserve">
     <value>L'url del Feed '{0}' non può essere gestito. Nessun handler implementato.</value>
   </data>
-  <data name="ExceptionEnclosureCacheLimitReached" xml:space="preserve">
-    <value>Il tentativo di scaricare il file '{0}' è fallito perchè sarebbe maggiore del limite di {1}MB dedicato ai podcasts e attachments. Incrementa il limite o cancella gli attachments precedentemente scaricati.</value>
-    <comment>.
- Parameters: 0 - fileName (string), 1 - sizeLimit (int) </comment>
-  </data>
   <data name="ExceptionSearchNoSearchCriteria" xml:space="preserve">
     <value>Nessun criterio di ricerca specificato</value>
   </data>
@@ -169,11 +164,6 @@
   </data>
   <data name="ExceptionHelpFeedDesc" xml:space="preserve">
     <value>Fornisce aiuto sugli errori</value>
-  </data>
-  <data name="ExceptionNntpServerAuthenticationFailed" xml:space="preserve">
-    <value>Connessione al server NNTP '{0}' con autenticazione fallita: username/password errata</value>
-    <comment>.
- Parameters: 0 - nntpServer (string) </comment>
   </data>
   <data name="ExceptionResourceAuthorization" xml:space="preserve">
     <value>Accesso non autorizzato, credenziali richieste o non valide (HTTP status 401)</value>

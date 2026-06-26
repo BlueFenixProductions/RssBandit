@@ -72,10 +72,6 @@
     <comment>.
  Parameters: 0 - url (string) </comment>
   </data>
-  <data name="ExceptionEnclosureCacheLimitReached" space="preserve">
-    <value>The attempt to download the file '{0}' failed because it would exceed the size limit of {1}MB dedicated to podcasts and attachments. Either increase the size limit or delete previously downloaded attachments to make room for this download.</value>
-    <comment>Parameters: 0 - fileName (string), 1 - sizeLimit (int) </comment>
-  </data>
   <data name="ExceptionSearchNoSearchCriteria" >
     <value>검색 하시려는 해당 분야가 존재 하지 않습니다.</value>
   </data>

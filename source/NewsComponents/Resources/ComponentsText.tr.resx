@@ -135,11 +135,6 @@
   <data name="ExceptionNoProcessingHandlerMessage" xml:space="preserve">
     <value>Besleme Url'si '{0}' işlenemez. Hiç bir işleyici uygulanmamış.</value>
   </data>
-  <data name="ExceptionEnclosureCacheLimitReached" xml:space="preserve">
-    <value>'{0}' dosyasını indirmek mümkün değil çünkü eklenti ve podcast'ler için belirlenen {1}MB kota aşılacak. Sorunu gidermek için ya eskiden indirilmiş eklentileri silin ya da kotayı büyütün.</value>
-    <comment>.
- Parameters: 0 - fileName (string), 1 - sizeLimit (int) </comment>
-  </data>
   <data name="ExceptionSearchNoSearchCriteria" xml:space="preserve">
     <value>Hiçbir arama kriteri belirlenmedi</value>
   </data>
@@ -169,11 +164,6 @@
   </data>
   <data name="ExceptionHelpFeedDesc" xml:space="preserve">
     <value>Hatalar hakkında bilgi verir</value>
-  </data>
-  <data name="ExceptionNntpServerAuthenticationFailed" xml:space="preserve">
-    <value>NNTP sunucusu '{0}' ile bağlantı kurulamadı: geçersiz kullanıcı adı/şifre</value>
-    <comment>.
- Parameters: 0 - nntpServer (string) </comment>
   </data>
   <data name="ExceptionResourceAuthorization" xml:space="preserve">
     <value>Geçersiz erişim, kullanıcı bilgileri gerekiyor veya geçersiz kullanıcı bilgileri kullanıldı (HTTP sonucu 401)</value>

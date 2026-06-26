@@ -115,9 +115,6 @@
   <data name="ExceptionNoProcessingHandlerMessage">
     <value>Feed Url '{0}' 无法处理。没有处理器被执行。</value>
   </data>
-  <data name="ExceptionEnclosureCacheLimitReached">
-    <value>试图下载文件 '{0}' 失败，由于它超出播客和附件规定的 {1}MB 大小限制。增加大小限制或者删除以前下载的附件来为这次的下载提供空间。</value>
-  </data>
   <data name="ExceptionSearchNoSearchCriteria">
     <value>未指定搜索标准</value>
   </data>

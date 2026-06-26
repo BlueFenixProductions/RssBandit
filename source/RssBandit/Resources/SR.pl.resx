@@ -1977,14 +1977,6 @@ kłopot.</value>
     <value>Wyświetlanie kolumny liczby komentarzy dla elementów kanału</value>
     <comment>Description within context menu</comment>
   </data>
-  <data name="MenuColumnChooserEnclosureCaption" xml:space="preserve">
-    <value>Pokazuj stan załączników</value>
-    <comment>Caption within context menu</comment>
-  </data>
-  <data name="MenuColumnChooserEnclosureDesc" xml:space="preserve">
-    <value>Wyświetlanie kolumny stanów załączników dla elementów kanału</value>
-    <comment>Description within context menu</comment>
-  </data>
   <data name="MenuColumnChooserFlagCaption" xml:space="preserve">
     <value>Pokazuj stan znacznika</value>
     <comment>Caption within context menu</comment>
@@ -2329,15 +2321,6 @@ Folder starego bufora będzie zatem dalej używany...</value>
   <data name="CmdLineResetUIDesc" xml:space="preserve">
     <value>Przywróci domyślne ustawienia interfejsu użytkownika</value>
   </data>
-  <data name="ExceptionProcessStartToPlayEnclosure" xml:space="preserve">
-    <value>System powiadomił o błędzie podczas odgrywania załącznika:
-
-{0}
-
-Błąd:{1}.</value>
-    <comment>.
- Parameters: 0 - enclosureFileName (string), 1 - error (string) </comment>
-  </data>
   <data name="FeedNodeUnreadItemsCaption" xml:space="preserve">
     <value>Nieprzeczytane pozycje</value>
     <comment> Special local feed for unread items</comment>
@@ -2345,18 +2328,11 @@ Błąd:{1}.</value>
   <data name="FeedNodeUnreadItemsDesc" xml:space="preserve">
     <value>Pojemnik nieprzeczytanych pozycji</value>
   </data>
-  <data name="BrowseForFolderEnclosureDownloadLocation" xml:space="preserve">
-    <value>Zaznacz lub stwórz folder do przetrzymywania pobranych załączników</value>
-    <comment> Text in the browse for folder dialog</comment>
-  </data>
   <data name="MenuDownloadAttachmentCaption" xml:space="preserve">
     <value>Pobrane Załączniki</value>
   </data>
   <data name="MenuDownloadAttachmentDesc" xml:space="preserve">
     <value>Pobierz załączone pliki pozycji do wybranego folderu Podcastów</value>
-  </data>
-  <data name="ExceptionInvalidEnclosurePath" xml:space="preserve">
-    <value>Podana została zła ścieżka do katalogu pobrań</value>
   </data>
   <data name="ExceptionProcessCommandlineCulture" xml:space="preserve">
     <value>Nie można zmienić ustawień kulturowych dla aplikacji na '{0}':
@@ -2364,10 +2340,6 @@ Błąd:{1}.</value>
 Error:{1}.</value>
     <comment>.
  Parameters: 0 - cultureProvided (string), 1 - error (string) </comment>
-  </data>
-  <data name="GUIStatusEnclosureJustReceivedItemsMessage" xml:space="preserve">
-    <value>Pobrano: 1 plik</value>
-    <comment> displayed in the Toast window(s)</comment>
   </data>
   <data name="MainForm_MainMenuToolbarCaption" xml:space="preserve">
     <value>Główne Menu</value>
@@ -2589,9 +2561,6 @@ Spróbuj otworzyć Panel ręcznie używając Start Menu &gt; Panel Sterowania.</
     <comment>.
  Parameters: 0 - years (int) </comment>
   </data>
-  <data name="ExceptionEnclosureDownloadError" xml:space="preserve">
-    <value>Błąd Pobierania</value>
-  </data>
   <data name="MenuFinderShowExcerptsCaption" xml:space="preserve">
     <value>Pokazuj fragmenty wyników wyszukiwania</value>
   </data>
@@ -2721,9 +2690,6 @@ Spróbuj otworzyć Panel ręcznie używając Start Menu &gt; Panel Sterowania.</
   <data name="MenuSynchronizeFeedsDesc" xml:space="preserve">
     <value>Uruchamia Menedżera Synkronizacji Kanałów</value>
   </data>
-  <data name="ExceptionInvalidPlaylistName" xml:space="preserve">
-    <value>Please specify a valid playlist name</value>
-  </data>
   <data name="NoTopStoriesMessage" xml:space="preserve">
     <value>Nie znaleziono żadnych artykułów połączonych z subskrypcjami w '{0}' w ostatnim tygodniu</value>
   </data>
@@ -2738,12 +2704,6 @@ Spróbuj otworzyć Panel ręcznie używając Start Menu &gt; Panel Sterowania.</
   </data>
   <data name="ExceptionNoUserName" xml:space="preserve">
     <value>Podaj prawidłową nazwę użytkownika</value>
-  </data>
-  <data name="MenuDownloadManager" xml:space="preserve">
-    <value>Menedżer Pobierania Plików...</value>
-  </data>
-  <data name="MenuDownloadManagerDesc" xml:space="preserve">
-    <value>Uruchamia Menedżera Pobierania Plików</value>
   </data>
   <data name="MenuDeleteFeedSourceCaption" xml:space="preserve">
     <value>Usuń źródło kanałów...</value>
