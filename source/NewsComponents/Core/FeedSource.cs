@@ -409,6 +409,35 @@ namespace NewsComponents
         protected IDictionary<string, INewsFeed> feedsTable = new ConcurrentDictionary<string, INewsFeed>(UriHelper.EqualityComparer);
         //protected IDictionary<string, INewsFeed> feedsTable = new SortedDictionary<string, INewsFeed>(UriHelper.Comparer);
 
+        /// <summary>
+        /// The per-feed/per-category settings accessor engine, extracted from this class
+        /// (Slice 1 of the FeedSource decomposition). Lazily (re)constructed from the live
+        /// <see cref="feedsTable"/>/<see cref="categories"/> references and this instance as the
+        /// <see cref="ISharedProperty"/> default source. Rebuilt automatically if those
+        /// dictionaries are swapped (e.g. by <see cref="ImportFeedlist(feeds, string, bool, bool)"/>
+        /// with replace=true), so it always reads the current tables, exactly as the original
+        /// inline field reads did.
+        /// </summary>
+        private FeedAndCategorySettings feedAndCategorySettings;
+
+        /// <summary>
+        /// Gets the (lazily constructed) per-feed/category settings component, rebuilding it if the
+        /// backing feed/category dictionaries have been replaced.
+        /// </summary>
+        private FeedAndCategorySettings FeedAndCategorySettings
+        {
+            get
+            {
+                if (feedAndCategorySettings == null ||
+                    !ReferenceEquals(feedAndCategorySettings.FeedsTable, feedsTable) ||
+                    !ReferenceEquals(feedAndCategorySettings.Categories, categories))
+                {
+                    feedAndCategorySettings = new FeedAndCategorySettings(this, feedsTable, categories);
+                }
+                return feedAndCategorySettings;
+            }
+        }
+
 
 		/// <summary>
 		/// Client certificates cache for feeds
@@ -3258,142 +3287,7 @@ namespace NewsComponents
 
 
         /// <summary>
-        /// Tests whether a particular propery value is set
-        /// </summary>
-        /// <param name="value">the value to test</param>
-        /// <param name="propertyName">Name of the property to set</param>
-        /// <param name="owner">the object which the property comes from</param>
-        /// <returns>true if it is set and false otherwise</returns>
-        private static bool IsPropertyValueSet(object value, string propertyName, ISharedProperty owner)
-        {
-            if (value == null)
-            {
-                return false;
-            }
-
-            if (value is string)
-            {
-                bool isSet = !string.IsNullOrEmpty((string) value);
-
-                if (propertyName.Equals("maxitemage") && isSet)
-                {
-                    isSet = !value.Equals(XmlConvert.ToString(TimeSpan.MaxValue));
-                }
-
-                return isSet;
-            }
-
-
-            return (bool) GetSharedPropertyValue(owner, propertyName + "Specified");
-            //return (bool) owner.GetType().GetProperty(propertyName + "Specified").GetValue(owner, null);
-        }
-
-
-        /// <summary>
-        /// Gets the value of a feed's property. This does not inherit the properties of parent
-        /// categories. 
-        /// </summary>
-        /// <param name="feedUrl">the feed URL</param>
-        /// <param name="propertyName">the name of the property</param>		
-        /// <returns>the value of the property</returns>
-        private object GetFeedProperty(string feedUrl, string propertyName)
-        {
-            return GetFeedProperty(feedUrl, propertyName, false);
-        }
-
-        /// <summary>
-        /// Gets the value of a feed's property
-        /// </summary>
-        /// <param name="feedUrl">the feed URL</param>
-        /// <param name="propertyName">the name of the property</param>
-        /// <param name="inheritCategory">indicates whether the settings from the parent category should be inherited or not</param>
-        /// <returns>the value of the property</returns>
-        private object GetFeedProperty(string feedUrl, string propertyName, bool inheritCategory)
-        {
-            object value = GetSharedPropertyValue(this, propertyName);
-            //this.GetType().GetField(propertyName, BindingFlags.NonPublic | BindingFlags.Instance).GetValue(this);
-            if (propertyName.Equals("maxitemage"))
-            {
-                value = XmlConvert.ToTimeSpan((string) value);
-            }
-
-            if (feedsTable.ContainsKey(feedUrl))
-            {
-                INewsFeed f = feedsTable[feedUrl];
-                object f_value = GetSharedPropertyValue(f, propertyName);
-                // f.GetType().GetProperty(propertyName).GetValue(f, null);
-
-                if (IsPropertyValueSet(f_value, propertyName, f))
-                {
-                    if (propertyName.Equals("maxitemage"))
-                    {
-                        f_value = XmlConvert.ToTimeSpan((string) f_value);
-                    }
-
-                    value = f_value;
-                }
-                else if (inheritCategory && !string.IsNullOrEmpty(f.category))
-                {
-                    INewsFeedCategory c;
-                    categories.TryGetValue(f.category, out c);
-
-                    while (c != null)
-                    {
-                        object c_value = GetSharedPropertyValue(c, propertyName);
-                        // c.GetType().GetProperty(propertyName).GetValue(c, null);
-
-                        if (IsPropertyValueSet(c_value, propertyName, c))
-                        {
-                            if (propertyName.Equals("maxitemage"))
-                            {
-                                c_value = XmlConvert.ToTimeSpan((string) c_value);
-                            }
-                            value = c_value;
-                            break;
-                        }
-                        else
-                        {
-                            c = c.parent;
-                        }
-                    } //while
-                } //else if(!string.IsNullOrEmpty(f.category))
-            } //if(feedsTable.ContainsKey(feedUrl)){
-
-
-            return value;
-        }
-
-        /// <summary>
-        /// Sets the value of a feed property.
-        /// </summary>
-        /// <param name="feedUrl"></param>
-        /// <param name="propertyName"></param>
-        /// <param name="value"></param>
-        private void SetFeedProperty(string feedUrl, string propertyName, object value)
-        {
-            //TODO: Make this code more efficient
-
-            if (feedsTable.ContainsKey(feedUrl))
-            {
-                INewsFeed f = feedsTable[feedUrl];
-
-                if (value is TimeSpan)
-                {
-                    value = XmlConvert.ToString((TimeSpan) value);
-                }
-                SetSharedPropertyValue(f, propertyName, value);
-                //f.GetType().GetProperty(propertyName).SetValue(f, value, null);
-
-                if ((value != null) && !(value is string))
-                {
-                    SetSharedPropertyValue(f, propertyName + "Specified", true);
-                    //f.GetType().GetProperty(propertyName + "Specified").SetValue(f, true, null);
-                }
-            }
-        }
-
-        /// <summary>
-        ///  Sets the maximum amount of time an item should be kept in the 
+        ///  Sets the maximum amount of time an item should be kept in the
         /// cache for a particular feed. This overrides the value of the 
         /// maxItemAge property. 
         /// </summary>
@@ -3403,7 +3297,7 @@ namespace NewsComponents
         /// specified feed.</param>
         public void SetMaxItemAge(string feedUrl, TimeSpan age)
         {
-            SetFeedProperty(feedUrl, "maxitemage", age);
+            FeedAndCategorySettings.SetMaxItemAge(feedUrl, age);
         }
 
         /// <summary>
@@ -3414,7 +3308,7 @@ namespace NewsComponents
         /// <exception cref="FormatException">if an error occurs while converting the max item age value to a TimeSpan</exception>
         public TimeSpan GetMaxItemAge(string feedUrl)
         {
-            return (TimeSpan) GetFeedProperty(feedUrl, "maxitemage", true);
+            return FeedAndCategorySettings.GetMaxItemAge(feedUrl);
         }
 
 
@@ -3425,7 +3319,7 @@ namespace NewsComponents
         /// <param name="refreshRate">the new refresh rate</param>
         public virtual void SetRefreshRate(string feedUrl, int refreshRate)
         {
-            SetFeedProperty(feedUrl, "refreshrate", refreshRate);
+            FeedAndCategorySettings.SetRefreshRate(feedUrl, refreshRate);
         }
 
         /// <summary>
@@ -3435,7 +3329,7 @@ namespace NewsComponents
         /// <returns>the refresh rate</returns>
         public virtual int GetRefreshRate(string feedUrl)
         {
-            return (int) GetFeedProperty(feedUrl, "refreshrate", true);
+            return FeedAndCategorySettings.GetRefreshRate(feedUrl);
         }
 
         /// <summary>
@@ -3445,7 +3339,7 @@ namespace NewsComponents
         /// <param name="style">the new stylesheet</param>
         public void SetStyleSheet(string feedUrl, string style)
         {
-            SetFeedProperty(feedUrl, "stylesheet", style);
+            FeedAndCategorySettings.SetStyleSheet(feedUrl, style);
         }
 
         /// <summary>
@@ -3455,7 +3349,7 @@ namespace NewsComponents
         /// <returns>the stylesheet</returns>
         public string GetStyleSheet(string feedUrl)
         {
-            return (string) GetFeedProperty(feedUrl, "stylesheet");
+            return FeedAndCategorySettings.GetStyleSheet(feedUrl);
         }
 
 
@@ -3466,7 +3360,7 @@ namespace NewsComponents
         /// <param name="layout">the new listview layout </param>
         public void SetFeedColumnLayoutID(string feedUrl, string layout)
         {
-            SetFeedProperty(feedUrl, "listviewlayout", layout);
+            FeedAndCategorySettings.SetFeedColumnLayoutID(feedUrl, layout);
         }
 
         /// <summary>
@@ -3476,7 +3370,7 @@ namespace NewsComponents
         /// <returns>the listview layout</returns>
         public string GetFeedColumnLayoutID(string feedUrl)
         {
-            return (string) GetFeedProperty(feedUrl, "listviewlayout");
+            return FeedAndCategorySettings.GetFeedColumnLayoutID(feedUrl);
         }
 
 
@@ -3487,7 +3381,7 @@ namespace NewsComponents
         /// <param name="markitemsread">the new value for markitemsreadonexit</param>
         public void SetMarkItemsReadOnExit(string feedUrl, bool markitemsread)
         {
-            SetFeedProperty(feedUrl, "markitemsreadonexit", markitemsread);
+            FeedAndCategorySettings.SetMarkItemsReadOnExit(feedUrl, markitemsread);
         }
 
         /// <summary>
@@ -3497,97 +3391,11 @@ namespace NewsComponents
         /// <returns>whether to mark items as read on exit</returns>
         public bool GetMarkItemsReadOnExit(string feedUrl)
         {
-            return (bool) GetFeedProperty(feedUrl, "markitemsreadonexit");
+            return FeedAndCategorySettings.GetMarkItemsReadOnExit(feedUrl);
         }
 
         /// <summary>
-        /// Gets the value of a category's property
-        /// </summary>
-        /// <param name="category">the category name</param>
-        /// <param name="propertyName">the name of the property</param>
-        /// <returns>the value of the property</returns>
-        private object GetCategoryProperty(string category, string propertyName)
-        {
-            object value = GetSharedPropertyValue(this, propertyName);
-            //this.GetType().GetField(propertyName, BindingFlags.NonPublic | BindingFlags.Instance).GetValue(this);
-            if (propertyName.Equals("maxitemage"))
-            {
-                value = XmlConvert.ToTimeSpan((string) value);
-            }
-
-            if (!string.IsNullOrEmpty(category))
-            {
-                INewsFeedCategory c;
-                categories.TryGetValue(category, out c);
-
-                while (c != null)
-                {
-                    object c_value = GetSharedPropertyValue(c, propertyName);
-                    //c.GetType().GetProperty(propertyName).GetValue(c, null);
-
-                    if (IsPropertyValueSet(c_value, propertyName, c))
-                    {
-                        if (propertyName.Equals("maxitemage"))
-                        {
-                            c_value = XmlConvert.ToTimeSpan((string) c_value);
-                        }
-                        value = c_value;
-                        break;
-                    }
-                    else
-                    {
-                        c = c.parent;
-                    }
-                } //while
-            } //if(!string.IsNullOrEmpty(category))
-
-
-            return value;
-        }
-
-        /// <summary>
-        /// Sets the value of a category's property.
-        /// </summary>
-        /// <param name="category">the category's name</param>
-        /// <param name="propertyName">the name of the property</param>
-        /// <param name="value">the new value</param>
-        private void SetCategoryProperty(string category, string propertyName, object value)
-        {
-            //TODO: Make this code more efficient
-
-            if (!string.IsNullOrEmpty(category))
-            {
-                //category c = this.Categories.GetByKey(category);
-
-                foreach (category c in categories.Values)
-                {
-                    //if(c!= null){			
-
-                    if (c.Value.Equals(category) || c.Value.StartsWith(category + CategorySeparator))
-                    {
-                        if (value is TimeSpan)
-                        {
-                            value = XmlConvert.ToString((TimeSpan) value);
-                        }
-
-                        SetSharedPropertyValue(c, propertyName, value);
-                        //c.GetType().GetProperty(propertyName).SetValue(c, value, null);
-
-                        if ((value != null) && !(value is string))
-                        {
-                            SetSharedPropertyValue(c, propertyName + "Specified", true);
-                            //c.GetType().GetProperty(propertyName + "Specified").SetValue(c, true, null);
-                        }
-
-                        break;
-                    } //if(c!= null) 
-                } //foreach
-            } //	if(!string.IsNullOrEmpty(category)){
-        }
-
-
-        /// <summary>
-        ///  Sets the maximum amount of time an item should be kept in the 
+        ///  Sets the maximum amount of time an item should be kept in the
         /// cache for a particular category. This overrides the value of the 
         /// maxItemAge property. 
         /// </summary>
@@ -3597,7 +3405,7 @@ namespace NewsComponents
         /// specified feed.</param>
         public void SetCategoryMaxItemAge(string category, TimeSpan age)
         {
-            SetCategoryProperty(category, "maxitemage", age);
+            FeedAndCategorySettings.SetCategoryMaxItemAge(category, age);
         }
 
         /// <summary>
@@ -3608,7 +3416,7 @@ namespace NewsComponents
         /// <exception cref="FormatException">if an error occurs while converting the max item age value to a TimeSpan</exception>
         public TimeSpan GetCategoryMaxItemAge(string category)
         {
-            return (TimeSpan) GetCategoryProperty(category, "maxitemage");
+            return FeedAndCategorySettings.GetCategoryMaxItemAge(category);
         }
 
 
@@ -3619,7 +3427,7 @@ namespace NewsComponents
         /// <param name="refreshRate">the new refresh rate</param>
         public void SetCategoryRefreshRate(string category, int refreshRate)
         {
-            SetCategoryProperty(category, "refreshrate", refreshRate);
+            FeedAndCategorySettings.SetCategoryRefreshRate(category, refreshRate);
         }
 
         /// <summary>
@@ -3629,7 +3437,7 @@ namespace NewsComponents
         /// <returns>the refresh rate</returns>
         public int GetCategoryRefreshRate(string category)
         {
-            return (int) GetCategoryProperty(category, "refreshrate");
+            return FeedAndCategorySettings.GetCategoryRefreshRate(category);
         }
 
         /// <summary>
@@ -3639,7 +3447,7 @@ namespace NewsComponents
         /// <param name="style">the new stylesheet</param>
         public void SetCategoryStyleSheet(string category, string style)
         {
-            SetCategoryProperty(category, "stylesheet", style);
+            FeedAndCategorySettings.SetCategoryStyleSheet(category, style);
         }
 
         /// <summary>
@@ -3649,7 +3457,7 @@ namespace NewsComponents
         /// <returns>the stylesheet</returns>
         public string GetCategoryStyleSheet(string category)
         {
-            return (string) GetCategoryProperty(category, "stylesheet");
+            return FeedAndCategorySettings.GetCategoryStyleSheet(category);
         }
 
 
@@ -3660,7 +3468,7 @@ namespace NewsComponents
         /// <param name="layout">the new listview layout </param>
         public void SetCategoryFeedColumnLayoutID(string category, string layout)
         {
-            SetCategoryProperty(category, "listviewlayout", layout);
+            FeedAndCategorySettings.SetCategoryFeedColumnLayoutID(category, layout);
         }
 
         /// <summary>
@@ -3670,7 +3478,7 @@ namespace NewsComponents
         /// <returns>the listview layout</returns>
         public string GetCategoryFeedColumnLayoutID(string category)
         {
-            return (string) GetCategoryProperty(category, "listviewlayout");
+            return FeedAndCategorySettings.GetCategoryFeedColumnLayoutID(category);
         }
 
 
@@ -3681,7 +3489,7 @@ namespace NewsComponents
         /// <param name="markitemsread">the new value for markitemsreadonexit</param>
         public void SetCategoryMarkItemsReadOnExit(string category, bool markitemsread)
         {
-            SetCategoryProperty(category, "markitemsreadonexit", markitemsread);
+            FeedAndCategorySettings.SetCategoryMarkItemsReadOnExit(category, markitemsread);
         }
 
         /// <summary>
@@ -3691,7 +3499,7 @@ namespace NewsComponents
         /// <returns>whether to mark items as read on exit</returns>
         public bool GetCategoryMarkItemsReadOnExit(string category)
         {
-            return (bool) GetCategoryProperty(category, "markitemsreadonexit");
+            return FeedAndCategorySettings.GetCategoryMarkItemsReadOnExit(category);
         }
 
         /// <summary>
@@ -5879,88 +5687,6 @@ namespace NewsComponents
             {
                 RssParserInstance.PostCommentViaCommentAPI(url, item2post, inReply2item,
                                                            GetFeedCredentials(inReply2item.Feed));
-            }
-        }
-
-        private static object GetSharedPropertyValue(ISharedProperty instance, string propertyName)
-        {
-            switch (propertyName)
-            {
-                case "maxitemage":
-                    return instance.maxitemage;
-                case "downloadenclosures":
-                    return instance.downloadenclosures;
-                case "downloadenclosuresSpecified":
-                    return instance.downloadenclosuresSpecified;
-                case "enclosurealert":
-                    return instance.enclosurealert;
-                case "enclosurealertSpecified":
-                    return instance.enclosurealertSpecified;
-                case "enclosurefolder":
-                    return instance.enclosurefolder;
-                case "listviewlayout":
-                    return instance.listviewlayout;
-                case "markitemsreadonexit":
-                    return instance.markitemsreadonexit;
-                case "markitemsreadonexitSpecified":
-                    return instance.markitemsreadonexitSpecified;
-                case "refreshrate":
-                    return instance.refreshrate;
-                case "refreshrateSpecified":
-                    return instance.refreshrateSpecified;
-                case "stylesheet":
-                    return instance.stylesheet;
-                default:
-                    Debug.Assert(true, "unknown shared property name: " + propertyName);
-                    break;
-            }
-            return null;
-        }
-
-        private static void SetSharedPropertyValue(ISharedProperty instance, string propertyName, object value)
-        {
-        	string strval = value as string;
-            switch (propertyName)
-            {
-                case "maxitemage":
-					instance.maxitemage = strval;
-                    break;
-                case "downloadenclosures":
-                    instance.downloadenclosures = (bool) value;
-                    break;
-                case "downloadenclosuresSpecified":
-                    instance.downloadenclosuresSpecified = (bool) value;
-                    break;
-                case "enclosurealert":
-                    instance.enclosurealert = (bool) value;
-                    break;
-                case "enclosurealertSpecified":
-                    instance.enclosurealertSpecified = (bool) value;
-                    break;
-                case "enclosurefolder":
-					instance.enclosurefolder = strval;
-                    break;
-                case "listviewlayout":
-					instance.listviewlayout = strval;
-                    break;
-                case "markitemsreadonexit":
-                    instance.markitemsreadonexit = (bool) value;
-                    break;
-                case "markitemsreadonexitSpecified":
-                    instance.markitemsreadonexitSpecified = (bool) value;
-                    break;
-                case "refreshrate":
-                    instance.refreshrate = (int) value;
-                    break;
-                case "refreshrateSpecified":
-                    instance.refreshrateSpecified = (bool) value;
-                    break;
-                case "stylesheet":
-					instance.stylesheet = strval;
-                    break;
-                default:
-                    Debug.Assert(true, "unknown shared property name: " + propertyName);
-                    break;
             }
         }
 
