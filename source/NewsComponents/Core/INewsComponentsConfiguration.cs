@@ -60,15 +60,6 @@ namespace NewsComponents
 		string UserLocalApplicationDataPath { get; }
 		
 		/// <summary>
-		/// Gets the downloaded files data path. Usually a folder 
-		/// located below user's Documents.
-		/// </summary>
-		/// <remarks>Optional. Set to null to prevent initializing the 
-		/// BackgroundDownloadManager.</remarks>
-		/// <value>The downloaded files data path.</value>
-		string DownloadedFilesDataPath { get; }
-		
-		/// <summary>
 		/// Gets a persisted settings implementation.
 		/// </summary>
 		/// <remarks>Required</remarks>
@@ -88,12 +79,6 @@ namespace NewsComponents
 		/// <value>The refresh rate.</value>
 		int RefreshRate { get; }
 
-		/// <summary>
-		/// Gets a value that control if enclosures should be downloaded
-		/// </summary>
-		/// <value><c>true</c> if [download enclosures]; otherwise, <c>false</c>.</value>
-		bool DownloadEnclosures { get; }
-		
 	}
 
 	#endregion
@@ -163,16 +148,13 @@ namespace NewsComponents
 		/// <summary/>
 		protected string applicationLocalDataPath;
 		/// <summary/>
-		protected string applicationDownloadPath;
-		/// <summary/>
 		protected SearchIndexBehavior searchBehavior = SearchIndexBehavior.Default;
 		/// <summary/>
 		protected IPersistedSettings settings;
-		
+
 		/// <summary/>
 		protected int p_refreshRate = -1;
-		private bool downloadEnclosures;
-		
+
 		#region INewsComponentsConfiguration Members
 
 		/// <summary>
@@ -236,19 +218,6 @@ namespace NewsComponents
 		}
 
 		/// <summary>
-		/// Gets the downloaded files data path. Usually a folder
-		/// located below user's Documents.
-		/// </summary>
-		/// <value>The downloaded files data path.</value>
-		public virtual string DownloadedFilesDataPath {
-			get { return applicationDownloadPath; }
-			set {
-				applicationDownloadPath = value;
-				this.OnPropertyChanged("DownloadedFilesDataPath");
-			}
-		}
-
-		/// <summary>
 		/// Gets a persisted settings implementation.
 		/// </summary>
 		/// <value>The persisted settings.</value>
@@ -288,18 +257,6 @@ namespace NewsComponents
 			}
 		}
 
-		/// <summary>
-		/// Gets a value that control if enclosures should be downloaded
-		/// </summary>
-		/// <value><c>true</c> if [download enclosures]; otherwise, <c>false</c>.</value>
-		public virtual bool DownloadEnclosures {
-			get { return downloadEnclosures; }
-			set { 
-				downloadEnclosures = value;
-				this.OnPropertyChanged("DownloadEnclosures");
-			}
-		}
-
 		#endregion
 		
 		/// <summary>
@@ -314,9 +271,6 @@ namespace NewsComponents
 			cfg.SearchIndexBehavior = SearchIndexBehavior.Default;
 			cfg.UserApplicationDataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), cfg.ApplicationID);
 			cfg.UserLocalApplicationDataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), cfg.ApplicationID);
-
-			string mydocs = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), cfg.ApplicationID);
-			cfg.DownloadedFilesDataPath = Path.Combine(mydocs, "My Downloaded Files");
 
 			cfg.PersistedSettings = new SettingStore(cfg.ApplicationID);
 

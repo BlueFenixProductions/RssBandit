@@ -91,58 +91,7 @@ namespace RssBandit.AppServices
 		/// <param name="owner">The owner.</param>
 		/// <param name="definitionChangedHandler">A Change EventHandler</param>
 		void ShowUserIdentityManagementDialog(IWin32Window owner, EventHandler definitionChangedHandler);
-
-		/// <summary>
-		/// Shows the podcast options dialog.
-		/// </summary>
-		/// <param name="owner">The owner.</param>
-		/// <param name="optionsChangedHandler">The options changed handler.</param>
-		void ShowPodcastOptionsDialog(IWin32Window owner, EventHandler optionsChangedHandler);
 		#endregion
-
-		#region Enclosure/Podcast related 
-		/// <summary>
-		/// Gets the current Enclosure folder
-		/// </summary>
-		string EnclosureFolder { get; }
-
-		/// <summary>
-		/// Gets the current Podcast folder
-		/// </summary>
-		string PodcastFolder { get; }
-
-		/// <summary>
-		/// Gets a semi-colon delimited list of file extensions of enclosures that 
-		/// should be treated as podcasts
-		/// </summary>
-		string PodcastFileExtensions { get; }
-
-		/// <summary>
-		/// Gets whether enclosures should be created in a subfolder named after the feed. 
-		/// </summary>
-		bool DownloadCreateFolderPerFeed  {get;}
-		
-		/// <summary>
-		/// Gets whether alert Windows should be displayed for enclosures or not. 
-		/// </summary>
-		bool EnableEnclosureAlerts {get;}
-		
-		/// <summary>
-		/// Gets whether enclosures should be downloaded automatically or not.
-		/// </summary>
-		bool DownloadEnclosures {get;}
-
-		/// <summary>
-		/// Indicates the maximum amount of space that enclosures and podcasts can use on disk.
-		/// </summary>
-		int EnclosureCacheSize { get;}
-
-		/// <summary>
-		/// Indicates the number of enclosures which should be downloaded automatically from a newly subscribed feed.
-		/// </summary>
-		int NumEnclosuresToDownloadOnNewFeed { get; }
-
-		#endregion 
 
 		#region Url/Link navigation
 		

@@ -42,10 +42,6 @@ namespace RssBandit.WinGui.Dialogs
 		private System.Windows.Forms.TabPage tabDisplay;
 		internal System.Windows.Forms.CheckBox checkMarkItemsReadOnExit;
 		private System.Windows.Forms.Panel panelFeeds;
-		private System.Windows.Forms.TabPage tabAttachments;
-		internal System.Windows.Forms.CheckBox checkEnableEnclosureAlerts;
-		internal System.Windows.Forms.CheckBox checkDownloadEnclosures;
-	
 		private System.ComponentModel.IContainer components;
 
 

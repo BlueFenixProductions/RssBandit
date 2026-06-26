@@ -440,11 +440,6 @@ namespace RssBandit.WinGui.Forms.ControlHelpers
 				"cmdOpenConfigIdentitiesDialog", owner.Mediator, main.CmdOpenConfigIdentitiesDialog,
 				SR.MenuOpenConfigIdentitiesDialogCaption, SR.MenuOpenConfigIdentitiesDialogdesc, shortcutHandler);
 			
-			AppButtonToolCommand tbDownload = new AppButtonToolCommand(
-				"cmdLauchDownloadManager", owner.Mediator, main.CmdLauchDownloadManager,
-				SR.MenuDownloadManager, SR.MenuDownloadManagerDesc, shortcutHandler);
-          
-
 			AppButtonToolCommand toolTopStories = new AppButtonToolCommand(
 				"cmdTopStories", owner.Mediator, owner.CmdTopStories,
 				SR.MenuTopStoriesCaption, SR.MenuTopStoriesDesc);
@@ -476,9 +471,9 @@ namespace RssBandit.WinGui.Forms.ControlHelpers
 				Resource.ToolItemImage.OptionsDialog, shortcutHandler);
 
 			// must be added to the toolbar first:
-			this.manager.Tools.AddRange(new ToolBase[] { style1, toolTopStories, /*style51, style52,*/ style6, style7, tbConfigIdentities, /*tbConfigNntpServer,*/ tbDownload, /*style8, */style9 });
+			this.manager.Tools.AddRange(new ToolBase[] { style1, toolTopStories, /*style51, style52,*/ style6, style7, tbConfigIdentities, /*tbConfigNntpServer,*/ /*style8, */style9 });
 
-			mc.Tools.AddRange(new ToolBase[] { style1, toolTopStories, /*style51, style52,*/ style6, style7, tbConfigIdentities, /*tbConfigNntpServer, */tbDownload, /*style8,*/ style9 });
+			mc.Tools.AddRange(new ToolBase[] { style1, toolTopStories, /*style51, style52,*/ style6, style7, tbConfigIdentities, /*tbConfigNntpServer, */ /*style8,*/ style9 });
 			foreach (ToolBase tool in mc.Tools) {
 				tool.SharedProps.Category = SR.MainForm_ToolCategoryTools;
 			}

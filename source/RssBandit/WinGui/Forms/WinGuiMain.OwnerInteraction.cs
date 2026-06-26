@@ -592,41 +592,6 @@ namespace RssBandit.WinGui.Forms
 			//    node.Expanded = true;
         }
 
-        /// <summary>
-        /// This opens the downloaded file in the users target application associated with that 
-        /// file type. 
-        /// </summary>
-        /// <param name="enclosure">The enclosure to launch or play</param>
-        private void PlayEnclosure(DownloadItem enclosure)
-        {
-            if (enclosure == null)
-                return;
-
-            string fileName = Path.Combine(enclosure.TargetFolder, enclosure.File.LocalName);
-
-            if (string.IsNullOrEmpty(fileName))
-                return;
-            try
-            {
-                using (var p = new Process())
-                {
-                    p.StartInfo.CreateNoWindow = true;
-                    p.StartInfo.FileName = fileName;
-                    p.Start();
-                }
-            }
-            catch (Exception ex)
-            {
-                //we don't want to show the user an error if they cancelled executing the file 
-                //after getting a security prompt. 
-                var ex32 = ex as Win32Exception;
-                if ((ex32 == null) || (ex32.NativeErrorCode != 1223))
-                {
-                    owner.MessageError(String.Format(SR.ExceptionProcessStartToPlayEnclosure, fileName, ex.Message));
-                    RssBanditApplication.PublishException(ex);
-                }
-            }
-        }
 
 		/// <summary>
 		/// Loads a favicon from the cache

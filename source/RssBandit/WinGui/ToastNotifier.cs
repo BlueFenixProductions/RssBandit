@@ -35,7 +35,6 @@ namespace RssBandit.WinGui
 		public NotifierAction Action;
 		public INewsItem NewsItem;
 		public INewsFeed NewsFeed;
-		public DownloadItem DownloadItem;
 
 		public NotifierActionEventArgs(NotifierAction action)
 		{
@@ -54,7 +53,6 @@ namespace RssBandit.WinGui
 
 		private const int maxItemTextWith = 45;
 		private const string NewsItemAlertWindowKey = "#NIAWK";
-		private const string DownloadItemAlertWindowKey = "#DIAWK";
 
 		private static readonly log4net.ILog _log = Logger.Log.GetLogger(typeof(ToastNotifier));
 
@@ -131,53 +129,6 @@ namespace RssBandit.WinGui
 			}
         }
 
-        /// <summary>
-        /// Called to show the small toast alert window on new items received.
-        /// </summary>
-        /// <param name="feed">Feed to be displayed</param>
-        /// <param name="dispItemCount">unread items count to display</param>
-        /// <param name="items">list of the newest DownloadItem's received. We assume,
-        /// they are sorted with the newest items first!</param>
-        /// <remarks>
-        /// The parameter <c>dispItemCount</c> controls, if and how many item links
-        /// are displayed in the window. This means; if 0 (zero) or lower than zero, nothing
-        /// happens (no window). If one or more is specified, it displayes up to three items
-        /// in the window. This way you can control, if there was allready e.g. 3 new items on the
-        /// feed, and just only one new was received, that the window display only a link
-        /// to that one newest item by specify 1 (one) as the parameter.
-        /// </remarks>
-        public void Alert(INewsFeed feed, int dispItemCount, IList<DownloadItem> items) 
-		{
-			if (feed == null || dispItemCount < 0 || items == null || items.Count == 0)
-				return;
-
-			int unreadCount = items.Count;
-
-			var firstItem = items[0];
-
-			if (_alertWindow != null && unreadCount > dispItemCount && !_alertWindow.IsOpen(DownloadItemAlertWindowKey))
-			{
-				UltraDesktopAlertShowWindowInfo windowInfo = new UltraDesktopAlertShowWindowInfo();
-				windowInfo.Key = DownloadItemAlertWindowKey;
-				windowInfo.Image = Properties.Resources.download_enclosure_32;
-				windowInfo.Data = firstItem;
-				windowInfo.PinButtonVisible = true;
-
-                windowInfo.Caption = $"<font face=\"Tahoma\" size=\"+2\"><b>{feed.title}</b></font><br/>&nbsp;";
-				windowInfo.Text = String.Format("<font face=\"Tahoma\">{0}<br/>{1}<br/>{2}</font>",
-					SR.GUIStatusEnclosureJustReceivedItemsMessage,
-					StringHelper.ShortenByEllipsis(firstItem.File.LocalName, maxItemTextWith),  
-					String.IsNullOrEmpty(firstItem.Enclosure.Description) ? "" : firstItem.Enclosure.Description);
-                windowInfo.FooterText = $"<font face=\"Tahoma\" size=\"-1\">{SR.MenuShowFeedPropertiesCaption}</font>";
-
-				if (_preferences.AllowAppEventSounds)
-					windowInfo.Sound = Resource.ApplicationSound.GetSoundStream(Resource.ApplicationSound.NewAttachmentDownloaded);
-				
-				_alertWindow.Show(windowInfo);
-			}
-        }
-
-		
 		#endregion
 		
 		#region private members
@@ -191,18 +142,17 @@ namespace RssBandit.WinGui
 				alertItem = e.WindowInfo.Data;
 
 			var newsItem = alertItem as INewsItem;
-			var dwldItem = alertItem as DownloadItem;
 
 			switch (e.LinkType)
 			{
 				case DesktopAlertLinkType.Footer:
 					// navigate to feed options dialog
-					if (newsItem != null || dwldItem != null)
+					if (newsItem != null)
 					{
 						try
 						{
-							RaiseNotificationAction(new NotifierActionEventArgs(NotifierAction.ShowFeedProperties) 
-								{ NewsFeed = newsItem != null ? newsItem.Feed : dwldItem.OwnerFeed });
+							RaiseNotificationAction(new NotifierActionEventArgs(NotifierAction.ShowFeedProperties)
+								{ NewsFeed = newsItem.Feed });
 						}
 						catch { }
 					}
@@ -210,12 +160,12 @@ namespace RssBandit.WinGui
 
 				case DesktopAlertLinkType.Caption:
 					// navigate to feed
-					if (newsItem != null || dwldItem != null)
+					if (newsItem != null)
 					{
 						try
 						{
-							RaiseNotificationAction(new NotifierActionEventArgs(NotifierAction.ActivateFeed) 
-								{ NewsFeed = newsItem != null ? newsItem.Feed : dwldItem.OwnerFeed });
+							RaiseNotificationAction(new NotifierActionEventArgs(NotifierAction.ActivateFeed)
+								{ NewsFeed = newsItem.Feed });
 						}
 						catch { }
 					}
@@ -227,17 +177,8 @@ namespace RssBandit.WinGui
 					{
 						try
 						{
-							RaiseNotificationAction(new NotifierActionEventArgs(NotifierAction.ActivateItem) 
+							RaiseNotificationAction(new NotifierActionEventArgs(NotifierAction.ActivateItem)
 								{ NewsItem = newsItem });
-						}
-						catch { }
-					}
-					else if (dwldItem != null)
-					{
-						try
-						{
-							RaiseNotificationAction(new NotifierActionEventArgs(NotifierAction.ActivateItem) 
-								{ DownloadItem = dwldItem });
 						}
 						catch { }
 					}

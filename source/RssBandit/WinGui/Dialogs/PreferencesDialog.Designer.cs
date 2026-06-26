@@ -151,24 +151,6 @@ namespace RssBandit.WinGui.Dialogs
             this.chkFontStrikeout = new System.Windows.Forms.CheckBox();
             this.lblFontSampleCaption = new System.Windows.Forms.Label();
             this.lblFontSampleABC = new System.Windows.Forms.Label();
-            this.tabEnclosures = new System.Windows.Forms.TabPage();
-            this.sectionPanelEnclosurePodcasts = new RssBandit.WinGui.Controls.OptionSectionPanel();
-            this.btnPodcastOptions = new System.Windows.Forms.Button();
-            this.lblSectionPanelPodcastOptions = new System.Windows.Forms.Label();
-            this.sectionPanelEnclosureGeneral = new RssBandit.WinGui.Controls.OptionSectionPanel();
-            this.btnSelectEnclosureFolder2 = new System.Windows.Forms.Button();
-            this.lblDownloadAttachmentsSmallerThanPostfix = new System.Windows.Forms.Label();
-            this.numEnclosureCacheSize = new System.Windows.Forms.NumericUpDown();
-            this.checkEnclosureSizeOnDiskLimited = new System.Windows.Forms.CheckBox();
-            this.lblDownloadXAttachmentsPostfix = new System.Windows.Forms.Label();
-            this.numOnlyDownloadLastXAttachments = new System.Windows.Forms.NumericUpDown();
-            this.checkOnlyDownloadLastXAttachments = new System.Windows.Forms.CheckBox();
-            this.checkDownloadCreateFolderPerFeed = new System.Windows.Forms.CheckBox();
-            this.textEnclosureDirectory = new System.Windows.Forms.TextBox();
-            this.labelEnclosureDirectory = new System.Windows.Forms.Label();
-            this.checkDownloadEnclosures = new System.Windows.Forms.CheckBox();
-            this.checkEnableEnclosureAlerts = new System.Windows.Forms.CheckBox();
-            this.lblSectionPanelEnclosureGeneral = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.btnApply = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
@@ -199,11 +181,6 @@ namespace RssBandit.WinGui.Dialogs
             this.sectionPanelNetworkConnectionProxy.SuspendLayout();
             this.tabFonts.SuspendLayout();
             this.sectionPanelFontsSubscriptions.SuspendLayout();
-            this.tabEnclosures.SuspendLayout();
-            this.sectionPanelEnclosurePodcasts.SuspendLayout();
-            this.sectionPanelEnclosureGeneral.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numEnclosureCacheSize)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numOnlyDownloadLastXAttachments)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.securityHintProvider)).BeginInit();
             this.SuspendLayout();
@@ -233,7 +210,6 @@ namespace RssBandit.WinGui.Dialogs
             this.tabPrefs.Controls.Add(this.tabWebSearch);
             this.tabPrefs.Controls.Add(this.tabNetConnection);
             this.tabPrefs.Controls.Add(this.tabFonts);
-            this.tabPrefs.Controls.Add(this.tabEnclosures);
             this.tabPrefs.Multiline = true;
             this.tabPrefs.Name = "tabPrefs";
             this.tabPrefs.SelectedIndex = 0;
@@ -1329,178 +1305,6 @@ namespace RssBandit.WinGui.Dialogs
             this.lblFontSampleABC.Name = "lblFontSampleABC";
             this.lblFontSampleABC.UseMnemonic = false;
             // 
-            // tabEnclosures
-            // 
-            this.tabEnclosures.Controls.Add(this.sectionPanelEnclosurePodcasts);
-            this.tabEnclosures.Controls.Add(this.sectionPanelEnclosureGeneral);
-            resources.ApplyResources(this.tabEnclosures, "tabEnclosures");
-            this.tabEnclosures.Name = "tabEnclosures";
-            // 
-            // sectionPanelEnclosurePodcasts
-            // 
-            resources.ApplyResources(this.sectionPanelEnclosurePodcasts, "sectionPanelEnclosurePodcasts");
-            this.sectionPanelEnclosurePodcasts.Controls.Add(this.btnPodcastOptions);
-            this.sectionPanelEnclosurePodcasts.Controls.Add(this.lblSectionPanelPodcastOptions);
-            this.sectionPanelEnclosurePodcasts.Image = ((System.Drawing.Image)(resources.GetObject("sectionPanelEnclosurePodcasts.Image")));
-            this.sectionPanelEnclosurePodcasts.ImageLocation = new System.Drawing.Point(0, 20);
-            this.sectionPanelEnclosurePodcasts.Name = "sectionPanelEnclosurePodcasts";
-            // 
-            // btnPodcastOptions
-            // 
-            resources.ApplyResources(this.btnPodcastOptions, "btnPodcastOptions");
-            this.btnPodcastOptions.Name = "btnPodcastOptions";
-            this.btnPodcastOptions.Click += new System.EventHandler(this.OnPodcastOptionsButtonClick);
-            // 
-            // lblSectionPanelPodcastOptions
-            // 
-            resources.ApplyResources(this.lblSectionPanelPodcastOptions, "lblSectionPanelPodcastOptions");
-            this.lblSectionPanelPodcastOptions.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.lblSectionPanelPodcastOptions.Name = "lblSectionPanelPodcastOptions";
-            // 
-            // sectionPanelEnclosureGeneral
-            // 
-            resources.ApplyResources(this.sectionPanelEnclosureGeneral, "sectionPanelEnclosureGeneral");
-            this.sectionPanelEnclosureGeneral.Controls.Add(this.btnSelectEnclosureFolder2);
-            this.sectionPanelEnclosureGeneral.Controls.Add(this.lblDownloadAttachmentsSmallerThanPostfix);
-            this.sectionPanelEnclosureGeneral.Controls.Add(this.numEnclosureCacheSize);
-            this.sectionPanelEnclosureGeneral.Controls.Add(this.checkEnclosureSizeOnDiskLimited);
-            this.sectionPanelEnclosureGeneral.Controls.Add(this.lblDownloadXAttachmentsPostfix);
-            this.sectionPanelEnclosureGeneral.Controls.Add(this.numOnlyDownloadLastXAttachments);
-            this.sectionPanelEnclosureGeneral.Controls.Add(this.checkOnlyDownloadLastXAttachments);
-            this.sectionPanelEnclosureGeneral.Controls.Add(this.checkDownloadCreateFolderPerFeed);
-            this.sectionPanelEnclosureGeneral.Controls.Add(this.textEnclosureDirectory);
-            this.sectionPanelEnclosureGeneral.Controls.Add(this.labelEnclosureDirectory);
-            this.sectionPanelEnclosureGeneral.Controls.Add(this.checkDownloadEnclosures);
-            this.sectionPanelEnclosureGeneral.Controls.Add(this.checkEnableEnclosureAlerts);
-            this.sectionPanelEnclosureGeneral.Controls.Add(this.lblSectionPanelEnclosureGeneral);
-            this.sectionPanelEnclosureGeneral.Image = ((System.Drawing.Image)(resources.GetObject("sectionPanelEnclosureGeneral.Image")));
-            this.sectionPanelEnclosureGeneral.ImageLocation = new System.Drawing.Point(0, 20);
-            this.sectionPanelEnclosureGeneral.Name = "sectionPanelEnclosureGeneral";
-            // 
-            // btnSelectEnclosureFolder2
-            // 
-            resources.ApplyResources(this.btnSelectEnclosureFolder2, "btnSelectEnclosureFolder2");
-            this.btnSelectEnclosureFolder2.CausesValidation = false;
-            this.btnSelectEnclosureFolder2.Name = "btnSelectEnclosureFolder2";
-            this.toolTip1.SetToolTip(this.btnSelectEnclosureFolder2, resources.GetString("btnSelectEnclosureFolder2.ToolTip"));
-            this.btnSelectEnclosureFolder2.Click += new System.EventHandler(this.btnSelectEnclosureFolder2_Click);
-            // 
-            // lblDownloadAttachmentsSmallerThanPostfix
-            // 
-            resources.ApplyResources(this.lblDownloadAttachmentsSmallerThanPostfix, "lblDownloadAttachmentsSmallerThanPostfix");
-            this.lblDownloadAttachmentsSmallerThanPostfix.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblDownloadAttachmentsSmallerThanPostfix.Name = "lblDownloadAttachmentsSmallerThanPostfix";
-            // 
-            // numEnclosureCacheSize
-            // 
-            resources.ApplyResources(this.numEnclosureCacheSize, "numEnclosureCacheSize");
-            this.numEnclosureCacheSize.Maximum = new decimal(new int[] {
-            100000,
-            0,
-            0,
-            0});
-            this.numEnclosureCacheSize.Name = "numEnclosureCacheSize";
-            this.numEnclosureCacheSize.Value = new decimal(new int[] {
-            1024,
-            0,
-            0,
-            0});
-            this.numEnclosureCacheSize.Validated += new System.EventHandler(this.OnControlValidated);
-            this.numEnclosureCacheSize.Validating += new System.ComponentModel.CancelEventHandler(this.OnControlValidating);
-            // 
-            // checkEnclosureSizeOnDiskLimited
-            // 
-            resources.ApplyResources(this.checkEnclosureSizeOnDiskLimited, "checkEnclosureSizeOnDiskLimited");
-            this.checkEnclosureSizeOnDiskLimited.BackColor = System.Drawing.SystemColors.Control;
-            this.checkEnclosureSizeOnDiskLimited.Name = "checkEnclosureSizeOnDiskLimited";
-            this.checkEnclosureSizeOnDiskLimited.UseVisualStyleBackColor = false;
-            this.checkEnclosureSizeOnDiskLimited.Validated += new System.EventHandler(this.OnControlValidated);
-            this.checkEnclosureSizeOnDiskLimited.Validating += new System.ComponentModel.CancelEventHandler(this.OnControlValidating);
-            this.checkEnclosureSizeOnDiskLimited.CheckedChanged += new System.EventHandler(this.checkEnclosureSizeOnDiskLimited_CheckedChanged);
-            // 
-            // lblDownloadXAttachmentsPostfix
-            // 
-            resources.ApplyResources(this.lblDownloadXAttachmentsPostfix, "lblDownloadXAttachmentsPostfix");
-            this.lblDownloadXAttachmentsPostfix.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.lblDownloadXAttachmentsPostfix.Name = "lblDownloadXAttachmentsPostfix";
-            // 
-            // numOnlyDownloadLastXAttachments
-            // 
-            resources.ApplyResources(this.numOnlyDownloadLastXAttachments, "numOnlyDownloadLastXAttachments");
-            this.numOnlyDownloadLastXAttachments.Maximum = new decimal(new int[] {
-            999,
-            0,
-            0,
-            0});
-            this.numOnlyDownloadLastXAttachments.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numOnlyDownloadLastXAttachments.Name = "numOnlyDownloadLastXAttachments";
-            this.numOnlyDownloadLastXAttachments.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numOnlyDownloadLastXAttachments.Validated += new System.EventHandler(this.OnControlValidated);
-            this.numOnlyDownloadLastXAttachments.Validating += new System.ComponentModel.CancelEventHandler(this.OnControlValidating);
-            // 
-            // checkOnlyDownloadLastXAttachments
-            // 
-            resources.ApplyResources(this.checkOnlyDownloadLastXAttachments, "checkOnlyDownloadLastXAttachments");
-            this.checkOnlyDownloadLastXAttachments.BackColor = System.Drawing.SystemColors.Control;
-            this.checkOnlyDownloadLastXAttachments.Name = "checkOnlyDownloadLastXAttachments";
-            this.checkOnlyDownloadLastXAttachments.UseVisualStyleBackColor = false;
-            this.checkOnlyDownloadLastXAttachments.Validated += new System.EventHandler(this.OnControlValidated);
-            this.checkOnlyDownloadLastXAttachments.Validating += new System.ComponentModel.CancelEventHandler(this.OnControlValidating);
-            this.checkOnlyDownloadLastXAttachments.CheckedChanged += new System.EventHandler(this.checkOnlyDownloadLastXAttachments_CheckedChanged);
-            // 
-            // checkDownloadCreateFolderPerFeed
-            // 
-            resources.ApplyResources(this.checkDownloadCreateFolderPerFeed, "checkDownloadCreateFolderPerFeed");
-            this.checkDownloadCreateFolderPerFeed.Name = "checkDownloadCreateFolderPerFeed";
-            this.checkDownloadCreateFolderPerFeed.Validated += new System.EventHandler(this.OnControlValidated);
-            this.checkDownloadCreateFolderPerFeed.Validating += new System.ComponentModel.CancelEventHandler(this.OnControlValidating);
-            // 
-            // textEnclosureDirectory
-            // 
-            this.textEnclosureDirectory.AllowDrop = true;
-            resources.ApplyResources(this.textEnclosureDirectory, "textEnclosureDirectory");
-            this.textEnclosureDirectory.Name = "textEnclosureDirectory";
-            this.toolTip1.SetToolTip(this.textEnclosureDirectory, resources.GetString("textEnclosureDirectory.ToolTip"));
-            this.textEnclosureDirectory.Validated += new System.EventHandler(this.OnControlValidated);
-            this.textEnclosureDirectory.Validating += new System.ComponentModel.CancelEventHandler(this.OnControlValidating);
-            // 
-            // labelEnclosureDirectory
-            // 
-            resources.ApplyResources(this.labelEnclosureDirectory, "labelEnclosureDirectory");
-            this.labelEnclosureDirectory.Name = "labelEnclosureDirectory";
-            // 
-            // checkDownloadEnclosures
-            // 
-            resources.ApplyResources(this.checkDownloadEnclosures, "checkDownloadEnclosures");
-            this.checkDownloadEnclosures.BackColor = System.Drawing.SystemColors.Control;
-            this.checkDownloadEnclosures.Name = "checkDownloadEnclosures";
-            this.checkDownloadEnclosures.UseVisualStyleBackColor = false;
-            this.checkDownloadEnclosures.Validated += new System.EventHandler(this.OnControlValidated);
-            this.checkDownloadEnclosures.Validating += new System.ComponentModel.CancelEventHandler(this.OnControlValidating);
-            this.checkDownloadEnclosures.CheckedChanged += new System.EventHandler(this.checkDownloadEnclosures_CheckedChanged);
-            // 
-            // checkEnableEnclosureAlerts
-            // 
-            resources.ApplyResources(this.checkEnableEnclosureAlerts, "checkEnableEnclosureAlerts");
-            this.checkEnableEnclosureAlerts.Name = "checkEnableEnclosureAlerts";
-            this.checkEnableEnclosureAlerts.Validated += new System.EventHandler(this.OnControlValidated);
-            this.checkEnableEnclosureAlerts.Validating += new System.ComponentModel.CancelEventHandler(this.OnControlValidating);
-            this.checkEnableEnclosureAlerts.CheckedChanged += new System.EventHandler(this.OnAnyCheckedChanged);
-            // 
-            // lblSectionPanelEnclosureGeneral
-            // 
-            resources.ApplyResources(this.lblSectionPanelEnclosureGeneral, "lblSectionPanelEnclosureGeneral");
-            this.lblSectionPanelEnclosureGeneral.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.lblSectionPanelEnclosureGeneral.Name = "lblSectionPanelEnclosureGeneral";
-            // 
             // btnApply
             // 
             resources.ApplyResources(this.btnApply, "btnApply");
@@ -1566,12 +1370,6 @@ namespace RssBandit.WinGui.Dialogs
             this.sectionPanelNetworkConnectionProxy.PerformLayout();
             this.tabFonts.ResumeLayout(false);
             this.sectionPanelFontsSubscriptions.ResumeLayout(false);
-            this.tabEnclosures.ResumeLayout(false);
-            this.sectionPanelEnclosurePodcasts.ResumeLayout(false);
-            this.sectionPanelEnclosureGeneral.ResumeLayout(false);
-            this.sectionPanelEnclosureGeneral.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numEnclosureCacheSize)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numOnlyDownloadLastXAttachments)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.securityHintProvider)).EndInit();
             this.ResumeLayout(false);
@@ -1709,24 +1507,6 @@ namespace RssBandit.WinGui.Dialogs
 		internal System.Windows.Forms.CheckBox checkBox5;
 		internal System.Windows.Forms.CheckBox checkBox6;
 		internal System.Windows.Forms.CheckBox checkUseFavicons;
-		private System.Windows.Forms.TabPage tabEnclosures;
-		private RssBandit.WinGui.Controls.OptionSectionPanel sectionPanelEnclosureGeneral;
-		private System.Windows.Forms.Label lblSectionPanelEnclosureGeneral;
-		internal System.Windows.Forms.TextBox textEnclosureDirectory;
-		private System.Windows.Forms.Label labelEnclosureDirectory;
-		internal System.Windows.Forms.CheckBox checkDownloadEnclosures;
-		internal System.Windows.Forms.CheckBox checkEnableEnclosureAlerts;
-		private RssBandit.WinGui.Controls.OptionSectionPanel sectionPanelEnclosurePodcasts;
-		private System.Windows.Forms.Label lblSectionPanelPodcastOptions;
-		internal System.Windows.Forms.CheckBox checkDownloadCreateFolderPerFeed;
-		private System.Windows.Forms.Button btnPodcastOptions;
-		internal System.Windows.Forms.CheckBox checkOnlyDownloadLastXAttachments;
-		internal System.Windows.Forms.NumericUpDown numOnlyDownloadLastXAttachments;
-		private System.Windows.Forms.Label lblDownloadXAttachmentsPostfix;
-		private System.Windows.Forms.Label lblDownloadAttachmentsSmallerThanPostfix;
-		internal System.Windows.Forms.NumericUpDown numEnclosureCacheSize;
-		internal System.Windows.Forms.CheckBox checkEnclosureSizeOnDiskLimited;
-		private System.Windows.Forms.Button btnSelectEnclosureFolder2;
 		internal System.Windows.Forms.CheckBox checkRunAtStartup;
 		internal System.Windows.Forms.CheckBox checkAllowAppEventSounds;
 		internal System.Windows.Forms.Button btnConfigureAppSounds;

@@ -51,11 +51,6 @@ namespace RssBandit.WinGui.Dialogs
 		internal System.Windows.Forms.ComboBox comboFormatters;
 		private System.Windows.Forms.TabPage tabDisplay;
 		private System.Windows.Forms.Panel panelItemControl;
-		private System.Windows.Forms.TabPage tabAttachments;
-		internal System.Windows.Forms.CheckBox checkEnableEnclosureAlerts;
-		internal System.Windows.Forms.CheckBox checkDownloadEnclosures;
-		private System.Windows.Forms.TextBox textBox3;
-		private System.Windows.Forms.Label label11;
 		private System.ComponentModel.IContainer components=null;
 
 
@@ -141,9 +136,7 @@ namespace RssBandit.WinGui.Dialogs
 			Text = DR.FeedProperties_Text;
 			checkCustomFormatter.Text = DR.FeedProperties_checkCustomFormatter_Text;
 			toolTip.SetToolTip(checkCustomFormatter, DR.FeedProperties_checkCustomFormatter_ToolTip);
-			checkDownloadEnclosures.Text = DR.FeedProperties_checkDownloadEnclosures_Text;
 			checkEnableAlerts.Text = DR.FeedProperties_checkEnableAlerts_Text;
-			checkEnableEnclosureAlerts.Text = DR.FeedProperties_checkEnableEnclosureAlerts_Text;
 			checkMarkItemsReadOnExit.Text = DR.FeedProperties_checkMarkItemsReadOnExit_Text;
 			toolTip.SetToolTip(comboBox1, DR.FeedProperties_comboBox1_ToolTip);
 			toolTip.SetToolTip(comboFormatters, DR.FeedProperties_comboFormatters_ToolTip);
@@ -158,7 +151,6 @@ namespace RssBandit.WinGui.Dialogs
 			label7.Text = DR.FeedProperties_label7_Text;
 			label9.Text = DR.FeedProperties_label9_Text;
 			labelFormatters.Text = DR.FeedProperties_labelFormatters_Text;
-			tabAttachments.Text = DR.FeedProperties_tabAttachments_Text;
 			tabAuthentication.Text = DR.FeedProperties_tabAuthentication_Text;
 			tabDisplay.Text = DR.FeedProperties_tabDisplay_Text;
 			tabItemControl.Text = DR.FeedProperties_tabItemControl_Text;

@@ -1103,8 +1103,6 @@ namespace RssBandit
                 propertiesDialog.comboMaxItemAge.Enabled = !feedMaxItemAge.Equals(TimeSpan.Zero);
                 propertiesDialog.checkEnableAlerts.Checked = f.alertEnabled;
                 propertiesDialog.checkMarkItemsReadOnExit.Checked = feedMarkItemsReadOnExit;
-                propertiesDialog.checkDownloadEnclosures.Checked = entry.Source.GetDownloadEnclosures(f.link);
-                propertiesDialog.checkEnableEnclosureAlerts.Checked = entry.Source.GetEnclosureAlert(f.link);
 
                 if (f.authUser != null)
                 {
@@ -1273,17 +1271,6 @@ namespace RssBandit
                         entry.Source.MarkForDownload(f);
                     }
 
-                    if (entry.Source.GetDownloadEnclosures(f.link) != propertiesDialog.checkDownloadEnclosures.Checked)
-                    {
-                        entry.Source.SetDownloadEnclosures(f.link, propertiesDialog.checkDownloadEnclosures.Checked);
-                    }
-
-                    if (entry.Source.GetEnclosureAlert(f.link) != propertiesDialog.checkEnableEnclosureAlerts.Checked)
-                    {
-                        entry.Source.SetEnclosureAlert(f.link, propertiesDialog.checkEnableEnclosureAlerts.Checked);
-                    }
-
-
                     if (propertiesDialog.checkCustomFormatter.Checked)
                     {
                         string stylesheet = propertiesDialog.comboFormatters.Text;
@@ -1366,11 +1353,6 @@ namespace RssBandit
                                            entry.Source.GetCategoryStyleSheet(category));
                 propertiesDialog.comboMaxItemAge.Enabled = !feedMaxItemAge.Equals(TimeSpan.Zero);
                 propertiesDialog.checkMarkItemsReadOnExit.Checked = feedMarkItemsReadOnExit;
-                propertiesDialog.checkDownloadEnclosures.Checked =
-                    entry.Source.GetCategoryDownloadEnclosures(category);
-                propertiesDialog.checkEnableEnclosureAlerts.Checked =
-                    entry.Source.GetCategoryEnclosureAlert(category);
-
 
                 propertiesDialog.ShowDialog(guiMain);
 
@@ -1469,10 +1451,6 @@ namespace RssBandit
 
                     entry.Source.SetCategoryMarkItemsReadOnExit(category,
                                                                propertiesDialog.checkMarkItemsReadOnExit.Checked);
-                    entry.Source.SetCategoryDownloadEnclosures(category,
-                                                              propertiesDialog.checkDownloadEnclosures.Checked);
-                    entry.Source.SetCategoryEnclosureAlert(category,
-                                                          propertiesDialog.checkEnableEnclosureAlerts.Checked);
 
                     if (propertiesDialog.checkCustomFormatter.Checked)
                     {

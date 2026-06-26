@@ -293,31 +293,6 @@ namespace RssBandit
         }
 
         /// <summary>
-        /// Called by FeedSource, after an enclosure has been downloaded.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        internal void OnDownloadedEnclosure(object sender, DownloadItemEventArgs e)
-        {
-			FeedSourceEntry entry = sourceManager.SourceOfFeed(e.DownloadItem.OwnerFeedId);
-			
-			/* open the downloaded podcast in the default media player if that option is selected.
-			 * (The two preferences predate the COM iTunes/WMP playlist integration that was
-			 * replaced by a shell-open on 2026-06-14; either one now means "hand it to the
-			 * default player".) */
-            if (Preferences.AddPodcasts2WMP || Preferences.AddPodcasts2ITunes)
-            {
-                OpenPodcastInDefaultPlayer(e.DownloadItem);
-            }
-
-            /* update GUI if needed */
-            InvokeOnGui(delegate
-                            {
-								guiMain.OnEnclosureReceived(entry, e.DownloadItem);
-                            });
-        }
-
-        /// <summary>
         /// Called by <see cref="FeedSource"/>, if update of a feed caused an exception
         /// </summary>
         /// <param name="sender"></param>
