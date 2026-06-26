@@ -438,6 +438,33 @@ namespace NewsComponents
             }
         }
 
+        /// <summary>
+        /// The favicon storage accessor engine, extracted from this class (Slice 2 of the
+        /// FeedSource decomposition). Lazily (re)constructed from the live <see cref="feedsTable"/>
+        /// reference, reading the lazy <see cref="UserCacheDataService"/> through an accessor so its
+        /// on-first-use creation semantics are preserved. Rebuilt automatically if
+        /// <see cref="feedsTable"/> is swapped (e.g. by <c>ImportFeedlist(replace:true)</c>), so it
+        /// always reads the current table, exactly as the original inline field reads did.
+        /// </summary>
+        private FaviconStore faviconStore;
+
+        /// <summary>
+        /// Gets the (lazily constructed) favicon storage component, rebuilding it if the backing
+        /// feed dictionary has been replaced.
+        /// </summary>
+        private FaviconStore FaviconStore
+        {
+            get
+            {
+                if (faviconStore == null ||
+                    !ReferenceEquals(faviconStore.FeedsTable, feedsTable))
+                {
+                    faviconStore = new FaviconStore(feedsTable, () => UserCacheDataService);
+                }
+                return faviconStore;
+            }
+        }
+
 
 		/// <summary>
 		/// Client certificates cache for feeds
@@ -2719,17 +2746,7 @@ namespace NewsComponents
 		/// <exception cref="ArgumentNullException">If feedUrl is null or empty</exception>
 		public virtual bool FeedHasFavicon(string feedUrl)
 		{
-            if (string.IsNullOrWhiteSpace(feedUrl))
-            {
-                throw new ArgumentException("message", nameof(feedUrl));
-            }
-            
-			INewsFeed f;
-			if (!feedsTable.TryGetValue(feedUrl, out f))
-			{
-				return false;
-			}
-			return FeedHasFavicon(f);
+			return FaviconStore.FeedHasFavicon(feedUrl);
 		}
 
     	/// <summary>
@@ -2740,12 +2757,7 @@ namespace NewsComponents
 		/// <exception cref="ArgumentNullException">If feed is null</exception>
 		public virtual bool FeedHasFavicon(INewsFeed feed)
     	{
-            if (feed == null)
-            {
-                throw new ArgumentNullException(nameof(feed));
-            }
-            
-    		return !String.IsNullOrEmpty(feed.favicon);
+    		return FaviconStore.FeedHasFavicon(feed);
     	}
 
 		/// <summary>
@@ -2756,17 +2768,7 @@ namespace NewsComponents
 		/// <exception cref="ArgumentNullException">If feedUrl is null or empty</exception>
 		public virtual byte[] GetFaviconForFeed(string feedUrl)
 		{
-            if (string.IsNullOrWhiteSpace(feedUrl))
-            {
-                throw new ArgumentException("message", nameof(feedUrl));
-            }
-            
-			INewsFeed f;
-			if (!feedsTable.TryGetValue(feedUrl, out f))
-			{
-				return null;
-			}
-			return GetFaviconForFeed(f);
+			return FaviconStore.GetFaviconForFeed(feedUrl);
 		}
 
     	/// <summary>
@@ -2777,16 +2779,7 @@ namespace NewsComponents
 		/// <exception cref="ArgumentNullException">If feed is null</exception>
 		public virtual byte[] GetFaviconForFeed(INewsFeed feed)
     	{
-            if (feed == null)
-            {
-                throw new ArgumentNullException(nameof(feed));
-            }
-			
-			if (FeedHasFavicon(feed))
-    		{
-    			return UserCacheDataService.GetBinaryContent(feed.favicon);
-    		}
-    		return null;
+    		return FaviconStore.GetFaviconForFeed(feed);
     	}
 
 		/// <summary>
@@ -2799,17 +2792,7 @@ namespace NewsComponents
 		/// <exception cref="ArgumentNullException">If <paramref name="feedUrl"/> is null or empty</exception>
 		public virtual void SetFaviconForFeed(string feedUrl, string contentId, byte[] imageData)
 		{
-            if (string.IsNullOrWhiteSpace(feedUrl))
-            {
-                throw new ArgumentException("message", nameof(feedUrl));
-            }
-            
-			INewsFeed f;
-			if (!feedsTable.TryGetValue(feedUrl, out f))
-			{
-				return;
-			}
-			SetFaviconForFeed(f, contentId, imageData);
+			FaviconStore.SetFaviconForFeed(feedUrl, contentId, imageData);
 		}
 
     	/// <summary>
@@ -2822,16 +2805,7 @@ namespace NewsComponents
 		/// <exception cref="ArgumentNullException">If feed is null</exception>
 		public virtual void SetFaviconForFeed(INewsFeed feed, string contentId, byte[] imageData)
     	{
-            if (feed == null)
-            {
-                throw new ArgumentNullException(nameof(feed));
-            }
-            
-			if (!String.IsNullOrEmpty(contentId) && imageData != null && imageData.Length > 0)
-    		{
-    			UserCacheDataService.SaveBinaryContent(contentId, imageData);
-    			feed.favicon = contentId;
-    		}
+    		FaviconStore.SetFaviconForFeed(feed, contentId, imageData);
     	}
 
 		/// <summary>
@@ -2841,15 +2815,7 @@ namespace NewsComponents
 		/// <exception cref="ArgumentNullException">If feed is null</exception>
 		public void RemoveFaviconFromFeed(INewsFeed feed)
 		{
-            if (feed == null)
-            {
-                throw new ArgumentNullException(nameof(feed));
-            }
-            
-			if (FeedHasFavicon(feed))
-			{
-				UserCacheDataService.DeleteBinaryContent(feed.favicon);
-			}
+			FaviconStore.RemoveFaviconFromFeed(feed);
 		}
     	#endregion
 
