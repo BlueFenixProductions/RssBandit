@@ -465,6 +465,32 @@ namespace NewsComponents
             }
         }
 
+        /// <summary>
+        /// The lazily-constructed feed-list save/serialize component (Slice 3a extraction). Reads the
+        /// live <see cref="categories"/> and <see cref="itemsTable"/> by reference; rebuilt automatically
+        /// if <see cref="categories"/> is swapped (e.g. by <c>ImportFeedlist(replace:true)</c>) so it
+        /// always serializes the current category set, exactly as the original inline field reads did.
+        /// <see cref="itemsTable"/> is <c>readonly</c> and never swapped, so it isn't part of the check.
+        /// </summary>
+        private FeedListSerializer feedListSerializer;
+
+        /// <summary>
+        /// Gets the (lazily constructed) feed-list serializer, rebuilding it if the backing
+        /// categories dictionary has been replaced.
+        /// </summary>
+        private FeedListSerializer FeedListSerializer
+        {
+            get
+            {
+                if (feedListSerializer == null ||
+                    !ReferenceEquals(feedListSerializer.Categories, categories))
+                {
+                    feedListSerializer = new FeedListSerializer(categories, itemsTable);
+                }
+                return feedListSerializer;
+            }
+        }
+
 
 		/// <summary>
 		/// Client certificates cache for feeds
@@ -2868,137 +2894,7 @@ namespace NewsComponents
         public virtual void SaveFeedList(Stream feedStream, FeedListFormat format, IDictionary<string, INewsFeed> feeds,
                                          bool includeEmptyCategories)
         {
-            if (feedStream == null)
-                throw new ArgumentNullException("feedStream");
-
-            if (format.Equals(FeedListFormat.OPML))
-            {
-                var opmlDoc = new XmlDocument();
-                opmlDoc.LoadXml("<opml version='1.0'><head /><body /></opml>");
-
-                var categoryTable = new Dictionary<string, XmlElement>(categories.Count);
-
-                foreach (INewsFeed f in feeds.Values)
-                {
-                    XmlElement outline = opmlDoc.CreateElement("outline");
-                    outline.SetAttribute("title", f.title);
-                    outline.SetAttribute("xmlUrl", f.link);
-                    outline.SetAttribute("type", "rss");
-                    outline.SetAttribute("text", f.title);
-
-                    IFeedDetails fi;
-                    bool success = itemsTable.TryGetValue(f.link, out fi);
-
-                    if (success)
-                    {
-                        outline.SetAttribute("htmlUrl", fi.Link);
-                        outline.SetAttribute("description", fi.Description);
-                    }
-
-                    string category = (f.category ?? String.Empty);
-
-                    XmlElement catnode;
-                    if (categoryTable.ContainsKey(category))
-                        catnode = categoryTable[category];
-                    else
-                    {
-                        catnode = CreateCategoryHive((XmlElement) opmlDoc.DocumentElement.ChildNodes[1], category);
-                        categoryTable.Add(category, catnode);
-                    }
-
-                    catnode.AppendChild(outline);
-                }
-
-                if (includeEmptyCategories)
-                {
-                    //add categories, we don't already have
-                    foreach (var category in categories.Keys)
-                    {
-                        CreateCategoryHive((XmlElement) opmlDoc.DocumentElement.ChildNodes[1], category);
-                    }
-                }
-
-                var opmlWriter = new XmlTextWriter(feedStream, Encoding.UTF8);
-                opmlWriter.Formatting = Formatting.Indented;
-                opmlDoc.Save(opmlWriter);
-            }
-            else if (format.Equals(FeedListFormat.NewsHandler) || format.Equals(FeedListFormat.NewsHandlerLite))
-            {
-                XmlSerializer serializer = XmlHelper.SerializerCache.GetSerializer(typeof (feeds));
-                var feedlist = new feeds();
-
-                if (feeds != null)
-                {
-                  
-
-                    // refactored props that do not need anymore stored in feedlist:
-                    feedlist.markitemsreadonexitSpecified = false;
-                    feedlist.downloadenclosuresSpecified = false;
-                    feedlist.enclosurealertSpecified = false;
-                    feedlist.refreshrateSpecified = false;
-                    feedlist.createsubfoldersforenclosuresSpecified = false;
-                    feedlist.numtodownloadonnewfeedSpecified = false;
-                    feedlist.enclosurecachesizeSpecified = false;
-
-                    foreach (var f in feeds.Values)
-                    {
-                        if (f is NewsFeed)
-                            feedlist.feed.Add((NewsFeed) f);
-                        else
-                            feedlist.feed.Add(new NewsFeed(f));
-
-                        if (itemsTable.ContainsKey(f.link))
-                        {
-                            IList<INewsItem> items = itemsTable[f.link].ItemsList;
-
-                            // Taken out because it meant that when we sync we lose information
-                            // about stuff we've read from other instances of RSS Bandit synced from 
-                            // if its cache is older than this one. 
-                            /* f.storiesrecentlyviewed.Clear(); */
-
-
-                            if (!format.Equals(FeedListFormat.NewsHandlerLite))
-                            {
-                                foreach (var ri in items)
-                                {
-                                    if (ri.BeenRead && !f.storiesrecentlyviewed.Contains(ri.Id))
-                                    {
-                                        //THIS MAY BE SLOW
-                                        f.AddViewedStory(ri.Id);
-                                    }
-                                }
-                            } //foreach
-                        } //if
-                    } //foreach
-                } //if(feeds != null) 
-
-
-                var c = new List<category>(categories.Count);
-                /* sometimes we get nulls in the arraylist */
-                foreach (var cat in categories.Values)
-                {
-                    if (!string.IsNullOrWhiteSpace(cat.Value))
-                    {
-                        c.Add(new category(cat));
-                    }
-                }
-
-                //we don't want to write out empty <categories /> into the schema. 				
-                feedlist.categories = c.Count == 0 ? null : c;
-
-				// saved separately:
-            	feedlist.identities = null;
-                
-				//var ids = new List<UserIdentity>(identities.Values);
-
-				////we don't want to write out empty <user-identities /> into the schema. 				
-				//feedlist.identities = ids.Count == 0 ? null : ids;
-
-
-                TextWriter writer = new StreamWriter(feedStream);
-                serializer.Serialize(writer, feedlist);
-                //writer.Close(); DON'T CLOSE STREAM
-            }
+            FeedListSerializer.WriteFeedList(feedStream, format, feeds, includeEmptyCategories);
         }
 
 
@@ -3150,50 +3046,7 @@ namespace NewsComponents
         }
 		
 		/// <summary>
-		/// Helper method used for constructing OPML file. It traverses down the tree on the 
-		/// path defined by 'category' starting with 'startNode'. 
-		/// </summary>
-		/// <param name="startNode">Node to start with</param>
-		/// <param name="category">A category path, e.g. 'Category1\SubCategory1'.</param>
-		/// <returns>The leaf category node.</returns>
-		/// <remarks>If one category in the path is not found, it will be created.</remarks>
-		private static XmlElement CreateCategoryHive(XmlElement startNode, string category)
-		{
-			if (string.IsNullOrEmpty(category) || startNode == null) return startNode;
-
-			string[] catHives = category.Split(CategorySeparator.ToCharArray());
-			XmlElement n;
-			bool wasNew = false;
-
-			foreach (var catHive in catHives)
-			{
-				if (!wasNew)
-				{
-					string xpath = "child::outline[@title=" + buildXPathString(catHive) + " and (count(@*)= 1)]";
-					n = (XmlElement)startNode.SelectSingleNode(xpath);
-				}
-				else
-				{
-					n = null;
-				}
-
-				if (n == null)
-				{
-					n = startNode.OwnerDocument.CreateElement("outline");
-					n.SetAttribute("title", catHive);
-					startNode.AppendChild(n);
-					wasNew = true; // shorten search
-				}
-
-				startNode = n;
-			} //foreach
-
-			return startNode;
-		}
-
-
-		/// <summary>
-		/// Helper function breaks up a string containing quote characters into 
+		/// Helper function breaks up a string containing quote characters into
 		///	a series of XPath concat() calls. 
 		/// </summary>
 		/// <param name="input">input string</param>
