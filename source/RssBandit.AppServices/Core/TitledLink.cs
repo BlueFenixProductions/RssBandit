@@ -21,7 +21,7 @@ namespace NewsComponents
 		#region ivars
 
 		private readonly string _url;
-		private readonly string _title;
+		private readonly string? _title;
 
 		#endregion
 
@@ -39,7 +39,7 @@ namespace NewsComponents
 		/// </summary>
 		/// <param name="url">The navigate URL.</param>
 		/// <param name="title">The text.</param>
-		public TitledLink(ref string url, string title)
+		public TitledLink(ref string url, string? title)
 		{
 			_url = url;
 			_title = title;
@@ -54,7 +54,7 @@ namespace NewsComponents
 		/// Gets or sets the link title.
 		/// </summary>
 		/// <value>The title text.</value>
-		public string Title
+		public string? Title
 		{
 			get { return _title; }
 		}
