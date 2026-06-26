@@ -25,7 +25,7 @@ namespace RssBandit.UIServices
 		/// of the <see cref="P:System.Runtime.Remoting.Lifetime.LifetimeServices.LeaseManagerPollTime" qualify="true"/> property.
 		/// </returns>
 		/// <exception cref="T:System.Security.SecurityException">The immediate caller does not have infrastructure permission. </exception>
-		public override object InitializeLifetimeService() 
+		public override object? InitializeLifetimeService()
 		{
 			//never ending Lease:
 			return null;

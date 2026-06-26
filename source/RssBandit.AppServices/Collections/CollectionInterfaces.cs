@@ -446,7 +446,7 @@ namespace RssBandit.AppServices
 			get { return true; }
 		}
 
-		public object this[object key] {
+		public object? this[object key] {
 			get { return dict[key]; }
 			set { ThrowReadOnlyException();}
 		}

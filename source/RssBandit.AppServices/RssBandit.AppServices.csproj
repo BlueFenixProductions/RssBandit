@@ -1,6 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net10.0-windows10.0.19041</TargetFramework>
+    <!-- Nullable enabled on the AppServices contracts layer first (beachhead). The UI
+         and engine projects stay non-nullable for now; full enablement is a separate
+         incremental effort (~8k warnings across RssBandit + NewsComponents). -->
+    <Nullable>enable</Nullable>
     <AssemblyOriginatorKeyFile>..\rssbandit.org.snk</AssemblyOriginatorKeyFile>
     <SignAssembly>true</SignAssembly>
     <Title>RSS Bandit Application Services</Title>
