@@ -17,7 +17,6 @@ using System.Collections.Generic;
 using NewsComponents;
 using NewsComponents.Utils;
 using RssBandit.Xml;
-using AppExceptions = Microsoft.ApplicationBlocks.ExceptionManagement;
 using Logger = RssBandit.Common.Logging;
 
 namespace RssBandit.WebSearch
@@ -190,7 +189,7 @@ namespace RssBandit.WebSearch
 				validationErrorOccured = true; 
 				
 				_log.Error(@"searches\config.xml validation error: " + args.Message);
-				AppExceptions.ExceptionManager.Publish(args.Exception);
+				ExceptionPublisher.Publish(args.Exception);
 			}
 		}
 

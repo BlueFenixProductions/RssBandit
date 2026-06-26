@@ -4,7 +4,6 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using log4net;
-using Microsoft.ApplicationBlocks.ExceptionManagement;
 using RssBandit.Common.Logging;
 using RssBandit.Resources;
 
@@ -79,7 +78,7 @@ namespace RssBandit
 
         public static DialogResult ShowExceptionDialog(Exception e, bool resumable)
         {
-            ExceptionManager.Publish(e);
+            ExceptionPublisher.Publish(e);
             try
             {
                 StringBuilder errorMsg =

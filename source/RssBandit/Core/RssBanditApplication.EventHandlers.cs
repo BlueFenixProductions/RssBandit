@@ -3,7 +3,6 @@ using System.Diagnostics;
 using System.Net;
 using System.Security.Cryptography.X509Certificates;
 using System.Windows.Forms;
-using Microsoft.ApplicationBlocks.ExceptionManagement;
 using NewsComponents;
 using NewsComponents.Feed;
 using NewsComponents.Net;
@@ -391,7 +390,7 @@ namespace RssBandit
                     }
                     else if (ex.Number == ApplicationExceptions.FeedlistOnRead)
                     {
-                        ExceptionManager.Publish(ex);
+                        ExceptionPublisher.Publish(ex);
                         this.MessageError(String.Format(SR.ExceptionReadingFeedlistFile,ex.InnerException.Message, GetLogFileName()));
                         this.SetGuiStateFeedbackText(SR.GUIStatusErrorReadingFeedlistFile);
                     }

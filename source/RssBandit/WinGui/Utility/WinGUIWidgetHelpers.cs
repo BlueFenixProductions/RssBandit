@@ -28,7 +28,6 @@ using System.Net;
 using Infragistics.Win.UltraWinExplorerBar;
 using Infragistics.Win.UltraWinStatusBar;
 using Infragistics.Win.UltraWinToolbars;
-using Microsoft.ApplicationBlocks.ExceptionManagement;
 using Microsoft.WindowsAPICodePack.Net;
 using NewsComponents;
 using NewsComponents.Net;
@@ -1546,7 +1545,7 @@ namespace RssBandit.WinGui.Utility
 			}
 			catch (Exception ex)
 			{
-				ExceptionManager.Publish(ex);
+				ExceptionPublisher.Publish(ex);
 				return;
 			}
 

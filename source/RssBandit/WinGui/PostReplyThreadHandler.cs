@@ -13,7 +13,6 @@ using System.IO;
 using System.Net;
 
 using Logger = RssBandit.Common.Logging;
-using AppExceptions = Microsoft.ApplicationBlocks.ExceptionManagement;
 
 using NewsComponents;
 using NewsComponents.Feed;
@@ -103,7 +102,7 @@ namespace RssBandit.WinGui {
 					p_operationException = new WebException(sb.ToString(), we, we.Status, we.Response);
 					// dump to log file/trace
 					_log.Error(@"Error while posting a comment" , p_operationException);
-					AppExceptions.ExceptionManager.Publish(p_operationException);
+					ExceptionPublisher.Publish(p_operationException);
 
 					p_operationException = we;
 

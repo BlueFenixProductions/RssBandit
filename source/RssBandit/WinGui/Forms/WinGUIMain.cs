@@ -53,7 +53,6 @@ using RssBandit.WinGui.Tools;
 using RssBandit.WinGui.Utility;
 using Syndication.Extensibility;
 using TD.SandDock;
-using AppExceptions = Microsoft.ApplicationBlocks.ExceptionManagement;
 using K = RssBandit.Utility.Keyboard;
 using RssBandit.WinGui.Controls.ThListView;
 using ToolTip=System.Windows.Forms.ToolTip;

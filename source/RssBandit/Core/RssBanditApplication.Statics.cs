@@ -10,7 +10,6 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using System.Xml.Schema;
-using Microsoft.ApplicationBlocks.ExceptionManagement;
 using NewsComponents;
 using NewsComponents.Feed;
 using NewsComponents.Net;
