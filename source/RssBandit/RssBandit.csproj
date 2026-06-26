@@ -27,14 +27,6 @@
       <Name>Eyefinder</Name>
       <HintPath>..\Common\Libraries\Eyefinder.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ApplicationBlocks.ExceptionManagement">
-      <Name>Microsoft.ApplicationBlocks.ExceptionManagement</Name>
-      <HintPath>..\Common\Libraries\Microsoft.ApplicationBlocks.ExceptionManagement.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.ApplicationBlocks.ExceptionManagement.Interfaces">
-      <Name>Microsoft.ApplicationBlocks.ExceptionManagement.Interfaces</Name>
-      <HintPath>..\Common\Libraries\Microsoft.ApplicationBlocks.ExceptionManagement.Interfaces.dll</HintPath>
-    </Reference>
     <Reference Include="SandDock">
       <Name>SandDock</Name>
       <HintPath>..\Common\Libraries\SandDock.dll</HintPath>

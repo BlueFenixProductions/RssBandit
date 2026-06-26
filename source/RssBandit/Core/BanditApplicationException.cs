@@ -15,8 +15,6 @@ using System.Security;
 using System.Threading;
 using System.Security.Principal;
 
-using Microsoft.ApplicationBlocks.ExceptionManagement;
-
 namespace RssBandit {
 	
 	/// <summary>
@@ -51,7 +49,7 @@ namespace RssBandit {
 	///  Bandit Exception should be used for all our own exceptions
 	/// </summary>
 	[Serializable]
-	public class BanditApplicationException :  BaseApplicationException , ISerializable {
+	public class BanditApplicationException :  ApplicationException , ISerializable {
 		
 		internal readonly ApplicationExceptions number;
 		private string osNameVersion; 

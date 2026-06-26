@@ -13,7 +13,6 @@ using RssBandit.WinGui.Controls.ThListView;
 using RssBandit.WinGui.Controls.ThListView.Sorting;
 using AppInteropServices;
 using Infragistics.Win.UltraWinTree;
-using Microsoft.ApplicationBlocks.ExceptionManagement;
 using NewsComponents;
 using NewsComponents.Feed;
 using NewsComponents.Net;
@@ -1533,7 +1532,7 @@ namespace RssBandit.WinGui.Forms
             {
                 // failure(s)
                 args.Cancel = true;
-                ExceptionManager.Publish(args.Exception);
+                ExceptionPublisher.Publish(args.Exception);
                 var results = (object[]) args.Result;
                 var insertionPointTicket = (string) results[2];
                 var newChildItems =
@@ -1947,7 +1946,7 @@ namespace RssBandit.WinGui.Forms
             {
                 _log.Fatal(
                     "Failed to load IBlogExtension plugin: " + (ibe == null ? String.Empty : ibe.GetType().FullName), ex);
-                ExceptionManager.Publish(ex);
+                ExceptionPublisher.Publish(ex);
             }
             
         }
