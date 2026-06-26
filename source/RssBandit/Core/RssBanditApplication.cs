@@ -310,10 +310,7 @@ namespace RssBandit
             FeedSource.DefaultConfiguration = CreateFeedHandlerConfiguration();
 
             // set static properties:
-            FeedSource.EnclosureFolder = Preferences.EnclosureFolder;
             FeedSource.Stylesheet = Preferences.NewsItemStylesheetFile;
-        	FeedSource.PodcastFolder = Preferences.PodcastFolder;
-			FeedSource.PodcastFileExtensionsAsString = Preferences.PodcastFileExtensions;
 
             LoadTrustedCertificateIssues();
             AsyncWebRequest.OnCertificateIssue += OnRequestCertificateIssue;
@@ -486,11 +483,6 @@ namespace RssBandit
             cfg.UserApplicationDataPath = ApplicationDataFolderFromEnv;
             cfg.UserLocalApplicationDataPath = ApplicationLocalDataFolderFromEnv;
 
-            if (String.IsNullOrEmpty(Preferences.EnclosureFolder))
-                cfg.DownloadedFilesDataPath = Preferences.EnclosureFolder;
-            else
-                cfg.DownloadedFilesDataPath = GetDefaultEnclosuresPath();
-
             cfg.PersistedSettings = PersistedSettings;
 
             // once written a valid value:
@@ -510,7 +502,6 @@ namespace RssBandit
                               SearchIndexBehavior = SearchIndexBehavior.NoIndexing,
                               UserApplicationDataPath = configTemplate.UserApplicationDataPath,
                               UserLocalApplicationDataPath = configTemplate.UserLocalApplicationDataPath,
-                              DownloadedFilesDataPath = null,
                               PersistedSettings = configTemplate.PersistedSettings,
                               RefreshRate = configTemplate.RefreshRate
                           };
@@ -618,7 +609,6 @@ namespace RssBandit
         {
             _dispatcher = Dispatcher.CurrentDispatcher;
             SynchronizationContext.SetSynchronizationContext(new DispatcherSynchronizationContext());
-            DownloadRegistryManager.Current.Initialize();
 
             Dispatcher.Run();
         }
@@ -1230,21 +1220,6 @@ namespace RssBandit
             // apply setting to comment feed handler:
             var c = (NewsComponentsConfiguration) commentFeedsHandler.Configuration;
             c.RefreshRate = value;
-        }
-
-        public void ApplyDownloadEnclosures(bool value)
-        {
-            // apply setting to feed sources:
-            sourceManager.ForEach(
-                fs =>
-                    {
-                        var cfg = (NewsComponentsConfiguration) fs.Configuration;
-                        cfg.DownloadEnclosures = value;
-                    });
-
-            // apply setting to comment feed handler:
-            var c = (NewsComponentsConfiguration) commentFeedsHandler.Configuration;
-            c.DownloadEnclosures = value;
         }
 
         public ArrayList FinderList
@@ -2087,7 +2062,6 @@ namespace RssBandit
         {
             ApplyMaxItemAge(Preferences.MaxItemAge);
             ApplyRefreshRate(Preferences.RefreshRate);
-            ApplyDownloadEnclosures(Preferences.DownloadEnclosures);
 
             // assigns the globally used proxy:
             Proxy = CreateProxyFrom(Preferences);
@@ -2109,11 +2083,6 @@ namespace RssBandit
             }
 
             FeedSource.Stylesheet = Preferences.NewsItemStylesheetFile;
-            FeedSource.EnclosureFolder = Preferences.EnclosureFolder;
-            FeedSource.EnclosureAlert = Preferences.EnclosureAlert;
-            FeedSource.CreateSubfoldersForEnclosures = Preferences.CreateSubfoldersForEnclosures;
-            FeedSource.NumEnclosuresToDownloadOnNewFeed = Preferences.NumEnclosuresToDownloadOnNewFeed;
-            FeedSource.EnclosureCacheSize = Preferences.EnclosureCacheSize;
             FeedSource.MarkItemsReadOnExit = Preferences.MarkItemsReadOnExit;
         }
 
@@ -2462,64 +2431,10 @@ namespace RssBandit
                 saveChanges = true;
             }
 
-            // migrate EnclosureFolder saved previously at feedlist to preferences:
-            if (FeedSource.MigrationProperties.ContainsKey("EnclosureFolder"))
-            {
-                Preferences.EnclosureFolder = (string) FeedSource.MigrationProperties["EnclosureFolder"];
-                FeedSource.EnclosureFolder = Preferences.EnclosureFolder;
-                saveChanges = true;
-            }
-
-            // migrate EnclosureFolder saved previously at feedlist to preferences:
-            if (FeedSource.MigrationProperties.ContainsKey("DownloadEnclosures"))
-            {
-                Preferences.DownloadEnclosures = (bool) FeedSource.MigrationProperties["DownloadEnclosures"];
-                ApplyDownloadEnclosures(Preferences.DownloadEnclosures);
-                saveChanges = true;
-            }
-
-            if (FeedSource.MigrationProperties.ContainsKey("EnclosureAlert"))
-            {
-                Preferences.EnclosureAlert = (bool) FeedSource.MigrationProperties["EnclosureAlert"];
-                FeedSource.EnclosureAlert = Preferences.EnclosureAlert;
-                saveChanges = true;
-            }
-
-			// migrate PodcastFolder saved previously at feedlist to preferences:
-			if (FeedSource.MigrationProperties.ContainsKey("PodcastFolder"))
-			{
-				Preferences.PodcastFolder = (string)FeedSource.MigrationProperties["PodcastFolder"];
-				FeedSource.PodcastFolder = Preferences.PodcastFolder;
-				saveChanges = true;
-			}
-			// migrate PodcastFileExtensions saved previously at feedlist to preferences:
-			if (FeedSource.MigrationProperties.ContainsKey("PodcastFileExtensions"))
-			{
-				Preferences.PodcastFileExtensions = (string)FeedSource.MigrationProperties["PodcastFileExtensions"];
-				FeedSource.PodcastFileExtensionsAsString = Preferences.PodcastFileExtensions;
-				saveChanges = true;
-			}
-
             if (FeedSource.MigrationProperties.ContainsKey("MarkItemsReadOnExit"))
             {
                 Preferences.MarkItemsReadOnExit = (bool) FeedSource.MigrationProperties["MarkItemsReadOnExit"];
                 FeedSource.MarkItemsReadOnExit = Preferences.MarkItemsReadOnExit;
-                saveChanges = true;
-            }
-
-            if (FeedSource.MigrationProperties.ContainsKey("NumEnclosuresToDownloadOnNewFeed"))
-            {
-                Preferences.NumEnclosuresToDownloadOnNewFeed =
-                    (int) FeedSource.MigrationProperties["NumEnclosuresToDownloadOnNewFeed"];
-                FeedSource.NumEnclosuresToDownloadOnNewFeed = Preferences.NumEnclosuresToDownloadOnNewFeed;
-                saveChanges = true;
-            }
-
-            if (FeedSource.MigrationProperties.ContainsKey("CreateSubfoldersForEnclosures"))
-            {
-                Preferences.CreateSubfoldersForEnclosures =
-                    (bool) FeedSource.MigrationProperties["CreateSubfoldersForEnclosures"];
-                FeedSource.CreateSubfoldersForEnclosures = Preferences.CreateSubfoldersForEnclosures;
                 saveChanges = true;
             }
 
@@ -3367,13 +3282,6 @@ namespace RssBandit
 			} 
 			else
 			{
-                // Resume pending enclosure downloads
-
-                foreach(var fs in sourceManager.Sources)
-                {
-                    fs.Source.ResumePendingDownloads();
-                }
-
 				BeginLoadAllFeedSourcesSubscriptions();
 			}
 
@@ -3704,7 +3612,6 @@ namespace RssBandit
 			source.BeforeDownloadFeedStarted += BeforeDownloadFeedStarted;
 			source.UpdateFeedsStarted += OnUpdateFeedsStarted;
 			source.OnUpdatedFavicon += OnUpdatedFavicon;
-			source.OnDownloadedEnclosure += OnDownloadedEnclosure;
 
 			source.OnAllAsyncRequestsCompleted += OnAllRequestsCompleted;
 			source.OnAddedCategory += OnAddedCategory;
@@ -3723,7 +3630,6 @@ namespace RssBandit
 			source.BeforeDownloadFeedStarted -= BeforeDownloadFeedStarted;
 			source.UpdateFeedsStarted -= OnUpdateFeedsStarted;
 			source.OnUpdatedFavicon -= OnUpdatedFavicon;
-			source.OnDownloadedEnclosure -= OnDownloadedEnclosure;
 
 			source.OnAllAsyncRequestsCompleted -= OnAllRequestsCompleted;
 			source.OnAddedCategory -= OnAddedCategory;
@@ -5793,17 +5699,6 @@ namespace RssBandit
         #endregion
 
         #region ICoreApplication Members
-
-        /// <summary>
-        /// Shows the podcast options dialog — removed in Task 1 (UI simplification).
-        /// Interface member kept; engine removal in Task 2.
-        /// </summary>
-        /// <param name="owner">The owner.</param>
-        /// <param name="optionsChangedHandler">The options changed handler.</param>
-        public void ShowPodcastOptionsDialog(IWin32Window owner, EventHandler optionsChangedHandler)
-        {
-            // Podcast options dialog removed; engine removal in Task 2
-        }
 
         /// <summary>
         /// Display the options dialog and select the desired detail section

@@ -109,13 +109,6 @@ namespace RssBandit
 		private string remoteStoragePassword = String.Empty;
 		private RemoteStorageProtocolType remoteStorageProtocol = RemoteStorageProtocolType.UNC;
 		private string remoteStorageLocation = String.Empty;
-		private string enclosureFolder = String.Empty;
-		private int numEnclosuresToDownloadOnNewFeed;
-		private int enclosureCacheSize;
-		private string podcastFolder = String.Empty;
-		private string podcastFileExtensions = String.Empty;
-
-		private string singlePlaylistName    = String.Empty;
 
 		private string newsItemStylesheetFile = String.Empty;
 		private HideToTray hideToTrayAction = HideToTray.OnMinimize;
@@ -398,19 +391,6 @@ namespace RssBandit
 		}
 
 
-		/// <summary>
-		/// Sets/Get the user-specified name for the WMP or iTunes playlist that will 
-		/// contain all podcasts from RSS Bandit. 
-		/// </summary>
-		public string SinglePlaylistName {
-			[DebuggerStepThrough]
-			get {	return singlePlaylistName;		}
-			set 
-			{
-				SetProperty(ref singlePlaylistName, value);
-			}
-		}
-		
 
 		/// <summary>
 		/// Sets/Get a value to control if the first opened web browser Tab should
@@ -807,47 +787,6 @@ namespace RssBandit
 		}
 
 		/// <summary>
-		/// Gets or sets the enclosure download folder.
-		/// </summary>
-		/// <value>The enclosure folder.</value>
-		public string EnclosureFolder
-		{
-			[DebuggerStepThrough]
-			get { return enclosureFolder; }
-			set
-			{
-				SetProperty(ref enclosureFolder, value);
-			}
-		}
-		/// <summary>
-		/// Indicates the number of enclosures which should be 
-		/// downloaded automatically from a newly subscribed feed.
-		/// </summary>
-		public int NumEnclosuresToDownloadOnNewFeed
-		{
-			[DebuggerStepThrough]
-			get { return numEnclosuresToDownloadOnNewFeed; }
-			set
-			{
-				SetProperty(ref numEnclosuresToDownloadOnNewFeed, value);
-			}
-		}
-		/// <summary>
-		/// Indicates the maximum amount of space that enclosures and 
-		/// podcasts can use on disk.
-		/// </summary>
-		public int EnclosureCacheSize
-		{
-			[DebuggerStepThrough]
-			get { return enclosureCacheSize; }
-			set
-			{
-				SetProperty(ref enclosureCacheSize, value);
-			}
-		}
-
-
-		/// <summary>
 		/// Sets/Get a value that control if enclosures should be downloaded
 		/// </summary>
 		public bool DownloadEnclosures
@@ -892,34 +831,6 @@ namespace RssBandit
 			}
 		}
 
-		/// <summary>
-		/// Gets or sets the podcast download folder.
-		/// </summary>
-		/// <value>The podcast folder.</value>
-		public string PodcastFolder
-		{
-			[DebuggerStepThrough]
-			get { return podcastFolder; }
-			set
-			{
-				SetProperty(ref podcastFolder, value);
-			}
-		}
-
-		/// <summary>
-		/// Gets or sets the podcast file extensions.
-		/// </summary>
-		/// <value>The podcast file extensions.</value>
-		public string PodcastFileExtensions
-		{
-			[DebuggerStepThrough]
-			get { return podcastFileExtensions; }
-			set
-			{
-				SetProperty(ref podcastFileExtensions, value);
-			}
-		}
-		
 		/// <summary>
 		/// Sets/Get the behavior how to handle requests to open new
 		/// window(s) while browsing
@@ -1027,9 +938,6 @@ namespace RssBandit
 			errorFont = FontColorHelper.DefaultFailureFont;
 			referrerFont = FontColorHelper.DefaultReferenceFont;
 			newCommentsFont = FontColorHelper.DefaultNewCommentsFont;
-
-			numEnclosuresToDownloadOnNewFeed = FeedSource.DefaultNumEnclosuresToDownloadOnNewFeed;
-			enclosureCacheSize = FeedSource.DefaultEnclosureCacheSize;
 
 			// init default options to true:
 			this.allOptionalFlags = DefaultOptionalFlags;
@@ -1230,17 +1138,6 @@ namespace RssBandit
             this.ReadingPaneTextSize = reader.Get(nameof(ReadingPaneTextSize), TextSize.Medium);
 
 			this.RefreshRate = reader.Get(nameof(RefreshRate), FeedSource.DefaultRefreshRate);
-            this.EnclosureFolder = reader.Get(nameof(EnclosureFolder), String.Empty);
-            this.EnclosureFolder = String.IsNullOrWhiteSpace(this.EnclosureFolder) 
-                ? RssBanditApplication.GetDefaultEnclosuresPath()
-                : this.EnclosureFolder; 
-			this.NumEnclosuresToDownloadOnNewFeed = reader.Get(nameof(NumEnclosuresToDownloadOnNewFeed), FeedSource.DefaultNumEnclosuresToDownloadOnNewFeed);
-			this.EnclosureCacheSize = reader.Get(nameof(EnclosureCacheSize), FeedSource.DefaultEnclosureCacheSize);
-            this.PodcastFolder = reader.Get(nameof(PodcastFolder), String.Empty);
-            this.PodcastFolder = String.IsNullOrWhiteSpace(this.PodcastFolder)
-                ? RssBanditApplication.GetDefaultPodcastPath()
-                : this.PodcastFolder; 
-			this.PodcastFileExtensions = reader.Get(nameof(PodcastFileExtensions), RssBanditApplication.DefaultPodcastFileExts);
 		}
 
 		/// <summary>
@@ -1287,11 +1184,6 @@ namespace RssBandit
 			info.AddValue(nameof(NumNewsItemsPerPage), this.NumNewsItemsPerPage);
             info.AddValue(nameof(ReadingPaneTextSize), this.ReadingPaneTextSize.ToString());
 			info.AddValue(nameof(RefreshRate), this.RefreshRate);
-			info.AddValue(nameof(EnclosureFolder), this.EnclosureFolder);
-			info.AddValue(nameof(NumEnclosuresToDownloadOnNewFeed), this.NumEnclosuresToDownloadOnNewFeed);
-			info.AddValue(nameof(EnclosureCacheSize), this.EnclosureCacheSize);
-			info.AddValue(nameof(PodcastFolder), this.PodcastFolder);
-			info.AddValue(nameof(PodcastFileExtensions), this.PodcastFileExtensions);
 		}
 		#endregion
 
@@ -1341,12 +1233,7 @@ namespace RssBandit
 				AllOptionalFlags = this.allOptionalFlags.ToString(),
 				NumNewsItemsPerPage = NumNewsItemsPerPage,
 				ReadingPaneTextSize = ReadingPaneTextSize.ToString(),
-				RefreshRate = RefreshRate,
-				EnclosureFolder = EnclosureFolder,
-				NumEnclosuresToDownloadOnNewFeed = NumEnclosuresToDownloadOnNewFeed,
-				EnclosureCacheSize = EnclosureCacheSize,
-				PodcastFolder = PodcastFolder,
-				PodcastFileExtensions = PodcastFileExtensions
+				RefreshRate = RefreshRate
 			};
 		}
 
@@ -1413,16 +1300,6 @@ namespace RssBandit
 			p.NumNewsItemsPerPage = dto.NumNewsItemsPerPage;
 			p.ReadingPaneTextSize = ParseEnum(dto.ReadingPaneTextSize, TextSize.Medium);
 			p.RefreshRate = dto.RefreshRate;
-
-			p.EnclosureFolder = String.IsNullOrWhiteSpace(dto.EnclosureFolder)
-				? RssBanditApplication.GetDefaultEnclosuresPath()
-				: dto.EnclosureFolder;
-			p.NumEnclosuresToDownloadOnNewFeed = dto.NumEnclosuresToDownloadOnNewFeed;
-			p.EnclosureCacheSize = dto.EnclosureCacheSize;
-			p.PodcastFolder = String.IsNullOrWhiteSpace(dto.PodcastFolder)
-				? RssBanditApplication.GetDefaultPodcastPath()
-				: dto.PodcastFolder;
-			p.PodcastFileExtensions = dto.PodcastFileExtensions ?? RssBanditApplication.DefaultPodcastFileExts;
 
 			return p;
 		}
@@ -1756,10 +1633,5 @@ namespace RssBandit
 		public int NumNewsItemsPerPage { get; set; } = 10;
 		public string ReadingPaneTextSize { get; set; }
 		public int RefreshRate { get; set; } = FeedSource.DefaultRefreshRate;
-		public string EnclosureFolder { get; set; } = String.Empty;
-		public int NumEnclosuresToDownloadOnNewFeed { get; set; } = FeedSource.DefaultNumEnclosuresToDownloadOnNewFeed;
-		public int EnclosureCacheSize { get; set; } = FeedSource.DefaultEnclosureCacheSize;
-		public string PodcastFolder { get; set; } = String.Empty;
-		public string PodcastFileExtensions { get; set; }
 	}
 }

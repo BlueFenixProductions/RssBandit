@@ -45,12 +45,6 @@ namespace NewsComponents.Feed
 
             rssParser = new RssParser(this);
 
-            if (!String.IsNullOrEmpty(EnclosureFolder))
-            {
-                enclosureDownloader = new BackgroundDownloadManager(this);
-                enclosureDownloader.DownloadCompleted += OnEnclosureDownloadComplete;
-            }
-
             AsyncWebRequest = new AsyncWebRequest();
             AsyncWebRequest.OnAllRequestsComplete += OnAllRequestsComplete;
         }
@@ -215,64 +209,11 @@ namespace NewsComponents.Feed
                     //this.stylesheet = myFeeds.stylesheet;
                 }
 
-                //if download enclosures specified in imported feed then use that
-                if (myFeeds.downloadenclosuresSpecified)
-                {
-                    MigrationProperties.Add("DownloadEnclosures", myFeeds.downloadenclosures);
-                }
-
-                //if maximum enclosure cache size specified in imported feed then use that
-                if (myFeeds.enclosurecachesizeSpecified)
-                {
-                    MigrationProperties.Add("EnclosureCacheSize", myFeeds.enclosurecachesize);
-                    //this.enclosurecachesize = myFeeds.enclosurecachesize;
-                }
-
-                //if maximum number of enclosures to download on a new feed specified in imported feed then use that
-                if (myFeeds.numtodownloadonnewfeedSpecified)
-                {
-                    MigrationProperties.Add("NumEnclosuresToDownloadOnNewFeed", myFeeds.numtodownloadonnewfeed);
-                    //this.numtodownloadonnewfeed = myFeeds.numtodownloadonnewfeed;
-                }
-
-                //if cause alert on enclosures specified in imported feed then use that
-                if (myFeeds.enclosurealertSpecified)
-                {
-                    MigrationProperties.Add("EnclosureAlert", myFeeds.enclosurealert);
-                    //this.enclosurealert = myFeeds.enclosurealert;
-                }
-
-                //if create subfolders for enclosures specified in imported feed then use that
-                if (myFeeds.createsubfoldersforenclosuresSpecified)
-                {
-                    MigrationProperties.Add("CreateSubfoldersForEnclosures", myFeeds.createsubfoldersforenclosures);
-                    //this.createsubfoldersforenclosures = myFeeds.createsubfoldersforenclosures;
-                }
-
-
                 //if marking items as read on exit specified in imported feed then use that
                 if (myFeeds.markitemsreadonexitSpecified)
                 {
                     MigrationProperties.Add("MarkItemsReadOnExit", myFeeds.markitemsreadonexit);
                     //this.markitemsreadonexit = myFeeds.markitemsreadonexit;
-                }
-
-                //if enclosure folder specified in imported feed then use that
-                if (!string.IsNullOrEmpty(myFeeds.enclosurefolder))
-                {
-                    MigrationProperties.Add("EnclosureFolder", myFeeds.enclosurefolder);
-                }
-
-                //if podcast folder specified in imported feed then use that
-                if (!string.IsNullOrEmpty(myFeeds.podcastfolder))
-                {
-					MigrationProperties.Add("PodcastFolder", myFeeds.podcastfolder);
-                }
-
-                //if podcast file extensions specified in imported feed then use that
-                if (!string.IsNullOrEmpty(myFeeds.podcastfileexts))
-                {
-					MigrationProperties.Add("PodcastFileExtensions", myFeeds.podcastfileexts);
                 }
 
 				////if listview layout specified in imported feed then use that

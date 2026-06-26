@@ -1956,10 +1956,7 @@ namespace RssBandit.WinGui.Forms
 			switch (e.Action)
 			{
 				case NotifierAction.ActivateItem:
-					if (e.DownloadItem != null)
-						PlayEnclosure(e.DownloadItem);
-					else
-						DelayTask(DelayedTasks.NavigateToFeedNewsItem, e.NewsItem);
+					DelayTask(DelayedTasks.NavigateToFeedNewsItem, e.NewsItem);
 					break;
 				case NotifierAction.ActivateFeed:
 					DelayTask(DelayedTasks.NavigateToFeed, e.NewsFeed);

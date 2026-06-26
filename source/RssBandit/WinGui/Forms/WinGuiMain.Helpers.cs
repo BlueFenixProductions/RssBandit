@@ -1980,32 +1980,7 @@ namespace RssBandit.WinGui.Forms
         }
 
 
-		/// <summary>
-		/// Invoked by RssBanditApplication when an enclosure has been successfully dowbloaded
-		/// </summary>
-		/// <param name="entry">The entry.</param>
-		/// <param name="downloadItem">The <see cref="NewsComponents.Net.DownloadItemEventArgs"/> instance containing the event data.</param>
-		internal void OnEnclosureReceived(FeedSourceEntry entry, DownloadItem downloadItem)
-        {
-            /* display alert window on new download available */
-            if (entry.Source.IsSubscribed(downloadItem.OwnerFeedId))
-            {
-				INewsFeed f = entry.Source.GetFeeds()[downloadItem.OwnerFeedId];
-
-				if (entry.Source.GetEnclosureAlert(f.link))
-                {
-                    downloadItem.OwnerFeed = f;
-                    var items = new List<DownloadItem>
-                                    {
-                                        downloadItem
-                                    };
-                    toastNotifier.Alert(f, 0, items);
-                }
-            } //if(feedHandler.GetFeeds().Contains(..))
-        }
-
-
-        private void BeginTransformFeed(IFeedDetails feed, UltraTreeNode feedNode, string stylesheet)
+		private void BeginTransformFeed(IFeedDetails feed, UltraTreeNode feedNode, string stylesheet)
         {
             /* perform XSLT transformation in a background thread */
             owner.MakeAndQueueTask(ThreadWorker.Task.TransformFeed, OnFeedTransformed,

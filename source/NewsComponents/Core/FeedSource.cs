@@ -178,8 +178,6 @@ namespace NewsComponents
             userAgentTemplate = sb.ToString();
             // TODO: REMOVE
             //LoadCachedTopStoryTitles();
-            EnclosureFolder = String.Empty;
-            NumEnclosuresToDownloadOnNewFeed = DefaultNumEnclosuresToDownloadOnNewFeed;
         }
 
 		/// <summary>
@@ -281,21 +279,8 @@ namespace NewsComponents
             NewsFeedProperty.FeedItemWatchComments |
             NewsFeedProperty.FeedCredentials;
 
-        /// <summary>
-        /// Indicates the default maximum amount of space that enclosures and 
-        /// podcasts can use on disk. Currently this is Int32.MaxValue
-        /// </summary>
-        public const int DefaultEnclosureCacheSize = Int32.MaxValue;
-
-        /// <summary>
-        /// Indicates the default number of enclosures which should be downloaded 
-        /// automatically from a newly subscribed feed.
-        /// Currently this is Int32.MaxValue.
-        /// </summary>
-        public const int DefaultNumEnclosuresToDownloadOnNewFeed = Int32.MaxValue;
-
 		/// <summary>
-		/// The start of the Unix epoch. Used to calculate If-Modified-Since semantics when fetching feeds. 
+		/// The start of the Unix epoch. Used to calculate If-Modified-Since semantics when fetching feeds.
 		/// </summary>
 		public static DateTime UnixEpoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
@@ -384,13 +369,7 @@ namespace NewsComponents
         public static int DefaultRefreshRate = 60*60*1000;
 
         /// <summary>
-        /// Indicates the maximum amount of space that enclosures and 
-        /// podcasts can use on disk.
-        /// </summary>
-        private static int enclosurecachesize = DefaultEnclosureCacheSize;
-
-        /// <summary>
-        /// Manage the lucene search 
+        /// Manage the lucene search
         /// </summary>
         protected static LuceneSearch p_searchHandler;
 
@@ -414,11 +393,6 @@ namespace NewsComponents
             new Dictionary<string, IFeedDetails>();
 
         /// <summary>
-        /// The file extensions of enclosures that should be treated as podcasts. 
-        /// </summary>
-		static readonly List<string> podcastfileextensions = new List<string>();
-
-        /// <summary>
         /// Used for making asynchronous Web requests
         /// </summary>
         protected AsyncWebRequest AsyncWebRequest;
@@ -428,11 +402,6 @@ namespace NewsComponents
         /// </summary>
         protected IDictionary<string, INewsFeedCategory> categories = new ConcurrentDictionary<string, INewsFeedCategory>();
         //protected IDictionary<string, INewsFeedCategory> categories = new SortedDictionary<string, INewsFeedCategory>();
-
-        /// <summary>
-        /// Downloads enclosures/podcasts in the background using BITS. 
-        /// </summary>
-        protected BackgroundDownloadManager enclosureDownloader;
 
         /// <summary>
         /// FeedsCollection representing subscribed feeds list
@@ -519,11 +488,6 @@ namespace NewsComponents
         /// Callback delegate used on event OnDeletedFeed.
         /// </summary>
         public delegate void DeletedFeedCallback(object sender, FeedDeletedEventArgs e);
-
-        /// <summary>
-        /// Callback delegate used on event OnDownloadedEnclosure.
-        /// </summary>
-        public delegate void DownloadedEnclosureCallback(object sender, DownloadItemEventArgs e);
 
         /// <summary>
         /// The callback used within the BeforeDownloadFeedStarted event.
@@ -631,11 +595,6 @@ namespace NewsComponents
         /// Event called on every moved feed.
         /// </summary>
         public event MovedFeedCallback OnMovedFeed = null;
-
-        /// <summary>
-        /// Event called on every completed enclosure download. 
-        /// </summary>
-        public event DownloadedEnclosureCallback OnDownloadedEnclosure = null;
 
         /// <summary>
         /// Event called on every updated favicon.
@@ -1456,85 +1415,10 @@ namespace NewsComponents
         public static string Stylesheet { get; set; }
 
         /// <summary>
-        /// Gets or sets the folder for downloading enclosures
-        /// </summary>
-        public static string EnclosureFolder { get; set; }
-
-
-        /// <summary>
-        /// Gets the list of file extensions of enclosures that should be treated as podcasts
-        /// as a string. 
-        /// </summary>
-        public static string PodcastFileExtensionsAsString
-        {
-            get
-            {
-                var toReturn = new StringBuilder();
-
-                foreach (string s in podcastfileextensions)
-                {
-                    if (!string.IsNullOrWhiteSpace(s))
-                    {
-                        toReturn.Append(s);
-                        toReturn.Append(";");
-                    }
-                }
-
-                return toReturn.ToString();
-            }
-
-            set
-            {
-                string[] fileexts = value.Split(new[] {';', ' '});
-                podcastfileextensions.Clear();
-
-                foreach (var s in fileexts)
-                {
-                    podcastfileextensions.Add(s);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the folder for downloading podcasts
-        /// </summary>
-        public static string PodcastFolder { get; set; }
-
-        /// <summary>
         /// Gets or sets whether items in the feed should be marked as read on exiting
         /// the feed in the UI
         /// </summary>
         public static bool MarkItemsReadOnExit { get; set; }
-
-
-        /// <summary>
-        /// Indicates the maximum amount of space that enclosures and 
-        /// podcasts can use on disk.
-        /// </summary>
-        public static int EnclosureCacheSize
-        {
-            get { return enclosurecachesize; }
-
-            set { enclosurecachesize = value; }
-        }
-
-        /// <summary>
-        /// Indicates the number of enclosures which should be downloaded automatically from a newly subscribed feed.
-        /// </summary>
-        public static int NumEnclosuresToDownloadOnNewFeed { get; set; }
-
-
-        /// <summary>
-        /// Gets or sets whether  podcasts and enclosures should be downloaded to a folder 
-        /// named after the feed
-        /// </summary>
-        public static bool CreateSubfoldersForEnclosures { get; set; }
-
-        /// <summary>
-        /// Gets or sets whether a toast windows should be displayed on a successful download
-        /// of an enclosure.
-        /// </summary>
-        public static bool EnclosureAlert { get; set; }		
 
         /// <summary>
         /// Accesses the list of UserIdentity objects.
@@ -1931,10 +1815,10 @@ namespace NewsComponents
         /// <value><c>true</c> if download enclosures; otherwise, <c>false</c>.</value>
         bool ISharedProperty.downloadenclosures
         {
-            get { return p_configuration.DownloadEnclosures; }
+            get { return false; }
             set
             {
-                /* ignored at top level */
+                /* inert: enclosure auto-download removed */
             }
         }
 
@@ -1959,10 +1843,10 @@ namespace NewsComponents
         /// <value><c>true</c> if enclosurealert; otherwise, <c>false</c>.</value>
         bool ISharedProperty.enclosurealert
         {
-            get { return EnclosureAlert; }
+            get { return false; }
             set
             {
-                /* ignore at top level */
+                /* inert: enclosure auto-download removed */
             }
         }
 
@@ -1987,8 +1871,8 @@ namespace NewsComponents
         /// <value>The enclosure folder.</value>
         string ISharedProperty.enclosurefolder
         {
-            get { return EnclosureFolder; }
-            set { EnclosureFolder = value; }
+            get { return String.Empty; }
+            set { /* inert: enclosure auto-download removed */ }
         }
 
         /// <summary>
@@ -3576,38 +3460,6 @@ namespace NewsComponents
 
 
         /// <summary>
-        /// Sets the enclosure folder for a feed
-        /// </summary>
-        /// <param name="feedUrl">the URL of the feed</param>
-        /// <param name="folder">the new enclosure folder </param>
-        public void SetEnclosureFolder(string feedUrl, string folder)
-        {
-            SetFeedProperty(feedUrl, "enclosurefolder", folder);
-        }
-
-        /// <summary>
-        /// Gets the target folder to download enclosures from a feed. The folder returned 
-        /// may change depending on whether the item is a podcast (i.e. is in the 
-        /// podcastfileextensions ArrayList)
-        /// </summary>
-        /// <param name="feedUrl">the URL of the feed</param>
-        /// <param name="filename">The name of the file</param>
-        /// <returns>the enclosure folder</returns>
-        public string GetEnclosureFolder(string feedUrl, string filename)
-        {
-            string folderName = (IsPodcast(filename) ? PodcastFolder : EnclosureFolder);
-
-            if (CreateSubfoldersForEnclosures && feedsTable.ContainsKey(feedUrl))
-            {
-                INewsFeed f = feedsTable[feedUrl];
-                folderName = Path.Combine(folderName, FileHelper.CreateValidFileName(f.title));
-            }
-
-            return folderName;
-        }
-
-
-        /// <summary>
         /// Sets the listview layout ID for a feed
         /// </summary>
         /// <param name="feedUrl">the URL of the feed</param>
@@ -3646,49 +3498,6 @@ namespace NewsComponents
         public bool GetMarkItemsReadOnExit(string feedUrl)
         {
             return (bool) GetFeedProperty(feedUrl, "markitemsreadonexit");
-        }
-
-        /// <summary>
-        /// Sets whether to download enclosures for this feed
-        /// </summary>
-        /// <param name="feedUrl">the URL of the feed</param>
-        /// <param name="download">the new value for downloadenclosures</param>
-        public void SetDownloadEnclosures(string feedUrl, bool download)
-        {
-            SetFeedProperty(feedUrl, "downloadenclosures", download);
-        }
-
-        /// <summary>
-        /// Gets whether to download enclosures for this feed
-        /// </summary>
-        /// <param name="feedUrl">the URL of the feed</param>
-        /// <returns>hether to download enclosures for this feed</returns>
-        public bool GetDownloadEnclosures(string feedUrl)
-        {
-            return (bool) GetFeedProperty(feedUrl, "downloadenclosures");
-        }
-
-
-        /// <summary>
-        /// Sets whether to display an alert when an enclosure is successfully
-        /// downloaded for this feed
-        /// </summary>
-        /// <param name="feedUrl">the URL of the feed</param>
-        /// <param name="alert">if set to <c>true</c> [enclosurealert].</param>
-        public void SetEnclosureAlert(string feedUrl, bool alert)
-        {
-            SetFeedProperty(feedUrl, "enclosurealert", alert);
-        }
-
-        /// <summary>
-        /// Gets whether to display an alert when an enclosure is successfully 
-        /// downloaded for this feed
-        /// </summary>
-        /// <param name="feedUrl">the URL of the feed</param>
-        /// <returns>hether to download enclosures for this feed</returns>
-        public bool GetEnclosureAlert(string feedUrl)
-        {
-            return (bool) GetFeedProperty(feedUrl, "enclosurealert");
         }
 
         /// <summary>
@@ -3845,27 +3654,6 @@ namespace NewsComponents
 
 
         /// <summary>
-        /// Sets the enclosure folder for a category
-        /// </summary>
-        /// <param name="category">the name of the category</param>
-        /// <param name="folder">the new enclosure folder </param>
-        public void SetCategoryEnclosureFolder(string category, string folder)
-        {
-            SetCategoryProperty(category, "enclosurefolder", folder);
-        }
-
-        /// <summary>
-        /// Gets the enclosure folder for a category
-        /// </summary>
-        /// <param name="category">the name of the category</param>
-        /// <returns>the enclosure folder</returns>
-        public string GetCategoryEnclosureFolder(string category)
-        {
-            return (string) GetCategoryProperty(category, "enclosurefolder");
-        }
-
-
-        /// <summary>
         /// Sets the listview layout for a category
         /// </summary>
         /// <param name="category">the name of the category</param>
@@ -3904,47 +3692,6 @@ namespace NewsComponents
         public bool GetCategoryMarkItemsReadOnExit(string category)
         {
             return (bool) GetCategoryProperty(category, "markitemsreadonexit");
-        }
-
-        /// <summary>
-        /// Sets whether to download enclosures for this category
-        /// </summary>
-        /// <param name="category">the name of the category</param>
-        /// <param name="download">the new value for downloadenclosures</param>
-        public void SetCategoryDownloadEnclosures(string category, bool download)
-        {
-            SetCategoryProperty(category, "downloadenclosures", download);
-        }
-
-        /// <summary>
-        /// Gets whether to download enclosures for this category
-        /// </summary>
-        /// <param name="category">the name of the category</param>
-        /// <returns>the refresh rate</returns>
-        public bool GetCategoryDownloadEnclosures(string category)
-        {
-            return (bool) GetCategoryProperty(category, "downloadenclosures");
-        }
-
-
-        /// <summary>
-        /// Sets whether to display an alert when an enclosure is successfully downloaded
-        /// </summary>
-        /// <param name="category">the name of the category</param>
-        /// <param name="alert">if set to <c>true</c> [enclosurealert].</param>
-        public void SetCategoryEnclosureAlert(string category, bool alert)
-        {
-            SetCategoryProperty(category, "enclosurealert", alert);
-        }
-
-        /// <summary>
-        /// Gets whether to display an alert when an enclosure is successfully downloaded
-        /// </summary>
-        /// <param name="category">the name of the category</param>
-        /// <returns>the refresh rate</returns>
-        public bool GetCategoryEnclosureAlert(string category)
-        {
-            return (bool) GetCategoryProperty(category, "enclosurealert");
         }
 
         /// <summary>
@@ -4673,41 +4420,6 @@ namespace NewsComponents
                     theFeed.causedException = false;
                     itemsForFeed = fi.ItemsList;
 
-                    /* download podcasts from items we just received if downloadenclosures == true */
-                    if (GetDownloadEnclosures(theFeed.link))
-                    {
-                        int numDownloaded = 0;
-                        int maxDownloads = (firstSuccessfulDownload
-                                                ? NumEnclosuresToDownloadOnNewFeed
-                                                : DefaultNumEnclosuresToDownloadOnNewFeed);
-
-
-                        //since we are going to use this value for calculation we should change it 
-                        //from TimeSpan.MinValue which is used to indicate 'keep indefinitely' to TimeSpan.MaxValue                    
-                        TimeSpan maxItemAge = GetMaxItemAge(theFeed.link);
-                        maxItemAge = (maxItemAge == TimeSpan.MinValue ? TimeSpan.MaxValue : maxItemAge);
-
-                        if (newReceivedItems != null)
-                            foreach (NewsItem ni in newReceivedItems)
-                            {
-                                //ensure that we don't attempt to download these enclosures at a later date
-                                if (numDownloaded >= maxDownloads || (DateTime.Now - ni.Date > maxItemAge))
-                                {
-                                    MarkEnclosuresDownloaded(ni);
-                                    continue;
-                                }
-
-                                try
-                                {
-                                    numDownloaded += DownloadEnclosure(ni, maxDownloads - numDownloaded);
-                                }
-                                catch (DownloaderException de)
-                                {
-                                    _log.Error("Error occured when downloading enclosures in OnRequestComplete():", de);
-                                }
-                            }
-                    }
-
                     /* Make sure read stories are accurately calculated */
                     theFeed.containsNewMessages = false;
                     theFeed.storiesrecentlyviewed.Clear();
@@ -4802,21 +4514,6 @@ namespace NewsComponents
             RaiseOnAllAsyncRequestsCompleted();
         }
 
-
-        protected void OnEnclosureDownloadComplete(object sender, DownloadItemEventArgs e)
-        {
-            if (OnDownloadedEnclosure != null)
-            {
-                try
-                {
-                    OnDownloadedEnclosure(sender, e);
-                }
-                catch
-                {
-                    /* ignore ex. thrown by callback */
-                }
-            }
-        }
 
         // see http://www.iana.org/assignments/media-types/image/vnd.microsoft.icon
 
@@ -5203,137 +4900,6 @@ namespace NewsComponents
             return uri.Authority.Replace(".", "-") + extension;
         }
 
-
-        /// <summary>
-        /// Determines whether the file should be treated as a podcast or just as a regular enclosure.
-        /// </summary>
-        /// <param name="filename">The name of the file</param>
-        /// <returns>Returns true if the file extension is one of those in the podcastfileextensions ArrayList</returns>
-        public bool IsPodcast(string filename)
-        {
-            if (string.IsNullOrEmpty(filename))
-            {
-                return false;
-            }
-
-            try
-            {
-                string fileext = Path.GetExtension(filename);
-
-                if (fileext.Length > 1)
-                {
-                    fileext = fileext.Substring(1);
-
-                    foreach (string podcastExt in podcastfileextensions)
-                    {
-                        if (fileext.ToLower().Equals(podcastExt.ToLower()))
-                        {
-                            return true;
-                        }
-                    } //foreach
-                }
-            }
-            catch (ArgumentException)
-            { 
-                /* invalid characters in file path when calling Path.GetExtension() */
-            }
-                                        
-            return false;
-        }
-
-        /// <summary>
-        /// Helper function that marks all of an items enclosures as downloaded. 
-        /// </summary>
-        /// <param name="item"></param>
-        internal static void MarkEnclosuresDownloaded(INewsItem item)
-        {
-            if (item == null)
-            {
-                return;
-            }
-
-            foreach (Enclosure enc in item.Enclosures)
-            {
-                enc.Downloaded = true;
-            }
-        }
-
-        /// <summary>
-        /// Downloads all the enclosures associated with the specified NewsItem
-        /// </summary>
-        /// <param name="item">The newsitem whose enclosures are being downloaded</param>
-        /// <param name="maxNumToDownload">The maximum number of enclosures that can be downloaded from this item</param>
-        /// <returns>The number of downloaded enclosures</returns>
-        protected int DownloadEnclosure(INewsItem item, int maxNumToDownload)
-        {
-            int numDownloaded = 0;
-
-            if ((maxNumToDownload > 0) && (item != null) && (item.Enclosures.Count > 0))
-            {
-                foreach (Enclosure enc in item.Enclosures)
-                {
-                    var di = new DownloadItem(item.Feed.link, item.Id, enc, enclosureDownloader);
-
-                    if (!enc.Downloaded)
-                    {
-                        enclosureDownloader.BeginDownload(di);
-                        enc.Downloaded = true;
-                        numDownloaded++;
-                    }
-                    if (numDownloaded >= maxNumToDownload) break;
-                }
-            } //if
-
-            if (item != null && numDownloaded < item.Enclosures.Count)
-            {
-                MarkEnclosuresDownloaded(item);
-            }
-
-            return numDownloaded;
-        }
-
-
-        /// <summary>
-        /// Downloads all the enclosures associated with the specified NewsItem
-        /// </summary>
-        /// <param name="item">The newsitem whose enclosures are being downloaded</param>
-        public void DownloadEnclosure(INewsItem item)
-        {
-            DownloadEnclosure(item, Int32.MaxValue);
-        }
-
-        /// <summary>
-        /// Download the specified enclosure associated with the specified NewsItem. 
-        /// </summary>
-        /// <remarks>The enclosure will be downloaded ONLY IF it is found as the Url 
-        /// field of one of the Enclosure objects in the Enclosures collection of the specified NewsItem</remarks>
-        /// <param name="item"></param>
-        /// <param name="fileName">The name of the enclosure file to download</param>
-        public void DownloadEnclosure(INewsItem item, string fileName)
-        {
-            if ((item != null) && (item.Enclosures.Count > 0))
-            {
-                foreach (Enclosure enc in item.Enclosures)
-                {
-                    if (enc.Url.EndsWith(fileName, StringComparison.OrdinalIgnoreCase))
-                    {
-                        var di = new DownloadItem(item.Feed.link, item.Id, enc, enclosureDownloader);
-                        enclosureDownloader.BeginDownload(di);
-                        enc.Downloaded = true;
-                        break;
-                    }
-                } //foreach										
-            } //if(item != null && ...)
-        }
-
-        /// <summary>
-        /// Resumes pending BITS downloads from a if any exist. 
-        /// </summary>
-        public virtual void ResumePendingDownloads()
-        {
-            if (enclosureDownloader != null)
-                enclosureDownloader.ResumePendingDownloads();
-        }
 
 		/// <summary>
 		/// Downloads the favicons for the various feeds.
@@ -7079,8 +6645,6 @@ namespace NewsComponents
             }
 
             SearchHandler.IndexRemove(f.id);
-            if (enclosureDownloader != null)
-                enclosureDownloader.CancelPendingDownloads(feedUrl);
 
             try
             {
@@ -7177,9 +6741,6 @@ namespace NewsComponents
                 }
             }
 
-            if (enclosureDownloader != null)
-                enclosureDownloader.CancelPendingDownloads();            
-            
             feedsTable.Clear();
             categories.Clear();
             readonly_categories = new ReadOnlyDictionary<string, INewsFeedCategory>(categories);
