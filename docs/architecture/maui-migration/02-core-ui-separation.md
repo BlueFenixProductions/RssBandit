@@ -1,5 +1,11 @@
 # Spec 2 — Core / UI separation (the linchpin)
 
+> **⚠️ Superseded by [Spec 2a — Core/UI separation, made actionable](02a-core-ui-separation-actionable.md).**
+> This original (2026-06-14) is kept for provenance. Spec 2a revises it with two things that changed:
+> the FeedSource decomposition is now **complete** (so Step 4 below is re-scoped out of the gate), and
+> a re-survey shows the engine is **~90% already-portable, gated by project plumbing not code**.
+> **Start from Spec 2a.**
+
 *Part of the [MAUI migration handoff](00-README.md). Status: not started. Everything
 downstream (Specs 3–4) depends on this.*
 
