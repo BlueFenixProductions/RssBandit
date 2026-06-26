@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
+using System.Xml;
 using NewsComponents.Feed;
 
 namespace NewsComponents
@@ -39,5 +40,23 @@ namespace NewsComponents
         /// <exception cref="System.ArgumentNullException">If feedStream is null.</exception>
         void WriteFeedList(Stream feedStream, FeedListFormat format,
                            IDictionary<string, INewsFeed> feeds, bool includeEmptyCategories);
+
+        /// <summary>
+        /// Parses a feed-list stream into a <see cref="feeds"/> object: loads the stream into an
+        /// <see cref="XmlDocument"/>, normalizes the format via <see cref="ConvertFeedList"/> and
+        /// deserializes the result. This is the read counterpart of <see cref="WriteFeedList"/>;
+        /// the state-mutating merge engine stays on <c>FeedSource</c>.
+        /// </summary>
+        /// <param name="feedlist">The stream containing the feed list.</param>
+        /// <returns>The deserialized <see cref="feeds"/> object.</returns>
+        feeds ParseFeedList(Stream feedlist);
+
+        /// <summary>
+        /// Converts the input XML document from OCS, OPML or SIAM to the RSS Bandit feed list format.
+        /// </summary>
+        /// <param name="doc">The input feed list.</param>
+        /// <returns>The converted feed list.</returns>
+        /// <exception cref="System.ApplicationException">If the feed list format is unknown.</exception>
+        XmlDocument ConvertFeedList(XmlDocument doc);
     }
 }
