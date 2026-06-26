@@ -695,15 +695,6 @@ namespace RssBandit
         }
 
         /// <summary>
-        /// Gets the preferences file name (old binary format).
-        /// </summary>
-        /// <returns></returns>
-        public static string GetPreferencesFileNameOldBinary()
-        {
-            return Path.Combine(GetUserPath(), ".preferences");
-        }
-
-        /// <summary>
         /// Gets the name of the preferences file (legacy SOAP format, read-only migration shim).
         /// </summary>
         /// <returns></returns>

@@ -33,9 +33,6 @@ using System.Linq;
 using System.Net;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Runtime.Serialization.Formatters.Soap;
 using System.Security;
 using System.Text;
 using System.Text.Json;
@@ -2256,67 +2253,11 @@ namespace RssBandit
                 return;
             }
 
-            // Legacy read shim (one-time migration to JSON): the SoapFormatter
-            // (.preferences.xml) and BinaryFormatter (.preferences/.preferences.v13)
-            // code below - incl. the SoapFormatter and System.Runtime.Serialization.Formatters
-            // packages and the EnableUnsafeBinaryFormatterSerialization project flag - is
-            // kept exclusively to read old preferences files and migrate them to JSON.
-            string pName = GetPreferencesFileName();
-            bool migrate = true; // any successfully read legacy format gets migrated to JSON
-			SoapFormatter sf = new SoapFormatter();
-        	// we don't rely on strong assembly names for prefs.:
-			sf.AssemblyFormat = FormatterAssemblyStyle.Simple;
-			sf.TypeFormat = FormatterTypeStyle.TypesWhenNeeded;
-            
-			IFormatter formatter = sf;
-
-            if (! File.Exists(pName))
-            {
-                // migrate from binary to XML
-                string pOldName = GetPreferencesFileNameOldBinary();
-                string pTempNew = pOldName + ".v13"; // in between temp prefs
-
-                if (File.Exists(pTempNew))
-                {
-                    pName = pTempNew; // migrate from in-between
-                    formatter = new BinaryFormatter();
-                }
-                else if (File.Exists(pOldName))
-                {
-                    pName = pOldName;
-                    formatter = new BinaryFormatter();
-                }
-            }
-
-            if (File.Exists(pName))
-            {
-                using (Stream stream = FileHelper.OpenForRead(pName))
-                {
-                    try
-                    {
-                        // to provide backward compat.:
-                        formatter.Binder = new RssBanditPreferences.DeserializationTypeBinder();
-                        var p = (RssBanditPreferences) formatter.Deserialize(stream);
-                        Preferences = p;
-                    }
-                    catch (Exception e)
-                    {
-                        _log.Error("Preferences DeserializationException", e);
-                        Preferences = DefaultPreferences;
-                        migrate = false;
-                    }
-                }
-
-                if (migrate)
-                {
-                    SavePreferences();
-                }
-            }
-            else
-            {
-                // no preferences saved yet, use default:
-                Preferences = DefaultPreferences;
-            }
+            // No JSON preferences file exists yet: start from defaults. The legacy
+            // SOAP/BinaryFormatter read shim that one-time-migrated pre-JSON
+            // .preferences/.preferences.xml/.preferences.v13 files has been retired,
+            // since JSON is the primary, auto-migrating format.
+            Preferences = DefaultPreferences;
         }
 
         internal void SavePreferences()
