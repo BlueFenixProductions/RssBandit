@@ -32,8 +32,38 @@ namespace RssBandit
 		/// <param name="exception">The exception to publish.</param>
 		public static void Publish(Exception exception)
 		{
-			WriteToErrorLog(exception);
-			Common.Logging.Log.Error(exception.ToDescriptiveString(), exception);
+			// Publishing happens from inside callers' catch blocks; like the old
+			// Enterprise Library ExceptionManager.Publish, a publisher failure must
+			// never propagate back to the caller. Guard the argument and run the two
+			// effects independently so one failing cannot skip the other and neither
+			// can throw back out of this method.
+			if (exception == null)
+				return;
+
+			try
+			{
+				WriteToErrorLog(exception);
+			}
+			catch (Exception writeFailure)
+			{
+				try
+				{
+					Common.Logging.Log.Error("ExceptionPublisher: failed to write to error.log", writeFailure);
+				}
+				catch
+				{
+					// Nothing more we can do; swallow so publishing never throws.
+				}
+			}
+
+			try
+			{
+				Common.Logging.Log.Error(exception.ToDescriptiveString(), exception);
+			}
+			catch
+			{
+				// A log4net failure must not propagate back into the caller's catch block.
+			}
 		}
 
 		/// <summary>
@@ -54,6 +84,8 @@ namespace RssBandit
 			strInfo.AppendFormat("{0}Thread-Culture: {1}", Environment.NewLine, System.Threading.Thread.CurrentThread.CurrentCulture.Name);
 			strInfo.AppendFormat("{0}UI-Culture: {1}", Environment.NewLine, System.Threading.Thread.CurrentThread.CurrentUICulture.Name);
 			strInfo.AppendFormat("{0}IE-Version: {1}", Environment.NewLine, Win32.IEVersion);
+			strInfo.AppendFormat("{0}Date/Time: {1}", Environment.NewLine, DateTime.Now.ToString("o", System.Globalization.CultureInfo.InvariantCulture));
+			strInfo.AppendFormat("{0}Machine Name: {1}", Environment.NewLine, Environment.MachineName);
 
 			// Append the exception text.
 			if (exception != null)
