@@ -8,6 +8,7 @@
 #endregion
 
 using System;
+using System.ComponentModel;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
 using System.Windows.Forms;
@@ -179,11 +180,13 @@ namespace RssBandit.WinGui.Dialogs
 			base.Dispose( disposing );
 		}
 
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public TimeSpan MaxItemAge {
 			get { return Utils.MaxItemAgeFromIndex(this.comboMaxItemAge.SelectedIndex); }
 			set { this.comboMaxItemAge.SelectedIndex = Utils.MaxItemAgeToIndex(value);	}
 		}
 
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public X509Certificate2 ClientCertificate
 		{
 			get { return _clientCertificate; }

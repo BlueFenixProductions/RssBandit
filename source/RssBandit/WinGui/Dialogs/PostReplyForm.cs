@@ -9,6 +9,7 @@
 #endregion
 
 using System;
+using System.ComponentModel;
 using System.Globalization;
 using System.Windows.Forms;
 using NewsComponents;
@@ -114,6 +115,7 @@ namespace RssBandit.WinGui.Dialogs
 		/// Gets or sets the reply to NewsItem.
 		/// </summary>
 		/// <value>The reply to item.</value>
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public INewsItem ReplyToItem {
 			get { return this.replyToItem; }
 			set {
@@ -130,6 +132,7 @@ namespace RssBandit.WinGui.Dialogs
 		/// Gets or sets the NewsFeed to post to.
 		/// </summary>
 		/// <value>The NewsFeed to post to.</value>
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public INewsFeed PostToFeed {
 			get { return this.postToFeed; }
 			set {

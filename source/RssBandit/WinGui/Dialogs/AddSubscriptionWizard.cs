@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Collections;
 using System.Collections.Generic;
@@ -743,16 +744,18 @@ namespace RssBandit.WinGui.Dialogs
 		/// Gets or sets the feed URL.
 		/// </summary>
 		/// <value>The feed URL.</value>
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public string FeedUrl
 		{
-			get { return this.txtNewByURL.Text.Trim(); } 
+			get { return this.txtNewByURL.Text.Trim(); }
 			set { this.txtNewByURL.Text = value; }
-		} 
+		}
 
 		/// <summary>
 		/// Gets or sets the feed category.
 		/// </summary>
 		/// <value>The feed category.</value>
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public string FeedCategory
 		{
 			get {
@@ -774,6 +777,7 @@ namespace RssBandit.WinGui.Dialogs
 		/// Gets or sets the current selected feed source name.
 		/// </summary>
 		/// <value>The feed category.</value>
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public string FeedSourceName
 		{
 			get
@@ -792,18 +796,20 @@ namespace RssBandit.WinGui.Dialogs
 		/// Gets or sets the feed title.
 		/// </summary>
 		/// <value>The feed title.</value>
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public string FeedTitle {
-			get { return this.txtFeedTitle.Text.Trim(); } 
+			get { return this.txtFeedTitle.Text.Trim(); }
 			set { this.txtFeedTitle.Text = StripAndDecode(value); }
-		} 
+		}
 		/// <summary>
 		/// Gets or sets the search terms.
 		/// </summary>
 		/// <value>The search terms.</value>
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public string SearchTerms {
-			get { return this.txtNewBySearchWords.Text.Trim(); } 
+			get { return this.txtNewBySearchWords.Text.Trim(); }
 			set { this.txtNewBySearchWords.Text = value; }
-		} 
+		}
 		/// <summary>
 		/// Gets the feed credential user.
 		/// </summary>
@@ -841,7 +847,8 @@ namespace RssBandit.WinGui.Dialogs
 		/// Gets or sets the max item age.
 		/// </summary>
 		/// <value>The max item age.</value>
-		public TimeSpan MaxItemAge 
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		public TimeSpan MaxItemAge
 		{
 			get { return Utils.MaxItemAgeFromIndex(this.comboMaxItemAge.SelectedIndex); }
 			set { this.comboMaxItemAge.SelectedIndex = Utils.MaxItemAgeToIndex(value);	}

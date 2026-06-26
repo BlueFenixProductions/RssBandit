@@ -8,6 +8,7 @@
 #endregion
 
 using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -665,6 +666,7 @@ namespace RssBandit.WinGui.Dialogs
 
 
 		private SearchEngine _engine;
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public SearchEngine Engine {
 			get { return _engine; }
 			set { _engine = value;}

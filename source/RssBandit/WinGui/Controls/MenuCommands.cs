@@ -234,16 +234,19 @@ namespace RssBandit.WinGui.Menus {
 
 		#region ICommandComponent implementation: abstract from the concrete Base class
 
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public new bool Checked 	{
 			get { return base.Checked;  }
 			set	{ base.Checked = value; }
 		}
 
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public new bool Enabled {
 			get { return base.Enabled;  }
 			set	{ base.Enabled = value; }
 		}
 
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public new bool Visible {
 			get { return base.Visible;  }
 			set	{ base.Visible = value; }
@@ -292,6 +295,7 @@ namespace RssBandit.WinGui.Menus {
         public string Description => description;
         public ExecuteCommandHandler Executor { get; }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public CommandMediator Mediator	{
 			get { return med;  }
 			set	{ med = value; }

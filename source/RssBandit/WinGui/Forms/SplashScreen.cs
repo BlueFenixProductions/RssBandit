@@ -10,6 +10,7 @@
 
 
 using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
@@ -56,12 +57,14 @@ namespace RssBandit.WinGui.Forms
 			ApplyChanges();
 		}
 
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public string StatusInfo
 		{
 			set { statusInfo = value; ApplyChanges(); }
 			get { return statusInfo; }
 		}
 
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public string VersionInfo
 		{
 			set { versionInfo = value; ApplyChanges(); }
