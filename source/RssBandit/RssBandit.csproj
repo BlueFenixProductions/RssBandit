@@ -152,6 +152,12 @@
       <Project>{5C79195B-AD8E-45B7-B405-AD32E6BF55B0}</Project>
       <Name>RssBandit.AppServices</Name>
     </ProjectReference>
+    <!-- WinForms-coupled contracts split out of AppServices in MAUI Slice 0
+         (ICoreApplication, IUserPreferences, ICommandBar*, IDocumentWindow*, IAddIn*). -->
+    <ProjectReference Include="..\RssBandit.WinForms.Contracts\RssBandit.WinForms.Contracts.csproj">
+      <Project>{24D0A3F2-11C0-4E7C-BF1E-09D42E01BA47}</Project>
+      <Name>RssBandit.WinForms.Contracts</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="CommonServiceLocator" Version="2.0.6" />        
