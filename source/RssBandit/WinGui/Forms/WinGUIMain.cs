@@ -348,6 +348,7 @@ namespace RssBandit.WinGui.Forms
         /// <summary>
         /// Gets and sets the GUI owner application
         /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public RssBanditApplication GuiOwner
         {
             get { return owner; }
@@ -365,6 +366,7 @@ namespace RssBandit.WinGui.Forms
         /// <summary>
         /// Provide access to the current entry text within the navigation dropdown
         /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string UrlText
         {
             get
@@ -391,6 +393,7 @@ namespace RssBandit.WinGui.Forms
         /// <summary>
         /// Provide access to the current entry text within the web search dropdown
         /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string WebSearchText
         {
             get
@@ -804,6 +807,7 @@ namespace RssBandit.WinGui.Forms
         /// clicked node item or (if set to null) a context menu related to current TreeView
         /// selection (highlighted).
         /// </remarks>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public TreeFeedsNodeBase CurrentSelectedFeedsNode
         {
             get
@@ -816,6 +820,7 @@ namespace RssBandit.WinGui.Forms
             set { _currentSelectedFeedsNode = value; }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public TreeFeedsNodeBase TreeSelectedFeedsNode
         {
             get
@@ -873,6 +878,7 @@ namespace RssBandit.WinGui.Forms
         /// selection. This behavior enables to have a context menu related to the current
         /// clicked item row or (if set to null) a context menu related to current ListView
         /// selection (highlighted).</remarks>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public INewsItem CurrentSelectedFeedItem
         {
             get
@@ -1566,12 +1572,14 @@ namespace RssBandit.WinGui.Forms
 
         #region Implementation of ITabState
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool CanClose
         {
             get { return false; }
             set { }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool CanGoBack
         {
             get
@@ -1582,12 +1590,14 @@ namespace RssBandit.WinGui.Forms
             set { }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool CanGoForward
         {
             get { return _feedItemImpressionHistory.CanGetNext; }
             set { }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string Title
         {
             get
@@ -1603,6 +1613,7 @@ namespace RssBandit.WinGui.Forms
             }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string Url { get; set; }
 #if PHOENIX
         public ITextImageItem[] GoBackHistoryItems
@@ -1624,6 +1635,7 @@ namespace RssBandit.WinGui.Forms
             return _feedItemImpressionHistory.GetHeadOfNextEntries(maxItems);
 #endif
         }
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public ITextImageItem CurrentHistoryItem { get; set; }
         #endregion
 

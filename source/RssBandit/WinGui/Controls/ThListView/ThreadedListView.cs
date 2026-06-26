@@ -123,6 +123,7 @@ namespace RssBandit.WinGui.Controls.ThListView
         }
 
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Advanced)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public new bool CheckBoxes
         {
             get { return base.CheckBoxes; }
@@ -130,6 +131,7 @@ namespace RssBandit.WinGui.Controls.ThListView
         }
 
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Advanced)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public new ImageList StateImageList
         {
             get { return base.StateImageList; }
@@ -444,6 +446,7 @@ namespace RssBandit.WinGui.Controls.ThListView
             }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public ThreadedListViewItem NoThreadChildsPlaceHolder
         {
             get { return _noChildsPlaceHolder; }

@@ -12,7 +12,7 @@
     <DefaultLanguage>en-US</DefaultLanguage>
     <!-- WFO1000 (WinForms designer-serialization analyzer, error by default since .NET 9) is
          suppressed for now: the legacy custom controls need per-property attributes (Phase B/C). -->
-    <NoWarn>1701;1702;1705;1591;NU1701;WFO1000</NoWarn>
+    <NoWarn>1701;1702;1705;1591;NU1701</NoWarn>
 
     <IsLegacyProject>$(MSBuildProjectName.Equals('RssBandit'))</IsLegacyProject>
     <IsPackageProject>$(MSBuildProjectName.Contains('.Package'))</IsPackageProject>    

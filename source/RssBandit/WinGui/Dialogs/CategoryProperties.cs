@@ -8,6 +8,7 @@
 #endregion
 
 using System;
+using System.ComponentModel;
 using System.IO;
 using System.Windows.Forms;
 using RssBandit.Resources;
@@ -121,6 +122,7 @@ namespace RssBandit.WinGui.Dialogs
 			base.Dispose( disposing );
 		}
 
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public TimeSpan MaxItemAge {
 			get { return Utils.MaxItemAgeFromIndex(this.comboMaxItemAge.SelectedIndex); }
 			set { this.comboMaxItemAge.SelectedIndex = Utils.MaxItemAgeToIndex(value);	}

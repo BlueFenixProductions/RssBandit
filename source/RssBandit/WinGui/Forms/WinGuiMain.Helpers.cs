@@ -3,6 +3,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
@@ -62,8 +63,9 @@ namespace RssBandit.WinGui.Forms
             }
         }
 
-#if USE_IG_URL_COMBOBOX	
+#if USE_IG_URL_COMBOBOX
         private UltraComboEditor _urlComboBox;
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         internal UltraComboEditor UrlComboBox
         {
             get
@@ -79,6 +81,7 @@ namespace RssBandit.WinGui.Forms
 #else
         private ComboBox _urlComboBox;
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         internal ComboBox UrlComboBox
         {
             get
@@ -94,6 +97,7 @@ namespace RssBandit.WinGui.Forms
 #endif
         private ComboBox _searchComboBox;
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         internal ComboBox SearchComboBox
         {
             get

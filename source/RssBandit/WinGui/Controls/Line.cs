@@ -57,6 +57,7 @@ namespace RssBandit.WinGui.Controls {
 		Category( "Appearance" ),
 		Description( "Indicates if the line should be drawn with a  beveled look. If false, only the Highlight color is used." )
 		]
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public bool Beveled {
 			get {
 				return _beveled;
@@ -73,6 +74,7 @@ namespace RssBandit.WinGui.Controls {
 		Category( "Appearance" ),
 		Description( "The highlight color" )
 		]
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public Color Highlight {
 			get {
 				return _highlight;
@@ -89,6 +91,7 @@ namespace RssBandit.WinGui.Controls {
 		Category( "Appearance" ),
 		Description( "The shadow color" )
 		]
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public Color Shadow {
 			get {
 				return _shadow;
@@ -105,6 +108,7 @@ namespace RssBandit.WinGui.Controls {
 		Category( "Appearance" ),
 		Description( "The orientation of the line." )
 		]
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public Orientation Orientation {
 			get {
 				return _orientation;

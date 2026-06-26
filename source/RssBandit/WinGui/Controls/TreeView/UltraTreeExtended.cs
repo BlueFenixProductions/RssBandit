@@ -10,6 +10,7 @@
 
 using System;
 using System.Collections;
+using System.ComponentModel;
 using System.Drawing;
 using System.Globalization;
 using System.Runtime.Serialization;
@@ -173,6 +174,7 @@ namespace RssBandit.WinGui.Controls
 			}
 		}
 
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public bool IsUpdatingSelection
 		{
 			get { return _isUpdateingSelection; }

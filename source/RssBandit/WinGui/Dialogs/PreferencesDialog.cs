@@ -9,6 +9,7 @@
 #endregion
 
 using System;
+using System.ComponentModel;
 using System.IO;
 using System.Drawing;
 using System.Collections;
@@ -303,6 +304,7 @@ namespace RssBandit.WinGui.Dialogs {
 		/// Gets or sets the selected section.
 		/// </summary>
 		/// <value>The selected section.</value>
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public OptionDialogSection SelectedSection {
 			get { return (OptionDialogSection)this.tabPrefs.SelectedIndex; }
 			set {
@@ -316,6 +318,7 @@ namespace RssBandit.WinGui.Dialogs {
 		/// Gets or sets the remote storage protocol.
 		/// </summary>
 		/// <value>The remote storage protocol.</value>
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public RemoteStorageProtocolType RemoteStorageProtocol {
 			get {
 				switch (comboRemoteStorageProtocol.SelectedIndex) {
@@ -356,6 +359,7 @@ namespace RssBandit.WinGui.Dialogs {
 		/// Gets or sets the max item age.
 		/// </summary>
 		/// <value>The max item age.</value>
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public TimeSpan MaxItemAge {
 			get { return Utils.MaxItemAgeFromIndex(this.comboMaxItemAge.SelectedIndex); }
 			set { this.comboMaxItemAge.SelectedIndex = Utils.MaxItemAgeToIndex(value);	}

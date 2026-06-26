@@ -98,6 +98,7 @@ namespace RssBandit.WinGui.Controls
             Localizable(false),
             Description("The form which is to have it's state persisted.")
         ]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Form Form {
             get {
                 // The purpose of the following rather magical code is to get

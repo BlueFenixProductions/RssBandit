@@ -43,6 +43,7 @@ namespace RssBandit.WinGui.Dialogs
 			this.Initialize(waitHandle, timeout, dialogIcon);
 		}
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string Message {
 			get { return messageLabel.Text;		}
 			set { messageLabel.Text = value;  }

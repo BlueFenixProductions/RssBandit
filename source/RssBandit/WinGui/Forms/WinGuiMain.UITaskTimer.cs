@@ -20,6 +20,7 @@ namespace RssBandit.WinGui.Forms
                 base.Enabled = true;
             }
 
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
             public bool this[DelayedTasks task]
             {
                 get

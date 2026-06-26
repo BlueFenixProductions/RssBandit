@@ -191,6 +191,7 @@ namespace RssBandit.WinGui.Controls
 
 		#region public members
 
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public bool IsAdvancedOptionReadStatusActive {
 			get { return _isAdvancedOptionReadStatusActive; }
 			set {
@@ -202,6 +203,7 @@ namespace RssBandit.WinGui.Controls
 			}
 		}
 		
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public bool IsAdvancedOptionItemAgeActive {
 			get { return _isAdvancedOptionItemAgeActive; }
 			set {
@@ -216,6 +218,7 @@ namespace RssBandit.WinGui.Controls
 			}
 		}
 
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public bool IsAdvancedOptionItemPostedActive {
 			get { return _isAdvancedOptionItemPostedActive; }
 			set {
@@ -230,18 +233,22 @@ namespace RssBandit.WinGui.Controls
 			}
 		}
 
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public bool SaveSearchGroupExpanded {
 			get { return this.taskPaneAllSearchOptions.Groups["searchTaskPaneSaveOptions"].Expanded; }
 			set { this.taskPaneAllSearchOptions.Groups["searchTaskPaneSaveOptions"].Expanded = value; }
 		}
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public bool SearchFieldsGroupExpanded {
 			get { return this.taskPaneAllSearchOptions.Groups["searchTaskPaneFields"].Expanded; }
 			set { this.taskPaneAllSearchOptions.Groups["searchTaskPaneFields"].Expanded = value; }
 		}
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public bool AdvancedOptionsGroupExpanded {
 			get { return this.taskPaneAllSearchOptions.Groups["searchTaskPaneAdvancedOptions"].Expanded; }
 			set { this.taskPaneAllSearchOptions.Groups["searchTaskPaneAdvancedOptions"].Expanded = value; }
 		}
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public bool SearchScopeGroupExpanded {
 			get { return this.taskPaneAllSearchOptions.Groups["searchTaskPaneScope"].Expanded; }
 			set { this.taskPaneAllSearchOptions.Groups["searchTaskPaneScope"].Expanded = value; }

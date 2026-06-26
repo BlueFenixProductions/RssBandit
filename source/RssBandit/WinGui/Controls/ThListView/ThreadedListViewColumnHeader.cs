@@ -8,6 +8,7 @@
 #endregion
 
 using System;
+using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace RssBandit.WinGui.Controls.ThListView
@@ -34,7 +35,9 @@ namespace RssBandit.WinGui.Controls.ThListView
 				this._colValueType = valueType;
 		}
 
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public string Key { get { return _id; } set { _id = value; } }
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public Type ColumnValueType { get { return _colValueType; } set { _colValueType = value; } }
 #if CLR_11		
 		public object Tag;
