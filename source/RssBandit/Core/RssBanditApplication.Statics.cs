@@ -695,7 +695,9 @@ namespace RssBandit
         }
 
         /// <summary>
-        /// Gets the name of the preferences file (legacy SOAP format, read-only migration shim).
+        /// Gets the name of the legacy SOAP preferences file (.preferences.xml). No longer
+        /// loaded (the read-shim was retired); retained only as a path reference for callers
+        /// (e.g. the file-list builder in RssBanditApplication.Commands).
         /// </summary>
         /// <returns></returns>
         public static string GetPreferencesFileName()
