@@ -1980,14 +1980,6 @@ inconveniencia.</value>
     <value>Muestra la columna con el recuento de comentarios en un elemento de noticias...</value>
     <comment>Description within context menu</comment>
   </data>
-  <data name="MenuColumnChooserEnclosureCaption" xml:space="preserve">
-    <value>Mostrar el estado del adjunto</value>
-    <comment>Caption within context menu</comment>
-  </data>
-  <data name="MenuColumnChooserEnclosureDesc" xml:space="preserve">
-    <value>Muestra la columna de adjuntos de un elemento de noticias...</value>
-    <comment>Description within context menu</comment>
-  </data>
   <data name="MenuColumnChooserFlagCaption" xml:space="preserve">
     <value>Mostrar estado de seguimiento</value>
     <comment>Caption within context menu</comment>
@@ -2326,15 +2318,6 @@ Continuará usando la antigua carpeta de caché...</value>
   <data name="CmdLineResetUIDesc" xml:space="preserve">
     <value>Volverá a reiniciar la interfaz de usuario por defecto</value>
   </data>
-  <data name="ExceptionProcessStartToPlayEnclosure" xml:space="preserve">
-    <value>El sistema reportó un error mientras trataba de escuchar el adjunto:
-
-{0}
-
-Error:{1}.</value>
-    <comment>.
- Parameters: 0 - enclosureFileName (string), 1 - error (string) </comment>
-  </data>
   <data name="FeedNodeUnreadItemsCaption" xml:space="preserve">
     <value>Artículos sin leer</value>
     <comment> Special local feed for unread items</comment>
@@ -2342,18 +2325,11 @@ Error:{1}.</value>
   <data name="FeedNodeUnreadItemsDesc" xml:space="preserve">
     <value>Contenedor de artículos sin leer</value>
   </data>
-  <data name="BrowseForFolderEnclosureDownloadLocation" xml:space="preserve">
-    <value>Seleccione o cree una carpeta para guardar los adjuntos que se han descargados</value>
-    <comment> Text in the browse for folder dialog</comment>
-  </data>
   <data name="MenuDownloadAttachmentCaption" xml:space="preserve">
     <value>Descargar adjuntos</value>
   </data>
   <data name="MenuDownloadAttachmentDesc" xml:space="preserve">
     <value>Descarga los archivos adjuntos a la carpeta especificada para los Podcasts</value>
-  </data>
-  <data name="ExceptionInvalidEnclosurePath" xml:space="preserve">
-    <value>Ruta inválida al directorio de descargar especificado</value>
   </data>
   <data name="ExceptionProcessCommandlineCulture" xml:space="preserve">
     <value>No puede cambiar la configuración regional y de idioma para '{0}':
@@ -2361,10 +2337,6 @@ Error:{1}.</value>
 Error:{1}.</value>
     <comment>.
  Parameters: 0 - cultureProvided (string), 1 - error (string) </comment>
-  </data>
-  <data name="GUIStatusEnclosureJustReceivedItemsMessage" xml:space="preserve">
-    <value>Recibido: 1 archivo</value>
-    <comment> displayed in the Toast window(s)</comment>
   </data>
   <data name="MainForm_MainMenuToolbarCaption" xml:space="preserve">
     <value>Barra de menú principal</value>
@@ -2586,9 +2558,6 @@ Por favor intente abrir el Panel manualmente, utilizando el Panel de control del
     <comment>.
  Parameters: 0 - years (int) </comment>
   </data>
-  <data name="ExceptionEnclosureDownloadError" xml:space="preserve">
-    <value>Descarga fallida</value>
-  </data>
   <data name="MenuFinderShowExcerptsCaption" xml:space="preserve">
     <value>Mostrar extractos en los resultados de búsqueda</value>
   </data>
@@ -2728,9 +2697,6 @@ failed with error:
 	<data name="MenuSynchronizeFeedsDesc" space="preserve">
     <value>Launches the Synchronize Feeds Wizard</value>
   </data>
-	<data name="ExceptionInvalidPlaylistName" space="preserve">
-    <value>Please specify a valid playlist name</value>
-  </data>
 	<data name="NoTopStoriesMessage" space="preserve">
     <value>No stories found that have been linked from your subscriptions in '{0}' over the past week.</value>
   </data>
@@ -2745,12 +2711,6 @@ failed with error:
   </data>
 	<data name="ExceptionNoUserName" space="preserve">
     <value>Please provide a valid username</value>
-  </data>
-	<data name="MenuDownloadManager" space="preserve">
-    <value>Download Manager...</value>
-  </data>
-	<data name="MenuDownloadManagerDesc" space="preserve">
-    <value>Launches the download manager</value>
   </data>
 	<data name="MenuDeleteFeedSourceCaption" space="preserve">
     <value>Delete Feed Source...</value>

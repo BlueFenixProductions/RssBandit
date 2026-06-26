@@ -1967,14 +1967,6 @@ Ces droits administrateur ne sont nécessaires que pour activer la fonctionnalit
     <value>Affiche la colonne Nombre de commentaires d'un élément...</value>
     <comment>Description within context menu</comment>
   </data>
-  <data name="MenuColumnChooserEnclosureCaption" xml:space="preserve">
-    <value>Montrer l'état de la pièce jointe</value>
-    <comment>Caption within context menu</comment>
-  </data>
-  <data name="MenuColumnChooserEnclosureDesc" xml:space="preserve">
-    <value>Affiche la colonne Etat de la pièce jointe d'un élément...</value>
-    <comment>Description within context menu</comment>
-  </data>
   <data name="MenuColumnChooserFlagCaption" xml:space="preserve">
     <value>Montrer l'étiquette</value>
     <comment>Caption within context menu</comment>
@@ -2308,15 +2300,6 @@ Le programme  va continuer d'utiliser l'ancien dossier de cache de données...</
     <value>Va remettre à zero l'interface utilisateur</value>
     <comment>Will reset the user interface to the default</comment>
   </data>
-  <data name="ExceptionProcessStartToPlayEnclosure" xml:space="preserve">
-    <value>Le système a signalé une erreur lors de la tentative de lecture du fichier lié:
-
-{0}
-
-Erreur:{1}.</value>
-    <comment>.
- Parameters: 0 - enclosureFileName (string), 1 - error (string) </comment>
-  </data>
   <data name="FeedNodeUnreadItemsCaption" xml:space="preserve">
     <value>Articles non lus</value>
     <comment> Special local feed for unread items</comment>
@@ -2324,19 +2307,11 @@ Erreur:{1}.</value>
   <data name="FeedNodeUnreadItemsDesc" xml:space="preserve">
     <value>Liste des articles non lus</value>
   </data>
-  <data name="BrowseForFolderEnclosureDownloadLocation" xml:space="preserve">
-    <value>Séléctionnez ou créez un dossier pour stocker les fichiers liés téléchargés</value>
-    <comment> Text in the browse for folder dialog</comment>
-  </data>
   <data name="MenuDownloadAttachmentCaption" xml:space="preserve">
     <value>Télécharger les fichiers liés</value>
   </data>
   <data name="MenuDownloadAttachmentDesc" xml:space="preserve">
     <value>Télécharger les fichiers liés dans le dossier spécifié pour les Podcasts</value>
-  </data>
-  <data name="ExceptionInvalidEnclosurePath" xml:space="preserve">
-    <value>Dossier de téléchargement invalide.</value>
-    <comment>Invalid path to download directory specified</comment>
   </data>
   <data name="ExceptionProcessCommandlineCulture" xml:space="preserve">
     <value>Impossible de changer la langue de l'application en '{0}':
@@ -2344,10 +2319,6 @@ Erreur:{1}.</value>
 Error:{1}.</value>
     <comment>.
  Parameters: 0 - cultureProvided (string), 1 - error (string) </comment>
-  </data>
-  <data name="GUIStatusEnclosureJustReceivedItemsMessage" xml:space="preserve">
-    <value>Reçu: 1 fichier</value>
-    <comment> displayed in the Toast window(s)</comment>
   </data>
   <data name="MainForm_MainMenuToolbarCaption" xml:space="preserve">
     <value>Barre de menu principale</value>
@@ -2577,9 +2548,6 @@ Svp, essayez d'ouvrir le panneau de configuration manuellement en utilisant le m
     <comment>.
  Parameters: 0 - years (int) </comment>
   </data>
-  <data name="ExceptionEnclosureDownloadError" xml:space="preserve">
-    <value>Erreur de téléchargement</value>
-  </data>
   <data name="MenuFinderShowExcerptsCaption" xml:space="preserve">
     <value>Montrer les extraits dans les résultats de recherche</value>
   </data>
@@ -2732,10 +2700,6 @@ a échoué avec l'erreur:
     <value>Lancer l'assistant de synchronisation des flux</value>
     <comment>Launches the Synchronize Feeds Wizard</comment>
   </data>
-  <data name="ExceptionInvalidPlaylistName" xml:space="preserve">
-    <value>Merci de spécifier un nom de liste de lecture valide</value>
-    <comment>Please specify a valid playlist name</comment>
-  </data>
   <data name="NoTopStoriesMessage" xml:space="preserve">
     <value>Il n'y a aucune meilleure histoire trouvée dans votre liste de souscriptions pour les '{0}' dernières semaines</value>
     <comment>No stories found that have been linked from your subscriptions in '{0}' over the past week.</comment>
@@ -2755,14 +2719,6 @@ a échoué avec l'erreur:
   <data name="ExceptionNoUserName" xml:space="preserve">
     <value>Merci de fournir un nom d'utilisateur valide</value>
     <comment>Please provide a valid username</comment>
-  </data>
-  <data name="MenuDownloadManager" xml:space="preserve">
-    <value>Gestionnaire de téléchargements...</value>
-    <comment>Download Manager...</comment>
-  </data>
-  <data name="MenuDownloadManagerDesc" xml:space="preserve">
-    <value>Chargement le gestionnaire de téléchargements</value>
-    <comment>Launches the download manager</comment>
   </data>
   <data name="MenuDeleteFeedSourceCaption" xml:space="preserve">
     <value>Supprimer la source du flux...</value>

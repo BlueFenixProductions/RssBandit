@@ -115,9 +115,6 @@
   <data name="ExceptionNoProcessingHandlerMessage">
     <value>Feed Url '{0}' 无法处理。没有处理器被执行。</value>
   </data>
-  <data name="ExceptionEnclosureCacheLimitReached">
-    <value>试图下载文件 '{0}' 失败，由于它超出播客和附件规定的 {1}MB 大小限制。增加大小限制或者删除以前下载的附件来为这次的下载提供空间。</value>
-  </data>
   <data name="ExceptionSearchNoSearchCriteria">
     <value>未指定搜索标准</value>
   </data>
@@ -142,11 +139,6 @@
   <data name="ExceptionHelpFeedDesc">
     <value>提供出错帮助</value>
   </data>
-<data name="ExceptionNntpServerAuthenticationFailed">
-    <value>Connect to NNTP server '{0}' with authentication failed: invalid username/password</value>
-    <comment>.
- Parameters: 0 - nntpServer (string) </comment>
-  </data>
 	<data name="ExceptionResourceAuthorization">
     <value>Unauthorized access, credentials required or invalid credentials (HTTP status 401)</value>
   </data>
@@ -156,16 +148,8 @@
 	<data name="ExceptionClientCertificateRequired" space="preserve">
     <value>Access forbidden, client certificate required or invalid</value>
   </data>
-	<data name="ExceptionNntpResourceAuthorization" space="preserve">
-    <value>Unauthorized access, credentials required or invalid credentials (NNTP status 480)</value>
-  </data>
 	<data name="DefaultFacebookCommenterName" space="preserve">
     <value>Unknown Facebook User</value>
-  </data>
-	<data name="ExceptionDownloadingEnclosure" space="preserve">
-    <value>An error has occured downloading the enclosure:
-
-{0}</value>
   </data>
 	<data name="ExceptionFacebookFeedlistCorrupted" space="preserve">
     <value>The Facebook subscriptions file has been tampered with and cannot be loaded. Delete Facebook as a feed source and add it again from "Synchronize Feeds" to fix this problem.</value>

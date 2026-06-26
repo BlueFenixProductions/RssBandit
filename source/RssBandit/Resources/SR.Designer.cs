@@ -117,14 +117,6 @@ namespace RssBandit.Resources {
             }
         }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Select or create a folder to store downloaded attachments.
-        /// </summary>
-        internal static string BrowseForFolderEnclosureDownloadLocation {
-            get {
-                return ResourceManager.GetString("BrowseForFolderEnclosureDownloadLocation", resourceCulture);
-            }
-        }
         
         /// <summary>
         ///   Looks up a localized string similar to The data cache location
@@ -528,14 +520,6 @@ namespace RssBandit.Resources {
             }
         }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Download Failure.
-        /// </summary>
-        internal static string ExceptionEnclosureDownloadError {
-            get {
-                return ResourceManager.GetString("ExceptionEnclosureDownloadError", resourceCulture);
-            }
-        }
         
         /// <summary>
         ///   Looks up a localized string similar to An error occured while trying to obtain a Facebook authorization token.
@@ -611,14 +595,6 @@ namespace RssBandit.Resources {
             }
         }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Invalid path to download directory specified.
-        /// </summary>
-        internal static string ExceptionInvalidEnclosurePath {
-            get {
-                return ResourceManager.GetString("ExceptionInvalidEnclosurePath", resourceCulture);
-            }
-        }
         
         /// <summary>
         ///   Looks up a localized string similar to FTP Remote locations needs to use the &apos;ftp:&apos; url scheme..
@@ -629,14 +605,6 @@ namespace RssBandit.Resources {
             }
         }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Please specify a valid playlist name.
-        /// </summary>
-        internal static string ExceptionInvalidPlaylistName {
-            get {
-                return ResourceManager.GetString("ExceptionInvalidPlaylistName", resourceCulture);
-            }
-        }
 
         /// <summary>
         ///   Looks up a localized string similar to &apos;{0}&apos; is not a valid proxy bypass entry. Use a regular expression or a simple wildcard like *.example.com, please..
@@ -849,19 +817,6 @@ namespace RssBandit.Resources {
         internal static string ExceptionProcessCommandlineCulture {
             get {
                 return ResourceManager.GetString("ExceptionProcessCommandlineCulture", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The system reported an error while attempting to play enclosure:
-        ///
-        ///{0}
-        ///
-        ///Error:{1}..
-        /// </summary>
-        internal static string ExceptionProcessStartToPlayEnclosure {
-            get {
-                return ResourceManager.GetString("ExceptionProcessStartToPlayEnclosure", resourceCulture);
             }
         }
         
@@ -1615,14 +1570,6 @@ namespace RssBandit.Resources {
             }
         }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Received: 1 file.
-        /// </summary>
-        internal static string GUIStatusEnclosureJustReceivedItemsMessage {
-            get {
-                return ResourceManager.GetString("GUIStatusEnclosureJustReceivedItemsMessage", resourceCulture);
-            }
-        }
         
         /// <summary>
         ///   Looks up a localized string similar to Action cancelled. Title cannot be left blank..
@@ -3062,23 +3009,7 @@ namespace RssBandit.Resources {
             }
         }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Show Enclosure State.
-        /// </summary>
-        internal static string MenuColumnChooserEnclosureCaption {
-            get {
-                return ResourceManager.GetString("MenuColumnChooserEnclosureCaption", resourceCulture);
-            }
-        }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Display the enclosure state column of a news item....
-        /// </summary>
-        internal static string MenuColumnChooserEnclosureDesc {
-            get {
-                return ResourceManager.GetString("MenuColumnChooserEnclosureDesc", resourceCulture);
-            }
-        }
         
         /// <summary>
         ///   Looks up a localized string similar to Show Subscription Title.
@@ -3629,23 +3560,7 @@ namespace RssBandit.Resources {
             }
         }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Download Manager....
-        /// </summary>
-        internal static string MenuDownloadManager {
-            get {
-                return ResourceManager.GetString("MenuDownloadManager", resourceCulture);
-            }
-        }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Launches the download manager.
-        /// </summary>
-        internal static string MenuDownloadManagerDesc {
-            get {
-                return ResourceManager.GetString("MenuDownloadManagerDesc", resourceCulture);
-            }
-        }
         
         /// <summary>
         ///   Looks up a localized string similar to &amp;Export Feeds....

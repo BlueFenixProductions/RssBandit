@@ -1716,14 +1716,6 @@ administrative權限只用在要套用請求的功能.
     <value>顯示新項目的註解累計欄...</value>
     <comment>Description within context menu</comment>
   </data>
-  <data name="MenuColumnChooserEnclosureCaption" xml:space="preserve">
-    <value>顯示封入狀態</value>
-    <comment>Caption within context menu</comment>
-  </data>
-  <data name="MenuColumnChooserEnclosureDesc" xml:space="preserve">
-    <value>顯示新項目的封入狀態欄...</value>
-    <comment>Description within context menu</comment>
-  </data>
   <data name="MenuColumnChooserFlagCaption" xml:space="preserve">
     <value>顯示標記狀態</value>
     <comment>Caption within context menu</comment>
@@ -2062,15 +2054,6 @@ Will continue using the old cache folder...</value>
   <data name="CmdLineResetUIDesc" xml:space="preserve">
     <value>Will reset the user interface to the default</value>
   </data>
-  <data name="ExceptionProcessStartToPlayEnclosure" xml:space="preserve">
-    <value>The system reported an error while attempting to play enclosure:
-
-{0}
-
-Error:{1}.</value>
-    <comment>.
- Parameters: 0 - enclosureFileName (string), 1 - error (string) </comment>
-  </data>
   <data name="FeedNodeUnreadItemsCaption" xml:space="preserve">
     <value>Unread Items</value>
     <comment> Special local feed for unread items</comment>
@@ -2078,18 +2061,11 @@ Error:{1}.</value>
   <data name="FeedNodeUnreadItemsDesc" xml:space="preserve">
     <value>Container of unread items</value>
   </data>
-  <data name="BrowseForFolderEnclosureDownloadLocation" xml:space="preserve">
-    <value>Select or create a folder to store downloaded attachments</value>
-    <comment> Text in the browse for folder dialog</comment>
-  </data>
   <data name="MenuDownloadAttachmentCaption" xml:space="preserve">
     <value>Download Attachment</value>
   </data>
   <data name="MenuDownloadAttachmentDesc" xml:space="preserve">
     <value>Download the item's enclosure files to the specified Podcasts folder</value>
-  </data>
-  <data name="ExceptionInvalidEnclosurePath" xml:space="preserve">
-    <value>Invalid path to download directory specified</value>
   </data>
   <data name="ExceptionProcessCommandlineCulture" xml:space="preserve">
     <value>Cannot switch application culture to '{0}':
@@ -2097,10 +2073,6 @@ Error:{1}.</value>
 Error:{1}.</value>
     <comment>.
  Parameters: 0 - cultureProvided (string), 1 - error (string) </comment>
-  </data>
-  <data name="GUIStatusEnclosureJustReceivedItemsMessage" xml:space="preserve">
-    <value>Received: 1 file</value>
-    <comment> displayed in the Toast window(s)</comment>
   </data>
   <data name="MainForm_MainMenuToolbarCaption" xml:space="preserve">
     <value>Main Menu Bar</value>
@@ -2322,9 +2294,6 @@ Please try to open the Panel manually using the Control Panel Start Menu.</value
     <comment>.
  Parameters: 0 - years (int) </comment>
   </data>
-  <data name="ExceptionEnclosureDownloadError" xml:space="preserve">
-    <value>Download Failure</value>
-  </data>
   <data name="MenuFinderShowExcerptsCaption" xml:space="preserve">
     <value>Show excerpts in search results</value>
   </data>
@@ -2464,9 +2433,6 @@ failed with error:
 	<data name="MenuSynchronizeFeedsDesc" space="preserve">
     <value>Launches the Synchronize Feeds Wizard</value>
   </data>
-	<data name="ExceptionInvalidPlaylistName" space="preserve">
-    <value>Please specify a valid playlist name</value>
-  </data>
 	<data name="NoTopStoriesMessage" space="preserve">
     <value>No stories found that have been linked from your subscriptions in '{0}' over the past week.</value>
   </data>
@@ -2481,12 +2447,6 @@ failed with error:
   </data>
 	<data name="ExceptionNoUserName" space="preserve">
     <value>Please provide a valid username</value>
-  </data>
-	<data name="MenuDownloadManager" space="preserve">
-    <value>Download Manager...</value>
-  </data>
-	<data name="MenuDownloadManagerDesc" space="preserve">
-    <value>Launches the download manager</value>
   </data>
 	<data name="MenuDeleteFeedSourceCaption" space="preserve">
     <value>Delete Feed Source...</value>

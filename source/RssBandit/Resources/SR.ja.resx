@@ -1926,14 +1926,6 @@ referrer-url: {2}</value>
     <value>ニュース記事の「コメント数」列を表示</value>
     <comment>Description within context menu</comment>
   </data>
-  <data name="MenuColumnChooserEnclosureCaption" xml:space="preserve">
-    <value>添付状態</value>
-    <comment>Caption within context menu</comment>
-  </data>
-  <data name="MenuColumnChooserEnclosureDesc" xml:space="preserve">
-    <value>ニュース記事の「添付状態」列を表示</value>
-    <comment>Description within context menu</comment>
-  </data>
   <data name="MenuColumnChooserFlagCaption" xml:space="preserve">
     <value>フラグ</value>
     <comment>Caption within context menu</comment>
@@ -2268,15 +2260,6 @@ NO を選択した場合、後ほど再度確認が表示されます。</value>
   <data name="CmdLineResetUIDesc" xml:space="preserve">
     <value>ユーザーインターフェース設定をリセットします</value>
   </data>
-  <data name="ExceptionProcessStartToPlayEnclosure" xml:space="preserve">
-    <value>システムは添付ファイルの再生試行中にエラーを報告しました:
-
-{0}
-
-エラー:{1}.</value>
-    <comment>.
- Parameters: 0 - enclosureFileName (string), 1 - error (string) </comment>
-  </data>
   <data name="FeedNodeUnreadItemsCaption" xml:space="preserve">
     <value>未読記事</value>
     <comment> Special local feed for unread items</comment>
@@ -2284,18 +2267,11 @@ NO を選択した場合、後ほど再度確認が表示されます。</value>
   <data name="FeedNodeUnreadItemsDesc" xml:space="preserve">
     <value>未読記事</value>
   </data>
-  <data name="BrowseForFolderEnclosureDownloadLocation" xml:space="preserve">
-    <value>ダウンロードしたファイル用のフォルダを選択する</value>
-    <comment> Text in the browse for folder dialog</comment>
-  </data>
   <data name="MenuDownloadAttachmentCaption" xml:space="preserve">
     <value>添付ファイルをダウンロード</value>
   </data>
   <data name="MenuDownloadAttachmentDesc" xml:space="preserve">
     <value>記事に添付されているファイルをダウンロードします</value>
-  </data>
-  <data name="ExceptionInvalidEnclosurePath" xml:space="preserve">
-    <value>ダウンロード用フォルダが無効です。</value>
   </data>
   <data name="ExceptionProcessCommandlineCulture" xml:space="preserve">
     <value>アプリケーションのカルチャーを '{0}' へ変更できません:
@@ -2303,10 +2279,6 @@ NO を選択した場合、後ほど再度確認が表示されます。</value>
 エラー:{1}.</value>
     <comment>.
  Parameters: 0 - cultureProvided (string), 1 - error (string) </comment>
-  </data>
-  <data name="GUIStatusEnclosureJustReceivedItemsMessage" xml:space="preserve">
-    <value>受信: 1 ファイル</value>
-    <comment> displayed in the Toast window(s)</comment>
   </data>
   <data name="MainForm_MainMenuToolbarCaption" xml:space="preserve">
     <value>メイン メニュー バー</value>
@@ -2528,9 +2500,6 @@ NO を選択した場合、後ほど再度確認が表示されます。</value>
     <comment>.
  Parameters: 0 - years (int) </comment>
   </data>
-  <data name="ExceptionEnclosureDownloadError" xml:space="preserve">
-    <value>ダウンロード失敗</value>
-  </data>
   <data name="MenuFinderShowExcerptsCaption" xml:space="preserve">
     <value>検索結果に抜粋を表示する</value>
   </data>
@@ -2666,9 +2635,6 @@ NO を選択した場合、後ほど再度確認が表示されます。</value>
   <data name="MenuSynchronizeFeedsDesc" xml:space="preserve">
     <value>フィード同期ウィザードを開く...</value>
   </data>
-  <data name="ExceptionInvalidPlaylistName" xml:space="preserve">
-    <value>有効なプレイリスト名を指定してください</value>
-  </data>
   <data name="NoTopStoriesMessage" xml:space="preserve">
     <value>過去一週間、購読 {0} の中に記事はありません</value>
   </data>
@@ -2683,12 +2649,6 @@ NO を選択した場合、後ほど再度確認が表示されます。</value>
   </data>
   <data name="ExceptionNoUserName" xml:space="preserve">
     <value>有効なユーザー名を指定してください</value>
-  </data>
-  <data name="MenuDownloadManager" xml:space="preserve">
-    <value>ダウンロード管理...</value>
-  </data>
-  <data name="MenuDownloadManagerDesc" xml:space="preserve">
-    <value>ダウンロード管理を起動</value>
   </data>
   <data name="MenuDeleteFeedSourceCaption" xml:space="preserve">
     <value>フィードソースを削除</value>

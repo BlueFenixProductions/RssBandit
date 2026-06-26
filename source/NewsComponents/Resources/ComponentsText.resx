@@ -139,10 +139,6 @@
     <value>Feed Url '{0}' cannot be processed. No handler implemented.</value>
     <comment>Parameters: 0 - url (string) </comment>
   </data>
-  <data name="ExceptionEnclosureCacheLimitReached" xml:space="preserve">
-    <value>The attempt to download the file '{0}' failed because it would exceed the size limit of {1}MB dedicated to podcasts and attachments. Either increase the size limit or delete previously downloaded attachments to make room for this download.</value>
-    <comment>Parameters: 0 - fileName (string), 1 - sizeLimit (int) </comment>
-  </data>
   <data name="ExceptionSearchNoSearchCriteria" xml:space="preserve">
     <value>No search criteria specified</value>
   </data>
@@ -170,10 +166,6 @@
   <data name="ExceptionHelpFeedDesc" xml:space="preserve">
     <value>Provides help on errors</value>
   </data>
-  <data name="ExceptionNntpServerAuthenticationFailed" xml:space="preserve">
-    <value>Connect to NNTP server '{0}' with authentication failed: invalid username/password</value>
-    <comment>Parameters: 0 - nntpServer (string) </comment>
-  </data>
   <data name="ExceptionResourceAuthorization" xml:space="preserve">
     <value>Unauthorized access, credentials required or invalid credentials (HTTP status 401)</value>
   </data>
@@ -183,16 +175,8 @@
   <data name="ExceptionClientCertificateRequired" xml:space="preserve">
     <value>Access forbidden, client certificate required or invalid</value>
   </data>
-  <data name="ExceptionNntpResourceAuthorization" xml:space="preserve">
-    <value>Unauthorized access, credentials required or invalid credentials (NNTP status 480)</value>
-  </data>
   <data name="DefaultFacebookCommenterName" xml:space="preserve">
     <value>Unknown Facebook User</value>
-  </data>
-  <data name="ExceptionDownloadingEnclosure" xml:space="preserve">
-    <value>An error has occured downloading the enclosure:
-
-{0}</value>
   </data>
   <data name="ExceptionFacebookFeedlistCorrupted" xml:space="preserve">
     <value>The Facebook subscriptions file has been tampered with and cannot be loaded. Delete Facebook as a feed source and add it again from "Synchronize Feeds" to fix this problem.</value>

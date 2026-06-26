@@ -293,9 +293,6 @@ Detail: {1}</value>
   <data name="ExceptionNoProxyUrl">
     <value>Provide the proxy address (IP or Host name), please.</value>
   </data>
-  <data name="ExceptionInvalidEnclosurePath">
-    <value>Invalid path to download directory specified</value>
-  </data>
   <data name="ExceptionNoRemoteStorageAuthUser">
     <value>Provide a remote storage authentication user name, please.</value>
   </data>
@@ -416,24 +413,12 @@ on a new Tab?</value>
     <comment>.
  Parameters: 0 - error (string) </comment>
   </data>
-  <data name="ExceptionProcessStartToPlayEnclosure">
-    <value>The system reported an error while attempting to play enclosure:
-
-{0}
-
-Error:{1}.</value>
-    <comment>.
- Parameters: 0 - enclosureFileName (string), 1 - error (string) </comment>
-  </data>
   <data name="ExceptionProcessCommandlineCulture">
     <value>Cannot switch application culture to '{0}':
 
 Error:{1}.</value>
     <comment>.
  Parameters: 0 - cultureProvided (string), 1 - error (string) </comment>
-  </data>
-  <data name="ExceptionEnclosureDownloadError">
-    <value>Download Failure</value>
   </data>
   <data name="FeedDefaultCategory">
     <value>[Unclassified Feeds]</value>
@@ -532,10 +517,6 @@ Error:{1}.</value>
   </data>
   <data name="FileDialogFilterXMLFiles">
     <value>XML Files</value>
-  </data>
-  <data name="BrowseForFolderEnclosureDownloadLocation">
-    <value>Select or create a folder to store downloaded attachments</value>
-    <comment> Text in the browse for folder dialog</comment>
   </data>
   <data name="FormatExceptionProxyPort">
     <value>Proxy port is not a number.</value>
@@ -675,10 +656,6 @@ Will continue using the old cache folder...</value>
   </data>
   <data name="GUIStatusErrorReadingFeedlistFile">
     <value>Error on loading feedlist file.</value>
-  </data>
-  <data name="GUIStatusEnclosureJustReceivedItemsMessage">
-    <value>Received: 1 file</value>
-    <comment> displayed in the Toast window(s)</comment>
   </data>
   <data name="GUIStatusFeedJustReceivedItemsMessage">
     <value>Received: {0} item(s)</value>
@@ -1098,12 +1075,6 @@ for detailed information about the error occured.</value>
   </data>
   <data name="MenuColumnChooserDesc">
     <value>Manage displayed columns and layout...</value>
-  </data>
-  <data name="MenuColumnChooserEnclosureCaption">
-    <value>Show Enclosure State</value>
-  </data>
-  <data name="MenuColumnChooserEnclosureDesc">
-    <value>Display the enclosure state column of a news item...</value>
   </data>
   <data name="MenuColumnChooserFeedTitleCaption">
     <value>Show Subscription Title</value>
@@ -2426,9 +2397,6 @@ failed with error:
 	<data name="MenuSynchronizeFeedsDesc" space="preserve">
     <value>Launches the Synchronize Feeds Wizard</value>
   </data>
-	<data name="ExceptionInvalidPlaylistName" space="preserve">
-    <value>Please specify a valid playlist name</value>
-  </data>
 	<data name="NoTopStoriesMessage" space="preserve">
     <value>No stories found that have been linked from your subscriptions in '{0}' over the past week.</value>
   </data>
@@ -2443,12 +2411,6 @@ failed with error:
   </data>
 	<data name="ExceptionNoUserName" space="preserve">
     <value>Please provide a valid username</value>
-  </data>
-	<data name="MenuDownloadManager" space="preserve">
-    <value>Download Manager...</value>
-  </data>
-	<data name="MenuDownloadManagerDesc" space="preserve">
-    <value>Launches the download manager</value>
   </data>
 	<data name="MenuDeleteFeedSourceCaption" space="preserve">
     <value>Delete Feed Source...</value>

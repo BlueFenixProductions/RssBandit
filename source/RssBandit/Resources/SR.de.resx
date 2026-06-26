@@ -141,9 +141,6 @@
   <data name="AutoDiscoveredDefaultTitle" xml:space="preserve">
     <value>[unbekannt]</value>
   </data>
-  <data name="BrowseForFolderEnclosureDownloadLocation" xml:space="preserve">
-    <value>Select or create a folder to store downloaded attachments</value>
-  </data>
   <data name="CacheFolderInvalid_CannotBeMoved" xml:space="preserve">
     <value>Das Daten-Cache Verzeichnis 
 
@@ -367,13 +364,6 @@ Details: {1}</value>
 '{0}' trat ein Fehler auf:
         
 '{1}'</value>
-  </data>
-  <data name="ExceptionProcessStartToPlayEnclosure" xml:space="preserve">
-    <value>The system reported an error while attempting to play enclosure:
-
-{0}
-
-Error:{1}.</value>
   </data>
   <data name="ExceptionProxyConfiguration" xml:space="preserve">
     <value>Ungültige Proxy Konfiguration: 
@@ -988,12 +978,6 @@ Detailliertere Informationen über diesen Fehler finden Sie in der Datei
   </data>
   <data name="MenuColumnChooserDesc" xml:space="preserve">
     <value>Angezeigte Spalten und Layouts verwalten...</value>
-  </data>
-  <data name="MenuColumnChooserEnclosureCaption" xml:space="preserve">
-    <value>Anhang-Status anzeigen</value>
-  </data>
-  <data name="MenuColumnChooserEnclosureDesc" xml:space="preserve">
-    <value>Zeigt die Spalte 'Anhang-Status' (enclosure state) für News-Einträge an...</value>
   </data>
   <data name="MenuColumnChooserFeedTitleCaption" xml:space="preserve">
     <value>Abonnement-Titel anzeigen</value>
@@ -1898,19 +1882,12 @@ Soll das Programm jetzt fortgesetzt werden?</value>
   <data name="XsltDefaultTemplate_ToggleReadState" xml:space="preserve">
     <value>Als gelesen bzw. nicht gelesen markieren</value>
   </data>
-  <data name="ExceptionInvalidEnclosurePath" xml:space="preserve">
-    <value>Ungültiger Pfad für das Download-Verzeichnis angegeben</value>
-  </data>
   <data name="ExceptionProcessCommandlineCulture" xml:space="preserve">
     <value>Die Benutzer-Sprache der Anwendung konnte nicht auf '{0}' gesetzt werden:
 
 Fehler:{1}.</value>
     <comment>.
  Parameters: 0 - cultureProvided (string), 1 - error (string) </comment>
-  </data>
-  <data name="GUIStatusEnclosureJustReceivedItemsMessage" xml:space="preserve">
-    <value>Eine Datei empfangen</value>
-    <comment> displayed in the Toast window(s)</comment>
   </data>
   <data name="MainForm_MainMenuToolbarCaption" xml:space="preserve">
     <value>Hauptmenü</value>
@@ -2133,9 +2110,6 @@ Bitte versuchen Sie es direkt über das Windows Start Menü "Einstellungen".</va
     <comment>.
  Parameters: 0 - years (int) </comment>
   </data>
-  <data name="ExceptionEnclosureDownloadError" xml:space="preserve">
-    <value>Download Fehler</value>
-  </data>
   <data name="MenuFinderShowExcerptsCaption" xml:space="preserve">
     <value>Zusammenfassungen anzeigen</value>
   </data>
@@ -2275,9 +2249,6 @@ ist fehlgeschlagen. Es trat folgender Fehler auf:
   <data name="MenuSynchronizeFeedsDesc" xml:space="preserve">
     <value>Startet den Assistent für die Web-Feeds Synchronisation</value>
   </data>
-  <data name="ExceptionInvalidPlaylistName" xml:space="preserve">
-    <value>Bitte eine gültigen Namen für die Wiedergabeliste angeben</value>
-  </data>
   <data name="NoTopStoriesMessage" xml:space="preserve">
     <value>Es konnten keine Schlagzeilen ermittelt werden, die in der letzten Woche durch Beiträge Ihrer Abonnements '{0}' verlinkt wurden.</value>
   </data>
@@ -2292,12 +2263,6 @@ ist fehlgeschlagen. Es trat folgender Fehler auf:
   </data>
   <data name="ExceptionNoUserName" xml:space="preserve">
     <value>Bitte vergeben Sie einen gültigen Benutzernamen</value>
-  </data>
-  <data name="MenuDownloadManager" xml:space="preserve">
-    <value>Downloads verwalten...</value>
-  </data>
-  <data name="MenuDownloadManagerDesc" xml:space="preserve">
-    <value>Startet den Download Manager</value>
   </data>
   <data name="MenuDeleteFeedSourceCaption" xml:space="preserve">
     <value>Abonnement-Liste löschen...</value>

@@ -1922,14 +1922,6 @@ inconvenience.</value>
 		<value>Display the comment counter column of a news item...</value>
 		<comment>Description within context menu</comment>
 	</data>
-	<data name="MenuColumnChooserEnclosureCaption">
-		<value>Show Enclosure State</value>
-		<comment>Caption within context menu</comment>
-	</data>
-	<data name="MenuColumnChooserEnclosureDesc">
-		<value>Display the enclosure state column of a news item...</value>
-		<comment>Description within context menu</comment>
-	</data>
 	<data name="MenuColumnChooserFlagCaption">
 		<value>Show Flag State</value>
 		<comment>Caption within context menu</comment>
@@ -2264,15 +2256,6 @@ Will continue using the old cache folder...</value>
 	<data name="CmdLineResetUIDesc">
     <value>Will reset the user interface to the default</value>
   </data>
-	<data name="ExceptionProcessStartToPlayEnclosure">
-    <value>The system reported an error while attempting to play enclosure:
-
-{0}
-
-Error:{1}.</value>
-    <comment>.
- Parameters: 0 - enclosureFileName (string), 1 - error (string) </comment>
-  </data>
 	<data name="FeedNodeUnreadItemsCaption">
     <value>Unread Items</value>
     <comment> Special local feed for unread items</comment>
@@ -2280,18 +2263,11 @@ Error:{1}.</value>
 	<data name="FeedNodeUnreadItemsDesc">
     <value>Container of unread items</value>
   </data>
-	<data name="BrowseForFolderEnclosureDownloadLocation">
-    <value>Select or create a folder to store downloaded attachments</value>
-    <comment> Text in the browse for folder dialog</comment>
-  </data>
 	<data name="MenuDownloadAttachmentCaption">
     <value>Download Attachment</value>
   </data>
 	<data name="MenuDownloadAttachmentDesc">
     <value>Download the item's enclosure files to the specified Podcasts folder</value>
-  </data>
-	<data name="ExceptionInvalidEnclosurePath">
-    <value>Invalid path to download directory specified</value>
   </data>
 	<data name="ExceptionProcessCommandlineCulture">
     <value>Cannot switch application culture to '{0}':
@@ -2299,10 +2275,6 @@ Error:{1}.</value>
 Error:{1}.</value>
     <comment>.
  Parameters: 0 - cultureProvided (string), 1 - error (string) </comment>
-  </data>
-	<data name="GUIStatusEnclosureJustReceivedItemsMessage">
-    <value>Received: 1 file</value>
-    <comment> displayed in the Toast window(s)</comment>
   </data>
 	<data name="MainForm_MainMenuToolbarCaption">
     <value>Main Menu Bar</value>
@@ -2527,9 +2499,6 @@ Please try to open the Panel manually using the Control Panel Start Menu.</value
 	<data name="DialogBase_UACShieldedHint">
     <value>Option requires higher user privileges (Administrator)...</value>
   </data>
-	<data name="ExceptionEnclosureDownloadError">
-    <value>Download Failure</value>
-  </data>
 	<data name="MenuFinderShowExcerptsCaption">
     <value>Show excerpts in search results</value>
   </data>
@@ -2669,9 +2638,6 @@ failed with error:
 	<data name="MenuSynchronizeFeedsDesc" space="preserve">
     <value>Launches the Synchronize Feeds Wizard</value>
   </data>
-	<data name="ExceptionInvalidPlaylistName" space="preserve">
-    <value>Please specify a valid playlist name</value>
-  </data>
 	<data name="NoTopStoriesMessage" space="preserve">
     <value>No stories found that have been linked from your subscriptions in '{0}' over the past week.</value>
   </data>
@@ -2686,12 +2652,6 @@ failed with error:
   </data>
 	<data name="ExceptionNoUserName" space="preserve">
     <value>Please provide a valid username</value>
-  </data>
-	<data name="MenuDownloadManager" space="preserve">
-    <value>Download Manager...</value>
-  </data>
-	<data name="MenuDownloadManagerDesc" space="preserve">
-    <value>Launches the download manager</value>
   </data>
 	<data name="MenuDeleteFeedSourceCaption" space="preserve">
     <value>Delete Feed Source...</value>

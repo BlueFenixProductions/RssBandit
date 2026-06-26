@@ -1975,14 +1975,6 @@ uygulamayı her başlattığınızda bu işlemi yapmanız gerekmez. Sizi yorduğ
     <value>Bir mesajın yorum sayaç sütununu gösterir...</value>
     <comment>Description within context menu</comment>
   </data>
-  <data name="MenuColumnChooserEnclosureCaption" xml:space="preserve">
-    <value>Ek Durumunu Göster</value>
-    <comment>Caption within context menu</comment>
-  </data>
-  <data name="MenuColumnChooserEnclosureDesc" xml:space="preserve">
-    <value>Bir mesajın ek durumu sütununu gösterir...</value>
-    <comment>Description within context menu</comment>
-  </data>
   <data name="MenuColumnChooserFlagCaption" xml:space="preserve">
     <value>İşaret Bayrağını Göster</value>
     <comment>Caption within context menu</comment>
@@ -2319,15 +2311,6 @@ Eski depo klasörü kullanılmaya devam edilecek...</value>
   <data name="CmdLineResetUIDesc" xml:space="preserve">
     <value>Kullanıcı arayüzü varsayılan ayarlara geri dönecek</value>
   </data>
-  <data name="ExceptionProcessStartToPlayEnclosure" xml:space="preserve">
-    <value>Sistem şu eki oynatmaya çalışırken hata verdi:
-
-{0}
-
-Hata:{1}.</value>
-    <comment>.
- Parameters: 0 - enclosureFileName (string), 1 - error (string) </comment>
-  </data>
   <data name="FeedNodeUnreadItemsCaption" xml:space="preserve">
     <value>Okunmamış Mesajlar</value>
     <comment> Special local feed for unread items</comment>
@@ -2335,18 +2318,11 @@ Hata:{1}.</value>
   <data name="FeedNodeUnreadItemsDesc" xml:space="preserve">
     <value>Okunmamış mesajların kutusu</value>
   </data>
-  <data name="BrowseForFolderEnclosureDownloadLocation" xml:space="preserve">
-    <value>İndirilen eklerin dosyalanacağı bir klasör seçin veya yaratın</value>
-    <comment> Text in the browse for folder dialog</comment>
-  </data>
   <data name="MenuDownloadAttachmentCaption" xml:space="preserve">
     <value>Eki İndir</value>
   </data>
   <data name="MenuDownloadAttachmentDesc" xml:space="preserve">
     <value>Ekli öğeleri önceden belirlenen Podcast klasörüne indirir</value>
-  </data>
-  <data name="ExceptionInvalidEnclosurePath" xml:space="preserve">
-    <value>İndirme klasörünün yolu geçersiz</value>
   </data>
   <data name="ExceptionProcessCommandlineCulture" xml:space="preserve">
     <value>Uygulama '{0}' kültürüne geçirilemiyor:
@@ -2354,10 +2330,6 @@ Hata:{1}.</value>
 Hata:{1}.</value>
     <comment>.
  Parameters: 0 - cultureProvided (string), 1 - error (string) </comment>
-  </data>
-  <data name="GUIStatusEnclosureJustReceivedItemsMessage" xml:space="preserve">
-    <value>Alındı: 1 dosya</value>
-    <comment> displayed in the Toast window(s)</comment>
   </data>
   <data name="MainForm_MainMenuToolbarCaption" xml:space="preserve">
     <value>Ana Menu Çubuğu</value>
@@ -2579,9 +2551,6 @@ Lütfen Başlat Menu'sunden kendiniz elle açmayı deneyin.</value>
     <comment>.
  Parameters: 0 - years (int) </comment>
   </data>
-  <data name="ExceptionEnclosureDownloadError" xml:space="preserve">
-    <value>İndirme Başarısız</value>
-  </data>
   <data name="MenuFinderShowExcerptsCaption" xml:space="preserve">
     <value>Arama sonuçlarında özet göster</value>
   </data>
@@ -2721,9 +2690,6 @@ hatası oluştu:
   <data name="MenuSynchronizeFeedsDesc" xml:space="preserve">
     <value>Kaynakları Güncelleme Sihirbazını başlatır.</value>
   </data>
-  <data name="ExceptionInvalidPlaylistName" xml:space="preserve">
-    <value>Lütfen geçerli bir playlist ismi girin</value>
-  </data>
   <data name="NoTopStoriesMessage" xml:space="preserve">
     <value>Abonelikleriniz arasında '{0}' tarafından geçen hafta içinde bağlantı verilen bir haber bulunamadı.</value>
   </data>
@@ -2738,12 +2704,6 @@ hatası oluştu:
   </data>
   <data name="ExceptionNoUserName" xml:space="preserve">
     <value>Lütfen geçerli bir kullanıcı adı verin.</value>
-  </data>
-  <data name="MenuDownloadManager" xml:space="preserve">
-    <value>İndirme Yöneticisi...</value>
-  </data>
-  <data name="MenuDownloadManagerDesc" xml:space="preserve">
-    <value>İndirme yöneticisini başlatır</value>
   </data>
   <data name="MenuDeleteFeedSourceCaption" xml:space="preserve">
     <value>Haber Kaynağını Sil...</value>

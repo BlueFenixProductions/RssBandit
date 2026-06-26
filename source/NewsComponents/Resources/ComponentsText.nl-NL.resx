@@ -72,11 +72,6 @@
     <comment>.
  Parameters: 0 - url (string) </comment>
   </data>
-  <data name="ExceptionEnclosureCacheLimitReached" >
-    <value>Downloaden van '{0}' is niet gelukt, omdat het de grootte limiet van {1}MB gereserveerd voor podcasts en bijlagen zou overschreiden. Verkleind de grootte limiet of verwijder eerder gedownloade bijlagen.</value>
-    <comment>.
- Parameters: 0 - fileName (string), 1 - sizeLimit (int) </comment>
-  </data>
   <data name="ExceptionSearchNoSearchCriteria" >
     <value>Geen zoekterm opgegeven</value>
   </data>
@@ -119,11 +114,6 @@
   <resheader name="Writer">
     <value>System.Resources.ResXResourceWriter</value>
   </resheader>
-<data name="ExceptionNntpServerAuthenticationFailed">
-    <value>Connect to NNTP server '{0}' with authentication failed: invalid username/password</value>
-    <comment>.
- Parameters: 0 - nntpServer (string) </comment>
-  </data>
 	<data name="ExceptionResourceAuthorization">
     <value>Unauthorized access, credentials required or invalid credentials (HTTP status 401)</value>
   </data>
@@ -133,16 +123,8 @@
 	<data name="ExceptionClientCertificateRequired" space="preserve">
     <value>Access forbidden, client certificate required or invalid</value>
   </data>
-	<data name="ExceptionNntpResourceAuthorization" space="preserve">
-    <value>Unauthorized access, credentials required or invalid credentials (NNTP status 480)</value>
-  </data>
 	<data name="DefaultFacebookCommenterName" space="preserve">
     <value>Unknown Facebook User</value>
-  </data>
-	<data name="ExceptionDownloadingEnclosure" space="preserve">
-    <value>An error has occured downloading the enclosure:
-
-{0}</value>
   </data>
 	<data name="ExceptionFacebookFeedlistCorrupted" space="preserve">
     <value>The Facebook subscriptions file has been tampered with and cannot be loaded. Delete Facebook as a feed source and add it again from "Synchronize Feeds" to fix this problem.</value>
