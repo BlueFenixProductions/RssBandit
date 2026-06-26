@@ -4,7 +4,9 @@ using System.IO;
 using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
+using System.Xml.Xsl;
 using NewsComponents.Feed;
+using NewsComponents.Utils;
 
 namespace NewsComponents
 {
@@ -199,6 +201,74 @@ namespace NewsComponents
                 serializer.Serialize(writer, feedlist);
                 //writer.Close(); DON'T CLOSE STREAM
             }
+        }
+
+        /// <summary>
+        /// Parses a feed-list stream into a <see cref="feeds"/> object. Loads the stream into an
+        /// <see cref="XmlDocument"/>, normalizes it via <see cref="ConvertFeedList"/> and
+        /// deserializes the result. The state-mutating merge stays on <c>FeedSource</c>.
+        /// </summary>
+        /// <param name="feedlist">The stream containing the feed list.</param>
+        /// <returns>The deserialized <see cref="feeds"/> object.</returns>
+        public feeds ParseFeedList(Stream feedlist)
+        {
+            var doc = new XmlDocument();
+            doc.Load(feedlist);
+
+            //convert feed list to RSS Bandit format
+            doc = ConvertFeedList(doc);
+
+            //load up
+            var reader = new XmlNodeReader(doc);
+            XmlSerializer serializer = XmlHelper.SerializerCache.GetSerializer(typeof (feeds));
+            var myFeeds = (feeds) serializer.Deserialize(reader);
+            reader.Close();
+
+            return myFeeds;
+        }
+
+        /// <summary>
+        /// Converts the input XML document from OCS, OPML or SIAM to the RSS Bandit feed list
+        /// format.
+        /// </summary>
+        /// <param name="doc">The input feed list</param>
+        /// <returns>The converted feed list</returns>
+        /// <exception cref="ApplicationException">if the feed list format is unknown</exception>
+        public XmlDocument ConvertFeedList(XmlDocument doc)
+        {
+            var importFilter = new ImportFilter(doc);
+
+            XslTransform transform = importFilter.GetImportXsl();
+
+            if (transform != null)
+            {
+                // We have a format other than Bandit
+                // Apply the import filter (transform)
+                var temp = new XmlDocument();
+                temp.Load(transform.Transform(doc, null));
+                doc = temp;
+            }
+            else
+            {
+                // see if we have a Bandit format
+                if (importFilter.Format == ImportFeedFormat.Bandit)
+                {
+                    // load and validate the Bandit feed file
+                    //validate document
+                    var context =
+                        new XmlParserContext(null, new RssBanditXmlNamespaceResolver(), null, XmlSpace.None);
+                    XmlReader vr = new RssBanditXmlReader(doc.OuterXml, XmlNodeType.Document, context);
+                    doc.Load(vr);
+                    vr.Close();
+                }
+                else
+                {
+                    // We have an unknown format
+                    throw new ApplicationException("Unknown Feed Format.", null);
+                }
+            }
+
+            return doc;
         }
 
         /// <summary>

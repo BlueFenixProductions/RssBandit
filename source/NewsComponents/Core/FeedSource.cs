@@ -4898,39 +4898,7 @@ namespace NewsComponents
         /// <exception cref="ApplicationException">if the feed list format is unknown</exception>
         public XmlDocument ConvertFeedList(XmlDocument doc)
         {
-            var importFilter = new ImportFilter(doc);
-
-            XslTransform transform = importFilter.GetImportXsl();
-
-            if (transform != null)
-            {
-                // We have a format other than Bandit
-                // Apply the import filter (transform)
-                var temp = new XmlDocument();
-                temp.Load(transform.Transform(doc, null));
-                doc = temp;
-            }
-            else
-            {
-                // see if we have a Bandit format
-                if (importFilter.Format == ImportFeedFormat.Bandit)
-                {
-                    // load and validate the Bandit feed file
-                    //validate document 
-                    var context =
-                        new XmlParserContext(null, new RssBanditXmlNamespaceResolver(), null, XmlSpace.None);
-                    XmlReader vr = new RssBanditXmlReader(doc.OuterXml, XmlNodeType.Document, context);
-                    doc.Load(vr);
-                    vr.Close();
-                }
-                else
-                {
-                    // We have an unknown format
-                    throw new ApplicationException("Unknown Feed Format.", null);
-                }
-            }
-
-            return doc;
+            return FeedListSerializer.ConvertFeedList(doc);
         }
 
 
@@ -4958,17 +4926,7 @@ namespace NewsComponents
         /// <exception cref="ApplicationException">If the file is not a SIAM, OPML or RSS bandit feedlist</exception>		
         public void ImportFeedlist(Stream feedlist, string category, bool replace)
         {
-            var doc = new XmlDocument();
-            doc.Load(feedlist);
-
-            //convert feed list to RSS Bandit format
-            doc = ConvertFeedList(doc);
-
-            //load up 
-            var reader = new XmlNodeReader(doc);
-            XmlSerializer serializer = XmlHelper.SerializerCache.GetSerializer(typeof (feeds));
-            var myFeeds = (feeds) serializer.Deserialize(reader);
-            reader.Close();
+            var myFeeds = FeedListSerializer.ParseFeedList(feedlist);
 
             bool keepLocalSettings = true;
             ImportFeedlist(myFeeds, category, replace, keepLocalSettings);
