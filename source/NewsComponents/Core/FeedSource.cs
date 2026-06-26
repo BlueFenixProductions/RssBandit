@@ -491,6 +491,28 @@ namespace NewsComponents
             }
         }
 
+        /// <summary>
+        /// The lazily-constructed search-index sink (Slice 4 extraction). A thin, stateless 1:1
+        /// pass-through onto the process-wide static <see cref="SearchHandler"/>, read
+        /// <em>per call</em> through an accessor so the original lazy-binding + <c>NoIndexing</c>
+        /// no-op semantics are preserved exactly. Unlike <see cref="FaviconStore"/> /
+        /// <see cref="FeedListSerializer"/> it holds no feed/item state, so there is no swap-rebuild
+        /// check. The setter is the test seam (a recording fake is injected to pin call routing;
+        /// <c>InternalsVisibleTo("NewsComponents.UnitTests")</c> makes it reachable). <c>internal</c>
+        /// rather than <c>private</c> so the <see cref="Feed.Sources.BanditFeedSource"/> subclass site
+        /// (same assembly) can reach it.
+        /// </summary>
+        private ISearchIndexSink searchIndexSink;
+
+        /// <summary>
+        /// Gets or sets the (lazily constructed) search-index sink. Set is the test injection seam.
+        /// </summary>
+        internal ISearchIndexSink SearchIndexSink
+        {
+            get { return searchIndexSink ?? (searchIndexSink = new SearchIndexSink(() => SearchHandler)); }
+            set { searchIndexSink = value; }
+        }
+
 
 		/// <summary>
 		/// Client certificates cache for feeds
@@ -2700,7 +2722,7 @@ namespace NewsComponents
                     }
                 } //if(fi != null)		
 
-                SearchHandler.IndexRemove(feed.id);
+                SearchIndexSink.IndexRemove(feed.id);
             } //if (feed != null && !string.IsNullOrEmpty( feed.link ) && feedsTable.ContainsKey(feed.link)) {
         }
 
@@ -2743,8 +2765,8 @@ namespace NewsComponents
                     }
                 } //if(fi != null)
 
-                SearchHandler.IndexAdd(item);
-            } //if(item.Feed != null) 
+                SearchIndexSink.IndexAdd(item);
+            } //if(item.Feed != null)
         }
 
         /// <summary>
@@ -2759,7 +2781,7 @@ namespace NewsComponents
                 RestoreDeletedItem(item);
             }
 
-            SearchHandler.IndexAdd(deletedItems);
+            SearchIndexSink.IndexAdd(deletedItems);
         }
 
     	#region favicon handling
@@ -4041,7 +4063,7 @@ namespace NewsComponents
                     if (newReceivedItems.Count > 0)
                     {
                         theFeed.cacheurl = SaveFeed(theFeed);
-                        SearchHandler.IndexAdd(newReceivedItems); // may require theFeed.cacheurl !
+                        SearchIndexSink.IndexAdd(newReceivedItems); // may require theFeed.cacheurl !
                     }
 
                     theFeed.causedException = false;
@@ -4136,7 +4158,7 @@ namespace NewsComponents
         protected void OnAllRequestsComplete()
         {
 			// get the indexSearcher aware of modifications:
-			SearchHandler.Flush();
+			SearchIndexSink.Flush();
 
             RaiseOnAllAsyncRequestsCompleted();
         }
@@ -5249,7 +5271,7 @@ namespace NewsComponents
                         {
                             items.Remove(item);
                             RelationCosmosRemove(item);
-                            SearchHandler.IndexRemove(item);
+                            SearchIndexSink.IndexRemove(item);
                             count--;
                             i--;
                         } //if
@@ -6147,7 +6169,7 @@ namespace NewsComponents
                 itemsTable.Remove(feedUrl);
             }
 
-            SearchHandler.IndexRemove(f.id);
+            SearchIndexSink.IndexRemove(f.id);
 
             try
             {
@@ -6232,7 +6254,7 @@ namespace NewsComponents
                     INewsFeed f = null;
                     if (feedsTable.TryGetValue(url, out f))
                     {
-                        SearchHandler.IndexRemove(f.id);
+                        SearchIndexSink.IndexRemove(f.id);
                         try
                         {
                             UserCacheDataService.RemoveFeed(f);

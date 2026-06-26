@@ -91,7 +91,7 @@ namespace NewsComponents.Feed
         private void LoadFeedlist(string feedListUrl, ValidationEventHandler veh)
         {
             LoadFeedlist(SyncWebRequest.GetResponseStream(feedListUrl, null, UserAgent, Proxy), veh);
-            SearchHandler.CheckIndex();
+            SearchIndexSink.CheckIndex();
         }
 
         /// <summary>
