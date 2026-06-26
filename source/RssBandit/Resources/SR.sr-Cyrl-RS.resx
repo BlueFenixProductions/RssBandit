@@ -2694,9 +2694,6 @@ referrer-url: {2}</value>
 	<data name="MenuSynchronizeFeedsDesc" space="preserve">
     <value>Стартује Чаробњак за синхронизовање feed-ова</value>
   </data>
-	<data name="ExceptionInvalidPlaylistName" space="preserve">
-    <value>Молим вас наведите исправно име плејлисте</value>
-  </data>
 	<data name="NoTopStoriesMessage" space="preserve">
     <value>Нису пронађене приче које су линковане са ваших потписа у протеклих '{0}' недељу дана.</value>
   </data>
@@ -2711,12 +2708,6 @@ referrer-url: {2}</value>
   </data>
 	<data name="ExceptionNoUserName" space="preserve">
     <value>Молим вас обезбедите исправно корисничко име</value>
-  </data>
-	<data name="MenuDownloadManager" space="preserve">
-    <value>Менаџер за преузимање фајлова...</value>
-  </data>
-	<data name="MenuDownloadManagerDesc" space="preserve">
-    <value>Стартује менаџер преузимања фајлова</value>
   </data>
 	<data name="MenuDeleteFeedSourceCaption" space="preserve">
     <value>Обриши извор feed-а...</value>

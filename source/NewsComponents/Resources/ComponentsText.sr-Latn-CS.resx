@@ -57,11 +57,6 @@
 	<data name="ExceptionNoProcessingHandlerMessage">
 		<value>Url izvora '{0}' ne može biti procesuiran. Nije implementiran handler.</value>
 	</data>
-<data name="ExceptionEnclosureCacheLimitReached">
-    <value>The attempt to download the file '{0}' failed because it would exceed the size limit of {1}MB dedicated to podcasts and attachments. Either increase the size limit or delete previously downloaded attachments to make room for this download.</value>
-    <comment>.
- Parameters: 0 - Ime fajla (string), 1 - veličina (int) </comment>
-  </data>
 	<data name="ExceptionSearchNoSearchCriteria">
     <value>Nije naveden kriterij pretrage</value>
   </data>
@@ -92,11 +87,6 @@
 	<data name="ExceptionHelpFeedDesc">
     <value>Obezbeđuje pomoć o greškama</value>
   </data>
-	<data name="ExceptionNntpServerAuthenticationFailed">
-    <value>Konekcija na NNTP server '{0}' sa autentifikacijom neuspešna: neispravni korisničko ime/lozinka</value>
-    <comment>.
- Parametri: 0 - nntpServer (string) </comment>
-  </data>
 	<data name="ExceptionResourceAuthorization">
     <value>Neovlašten pristup, potrebni akreditivi ili neispravni akreditivi (HTTP status 401)</value>
   </data>
@@ -106,16 +96,8 @@
 	<data name="ExceptionClientCertificateRequired" space="preserve">
     <value>Pristup onemogućen, potreban sertifikat klijenta ili obeѕbeđeni sertifikat klijenta nije validan.</value>
   </data>
-	<data name="ExceptionNntpResourceAuthorization" space="preserve">
-    <value>Unauthorized access, credentials required or invalid credentials (NNTP status 480)</value>
-  </data>
 	<data name="DefaultFacebookCommenterName" space="preserve">
     <value>Unknown Facebook User</value>
-  </data>
-	<data name="ExceptionDownloadingEnclosure" space="preserve">
-    <value>An error has occured downloading the enclosure:
-
-{0}</value>
   </data>
 	<data name="ExceptionFacebookFeedlistCorrupted" space="preserve">
     <value>The Facebook subscriptions file has been tampered with and cannot be loaded. Delete Facebook as a feed source and add it again from "Synchronize Feeds" to fix this problem.</value>

@@ -151,11 +151,6 @@
   <data name="String">
     <value>Ce type de recherche n'est plus supporté ('{0}').</value>
   </data>
-<data name="ExceptionNntpServerAuthenticationFailed">
-    <value>La connexion authentifiée au serveur NNTP '{0}' a échouée: mauvais utilisateur/mot de passe</value>
-    <comment>.
- Parameters: 0 - nntpServer (string) </comment>
-  </data>
 	<data name="ExceptionResourceAuthorization">
     <value>Accès refusé, authentification demandée ou authentification invalide (erreur HTTP 401)</value>
   </data>
@@ -165,16 +160,8 @@
 	<data name="ExceptionClientCertificateRequired" space="preserve">
     <value>Access forbidden, client certificate required or invalid</value>
   </data>
-	<data name="ExceptionNntpResourceAuthorization" space="preserve">
-    <value>Unauthorized access, credentials required or invalid credentials (NNTP status 480)</value>
-  </data>
 	<data name="DefaultFacebookCommenterName" space="preserve">
     <value>Unknown Facebook User</value>
-  </data>
-	<data name="ExceptionDownloadingEnclosure" space="preserve">
-    <value>An error has occured downloading the enclosure:
-
-{0}</value>
   </data>
 	<data name="ExceptionFacebookFeedlistCorrupted" space="preserve">
     <value>The Facebook subscriptions file has been tampered with and cannot be loaded. Delete Facebook as a feed source and add it again from "Synchronize Feeds" to fix this problem.</value>

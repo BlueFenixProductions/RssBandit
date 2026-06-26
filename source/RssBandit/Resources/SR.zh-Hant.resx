@@ -2433,9 +2433,6 @@ failed with error:
 	<data name="MenuSynchronizeFeedsDesc" space="preserve">
     <value>Launches the Synchronize Feeds Wizard</value>
   </data>
-	<data name="ExceptionInvalidPlaylistName" space="preserve">
-    <value>Please specify a valid playlist name</value>
-  </data>
 	<data name="NoTopStoriesMessage" space="preserve">
     <value>No stories found that have been linked from your subscriptions in '{0}' over the past week.</value>
   </data>
@@ -2450,12 +2447,6 @@ failed with error:
   </data>
 	<data name="ExceptionNoUserName" space="preserve">
     <value>Please provide a valid username</value>
-  </data>
-	<data name="MenuDownloadManager" space="preserve">
-    <value>Download Manager...</value>
-  </data>
-	<data name="MenuDownloadManagerDesc" space="preserve">
-    <value>Launches the download manager</value>
   </data>
 	<data name="MenuDeleteFeedSourceCaption" space="preserve">
     <value>Delete Feed Source...</value>

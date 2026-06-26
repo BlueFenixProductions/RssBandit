@@ -2694,9 +2694,6 @@ neuspešno sa greškom:
 	<data name="MenuSynchronizeFeedsDesc" space="preserve">
     <value>Startuje Čarobnjak za sinhronizovanje feed-ova</value>
   </data>
-	<data name="ExceptionInvalidPlaylistName" space="preserve">
-    <value>Molim vas navedite ispravno ime plejliste</value>
-  </data>
 	<data name="NoTopStoriesMessage" space="preserve">
     <value>Nisu pronađene priče koje su linkovane sa vaših potpisa u proteklih '{0}' nedelju dana.</value>
   </data>
@@ -2711,12 +2708,6 @@ neuspešno sa greškom:
   </data>
 	<data name="ExceptionNoUserName" space="preserve">
     <value>Molim vas obezbedite ispravno korisničko ime</value>
-  </data>
-	<data name="MenuDownloadManager" space="preserve">
-    <value>Menadžer za preuzimanje fajlova...</value>
-  </data>
-	<data name="MenuDownloadManagerDesc" space="preserve">
-    <value>Startuje menadžer preuzimanja fajlova</value>
   </data>
 	<data name="MenuDeleteFeedSourceCaption" space="preserve">
     <value>Obriši izvor feed-a...</value>
