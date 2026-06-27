@@ -1049,7 +1049,7 @@ namespace NewsComponents
             var sb = new StringBuilder("");
             var writer = new XmlTextWriter(new StringWriter(sb))
                              {
-                                 Formatting = Formatting.Indented
+                                 Formatting = System.Xml.Formatting.Indented
                              };
 
             if (format == NewsItemSerializationFormat.RssFeed || format == NewsItemSerializationFormat.NewsPaper)

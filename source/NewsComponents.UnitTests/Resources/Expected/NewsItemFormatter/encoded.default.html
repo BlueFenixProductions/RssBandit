@@ -1,0 +1,320 @@
+<!DOCTYPE html PUBLIC ""><html xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <head>
+    <META http-equiv="Content-Type" content="text/html; charset=utf-16">
+    <title>Encoded Title</title>
+    <base href="http://example.invalid/encoded">
+    <style type="text/css">
+  @media print
+  {
+  div.PageNavigation { visibility:hidden; }
+  }
+
+  /* IE hack: hide the unnessecary vertical scrollbar, but allow scrollers if needed
+  html {
+  overflow:auto;
+  }
+  */
+
+  body { color: black; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0px; padding: 0px;
+  }
+
+  a, a:visited, a:active {
+  color: #002D96;
+  text-decoration: none;
+  border-bottom: 1px dotted #002D96;
+  }
+
+  a.img { border-bottom: 0px hidden }
+
+  a:hover {
+  color: #002D96;
+  text-decoration: none;
+  border-bottom: 1px dotted #002D96;
+  }
+
+  div {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  td.PostFrame { background-color: white; padding: 8px; }
+
+  div.PostTitle {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size:normal;
+  }
+
+  .PostTitle a, .PostTitle a:active, .PostTitle a:visited {
+  border-width: 0px;
+  color: #002D96;
+  font-weight: bold;
+  text-decoration: none;
+  }
+
+  .PostTitle a:hover {
+  color:#1C4EA6;
+  border-width: 0px;
+  text-decoration: underline;
+  }
+
+  div.PostTitleImage {
+  float:right;
+  }
+
+  div.PageNavigation {
+  font-size: x-small;
+  margin: 5px 0px 10px 0px;
+  padding: 2px 0px 2px 0px;
+  }
+
+  div.PostInfos {
+  color: #808080;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: small;
+  font-weight:normal;
+  text-transform: none;
+  }
+
+  div.PostContent {
+  font-size: small;
+  border-top: 1px dotted #CBCBCB;
+  max-width: 70%;
+  }
+
+  div.PostContent img {
+  max-width: 70%;
+  }
+
+
+  div.PostItemContent {
+  font-size: small;
+  margin: 10px 0px 10px 0px;
+  padding: 10px 0px 10px 0px;
+  border-bottom: 1px dotted #CBCBCB;
+  }
+
+  div.PostItemContent img {
+  max-width: 70%;
+  }
+
+  div.PostSignature {
+  text-align: right;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: xx-small;
+  font-style: italic;
+  }
+
+  .PostSignature a { font-size: x-small; }
+</style><script>
+    window.onerror = handleError;
+
+    function handleError(msg, file_loc, line_no) {
+    return true;
+    }
+</script><script> 
+
+ var currentItem   = null; 
+ var currentIndex  = 0; 
+ var prevScrollPos = 0; 
+
+ var FadeInterval = 200;
+ var StartFadeAt = 7;
+
+ var FadeSteps = new Array();
+	FadeSteps[1] = "ff";
+	FadeSteps[2] = "ee";
+	FadeSteps[3] = "dd";
+	FadeSteps[4] = "cc";
+	FadeSteps[5] = "bb";
+	FadeSteps[6] = "aa";
+	FadeSteps[7] = "99"; 
+
+ function swapImage(img, userClicked){ 
+
+  if(userClicked){
+   img.className="keepunread";
+  }else if(img.className == "keepunread"){
+	return; 
+  } 
+
+  var oldSrc = img.src; 
+  var folderEnd = oldSrc.lastIndexOf('/') + 1; 
+
+
+  if(img.useMap.indexOf('#readstate')==0){
+     if(oldSrc.indexOf('unread.gif')== -1){
+      img.src = oldSrc.substr(0, folderEnd) + 'unread.gif'; 
+     }else{
+      img.src = oldSrc.substr(0, folderEnd) + 'read.gif'; 
+     }
+  }else if(img.useMap.indexOf('#watchstate')==0){
+     if(oldSrc.indexOf('been.watched.gif')== -1){
+      img.src = oldSrc.substr(0, folderEnd) + 'been.watched.gif'; 
+     }else{
+      img.src = oldSrc.substr(0, folderEnd) + 'not.watched.gif'; 
+     }
+  }else if(img.useMap.indexOf('#flagstate')==0){
+     if(oldSrc.indexOf('flag.clear.gif')== -1){
+      img.src = oldSrc.substr(0, folderEnd) + 'flag.clear.gif'; 
+     }else{
+      img.src = oldSrc.substr(0, folderEnd) + 'flag.red.gif'; 
+     }
+  }else if(img.useMap.indexOf('#sharestate')==0){
+     if(oldSrc.indexOf('shared.png')== -1){
+      img.src = oldSrc.substr(0, folderEnd) + 'shared.png'; 
+     }else{
+      img.src = oldSrc.substr(0, folderEnd) + 'unshared.gif'; 
+     }
+  }else if(img.useMap.indexOf('#clipstate')==0){
+     if(oldSrc.indexOf('clip.gif')== -1){
+      img.src = oldSrc.substr(0, folderEnd) + 'clip.gif'; 
+     }else{
+      img.src = oldSrc.substr(0, folderEnd) + 'newsbin.gif'; 
+     }
+  }
+
+ }
+
+function deselect(target){
+
+  if(target == null) return; 
+
+ target.style.backgroundColor = "#ffffff";	
+ target.style.backgroundColor = "transparent";		
+
+} 
+
+// This is the recursive function call that actually performs the fade
+function highlightCurrentItem(colorId) {
+
+	if(currentItem == null) return; 
+
+    if (colorId >= 2) {
+		currentItem.style.backgroundColor = "#ffff" + FadeSteps[colorId];		      
+		
+		colorId--; 
+		
+        // Wait a little bit and fade another shade
+        setTimeout("highlightCurrentItem("+colorId+")", FadeInterval);
+	}
+}
+
+function markItemRead(target){
+ 
+  var images = target.getElementsByTagName("img"); 
+  var img    = images[0]; 
+    
+  if((img.className != "keepunread") &&(img.src.indexOf('unread.gif')!= -1)){
+   swapImage(img, false);
+   
+   var oldHref = target.childNodes[1].childNodes[0].href;
+   target.childNodes[1].childNodes[0].href = target.childNodes[1].childNodes[0].href.replace("fdaction:?action=toggleread", "fdaction:?action=markread"); 
+   target.childNodes[1].childNodes[0].click(); 
+   target.childNodes[1].childNodes[0].href = oldHref; 
+  }
+
+}
+
+function getItemDivs(){
+
+	var allDivs = document.getElementsByTagName("DIV");
+	var itemDivs = new Array(); 
+	
+	for(var i = 0; i < allDivs.length; i++){
+  if(allDivs[i].id.indexOf("item")==0){
+  itemDivs.push(allDivs[i]);
+  }
+  }
+  return itemDivs
+  }
+
+  function handleScroll()
+  {
+
+  var st = document.documentElement ? document.documentElement : document.body;
+
+  // Detect currently visible feed item
+  var items  = getItemDivs();
+  var previousItem = currentItem;
+  var previousIndex = currentIndex;
+  var movedDown     =  (prevScrollPos  < st.scrollTop);
+  var itemSelected  = false;
+
+  /* locate and highlight currently visible item, then deselect previous item */
+  for(var i = 0; i < items.length; i++){  
+    var item = items[i];
+   
+   //is current item the topmost one? 
+   if((item.offsetTop <= st.scrollTop) && ((item.offsetTop + item.offsetHeight + 10 /* padding */) >= st.scrollTop)){
+
+  currentItem  = item;
+  currentIndex = i;
+
+  //if there is no next item or item is only one on screen then it is to be highlighted
+  if( ((i + 1) ==  items.length) ||
+  ((item.offsetTop + item.offsetHeight) >= (st.scrollTop + st.offsetHeight))){
+  itemSelected = true;
+  break;
+  }
+
+  var nextItem = items[i + 1];
+
+  //is the next item 100% visible or does it take up a third or more of the page?
+  // if so we should highlight it
+  if( (nextItem.offsetTop + nextItem.offsetHeight) <= (st.scrollTop + st.offsetHeight)
+  ||
+  (((st.scrollTop - nextItem.offsetTop) / (st.offsetHeight * 1.0)) > 0.34) 
+          ) { 
+       
+        currentItem  = nextItem; 
+        currentIndex = i + 1; 
+       } 
+       
+       itemSelected = true;        
+       break; 
+   }/* if */
+  
+  }/* for */   
+  
+  if(!itemSelected){
+   currentItem = items[0]; 
+   currentIndex = 0; 
+  }
+  
+  //if( previousItem == null || currentItem.id != previousItem.id){
+  //  highlightCurrentItem(StartFadeAt); 
+  //  deselect(previousItem); 
+  //}
+  
+  /* For each item between current and previous, If unread we mark it read then call out to RSS Bandit by calling click() */
+  if(movedDown){
+  
+   for(var j = previousIndex; j <= currentIndex; j++){
+  markItemRead(items[j]);
+  }
+
+  }
+
+  prevScrollPos = st.scrollTop;
+
+}
+</script></head>
+  <body id="body">
+    <table height="100%" width="100%">
+      <tr>
+        <td class="PostFrame" height="100%" width="100%" valign="top">
+          <div class="PostTitle">
+            <map name="flagstate1">
+              <area alt="Set or clear flag" shape="rect" coords="0,0,16,16" href="fdaction:?action=toggleflag&amp;postid=urn:fixture:encoded">
+            </map>
+            <map name="readstate1">
+              <area alt="Mark read or unread" shape="rect" coords="0,0,16,16" href="fdaction:?action=toggleread&amp;postid=urn:fixture:encoded">
+            </map><img border="0" usemap="#readstate1" class="icon" src="https://templates.invalid/images/unread.gif" onclick="swapImage(this, true)"><img border="0" usemap="#flagstate1" class="icon" src="https://templates.invalid/images/flag.clear.gif" onclick="swapImage(this, true)"><a href="http://example.invalid/encoded">Encoded Title</a></div>
+          <div class="PostInfos"><b>TestSubject</b></div>
+          <div class="PostContent"><p>This is <b>HTML</b> content with a <a href="http://link.invalid/">link</a>.</p></div>
+          <div class="PostSignature"><a href="http://feed.invalid/" title="FeedDescription">FeedTitle</a><br>__PUBDATE__</div>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

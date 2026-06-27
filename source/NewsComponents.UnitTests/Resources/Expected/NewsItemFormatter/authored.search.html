@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-16"?>
+<html xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Authored Title</title>
+    <base href="http://example.invalid/authored" />
+    <style type="text/css">
+	body,td,div,.p,a{font-family:"Segoe UI", Tahoma, Geneva, Verdana, sans-serif}
+
+	div.FeedTitle{
+	padding-left:3px;
+	padding-bottom:3px;
+	margin-bottom:3px;
+	background:#e5ecf9;
+	border-top:1px solid #002D96;
+	border-left:1px solid #002D96;
+	font-size:large;
+	}
+
+  div.FeedTitleImage {
+	float:right;
+  padding-top:3px;
+	padding-right:3px;
+  border-top:1px solid #002D96;
+	border-right:1px solid #002D96;
+	}
+
+	.fl:link{color:#77c}
+	
+	a{text-decoration:none}
+	a:hover{text-decoration:underline}
+	a:link,.w,a.w:link,.w a:link,.q:visited,.q:link,.q:active,.q{color:#002D96}
+	a:visited,.fl:visited{color:#551a8b}
+	a:active,.fl:active{color:red}
+
+	div,td{color:#000}
+	
+	div.PostTitle { 
+	/* font-family: "trebuchet ms", "lucida grande", verdana, arial, sans-serif;	*/
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+	}
+	
+	.PostTitle a, .PostTitle a:active, .PostTitle a:visited {
+	border-width: 0px;
+	color: #FF6600;
+	}
+	
+	div.PostLink{
+	color:green;
+	font-size: smaller;
+	}
+	
+	div.PostBody{
+		font-family:"Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+		font-weight: normal;
+	}
+	
+	div.PostInfos { 
+	color: #808080;
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+	font-size:larger;	
+	}	
+	
+	
+	div.PostSignature { 
+	text-align: right;
+	font-size: x-small; 
+	font-style: italic;
+	}
+	
+	.PostSignature a { font-size: x-small; }
+</style>
+    <script> 
+
+ function swapImage(img){
+
+  var oldSrc = img.src; 
+  var folderEnd = oldSrc.lastIndexOf('/') + 1; 
+
+
+  if(img.useMap.indexOf('#readstate')==0){
+     if(oldSrc.indexOf('unread.gif')== -1){
+      img.src = oldSrc.substr(0, folderEnd) + 'unread.gif'; 
+     }else{
+      img.src = oldSrc.substr(0, folderEnd) + 'read.gif'; 
+     }
+  }else if(img.useMap.indexOf('#flagstate')==0){
+     if(oldSrc.indexOf('flag.clear.gif')== -1){
+      img.src = oldSrc.substr(0, folderEnd) + 'flag.clear.gif'; 
+     }else{
+      img.src = oldSrc.substr(0, folderEnd) + 'flag.red.gif'; 
+     }
+  }
+
+ }
+
+
+ 
+</script>
+  </head>
+  <body>
+    <div class="PostItemContent" id="item1">
+      <table height="100%" width="100%">
+        <tr>
+          <td class="PostFrame" height="100%" width="100%" valign="top">
+            <div class="PostTitle">
+              <map name="flagstate1">
+                <area shape="rect" coords="0,0,16,16" href="fdaction:?action=toggleflag&amp;postid=urn:fixture:authored" />
+              </map>
+              <map name="readstate1">
+                <area shape="rect" coords="0,0,16,16" href="fdaction:?action=toggleread&amp;postid=urn:fixture:authored" />
+              </map>
+              <img alt="Mark read or unread" border="0" usemap="#readstate1" class="icon" src="https://templates.invalid/images/read.gif" onclick="swapImage(this)" />
+              <img alt="Set or clear flag" border="0" usemap="#flagstate1" class="icon" src="https://templates.invalid/images/flag.red.gif" onclick="swapImage(this)" />
+              <a href="http://example.invalid/authored">Authored Title</a>
+            </div>
+            <div class="PostInfos">TestSubject</div>
+            <div class="PostContent">Content by an author.</div>
+            <div class="PostSignature">
+              <a href="http://feed.invalid/" title="FeedDescription">FeedTitle</a>
+              <br />Publisher:
+		  Jane Author&nbsp;__PUBDATE__</div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

@@ -121,7 +121,7 @@ namespace NewsComponents
                 }
 
                 var opmlWriter = new XmlTextWriter(feedStream, Encoding.UTF8);
-                opmlWriter.Formatting = Formatting.Indented;
+                opmlWriter.Formatting = System.Xml.Formatting.Indented;
                 opmlDoc.Save(opmlWriter);
             }
             else if (format.Equals(FeedListFormat.NewsHandler) || format.Equals(FeedListFormat.NewsHandlerLite))

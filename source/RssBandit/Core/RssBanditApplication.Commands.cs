@@ -7,6 +7,7 @@ using System.Linq;
 using System.Windows.Forms;
 using NewsComponents;
 using NewsComponents.Feed;
+using NewsComponents.Formatting;
 using NewsComponents.Utils;
 using RssBandit.Resources;
 using RssBandit.WinGui;

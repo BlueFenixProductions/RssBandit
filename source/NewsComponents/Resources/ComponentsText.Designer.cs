@@ -131,8 +131,44 @@ namespace NewsComponents.Resources {
                 return ResourceManager.GetString("ExceptionLuceneSearchKindNotSupported", resourceCulture);
             }
         }
-        
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Xslt stylesheet is invalid..
+        /// </summary>
+        internal static string ExceptionNewsItemFormatterInvalidStylesheet {
+            get {
+                return ResourceManager.GetString("ExceptionNewsItemFormatterInvalidStylesheet", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Xslt stylesheet cannot be compiled..
+        /// </summary>
+        internal static string ExceptionNewsItemFormatterStylesheetCompile {
+            get {
+                return ResourceManager.GetString("ExceptionNewsItemFormatterStylesheetCompile", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to The selected Xslt stylesheet to format items reports this problem: {0} Detail: {1}.
+        /// </summary>
+        internal static string ExceptionNewsItemFormatterStylesheetMessage {
+            get {
+                return ResourceManager.GetString("ExceptionNewsItemFormatterStylesheetMessage", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Feed item cannot be transformed to HTML..
+        /// </summary>
+        internal static string ExceptionNewsItemTransformation {
+            get {
+                return ResourceManager.GetString("ExceptionNewsItemTransformation", resourceCulture);
+            }
+        }
+
+
         /// <summary>
         ///   Looks up a localized string similar to Feed Url &apos;{0}&apos; cannot be processed. No handler implemented..
         /// </summary>

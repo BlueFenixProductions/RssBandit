@@ -20,6 +20,14 @@
     <EmbeddedResource Include="Resources\Expected\RssItemTests\TestToString.NoGMT.xml" />
     <EmbeddedResource Include="Resources\Expected\RssItemTests\TestToString.NotStandalone.xml" />
     <EmbeddedResource Include="Resources\Expected\RssItemTests\TestToString.xml" />
+    <EmbeddedResource Include="Resources\Expected\NewsItemFormatter\plain.default.html" />
+    <EmbeddedResource Include="Resources\Expected\NewsItemFormatter\plain.search.html" />
+    <EmbeddedResource Include="Resources\Expected\NewsItemFormatter\encoded.default.html" />
+    <EmbeddedResource Include="Resources\Expected\NewsItemFormatter\encoded.search.html" />
+    <EmbeddedResource Include="Resources\Expected\NewsItemFormatter\enclosure.default.html" />
+    <EmbeddedResource Include="Resources\Expected\NewsItemFormatter\enclosure.search.html" />
+    <EmbeddedResource Include="Resources\Expected\NewsItemFormatter\authored.default.html" />
+    <EmbeddedResource Include="Resources\Expected\NewsItemFormatter\authored.search.html" />
     <EmbeddedResource Include="Resources\WebRoot\NewsHandlerTestFiles\FeedList03Feeds.xml" />
     <EmbeddedResource Include="Resources\WebRoot\NewsHandlerTestFiles\FeedList04Feeds.xml" />
     <EmbeddedResource Include="Resources\WebRoot\NewsHandlerTestFiles\FeedListWithDuplicateFrom03.xml" />
