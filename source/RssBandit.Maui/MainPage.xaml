@@ -11,7 +11,8 @@
         <Grid Grid.Row="0" ColumnDefinitions="*,Auto" ColumnSpacing="12">
             <Label Grid.Column="0"
                    Text="{Binding Node.UnreadCount, StringFormat='Unread items: {0}'}"
-                   FontSize="20" FontAttributes="Bold" VerticalOptions="Center" />
+                   FontSize="20" FontAttributes="Bold" VerticalOptions="Center"
+                   TextColor="{StaticResource TnPurple}" />
             <Button Grid.Column="1" Text="Refresh" Command="{Binding RefreshCommand}" />
         </Grid>
 
@@ -19,7 +20,7 @@
         <HorizontalStackLayout Grid.Row="1" Spacing="8">
             <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"
                                HeightRequest="18" WidthRequest="18" VerticalOptions="Center" />
-            <Label Text="{Binding Status}" FontSize="13" TextColor="Gray" VerticalOptions="Center" />
+            <Label Text="{Binding Status}" FontSize="13" TextColor="{StaticResource TnComment}" VerticalOptions="Center" />
         </HorizontalStackLayout>
 
         <CollectionView Grid.Row="2" ItemsSource="{Binding Node.Items}"
@@ -29,7 +30,7 @@
                     <Grid Padding="0,10" ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
 
                         <!-- Unread marker: visible only while unread -->
-                        <Label Grid.Column="0" Text="&#x25CF;" TextColor="#512BD4"
+                        <Label Grid.Column="0" Text="&#x25CF;" TextColor="{StaticResource TnBlue}"
                                VerticalOptions="Center" FontSize="12">
                             <Label.Triggers>
                                 <DataTrigger TargetType="Label" Binding="{Binding IsRead}" Value="True">

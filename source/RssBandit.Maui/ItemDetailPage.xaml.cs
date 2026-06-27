@@ -10,11 +10,24 @@ namespace RssBandit.Maui;
 /// </summary>
 public partial class ItemDetailPage : ContentPage
 {
-    // The engine's XSLT template references read/flag/enclosure chrome icons under an unreachable host
-    // ($IMAGEDIR$ -> https://templates.invalid/...). Hide just those so the article reads clean; the
-    // article's own remote images still load. Done here (not in the shared template -- the WinForms
-    // head serves those icons locally and wants them).
-    private const string HideChromeCss = "<style>img[src*=\"templates.invalid\"]{display:none}</style>";
+    // TokyoNight reading theme for the article, in the Hack font (bundled -> reachable on Android at
+    // /android_asset). Also hides the engine template's read/flag/enclosure chrome icons, which point
+    // at an unreachable host ($IMAGEDIR$ -> templates.invalid), and fits article images to the screen.
+    // Done here in the host layer, not the shared XSLT (the WinForms head serves those icons locally).
+    private const string ThemeCss =
+        "<style>" +
+        "@font-face{font-family:'Hack';src:url('file:///android_asset/Hack-Regular.ttf');}" +
+        "@font-face{font-family:'Hack';font-weight:bold;src:url('file:///android_asset/Hack-Bold.ttf');}" +
+        "html,body{background:#1a1b26!important;color:#c0caf5!important;line-height:1.6;padding:4px 10px;}" +
+        "body,body *{font-family:'Hack','Roboto Mono',monospace!important;}" +
+        "a{color:#7aa2f7!important;}" +
+        "h1,h2,h3,h4{color:#bb9af7!important;}" +
+        "img{max-width:100%!important;height:auto!important;}" +
+        "img[src*=\"templates.invalid\"]{display:none!important;}" +
+        "pre,code{background:#16161e!important;color:#9ece6a!important;}" +
+        "hr{border-color:#414868!important;}" +
+        "blockquote{border-left:3px solid #7aa2f7!important;color:#a9b1d6!important;}" +
+        "</style>";
 
     private bool _loaded;
 
@@ -34,7 +47,7 @@ public partial class ItemDetailPage : ContentPage
     {
         html ??= string.Empty;
         int head = html.IndexOf("<head>", StringComparison.OrdinalIgnoreCase);
-        return head >= 0 ? html.Insert(head + "<head>".Length, HideChromeCss) : HideChromeCss + html;
+        return head >= 0 ? html.Insert(head + "<head>".Length, ThemeCss) : ThemeCss + html;
     }
 
     private void OnNavigating(object? sender, WebNavigatingEventArgs e)
