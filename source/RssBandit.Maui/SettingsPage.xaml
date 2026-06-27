@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RssBandit.Maui.SettingsPage"
+             Title="Settings">
+
+    <VerticalStackLayout Padding="20" Spacing="22">
+
+        <VerticalStackLayout Spacing="6">
+            <Label Text="{Binding ReaderFontSize, StringFormat='Reader font size: {0}'}"
+                   FontAttributes="Bold" TextColor="{StaticResource TnFg}" />
+            <Stepper Minimum="12" Maximum="28" Increment="1" Value="{Binding ReaderFontSize}" />
+        </VerticalStackLayout>
+
+        <Grid ColumnDefinitions="*,Auto">
+            <Label Grid.Column="0" Text="Refresh all feeds on launch"
+                   TextColor="{StaticResource TnFg}" VerticalOptions="Center" />
+            <Switch Grid.Column="1" IsToggled="{Binding RefreshOnLaunch}" />
+        </Grid>
+
+        <Grid ColumnDefinitions="*,Auto">
+            <Label Grid.Column="0" Text="Mark articles read when opened"
+                   TextColor="{StaticResource TnFg}" VerticalOptions="Center" />
+            <Switch Grid.Column="1" IsToggled="{Binding MarkReadOnOpen}" />
+        </Grid>
+
+    </VerticalStackLayout>
+</ContentPage>
