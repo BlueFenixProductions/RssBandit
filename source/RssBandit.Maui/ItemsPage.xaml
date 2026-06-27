@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:RssBandit.ViewModels;assembly=RssBandit.ViewModels"
+             x:Class="RssBandit.Maui.ItemsPage"
+             Title="Feed">
+
+    <Grid RowDefinitions="Auto,*" Padding="16" RowSpacing="10">
+
+        <HorizontalStackLayout Grid.Row="0" Spacing="8">
+            <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"
+                               HeightRequest="18" WidthRequest="18" VerticalOptions="Center" />
+            <Label Text="{Binding Node.UnreadCount, StringFormat='Unread: {0}'}"
+                   FontSize="13" TextColor="{StaticResource TnComment}" VerticalOptions="Center" />
+        </HorizontalStackLayout>
+
+        <CollectionView Grid.Row="1" ItemsSource="{Binding Node.Items}"
+                        SelectionMode="Single" SelectionChanged="OnItemSelected">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="vm:FeedItemViewModel">
+                    <Grid Padding="0,10" ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+
+                        <Label Grid.Column="0" Text="&#x25CF;" TextColor="{StaticResource TnBlue}"
+                               VerticalOptions="Center" FontSize="12">
+                            <Label.Triggers>
+                                <DataTrigger TargetType="Label" Binding="{Binding IsRead}" Value="True">
+                                    <Setter Property="IsVisible" Value="False" />
+                                </DataTrigger>
+                            </Label.Triggers>
+                        </Label>
+
+                        <Label Grid.Column="1" Text="{Binding Title}"
+                               VerticalOptions="Center" LineBreakMode="TailTruncation">
+                            <Label.Triggers>
+                                <DataTrigger TargetType="Label" Binding="{Binding IsRead}" Value="False">
+                                    <Setter Property="FontAttributes" Value="Bold" />
+                                </DataTrigger>
+                            </Label.Triggers>
+                        </Label>
+
+                        <Button Grid.Column="2" Text="Toggle"
+                                Command="{Binding ToggleReadCommand}"
+                                Padding="12,4" FontSize="12" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

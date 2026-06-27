@@ -1,57 +1,32 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:vm="clr-namespace:RssBandit.ViewModels;assembly=RssBandit.ViewModels"
+             xmlns:local="clr-namespace:RssBandit.Maui"
              x:Class="RssBandit.Maui.MainPage"
-             Title="RSS Bandit">
+             Title="Subscriptions">
 
-    <Grid RowDefinitions="Auto,Auto,*" Padding="16" RowSpacing="10">
+    <Grid RowDefinitions="Auto,*" Padding="16,8" RowSpacing="8">
 
-        <!-- Header: unread count + Refresh -->
-        <Grid Grid.Row="0" ColumnDefinitions="*,Auto" ColumnSpacing="12">
-            <Label Grid.Column="0"
-                   Text="{Binding Node.UnreadCount, StringFormat='Unread items: {0}'}"
-                   FontSize="20" FontAttributes="Bold" VerticalOptions="Center"
-                   TextColor="{StaticResource TnPurple}" />
-            <Button Grid.Column="1" Text="Refresh" Command="{Binding RefreshCommand}" />
-        </Grid>
+        <Label Grid.Row="0" Text="{Binding Status}"
+               FontSize="13" TextColor="{StaticResource TnComment}" />
 
-        <!-- Status + busy indicator -->
-        <HorizontalStackLayout Grid.Row="1" Spacing="8">
-            <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"
-                               HeightRequest="18" WidthRequest="18" VerticalOptions="Center" />
-            <Label Text="{Binding Status}" FontSize="13" TextColor="{StaticResource TnComment}" VerticalOptions="Center" />
-        </HorizontalStackLayout>
+        <CollectionView Grid.Row="1" ItemsSource="{Binding Categories}" IsGrouped="True"
+                        SelectionMode="Single" SelectionChanged="OnFeedSelected">
 
-        <CollectionView Grid.Row="2" ItemsSource="{Binding Node.Items}"
-                        SelectionMode="Single" SelectionChanged="OnItemSelected">
+            <CollectionView.GroupHeaderTemplate>
+                <DataTemplate x:DataType="local:FeedCategoryGroup">
+                    <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="16"
+                           TextColor="{StaticResource TnPurple}" Padding="0,14,0,4" />
+                </DataTemplate>
+            </CollectionView.GroupHeaderTemplate>
+
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="vm:FeedItemViewModel">
-                    <Grid Padding="0,10" ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
-
-                        <!-- Unread marker: visible only while unread -->
-                        <Label Grid.Column="0" Text="&#x25CF;" TextColor="{StaticResource TnBlue}"
-                               VerticalOptions="Center" FontSize="12">
-                            <Label.Triggers>
-                                <DataTrigger TargetType="Label" Binding="{Binding IsRead}" Value="True">
-                                    <Setter Property="IsVisible" Value="False" />
-                                </DataTrigger>
-                            </Label.Triggers>
-                        </Label>
-
-                        <!-- Title: bold while unread (mirrors the WinForms read/unread styling) -->
-                        <Label Grid.Column="1" Text="{Binding Title}"
-                               VerticalOptions="Center" LineBreakMode="TailTruncation">
-                            <Label.Triggers>
-                                <DataTrigger TargetType="Label" Binding="{Binding IsRead}" Value="False">
-                                    <Setter Property="FontAttributes" Value="Bold" />
-                                </DataTrigger>
-                            </Label.Triggers>
-                        </Label>
-
-                        <Button Grid.Column="2" Text="Toggle"
-                                Command="{Binding ToggleReadCommand}"
-                                Padding="12,4" FontSize="12" />
+                <DataTemplate x:DataType="local:SubscriptionItemViewModel">
+                    <Grid Padding="6,11" ColumnDefinitions="*,Auto" ColumnSpacing="12">
+                        <Label Grid.Column="0" Text="{Binding Title}"
+                               LineBreakMode="TailTruncation" VerticalOptions="Center" />
+                        <ActivityIndicator Grid.Column="1" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"
+                                           HeightRequest="16" WidthRequest="16" VerticalOptions="Center" />
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
