@@ -18,7 +18,8 @@ public partial class ItemDetailPage : ContentPage
         "<style>" +
         "@font-face{font-family:'Hack';src:url('file:///android_asset/Hack-Regular.ttf');}" +
         "@font-face{font-family:'Hack';font-weight:bold;src:url('file:///android_asset/Hack-Bold.ttf');}" +
-        "html,body{background:#1a1b26!important;color:#c0caf5!important;line-height:1.6;padding:4px 10px;}" +
+        "html,body{background:#1a1b26!important;color:#c0caf5!important;line-height:1.6;padding:4px 10px;" +
+        "overflow-x:hidden!important;overflow-wrap:break-word!important;word-break:break-word!important;}" +
         // Every container transparent over the dark body; max-width:100% defeats the template's
         // desktop-era div.PostContent{max-width:70%}. Colour is forced on text elements only -- NOT
         // span/pre/code -- so highlight.js's syntax colours survive.
@@ -27,7 +28,10 @@ public partial class ItemDetailPage : ContentPage
         "p,div,li,td,th,blockquote,strong,em,b,i,small{color:#c0caf5!important;}" +
         "a{color:#7aa2f7!important;}" +
         "h1,h2,h3,h4{color:#bb9af7!important;}" +
-        "img{max-width:100%!important;height:auto!important;}" +
+        // width:auto overrides a width=\"...\" attribute so a big WordPress image scales to fit instead
+        // of forcing a horizontal scroll; table-layout:fixed keeps wide tables inside the viewport too.
+        "img{width:auto!important;max-width:100%!important;height:auto!important;}" +
+        "table{max-width:100%!important;table-layout:fixed!important;}" +
         "img[src*=\"templates.invalid\"]{display:none!important;}" +
         "pre{background-color:#16161e!important;padding:12px!important;overflow-x:auto!important;border-radius:6px!important;}" +
         ".hljs{background:#16161e!important;}" +
