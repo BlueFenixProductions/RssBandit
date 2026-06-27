@@ -2245,7 +2245,10 @@ namespace RssBandit.WinGui.Forms
                 TreeFeedsNodeBase tn = TreeHelper.FindNode(root, f);
                 if (f.containsNewMessages)
                 {
-                    UpdateTreeNodeUnreadStatus(tn, CountUnreadFeedItems(f));
+                    // MAUI Phase D2 seam proof: the unread badge flows through the shared
+                    // FeedNodeViewModel (head -> NewsItemReadStateAdapter -> VM -> display). The value
+                    // is provably identical to CountUnreadFeedItems(f); see CountUnreadFeedItemsViaViewModel.
+                    UpdateTreeNodeUnreadStatus(tn, CountUnreadFeedItemsViaViewModel(f));
                 }
                 else
                 {

@@ -166,6 +166,13 @@
       <Project>{24D0A3F2-11C0-4E7C-BF1E-09D42E01BA47}</Project>
       <Name>RssBandit.WinForms.Contracts</Name>
     </ProjectReference>
+    <!-- Portable presentation layer (MAUI Slice D). The WinForms head consumes the shared
+         FeedNodeViewModel via NewsItemReadStateAdapter to compute the feed-tree unread badge
+         (Phase D2 seam proof); a future MAUI head binds to the same view-models. -->
+    <ProjectReference Include="..\RssBandit.ViewModels\RssBandit.ViewModels.csproj">
+      <Project>{C5B41418-4C62-462A-B734-06AAFAD73C36}</Project>
+      <Name>RssBandit.ViewModels</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="CommonServiceLocator" Version="2.0.6" />        

@@ -10,6 +10,7 @@ using System.Linq;
 using System.Windows.Forms;
 using NewsComponents.Collections;
 using RssBandit.AppServices;
+using RssBandit.ViewModels;
 using RssBandit.WinGui.Controls.ThListView;
 using RssBandit.WinGui.Controls.ThListView.Sorting;
 using AppInteropServices;
@@ -1845,6 +1846,51 @@ namespace RssBandit.WinGui.Forms
         {
             if (f == null) return 0;
             return FilterUnreadFeedItems(f).Count;
+        }
+
+        /// <summary>
+        /// Returns the number of unread items in a particular feed, computed through the shared
+        /// portable <see cref="FeedNodeViewModel"/> (MAUI Phase D2 presentation seam). This mirrors
+        /// <see cref="CountUnreadFeedItems"/> exactly: the same <c>containsNewMessages</c> guard, the
+        /// same cached-item source (<c>GetCachedItemsForFeed(f.link)</c>) and the same try/catch on the
+        /// cache read. Each cached item is wrapped in a <see cref="NewsItemReadStateAdapter"/> and added
+        /// to the node view-model, which counts the unread children itself
+        /// (<c>UnreadCount == count(!IsRead) == count(!BeenRead)</c>). The returned value is therefore
+        /// provably identical to <see cref="CountUnreadFeedItems"/> for all cases (incl.
+        /// <c>!containsNewMessages</c> -&gt; empty -&gt; 0), but it now flows head -&gt; adapter -&gt;
+        /// shared view-model -&gt; display.
+        /// </summary>
+        /// <param name="f">The target feed.</param>
+        /// <returns>The number of unread items (identical to <see cref="CountUnreadFeedItems"/>).</returns>
+        private int CountUnreadFeedItemsViaViewModel(INewsFeed f)
+        {
+            var node = new FeedNodeViewModel();
+
+            if (f == null)
+                return node.UnreadCount;
+
+            if (f.containsNewMessages)
+            {
+                IList<INewsItem> items = null;
+                try
+                {
+                    items = FeedSourceEntryOf(f.link).Source.GetCachedItemsForFeed(f.link);
+                }
+                catch
+                {
+                    /* ignore cache errors here. On error, it counts always as an empty list */
+                }
+
+                if (items != null)
+                {
+                    for (int i = 0; i < items.Count; i++)
+                    {
+                        node.Items.Add(new FeedItemViewModel(new NewsItemReadStateAdapter(items[i])));
+                    }
+                }
+            }
+
+            return node.UnreadCount;
         }
 
         /// <summary>
