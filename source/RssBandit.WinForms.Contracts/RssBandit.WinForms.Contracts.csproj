@@ -22,10 +22,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <!-- The portable contracts these WinForms interfaces extend (ICoreApplication exposes
-         IFeedSources/IChannelProcessor/OptionDialogSection from here). -->
+    <!-- The portable contracts these WinForms interfaces extend. ICoreApplication's
+         `using NewsComponents;` resolves IChannelProcessor, which is defined in the
+         NewsComponents namespace inside the AppServices assembly, so the AppServices
+         reference fully satisfies it; this contracts project must NOT take a backwards
+         dependency on the NewsComponents engine. -->
     <ProjectReference Include="..\RssBandit.AppServices\RssBandit.AppServices.csproj" />
-    <!-- ICoreApplication.cs has `using NewsComponents;`. -->
-    <ProjectReference Include="..\NewsComponents\NewsComponents.csproj" />
   </ItemGroup>
 </Project>
