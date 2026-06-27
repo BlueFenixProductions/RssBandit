@@ -6,6 +6,7 @@
              Title="Subscriptions">
 
     <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Refresh" Clicked="OnRefreshAll" />
         <ToolbarItem Text="Add" Clicked="OnAddFeed" />
     </ContentPage.ToolbarItems>
 
@@ -32,10 +33,18 @@
                                 <SwipeItem Text="Remove" BackgroundColor="#F7768E" Invoked="OnDeleteFeed" />
                             </SwipeItems>
                         </SwipeView.RightItems>
-                        <Grid Padding="6,11" ColumnDefinitions="*,Auto" ColumnSpacing="12" BackgroundColor="#1A1B26">
+                        <Grid Padding="6,11" ColumnDefinitions="*,Auto,Auto" ColumnSpacing="10" BackgroundColor="#1A1B26">
                             <Label Grid.Column="0" Text="{Binding Title}"
                                    LineBreakMode="TailTruncation" VerticalOptions="Center" />
-                            <ActivityIndicator Grid.Column="1" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"
+                            <Label Grid.Column="1" Text="{Binding UnreadCount}" TextColor="{StaticResource TnBlue}"
+                                   FontAttributes="Bold" FontSize="13" VerticalOptions="Center">
+                                <Label.Triggers>
+                                    <DataTrigger TargetType="Label" Binding="{Binding UnreadCount}" Value="0">
+                                        <Setter Property="IsVisible" Value="False" />
+                                    </DataTrigger>
+                                </Label.Triggers>
+                            </Label>
+                            <ActivityIndicator Grid.Column="2" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"
                                                HeightRequest="16" WidthRequest="16" VerticalOptions="Center" />
                         </Grid>
                     </SwipeView>

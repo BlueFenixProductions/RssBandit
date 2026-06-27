@@ -24,6 +24,12 @@ public partial class SubscriptionItemViewModel : ObservableObject
 
     [ObservableProperty]
     private bool _isBusy;
+
+    /// <summary>Unread count shown on the tree (from cache on startup, then kept current on refresh /
+    /// when leaving the feed). Separate from <see cref="Node"/>'s count, which only exists once the
+    /// feed's items are loaded.</summary>
+    [ObservableProperty]
+    private int _unreadCount;
 }
 
 /// <summary>A category of feeds (an OPML outline group). Acts as a MAUI CollectionView group.</summary>

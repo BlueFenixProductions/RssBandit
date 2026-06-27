@@ -26,6 +26,7 @@ public partial class SubscriptionsViewModel : ObservableObject
     private FeedSource? _source;
     private readonly NewsItemFormatter _formatter = new();
     private readonly Dictionary<string, SubscriptionItemViewModel> _byUrl = new();
+    private SubscriptionItemViewModel? _activeFeed; // feed whose items are on screen -- only it formats items
 
     public ObservableCollection<FeedCategoryGroup> Categories { get; } = new();
 
@@ -75,6 +76,7 @@ public partial class SubscriptionsViewModel : ObservableObject
             _source = source;
             BuildGroups();
             Status = $"{_byUrl.Count} feeds in {Categories.Count} categories";
+            LoadCachedUnreadCounts(); // show counts for already-fetched feeds without opening them
         }
         catch (Exception ex)
         {
@@ -116,6 +118,48 @@ public partial class SubscriptionsViewModel : ObservableObject
         {
             try { source.AsyncGetItemsForFeed(sub.Url, true, true); }
             catch { MainThread.BeginInvokeOnMainThread(() => sub.IsBusy = false); }
+        });
+    }
+
+    /// <summary>Tracks which feed's items are on screen, so OnUpdatedFeed only formats that one.</summary>
+    public void SetActiveFeed(SubscriptionItemViewModel? sub) => _activeFeed = sub;
+
+    /// <summary>Refresh every subscribed feed (updates unread counts across the tree). Background.</summary>
+    public void RefreshAll()
+    {
+        var source = _source;
+        if (source == null)
+            return;
+
+        Status = "Refreshing all feeds…";
+        Task.Run(() =>
+        {
+            try { source.RefreshFeeds(true); }
+            catch { }
+            MainThread.BeginInvokeOnMainThread(UpdateStatus);
+        });
+    }
+
+    /// <summary>Populate each feed's unread count from its cached items (no network, no formatting).</summary>
+    private void LoadCachedUnreadCounts()
+    {
+        var source = _source;
+        if (source == null)
+            return;
+
+        var subs = _byUrl.Values.ToList();
+        Task.Run(() =>
+        {
+            foreach (var sub in subs)
+            {
+                try
+                {
+                    int unread = source.GetCachedItemsForFeed(sub.Url).Count(i => !i.BeenRead);
+                    if (unread > 0)
+                        MainThread.BeginInvokeOnMainThread(() => sub.UnreadCount = unread);
+                }
+                catch { /* skip feeds with no/unreadable cache */ }
+            }
         });
     }
 
@@ -199,22 +243,29 @@ public partial class SubscriptionsViewModel : ObservableObject
         if (url == null || _source == null || !_byUrl.TryGetValue(Norm(url), out var sub))
             return;
 
-        // Read + format on this background thread, then marshal the bound-collection mutation to the UI.
         IList<INewsItem> items = _source.GetCachedItemsForFeed(sub.Url);
+        int unread = items.Count(i => !i.BeenRead);
         // After the first fetch the channel's real title is known -- adopt it (an added-by-url feed
         // starts out titled with its url).
         string? channelTitle = _source.GetFeeds().TryGetValue(sub.Url, out var feed) ? feed.title : null;
-        var built = items
-            .Select(it => new FeedItemViewModel(new NewsItemReadStateAdapter(it), SafeFormat(it), it.Link))
-            .ToList();
+
+        // Only build + format the item view-models for the feed actually on screen. A "Refresh all"
+        // touches every feed; formatting all of them up front would be wasteful (counts are enough).
+        var built = ReferenceEquals(sub, _activeFeed)
+            ? items.Select(it => new FeedItemViewModel(new NewsItemReadStateAdapter(it), SafeFormat(it), it.Link)).ToList()
+            : null;
 
         MainThread.BeginInvokeOnMainThread(() =>
         {
             if (!string.IsNullOrWhiteSpace(channelTitle))
                 sub.Title = channelTitle!;
-            sub.Node.Items.Clear();
-            foreach (var vm in built)
-                sub.Node.Items.Add(vm);
+            sub.UnreadCount = unread;
+            if (built != null)
+            {
+                sub.Node.Items.Clear();
+                foreach (var vm in built)
+                    sub.Node.Items.Add(vm);
+            }
             sub.IsBusy = false;
         });
     }
