@@ -1,6 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>net10.0-windows10.0.19041</TargetFramework>
+        <!-- Portable (MAUI-shareable) engine (MAUI Slice 0b): plain net10.0, no -windows TFM and
+             no WinForms/WPF/win-x86 (opted out via the IsPortableProject gate in ..\Directory.Build.props,
+             where this project is listed). The only native bits are runtime-Windows-only: the registry
+             MIME/SettingStore lookups (Microsoft.Win32.Registry package below) and a kernel32 MoveFileEx
+             P/Invoke in FileHelper (compiles without a package). The AssertNewsComponentsPortable target
+             below fails the build if -windows or WinForms/WPF coupling ever returns. -->
+        <TargetFramework>net10.0</TargetFramework>
         <Title>News Components</Title>
         <Description>News Components</Description>
     </PropertyGroup>
@@ -47,7 +53,26 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
     <!-- SharpZipLib was formerly a transitive dependency of Lucene.Net.Contrib 2.9.4.1; FileHelper.ZipFiles() uses it directly: -->
     <PackageReference Include="SharpZipLib" Version="1.4.2" />
-    <PackageReference Include="WindowsAPICodePack-Core" Version="1.1.2" />
-    <PackageReference Include="WindowsAPICodePack-Shell" Version="1.1.1" />
+    <!-- Registry access for MimeType (HKCR MIME lookup) and INewsComponentsConfiguration (HKCU
+         SettingStore). Under net10.0 (no -windows TFM) these types are no longer in the framework,
+         so the package supplies them. Runtime-Windows-only; the WinForms head runs on Windows. -->
+    <PackageReference Include="Microsoft.Win32.Registry" Version="5.0.0" />
+    <!-- System.Drawing (Font/Image) for SerializationInfoReader. ConvertFont(Font) is live: the head
+         (RssBandit.Core.RssBanditPreferences) calls it to serialize font preferences. Under net10.0
+         (no -windows TFM) System.Drawing types need this package. Runtime-Windows-only (System.Drawing.Common
+         is Windows-only); recon expected SerializationInfoReader to be System.Drawing-free but it is not.
+         FOLLOW-UP: relocate ConvertFont plus the dead GetFont/GetImage/ConvertBytesToImage/ConvertImageToBytes
+         helpers to the head so the engine carries no GUI graphics dependency before a real MAUI mobile head. -->
+    <PackageReference Include="System.Drawing.Common" Version="10.0.9" />
   </ItemGroup>
+
+  <!-- Self-enforcing portability assertion (MAUI Slice 0b, mirrors AssertAppServicesPortable). Runs
+       in CI because the RssBandit closure build includes this project. Fails the build if the engine
+       ever regains a -windows TFM or enables WinForms/WPF. -->
+  <Target Name="AssertNewsComponentsPortable" BeforeTargets="Build">
+    <Error Condition="$(TargetFramework.Contains('windows'))"
+           Text="NewsComponents must stay portable (net10.0, no -windows TFM)." />
+    <Error Condition="'$(UseWindowsForms)' == 'true' or '$(UseWPF)' == 'true'"
+           Text="NewsComponents must not enable WinForms/WPF (it is the portable engine)." />
+  </Target>
 </Project>

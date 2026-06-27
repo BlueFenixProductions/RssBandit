@@ -1,6 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net10.0-windows10.0.19041</TargetFramework>
+    <!-- Retargeted to plain net10.0 in MAUI Slice 0b to prove the now-portable engine is consumable
+         downlevel (no -windows surface needed once the NTFS alternate-data-stream test was removed
+         with the dead NTFS.cs it covered). WinForms/WPF/win-x86 are opted out via the IsPortableProject
+         gate in ..\Directory.Build.props (this project is listed there). -->
+    <TargetFramework>net10.0</TargetFramework>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
   
