@@ -5,19 +5,22 @@ using RssBandit.ViewModels;
 namespace RssBandit.Maui;
 
 /// <summary>One subscribed feed in the subscription tree: its title, url, a busy flag while it refreshes,
-/// and the shared <see cref="FeedNodeViewModel"/> that holds its items (filled lazily when opened).</summary>
+/// and the shared <see cref="FeedNodeViewModel"/> that holds its items (filled lazily when opened).
+/// Title is observable so a newly-added feed's title can update from the channel after its first fetch.</summary>
 public partial class SubscriptionItemViewModel : ObservableObject
 {
     public SubscriptionItemViewModel(string url, string? title)
     {
         Url = url;
-        Title = string.IsNullOrWhiteSpace(title) ? url : title!;
+        _title = string.IsNullOrWhiteSpace(title) ? url : title!;
         Node = new FeedNodeViewModel();
     }
 
     public string Url { get; }
-    public string Title { get; }
     public FeedNodeViewModel Node { get; }
+
+    [ObservableProperty]
+    private string _title = string.Empty;
 
     [ObservableProperty]
     private bool _isBusy;

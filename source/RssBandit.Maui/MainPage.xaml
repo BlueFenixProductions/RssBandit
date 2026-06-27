@@ -5,6 +5,10 @@
              x:Class="RssBandit.Maui.MainPage"
              Title="Subscriptions">
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Clicked="OnAddFeed" />
+    </ContentPage.ToolbarItems>
+
     <Grid RowDefinitions="Auto,*" Padding="16,8" RowSpacing="8">
 
         <Label Grid.Row="0" Text="{Binding Status}"
@@ -22,12 +26,19 @@
 
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="local:SubscriptionItemViewModel">
-                    <Grid Padding="6,11" ColumnDefinitions="*,Auto" ColumnSpacing="12">
-                        <Label Grid.Column="0" Text="{Binding Title}"
-                               LineBreakMode="TailTruncation" VerticalOptions="Center" />
-                        <ActivityIndicator Grid.Column="1" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"
-                                           HeightRequest="16" WidthRequest="16" VerticalOptions="Center" />
-                    </Grid>
+                    <SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItems Mode="Execute">
+                                <SwipeItem Text="Remove" BackgroundColor="#F7768E" Invoked="OnDeleteFeed" />
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+                        <Grid Padding="6,11" ColumnDefinitions="*,Auto" ColumnSpacing="12" BackgroundColor="#1A1B26">
+                            <Label Grid.Column="0" Text="{Binding Title}"
+                                   LineBreakMode="TailTruncation" VerticalOptions="Center" />
+                            <ActivityIndicator Grid.Column="1" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"
+                                               HeightRequest="16" WidthRequest="16" VerticalOptions="Center" />
+                        </Grid>
+                    </SwipeView>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

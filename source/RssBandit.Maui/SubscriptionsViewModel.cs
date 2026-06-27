@@ -119,6 +119,81 @@ public partial class SubscriptionsViewModel : ObservableObject
         });
     }
 
+    /// <summary>Subscribe to a feed by url. Returns null on success, or an error message to surface.</summary>
+    public string? AddFeed(string? rawUrl)
+    {
+        var source = _source;
+        if (source == null)
+            return "Not ready yet.";
+        if (string.IsNullOrWhiteSpace(rawUrl))
+            return null; // cancelled / empty
+
+        if (!Uri.TryCreate(rawUrl.Trim(), UriKind.Absolute, out var uri)
+            || (uri.Scheme != Uri.UriSchemeHttp && uri.Scheme != Uri.UriSchemeHttps))
+            return "Enter a valid http(s) feed URL.";
+
+        var url = uri.ToString();
+        if (source.IsSubscribed(url) || _byUrl.ContainsKey(Norm(url)))
+            return "Already subscribed to that feed.";
+
+        try
+        {
+            source.AddFeed(new NewsFeed { link = url, title = url });
+            source.SaveFeedList();
+        }
+        catch (Exception ex)
+        {
+            return ex.Message;
+        }
+
+        var sub = new SubscriptionItemViewModel(url, url); // title becomes the channel's after the fetch
+        _byUrl[Norm(url)] = sub;
+        AddToGroup("Uncategorized", sub);
+        UpdateStatus();
+        RefreshFeed(sub);
+        return null;
+    }
+
+    /// <summary>Unsubscribe from a feed and drop it from the tree.</summary>
+    public void RemoveFeed(SubscriptionItemViewModel sub)
+    {
+        var source = _source;
+        if (source == null)
+            return;
+
+        try
+        {
+            source.DeleteFeed(sub.Url);
+            source.SaveFeedList();
+        }
+        catch { /* best effort -- still drop it from the UI */ }
+
+        _byUrl.Remove(Norm(sub.Url));
+        foreach (var group in Categories.ToList())
+        {
+            if (group.Remove(sub))
+            {
+                if (group.Count == 0)
+                    Categories.Remove(group);
+                break;
+            }
+        }
+        UpdateStatus();
+    }
+
+    private void AddToGroup(string categoryName, SubscriptionItemViewModel sub)
+    {
+        var group = Categories.FirstOrDefault(g => g.Name == categoryName);
+        if (group == null)
+        {
+            group = new FeedCategoryGroup(categoryName);
+            Categories.Add(group);
+        }
+        group.Add(sub);
+    }
+
+    private void UpdateStatus() => Status = $"{_byUrl.Count} feeds in {Categories.Count} categories";
+
     private void HandleFeedUpdated(string? url)
     {
         if (url == null || _source == null || !_byUrl.TryGetValue(Norm(url), out var sub))
@@ -126,12 +201,17 @@ public partial class SubscriptionsViewModel : ObservableObject
 
         // Read + format on this background thread, then marshal the bound-collection mutation to the UI.
         IList<INewsItem> items = _source.GetCachedItemsForFeed(sub.Url);
+        // After the first fetch the channel's real title is known -- adopt it (an added-by-url feed
+        // starts out titled with its url).
+        string? channelTitle = _source.GetFeeds().TryGetValue(sub.Url, out var feed) ? feed.title : null;
         var built = items
             .Select(it => new FeedItemViewModel(new NewsItemReadStateAdapter(it), SafeFormat(it), it.Link))
             .ToList();
 
         MainThread.BeginInvokeOnMainThread(() =>
         {
+            if (!string.IsNullOrWhiteSpace(channelTitle))
+                sub.Title = channelTitle!;
             sub.Node.Items.Clear();
             foreach (var vm in built)
                 sub.Node.Items.Add(vm);
