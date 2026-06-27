@@ -171,25 +171,6 @@ namespace RssBandit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;xsl:stylesheet version=&apos;1.0&apos; 
-        ///xmlns:xsl=&apos;http://www.w3.org/1999/XSL/Transform&apos;
-        ///xmlns:content = &apos;http://purl.org/rss/1.0/modules/content/&apos;
-        ///xmlns:xhtml=&apos;http://www.w3.org/1999/xhtml&apos;
-        ///xmlns:slash=&apos;http://purl.org/rss/1.0/modules/slash/&apos; 
-        ///xmlns:dc=&apos;http://purl.org/dc/elements/1.1/&apos; 
-        ///xmlns:fd=&apos;http://www.bradsoft.com/feeddemon/xmlns/1.0/&apos;
-        ///xmlns:bndt=&apos;http://www.25hoursaday.com/2003/RSSBandit/feeds/&apos;
-        ///xmlns:localized=&apos;urn:localization-extension&apos;
-        ///xmlns:wfw=&apos;http://wellformedweb.org/CommentAPI/&apos;
-        ///xmlns:gr= [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string DefaultTemplate_xslt {
-            get {
-                return ResourceManager.GetString("DefaultTemplate_xslt", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap delete_16 {
@@ -486,25 +467,6 @@ namespace RssBandit.Properties {
             get {
                 object obj = ResourceManager.GetObject("RssFeedRefresh", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to &lt;xsl:stylesheet version=&apos;1.0&apos; 
-        ///xmlns:xsl=&apos;http://www.w3.org/1999/XSL/Transform&apos;
-        ///xmlns:content = &apos;http://purl.org/rss/1.0/modules/content/&apos;
-        ///xmlns:xhtml=&apos;http://www.w3.org/1999/xhtml&apos;
-        ///xmlns:slash=&apos;http://purl.org/rss/1.0/modules/slash/&apos; 
-        ///xmlns:dc=&apos;http://purl.org/dc/elements/1.1/&apos; 
-        ///xmlns:fd=&apos;http://www.bradsoft.com/feeddemon/xmlns/1.0/&apos;
-        ///xmlns:bndt=&apos;http://www.25hoursaday.com/2003/RSSBandit/feeds/&apos;
-        ///xmlns:localized=&apos;urn:localization-extension&apos;
-        ///xmlns:atom=&apos;http://www.w3.org/2005/Atom&apos;
-        ///exclude-result-pr [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string SearchResultsTemplate_xslt {
-            get {
-                return ResourceManager.GetString("SearchResultsTemplate_xslt", resourceCulture);
             }
         }
         

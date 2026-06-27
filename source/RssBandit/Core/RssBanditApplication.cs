@@ -52,6 +52,7 @@ using log4net;
 using Microsoft.Win32;
 using NewsComponents;
 using NewsComponents.Feed;
+using NewsComponents.Formatting;
 using NewsComponents.Net;
 using NewsComponents.Search;
 using NewsComponents.Utils;
@@ -405,6 +406,7 @@ namespace RssBandit
 
 
             NewsItemFormatter = new NewsItemFormatter();
+            NewsItemFormatter.Localizer = new SrNewsItemLocalizer();
             NewsItemFormatter.TransformError += OnNewsItemTransformationError;
             NewsItemFormatter.StylesheetError += OnNewsItemFormatterStylesheetError;
             NewsItemFormatter.StylesheetValidationError += OnNewsItemFormatterStylesheetValidationError;

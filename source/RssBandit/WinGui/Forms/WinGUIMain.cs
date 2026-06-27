@@ -37,6 +37,7 @@ using log4net;
 using NewsComponents;
 using NewsComponents.Collections;
 using NewsComponents.Feed;
+using NewsComponents.Formatting;
 using NewsComponents.Search;
 using NewsComponents.Utils;
 using RssBandit.Common.Logging;

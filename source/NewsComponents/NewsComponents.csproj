@@ -31,6 +31,8 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ComponentsText.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\DefaultTemplate.xslt" />
+    <EmbeddedResource Include="Resources\SearchResultsTemplate.xslt" />
     <EmbeddedResource Include="Resources\feedImportFilters.OCS.xslt" />
     <EmbeddedResource Include="Resources\feedImportFilters.OPML.xslt" />
     <EmbeddedResource Include="Resources\feedImportFilters.SIAM.xslt" />
