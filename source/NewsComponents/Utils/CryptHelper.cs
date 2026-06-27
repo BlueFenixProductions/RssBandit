@@ -17,7 +17,7 @@ namespace NewsComponents.Utils
 	internal class CryptHelper {
 		//FxCop CA1810
 		// this algorithm is FIPS compliant:
-		private static readonly TripleDESCryptoServiceProvider _des = new TripleDESCryptoServiceProvider();
+		private static readonly TripleDES _des = TripleDES.Create();
 
 		private CryptHelper(){}
 

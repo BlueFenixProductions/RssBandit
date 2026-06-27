@@ -15,21 +15,9 @@ namespace RssBandit.UIServices
 		/// </summary>
 		public AddInBase(){}
 
-		/// <summary>
-		/// Obtains a lifetime service object to control the lifetime policy for this instance.
-		/// </summary>
-		/// <returns>
-		/// An object of type <see cref="T:System.Runtime.Remoting.Lifetime.ILease"/> used to control the
-		/// lifetime policy for this instance. This is the current lifetime service object for
-		/// this instance if one exists; otherwise, a new lifetime service object initialized to the value
-		/// of the <see cref="P:System.Runtime.Remoting.Lifetime.LifetimeServices.LeaseManagerPollTime" qualify="true"/> property.
-		/// </returns>
-		/// <exception cref="T:System.Security.SecurityException">The immediate caller does not have infrastructure permission. </exception>
-		public override object? InitializeLifetimeService()
-		{
-			//never ending Lease:
-			return null;
-		}
+		// NOTE: the former InitializeLifetimeService() override (.NET Remoting lease control) was
+		// removed: Remoting is not supported on modern .NET, the base member is obsolete, and nothing
+		// activates AddInBase across a remoting boundary.
 
 		#region IDisposable Members
 

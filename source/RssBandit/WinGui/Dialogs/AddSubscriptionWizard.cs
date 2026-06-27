@@ -21,6 +21,10 @@ using NewsComponents;
 using NewsComponents.Feed;
 using NewsComponents.Utils;
 
+// SYSLIB0013: Uri.EscapeUriString is obsolete. Uri.EscapeDataString escapes reserved characters
+// differently, so a blind swap can corrupt these built URLs; a per-site audit is deferred.
+#pragma warning disable SYSLIB0013
+
 namespace RssBandit.WinGui.Dialogs
 {
 

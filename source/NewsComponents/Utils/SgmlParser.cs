@@ -32,6 +32,10 @@ using System.Security.Permissions;
 using System.Text;
 using System.Xml;
 
+// SYSLIB0014: WebRequest/HttpWebRequest/FtpWebRequest are obsolete. Moving them to HttpClient is a
+// networking-subsystem rewrite, and the FtpWebRequest sites have no HttpClient equivalent. Deferred.
+#pragma warning disable SYSLIB0014
+
 namespace Sgml {
     /// <summary>
     /// Thrown if any errors occur while parsing the source.
@@ -80,18 +84,6 @@ namespace Sgml {
         }
 
         /// <summary>
-        /// Initializes a new instance of the SgmlParseException class with serialized data. 
-        /// </summary>
-        /// <param name="streamInfo">The object that holds the serialized object data.</param>
-        /// <param name="streamCtx">The contextual information about the source or destination.</param>
-        protected SgmlParseException(SerializationInfo streamInfo, StreamingContext streamCtx)
-            : base(streamInfo, streamCtx)
-        {
-            if (streamInfo != null)
-                m_entityContext = streamInfo.GetString("entityContext");
-        }
-
-        /// <summary>
         /// Contextual information detailing the entity on which the error occurred.
         /// </summary>
         public string EntityContext
@@ -100,20 +92,6 @@ namespace Sgml {
             {
                 return m_entityContext;
             }
-        }
-
-        /// <summary>
-        /// Populates a SerializationInfo with the data needed to serialize the exception.
-        /// </summary>
-        /// <param name="info">The <see cref="SerializationInfo"/> to populate with data. </param>
-        /// <param name="context">The destination (see <see cref="StreamingContext"/>) for this serialization.</param>        
-        public override void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            if (info == null)
-                throw new ArgumentNullException("info");
-
-            info.AddValue("entityContext", m_entityContext);
-            base.GetObjectData(info, context);
         }
     }
 
@@ -1067,7 +1045,7 @@ namespace Sgml {
             this.pos = this.used = 0;
             // skip bom
             if (bom>0){
-                stm.Read(this.rawBuffer, 0, bom);
+                stm.ReadExactly(this.rawBuffer, 0, bom);
             }
             this.rawPos = this.rawUsed = 0;
             

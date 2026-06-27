@@ -150,8 +150,6 @@ namespace RssBandit.WinGui.Controls.ThListView
 		public ColumnKeyIndexMap(int capacity): base(capacity) {}
 		public ColumnKeyIndexMap(IDictionary d): base(d) {}
 
-		private ColumnKeyIndexMap(SerializationInfo info, StreamingContext context) : base(info, context){}
-
 		/// <summary>
 		/// Set/Get the index of a column key
 		/// </summary>

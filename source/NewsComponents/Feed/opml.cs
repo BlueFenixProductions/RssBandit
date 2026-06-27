@@ -1,6 +1,10 @@
 ﻿using System.Xml; 
 using System.Xml.Serialization;
 
+// CS8981: these lower-cased type names map to the on-disk feedlist/OPML wire format (no [XmlType] pin on
+// the opml* types), so renaming them risks format/interop breakage. Deferred.
+#pragma warning disable CS8981
+
 namespace NewsComponents.Feed
 {
     /// <remarks/>

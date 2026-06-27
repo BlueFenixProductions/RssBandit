@@ -293,6 +293,11 @@ namespace NewsComponents
 			
 			public T GetProperty<T>(string propertyName, T defaultValue)
 			{
+				// Registry is Windows-only (CA1416). The WinForms head runs on Windows;
+				// a future non-Windows head returns the default (no persisted settings store).
+				if (!OperatingSystem.IsWindows())
+					return defaultValue;
+
 				RegistryKey key = null;
 				try
 				{
@@ -325,6 +330,10 @@ namespace NewsComponents
 			}
 
 			public void SetProperty(string name, object value) {
+				// Registry is Windows-only (CA1416); on a non-Windows head this is a no-op.
+				if (!OperatingSystem.IsWindows())
+					return;
+
 				try {
 					RegistryKey keySettings = Registry.CurrentUser.OpenSubKey(settingsRoot, true);
 					if (keySettings == null) {

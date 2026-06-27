@@ -14,6 +14,10 @@ using System.IO;
 using System.Linq;
 using System.Net;
 
+// SYSLIB0009: AuthenticationManager is obsolete and a no-op on modern .NET. Its removal is part of the
+// deferred WebRequest-to-HttpClient migration.
+#pragma warning disable SYSLIB0009
+
 namespace NewsComponents.Net
 {
     /// <summary>

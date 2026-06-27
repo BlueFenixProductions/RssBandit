@@ -121,7 +121,7 @@ namespace RssBandit.WinGui.Controls
             set {
                 if (form != null && this.DesignMode == false) {
                     // Unsubscribe from previous form's events.
-                    form.Closing -= new CancelEventHandler(OnClosing);
+                    form.FormClosing -= new FormClosingEventHandler(OnClosing);
                     form.Resize -= new EventHandler(OnResize);
                     form.Move -= new EventHandler(OnMove);
                     form.Load -= new EventHandler(OnLoad);
@@ -131,7 +131,7 @@ namespace RssBandit.WinGui.Controls
 
                 if (form != null && this.DesignMode == false) {
                     // Subscribe to the new form's events.
-                    form.Closing += new CancelEventHandler(OnClosing);
+                    form.FormClosing += new FormClosingEventHandler(OnClosing);
                     form.Resize += new EventHandler(OnResize);
                     form.Move += new EventHandler(OnMove);
                     form.Load += new EventHandler(OnLoad);
@@ -271,7 +271,7 @@ namespace RssBandit.WinGui.Controls
         /// <summary>
         /// Handle Close event.  Saves window state.
         /// </summary>
-        private void OnClosing(object sender, CancelEventArgs e) {
+        private void OnClosing(object sender, FormClosingEventArgs e) {
             // If the window state is minimized, save as normal.
             if (windowState == FormWindowState.Minimized)
                 windowState = FormWindowState.Normal;

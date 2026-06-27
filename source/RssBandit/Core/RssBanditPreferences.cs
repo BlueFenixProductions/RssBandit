@@ -1144,13 +1144,13 @@ namespace RssBandit
 		
 		#region helper classes
 		private class EncryptionHelper {
-			private static TripleDESCryptoServiceProvider _des;
+			private static TripleDES _des;
 			private static bool _compatibilityMode = false;
 
 			private EncryptionHelper(){}
 
 			static EncryptionHelper() {
-				_des = new TripleDESCryptoServiceProvider();
+				_des = TripleDES.Create();
 				_des.Key = _calcHash();
 				_des.Mode = CipherMode.ECB;
 			}

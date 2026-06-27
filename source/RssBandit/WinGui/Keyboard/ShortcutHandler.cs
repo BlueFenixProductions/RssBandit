@@ -671,29 +671,12 @@ namespace RssBandit.Utility.Keyboard
 		}
 
 		/// <summary>
-		/// Creates a new <see cref="InvalidShortcutSettingsFileException"/> instance.
-		/// </summary>
-		/// <param name="info">Info.</param>
-		/// <param name="context">Context.</param>
-		protected DuplicateShortcutSettingException(SerializationInfo info, StreamingContext context)
-			: base(info, context)
-		{
-			_shortcutKey = info.GetString("sk");
-		}
-
-		/// <summary>
 		/// Gets the shortcut key.
 		/// </summary>
 		/// <value></value>
 		public string ShortcutKey
 		{
 			get { return _shortcutKey; }
-		}
-
-		public override void GetObjectData(SerializationInfo info, StreamingContext context)
-		{
-			base.GetObjectData(info, context);
-			info.AddValue("sk", _shortcutKey);
 		}
 	}
 
@@ -723,14 +706,6 @@ namespace RssBandit.Utility.Keyboard
 		/// <param name="message">Message.</param>
 		/// <param name="innerException">Inner exception.</param>
 		public InvalidShortcutSettingsFileException(string message, Exception innerException) : base(message, innerException)
-		{}
-
-		/// <summary>
-		/// Creates a new <see cref="InvalidShortcutSettingsFileException"/> instance.
-		/// </summary>
-		/// <param name="info">Info.</param>
-		/// <param name="context">Context.</param>
-		protected InvalidShortcutSettingsFileException(SerializationInfo info, StreamingContext context) : base(info, context)
 		{}
 	}
 }

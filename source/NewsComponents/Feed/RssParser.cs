@@ -23,6 +23,10 @@ using NewsComponents.Resources;
 using NewsComponents.Utils;
 using RssBandit.Common.Logging;
 
+// SYSLIB0014: WebRequest/HttpWebRequest/FtpWebRequest are obsolete. Moving them to HttpClient is a
+// networking-subsystem rewrite, and the FtpWebRequest sites have no HttpClient equivalent. Deferred.
+#pragma warning disable SYSLIB0014
+
 namespace NewsComponents.Feed
 {
     /// <summary>
@@ -2395,18 +2399,6 @@ namespace NewsComponents.Feed
 		/// <param name="message">The message.</param>
 		/// <param name="inner">The inner.</param>
         public RssParserException(string message, Exception inner) : base(message, inner)
-        {
-        }
-
-		/// <summary>
-		/// Initializes a new instance of the <see cref="RssParserException"/> class.
-		/// </summary>
-		/// <param name="info">The object that holds the serialized object data.</param>
-		/// <param name="context">The contextual information about the source or destination.</param>
-        protected RssParserException(
-            SerializationInfo info,
-            StreamingContext context)
-            : base(info, context)
         {
         }
     }

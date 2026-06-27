@@ -39,7 +39,7 @@ namespace RssBandit.WinGui.Forms
             OnMinimize += OnFormMinimize;
             MouseDown += OnFormMouseDown;
             Resize += OnFormResize;
-            Closing += OnFormClosing;
+            FormClosing += OnFormClosing;
 			Load += OnFormLoad;
             HandleCreated += OnFormHandleCreated;
             Move += OnFormMove;

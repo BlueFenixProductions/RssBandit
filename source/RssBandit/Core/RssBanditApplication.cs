@@ -201,8 +201,13 @@ namespace RssBandit
 		public event EventHandler<FeedSourceEventArgs> FeedSourceSubscriptionsLoaded;
 		public event EventHandler<FeedSourceEventArgs> FeedSourceChanged;
 		public event EventHandler<FeedSourceEventArgs> FeedSourceDeleted;
+		// CS0067: FeedSourceAdded has a live subscriber (TreeFeedsNodeImplementations.cs) but its raise
+		// site is currently commented out (deferred feature), so it is never invoked. Kept (not deleted)
+		// so the subscription wiring stays intact; scoped pragma so a new unused event still fails the build.
+#pragma warning disable CS0067
 		public event EventHandler<FeedSourceEventArgs> FeedSourceAdded;
-		
+#pragma warning restore CS0067
+
 		public event EventHandler<FeedSourceFeedUrlTitleEventArgs> FeedSourceFeedDeleted;
         
 		// old:

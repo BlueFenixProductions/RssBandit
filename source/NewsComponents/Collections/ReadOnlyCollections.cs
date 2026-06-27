@@ -6,6 +6,10 @@ using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 
 
+// SYSLIB0050: the formatter-based ISerializable infrastructure is obsolete. Unlike the dead exception
+// ctors that were deleted, this collection serialization is live and entangled, so excision is deferred.
+#pragma warning disable SYSLIB0050
+
 namespace NewsComponents.Collections
 {
 

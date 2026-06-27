@@ -12,6 +12,10 @@ using System.Threading;
 using System.Windows.Forms;
 using RssBandit.WinGui.Dialogs;
 
+// SYSLIB0006: Thread.Abort is obsolete and throws on modern .NET. It is already a caught no-op here;
+// the real fix is cooperative cancellation (a subsystem effort). Deferred.
+#pragma warning disable SYSLIB0006
+
 namespace RssBandit.WinGui
 {
 	/// <summary>
