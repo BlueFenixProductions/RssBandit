@@ -36,9 +36,14 @@ public partial class ItemDetailPage : ContentPage
         "</style>" +
         "<script src=\"file:///android_asset/highlight.min.js\"></script>" +
         "<script>window.addEventListener('load',function(){try{if(window.hljs){" +
-        "document.querySelectorAll('pre').forEach(function(p){if(!p.querySelector('code')){" +
-        "var c=document.createElement('code');c.textContent=p.textContent;p.textContent='';p.appendChild(c);}});" +
-        "hljs.highlightAll();}}catch(e){}});</script>";
+        "document.querySelectorAll('pre').forEach(function(p){" +
+        "var code=p.querySelector('code')||p;" +
+        // Skip blocks that already carry their own markup (a feed that ships pre-highlighted code with
+        // styled spans) -- re-highlighting those looks wrong. Only auto-highlight plain-text blocks.
+        "if(code.children.length>0)return;" +
+        "if(code===p){var c=document.createElement('code');c.textContent=p.textContent;p.textContent='';p.appendChild(c);code=c;}" +
+        "hljs.highlightElement(code);});" +
+        "}}catch(e){}});</script>";
 
     private bool _loaded;
 
