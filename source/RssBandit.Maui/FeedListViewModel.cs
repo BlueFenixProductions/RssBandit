@@ -21,8 +21,12 @@ namespace RssBandit.Maui;
 /// </summary>
 public partial class FeedListViewModel : ObservableObject
 {
-    // A real https feed for the first slice (add-feed UI + persistence are later slices).
-    private const string FeedUrl = "https://hnrss.org/frontpage";
+    // A full-content https feed for the first slice (add-feed UI + persistence are later slices).
+    // Chosen because its items carry the full article body (content:encoded) -- so the detail view
+    // renders the actual article in-app, not just a link. (A link-aggregator feed like Hacker News
+    // ships only URLs + metadata; a Cloudflare-fronted feed like the .NET blog serves the engine's
+    // UA a bot-challenge page instead of RSS. A feedburner feed is reader-friendly and full-content.)
+    private const string FeedUrl = "https://feeds.arstechnica.com/arstechnica/index";
 
     private FeedSource? _source;
 
@@ -101,7 +105,7 @@ public partial class FeedListViewModel : ObservableObject
             });
         };
 
-        INewsFeed feed = new NewsFeed { link = FeedUrl, title = "Hacker News" };
+        INewsFeed feed = new NewsFeed { link = FeedUrl, title = "Ars Technica" };
         source.AddFeed(feed);
         _source = source;
     }
