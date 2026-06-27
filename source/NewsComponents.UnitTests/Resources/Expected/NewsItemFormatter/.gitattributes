@@ -1,0 +1,6 @@
+# Phase C1 golden HTML: pin to LF on every platform/checkout.
+# The NewsItemFormatter XSLT serializer emits LF-only line endings, and Task 2 asserts the
+# relocated core formatter reproduces these goldens byte-for-byte. Without this, the repo's
+# core.autocrlf=true + "* text=auto" would rewrite these files to CRLF on Windows checkout,
+# making the byte comparison fail. Treat them as text but never convert line endings.
+*.html text eol=lf
