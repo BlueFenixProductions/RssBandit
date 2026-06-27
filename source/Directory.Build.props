@@ -20,9 +20,9 @@
 
     <!-- Portable (MAUI-shareable) projects build as plain net10.0: no WinForms/WPF/win-x86,
          so they can be referenced by the future MAUI heads. To make another project portable
-         (a future Slice D adds RssBandit.ViewModels), append one more Or clause INSIDE the Condition
+         (Slice D adds RssBandit.ViewModels + its tests), append one more Or clause INSIDE the Condition
          (an IsPortableProject value of `$(A) Or $(B)` would be the literal string, not a bool). -->
-    <IsPortableProject Condition="'$(MSBuildProjectName)' == 'RssBandit.AppServices' Or '$(MSBuildProjectName)' == 'NewsComponents' Or '$(MSBuildProjectName)' == 'NewsComponents.UnitTests'">true</IsPortableProject>
+    <IsPortableProject Condition="'$(MSBuildProjectName)' == 'RssBandit.AppServices' Or '$(MSBuildProjectName)' == 'NewsComponents' Or '$(MSBuildProjectName)' == 'NewsComponents.UnitTests' Or '$(MSBuildProjectName)' == 'RssBandit.ViewModels' Or '$(MSBuildProjectName)' == 'RssBandit.ViewModels.Tests'">true</IsPortableProject>
 
     <UseWPF Condition="'$(IsPortableProject)' != 'true'">true</UseWPF>
     <UseWindowsForms Condition="'$(IsPortableProject)' != 'true'">true</UseWindowsForms>

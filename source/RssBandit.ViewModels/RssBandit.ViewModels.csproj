@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <!-- Portable presentation layer (MAUI Slice D): pure net10.0 with NO Windows coupling, so the
+         view-models can be shared with the MAUI heads (and, in D2, pushed from the WinForms head via
+         an adapter). It carries CommunityToolkit.Mvvm (ObservableObject / [ObservableProperty] /
+         [RelayCommand]) rather than the head's BindableBase, which lives in the head assembly and is
+         not referenceable from a portable project. WinForms/WPF/win-x86 are opted out via the
+         IsPortableProject gate in ..\Directory.Build.props (this project is listed there); the
+         AssertViewModelsPortable target below fails the build if that coupling ever returns. -->
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <AssemblyOriginatorKeyFile>..\rssbandit.org.snk</AssemblyOriginatorKeyFile>
+    <SignAssembly>true</SignAssembly>
+    <Title>RSS Bandit View Models</Title>
+    <Description>Portable presentation-layer view-models shared across heads (MAUI Slice D).</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RssBandit.AppServices\RssBandit.AppServices.csproj" />
+    <ProjectReference Include="..\NewsComponents\NewsComponents.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\rssbandit.org.snk">
+      <Link>rssbandit.org.snk</Link>
+    </None>
+  </ItemGroup>
+
+  <!-- Self-enforcing portability assertion (MAUI Slice D). Runs in CI because the
+       RssBandit.ViewModels.Tests build includes this project. Fails the build if ViewModels ever
+       regains a -windows TFM or enables WinForms/WPF. -->
+  <Target Name="AssertViewModelsPortable" BeforeTargets="Build">
+    <Error Condition="$(TargetFramework.Contains('windows'))"
+           Text="RssBandit.ViewModels must stay portable (net10.0, no -windows TFM)." />
+    <Error Condition="'$(UseWindowsForms)' == 'true' or '$(UseWPF)' == 'true'"
+           Text="RssBandit.ViewModels must not enable WinForms/WPF (it is the portable presentation layer)." />
+  </Target>
+</Project>
