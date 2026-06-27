@@ -18,11 +18,13 @@
     <IsPackageProject>$(MSBuildProjectName.Contains('.Package'))</IsPackageProject>
     <LangVersion>preview</LangVersion>
 
-    <!-- Portable (MAUI-shareable) projects build as plain net10.0: no WinForms/WPF/win-x86,
-         so they can be referenced by the future MAUI heads. To make another project portable
-         (Slice D adds RssBandit.ViewModels + its tests), append one more Or clause INSIDE the Condition
-         (an IsPortableProject value of `$(A) Or $(B)` would be the literal string, not a bool). -->
-    <IsPortableProject Condition="'$(MSBuildProjectName)' == 'RssBandit.AppServices' Or '$(MSBuildProjectName)' == 'NewsComponents' Or '$(MSBuildProjectName)' == 'NewsComponents.UnitTests' Or '$(MSBuildProjectName)' == 'RssBandit.ViewModels' Or '$(MSBuildProjectName)' == 'RssBandit.ViewModels.Tests'">true</IsPortableProject>
+    <!-- Projects that must NOT get the WinForms-head defaults (UseWPF/UseWindowsForms/win-x86):
+         the portable net10.0 cores (so the MAUI heads can reference them) AND the MAUI head itself
+         (RssBandit.Maui multi-targets android/ios/maccatalyst/windows with its own per-TFM RIDs, so
+         a forced win-x86 RID + WinForms would break its restore). To add another, append one more Or
+         clause INSIDE the Condition (an IsPortableProject value of `$(A) Or $(B)` would be the literal
+         string, not a bool). -->
+    <IsPortableProject Condition="'$(MSBuildProjectName)' == 'RssBandit.AppServices' Or '$(MSBuildProjectName)' == 'NewsComponents' Or '$(MSBuildProjectName)' == 'NewsComponents.UnitTests' Or '$(MSBuildProjectName)' == 'RssBandit.ViewModels' Or '$(MSBuildProjectName)' == 'RssBandit.ViewModels.Tests' Or '$(MSBuildProjectName)' == 'RssBandit.Maui'">true</IsPortableProject>
 
     <UseWPF Condition="'$(IsPortableProject)' != 'true'">true</UseWPF>
     <UseWindowsForms Condition="'$(IsPortableProject)' != 'true'">true</UseWindowsForms>

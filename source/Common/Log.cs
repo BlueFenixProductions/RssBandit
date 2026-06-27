@@ -33,7 +33,9 @@ namespace RssBandit.Common.Logging {
 		static Log() {
             // Set up a simple configuration that logs on the console.
 
-            var hierarchy = LogManager.GetRepository(Assembly.GetEntryAssembly());
+            // GetEntryAssembly() is null on some hosts (e.g. Android / MonoVM), and log4net's
+            // GetRepository throws ArgumentNullException on a null assembly -- fall back to this assembly.
+            var hierarchy = LogManager.GetRepository(Assembly.GetEntryAssembly() ?? typeof(Log).Assembly);
 
 
 
@@ -61,8 +63,13 @@ namespace RssBandit.Common.Logging {
 		///  The Full Path to the Config File
 		/// </summary>
 		public static string Log4NetConfigFile {
-			get { 
-				return Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) , LOGCONFIG); 
+			get {
+				// Assembly.Location is empty for bundled assemblies (e.g. Android) -- no on-disk config
+				// file there, so return the bare name (File.Exists -> false -> BasicConfigurator path).
+				var location = Assembly.GetExecutingAssembly().Location;
+				if (string.IsNullOrEmpty(location))
+					return LOGCONFIG;
+				return Path.Combine(Path.GetDirectoryName(location), LOGCONFIG);
 			}
 		}
 

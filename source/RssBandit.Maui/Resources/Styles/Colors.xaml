@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <!-- TokyoNight palette (folke/tokyonight, "night" variant). The app forces Dark theme
+         (App.xaml.cs), so Styles.xaml's Dark={...} branches are what render; the template's
+         color keys below are remapped onto TokyoNight so the whole app picks it up. -->
+
+    <!-- Semantic TokyoNight colors -->
+    <Color x:Key="TnBg">#1A1B26</Color>           <!-- page background -->
+    <Color x:Key="TnBgDark">#16161E</Color>       <!-- nav bar / deeper surfaces -->
+    <Color x:Key="TnBgHighlight">#292E42</Color>  <!-- elevated / selection -->
+    <Color x:Key="TnFg">#C0CAF5</Color>           <!-- primary text -->
+    <Color x:Key="TnFgDark">#A9B1D6</Color>       <!-- secondary text -->
+    <Color x:Key="TnComment">#565F89</Color>      <!-- muted / captions -->
+    <Color x:Key="TnBlue">#7AA2F7</Color>         <!-- accent / links -->
+    <Color x:Key="TnCyan">#7DCFFF</Color>
+    <Color x:Key="TnPurple">#BB9AF7</Color>       <!-- headings / secondary accent -->
+    <Color x:Key="TnGreen">#9ECE6A</Color>
+    <Color x:Key="TnRed">#F7768E</Color>
+    <Color x:Key="TnYellow">#E0AF68</Color>
+    <Color x:Key="TnOrange">#FF9E64</Color>
+
+    <!-- Template keys remapped onto TokyoNight (Dark-branch values are the ones that render). -->
+    <Color x:Key="Primary">#7AA2F7</Color>
+    <Color x:Key="PrimaryDark">#7AA2F7</Color>        <!-- Button background (dark) -->
+    <Color x:Key="PrimaryDarkText">#1A1B26</Color>   <!-- Button text on accent (dark) -->
+    <Color x:Key="Secondary">#BB9AF7</Color>
+    <Color x:Key="SecondaryDarkText">#7AA2F7</Color> <!-- Shell foreground / title (dark) -->
+    <Color x:Key="Tertiary">#7DCFFF</Color>
+
+    <Color x:Key="White">#C0CAF5</Color>   <!-- TnFg: Label text + ActivityIndicator (dark) -->
+    <Color x:Key="Black">#16161E</Color>   <!-- TnBgDark -->
+    <Color x:Key="Magenta">#BB9AF7</Color>
+    <Color x:Key="MidnightBlue">#1A1B26</Color>
+    <Color x:Key="OffBlack">#1A1B26</Color> <!-- TnBg: Page + Shell background (dark) -->
+
+    <Color x:Key="Gray100">#C0CAF5</Color>
+    <Color x:Key="Gray200">#A9B1D6</Color>
+    <Color x:Key="Gray300">#737AA2</Color>
+    <Color x:Key="Gray400">#565F89</Color>
+    <Color x:Key="Gray500">#565F89</Color>
+    <Color x:Key="Gray600">#414868</Color>
+    <Color x:Key="Gray900">#24283B</Color>
+    <Color x:Key="Gray950">#1A1B26</Color>
+
+    <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}"/>
+    <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Secondary}"/>
+    <SolidColorBrush x:Key="TertiaryBrush" Color="{StaticResource Tertiary}"/>
+    <SolidColorBrush x:Key="WhiteBrush" Color="{StaticResource White}"/>
+    <SolidColorBrush x:Key="BlackBrush" Color="{StaticResource Black}"/>
+
+    <SolidColorBrush x:Key="Gray100Brush" Color="{StaticResource Gray100}"/>
+    <SolidColorBrush x:Key="Gray200Brush" Color="{StaticResource Gray200}"/>
+    <SolidColorBrush x:Key="Gray300Brush" Color="{StaticResource Gray300}"/>
+    <SolidColorBrush x:Key="Gray400Brush" Color="{StaticResource Gray400}"/>
+    <SolidColorBrush x:Key="Gray500Brush" Color="{StaticResource Gray500}"/>
+    <SolidColorBrush x:Key="Gray600Brush" Color="{StaticResource Gray600}"/>
+    <SolidColorBrush x:Key="Gray900Brush" Color="{StaticResource Gray900}"/>
+    <SolidColorBrush x:Key="Gray950Brush" Color="{StaticResource Gray950}"/>
+</ResourceDictionary>

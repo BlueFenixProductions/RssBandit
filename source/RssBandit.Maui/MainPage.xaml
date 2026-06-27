@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:RssBandit.ViewModels;assembly=RssBandit.ViewModels"
+             x:Class="RssBandit.Maui.MainPage"
+             Title="RSS Bandit">
+
+    <Grid RowDefinitions="Auto,Auto,*" Padding="16" RowSpacing="10">
+
+        <!-- Header: unread count + Refresh -->
+        <Grid Grid.Row="0" ColumnDefinitions="*,Auto" ColumnSpacing="12">
+            <Label Grid.Column="0"
+                   Text="{Binding Node.UnreadCount, StringFormat='Unread items: {0}'}"
+                   FontSize="20" FontAttributes="Bold" VerticalOptions="Center"
+                   TextColor="{StaticResource TnPurple}" />
+            <Button Grid.Column="1" Text="Refresh" Command="{Binding RefreshCommand}" />
+        </Grid>
+
+        <!-- Status + busy indicator -->
+        <HorizontalStackLayout Grid.Row="1" Spacing="8">
+            <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"
+                               HeightRequest="18" WidthRequest="18" VerticalOptions="Center" />
+            <Label Text="{Binding Status}" FontSize="13" TextColor="{StaticResource TnComment}" VerticalOptions="Center" />
+        </HorizontalStackLayout>
+
+        <CollectionView Grid.Row="2" ItemsSource="{Binding Node.Items}"
+                        SelectionMode="Single" SelectionChanged="OnItemSelected">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="vm:FeedItemViewModel">
+                    <Grid Padding="0,10" ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+
+                        <!-- Unread marker: visible only while unread -->
+                        <Label Grid.Column="0" Text="&#x25CF;" TextColor="{StaticResource TnBlue}"
+                               VerticalOptions="Center" FontSize="12">
+                            <Label.Triggers>
+                                <DataTrigger TargetType="Label" Binding="{Binding IsRead}" Value="True">
+                                    <Setter Property="IsVisible" Value="False" />
+                                </DataTrigger>
+                            </Label.Triggers>
+                        </Label>
+
+                        <!-- Title: bold while unread (mirrors the WinForms read/unread styling) -->
+                        <Label Grid.Column="1" Text="{Binding Title}"
+                               VerticalOptions="Center" LineBreakMode="TailTruncation">
+                            <Label.Triggers>
+                                <DataTrigger TargetType="Label" Binding="{Binding IsRead}" Value="False">
+                                    <Setter Property="FontAttributes" Value="Bold" />
+                                </DataTrigger>
+                            </Label.Triggers>
+                        </Label>
+
+                        <Button Grid.Column="2" Text="Toggle"
+                                Command="{Binding ToggleReadCommand}"
+                                Padding="12,4" FontSize="12" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>
