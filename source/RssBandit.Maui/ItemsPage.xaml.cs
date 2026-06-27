@@ -22,8 +22,17 @@ public partial class ItemsPage : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
+        _subs.SetActiveFeed(_feed); // so a refresh formats this feed's items (not just its count)
         if (_feed.Node.Items.Count == 0)
             _subs.RefreshFeed(_feed);
+    }
+
+    protected override void OnDisappearing()
+    {
+        base.OnDisappearing();
+        _subs.SetActiveFeed(null);
+        if (_feed.Node.Items.Count > 0)
+            _feed.UnreadCount = _feed.Node.UnreadCount; // reflect what was read back onto the tree
     }
 
     async void OnItemSelected(object sender, SelectionChangedEventArgs e)

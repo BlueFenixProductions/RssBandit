@@ -27,6 +27,8 @@ public partial class MainPage : ContentPage
         ((CollectionView)sender).SelectedItem = null;
     }
 
+    void OnRefreshAll(object sender, System.EventArgs e) => _vm.RefreshAll();
+
     async void OnAddFeed(object sender, System.EventArgs e)
     {
         var url = await DisplayPromptAsync(
