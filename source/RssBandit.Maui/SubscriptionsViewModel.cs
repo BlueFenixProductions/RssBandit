@@ -141,14 +141,18 @@ public partial class SubscriptionsViewModel : ObservableObject
         });
     }
 
-    /// <summary>Subscribe to a feed by url. Returns null on success, or an error message to surface.</summary>
-    public string? AddFeed(string? rawUrl)
+    /// <summary>The category names currently in the tree (for the add-feed picker).</summary>
+    public IEnumerable<string> CategoryNames => Categories.Select(g => g.Name);
+
+    /// <summary>Subscribe to a feed by url, with an optional name and category (section). Returns null
+    /// on success, or an error message to surface.</summary>
+    public string? AddFeed(string? rawUrl, string? name = null, string? category = null)
     {
         var source = _source;
         if (source == null)
             return "Not ready yet.";
         if (string.IsNullOrWhiteSpace(rawUrl))
-            return null; // cancelled / empty
+            return "Enter a feed URL.";
 
         if (!Uri.TryCreate(rawUrl.Trim(), UriKind.Absolute, out var uri)
             || (uri.Scheme != Uri.UriSchemeHttp && uri.Scheme != Uri.UriSchemeHttps))
@@ -158,9 +162,15 @@ public partial class SubscriptionsViewModel : ObservableObject
         if (source.IsSubscribed(url) || _byUrl.ContainsKey(Norm(url)))
             return "Already subscribed to that feed.";
 
+        var categoryName = string.IsNullOrWhiteSpace(category) ? "Uncategorized" : category.Trim();
+        var title = string.IsNullOrWhiteSpace(name) ? url : name.Trim();
+
         try
         {
-            source.AddFeed(new NewsFeed { link = url, title = url });
+            var feed = new NewsFeed { link = url, title = title };
+            if (categoryName != "Uncategorized")
+                feed.category = categoryName; // persists in feedlist -> regrouped on reload
+            source.AddFeed(feed);
             source.SaveFeedList();
         }
         catch (Exception ex)
@@ -168,9 +178,9 @@ public partial class SubscriptionsViewModel : ObservableObject
             return ex.Message;
         }
 
-        var sub = new SubscriptionItemViewModel(url, url); // title becomes the channel's after the fetch
+        var sub = new SubscriptionItemViewModel(url, title);
         _byUrl[Norm(url)] = sub;
-        AddToGroup("Uncategorized", sub);
+        AddToGroup(categoryName, sub);
         UpdateStatus();
         RefreshFeed(sub);
         return null;
@@ -236,7 +246,9 @@ public partial class SubscriptionsViewModel : ObservableObject
 
         MainThread.BeginInvokeOnMainThread(() =>
         {
-            if (!string.IsNullOrWhiteSpace(channelTitle))
+            // Adopt the channel title only when the feed is still titled with its url (added without a
+            // name) -- never override a name the user typed or an OPML title.
+            if (sub.Title == sub.Url && !string.IsNullOrWhiteSpace(channelTitle))
                 sub.Title = channelTitle!;
             sub.UnreadCount = unread;
             if (built != null)
