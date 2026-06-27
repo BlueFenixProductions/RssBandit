@@ -1,31 +1,29 @@
 using System.Linq;
-using RssBandit.ViewModels;
 
 namespace RssBandit.Maui;
 
+/// <summary>The subscription tree: feeds grouped by their OPML category. Tapping a feed opens its
+/// item list (which refreshes that feed lazily).</summary>
 public partial class MainPage : ContentPage
 {
+    private readonly SubscriptionsViewModel _vm = new();
+
     public MainPage()
     {
         InitializeComponent();
-
-        // Bind the real reader: stands up the engine, adds a feed, fetches + parses it on Refresh.
-        BindingContext = new FeedListViewModel();
+        BindingContext = _vm;
     }
 
-    protected override void OnAppearing()
+    protected override async void OnAppearing()
     {
         base.OnAppearing();
-        // Auto-load on first appearance so the reader shows real items without a manual tap.
-        if (BindingContext is FeedListViewModel vm && vm.Node.Items.Count == 0 && vm.RefreshCommand.CanExecute(null))
-            vm.RefreshCommand.Execute(null);
+        await _vm.InitializeAsync(); // imports the blogroll OPML on first run, loads the feedlist after
     }
 
-    // Tap an item -> push the article detail (a WebView of the engine-rendered HTML).
-    async void OnItemSelected(object sender, SelectionChangedEventArgs e)
+    async void OnFeedSelected(object sender, SelectionChangedEventArgs e)
     {
-        if (e.CurrentSelection.FirstOrDefault() is FeedItemViewModel item)
-            await Navigation.PushAsync(new ItemDetailPage(item));
-        ((CollectionView)sender).SelectedItem = null; // allow re-tapping the same row
+        if (e.CurrentSelection.FirstOrDefault() is SubscriptionItemViewModel feed)
+            await Navigation.PushAsync(new ItemsPage(_vm, feed));
+        ((CollectionView)sender).SelectedItem = null;
     }
 }
