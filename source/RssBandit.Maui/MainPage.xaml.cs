@@ -6,8 +6,15 @@ public partial class MainPage : ContentPage
     {
         InitializeComponent();
 
-        // First slice: bind the shared, portable view-models directly. A later slice swaps the
-        // seed for the real engine feed-load and moves construction into DI (MauiProgram).
-        BindingContext = new MainViewModel();
+        // Bind the real reader: stands up the engine, adds a feed, fetches + parses it on Refresh.
+        BindingContext = new FeedListViewModel();
+    }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        // Auto-load on first appearance so the reader shows real items without a manual tap.
+        if (BindingContext is FeedListViewModel vm && vm.Node.Items.Count == 0 && vm.RefreshCommand.CanExecute(null))
+            vm.RefreshCommand.Execute(null);
     }
 }

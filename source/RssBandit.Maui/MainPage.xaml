@@ -5,13 +5,24 @@
              x:Class="RssBandit.Maui.MainPage"
              Title="RSS Bandit">
 
-    <Grid RowDefinitions="Auto,*" Padding="16" RowSpacing="12">
+    <Grid RowDefinitions="Auto,Auto,*" Padding="16" RowSpacing="10">
 
-        <Label Grid.Row="0"
-               Text="{Binding Node.UnreadCount, StringFormat='Unread items: {0}'}"
-               FontSize="20" FontAttributes="Bold" />
+        <!-- Header: unread count + Refresh -->
+        <Grid Grid.Row="0" ColumnDefinitions="*,Auto" ColumnSpacing="12">
+            <Label Grid.Column="0"
+                   Text="{Binding Node.UnreadCount, StringFormat='Unread items: {0}'}"
+                   FontSize="20" FontAttributes="Bold" VerticalOptions="Center" />
+            <Button Grid.Column="1" Text="Refresh" Command="{Binding RefreshCommand}" />
+        </Grid>
 
-        <CollectionView Grid.Row="1" ItemsSource="{Binding Node.Items}">
+        <!-- Status + busy indicator -->
+        <HorizontalStackLayout Grid.Row="1" Spacing="8">
+            <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"
+                               HeightRequest="18" WidthRequest="18" VerticalOptions="Center" />
+            <Label Text="{Binding Status}" FontSize="13" TextColor="Gray" VerticalOptions="Center" />
+        </HorizontalStackLayout>
+
+        <CollectionView Grid.Row="2" ItemsSource="{Binding Node.Items}">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="vm:FeedItemViewModel">
                     <Grid Padding="0,10" ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
