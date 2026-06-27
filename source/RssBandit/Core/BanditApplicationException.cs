@@ -124,40 +124,6 @@ namespace RssBandit {
 
 		#endregion
 	
-		#region Serialization
-		/// <summary>
-		/// ISeriazable Constructor used for Serializing the Exception
-		/// </summary>
-		/// <param name="info">Serialization Info Object</param>
-		/// <param name="context">Serializtion Context </param>
-		protected BanditApplicationException(SerializationInfo info,StreamingContext context):base(info,context) {
-			try {
-				this.number = (ApplicationExceptions)info.GetValue("number", typeof(ApplicationExceptions));
-				this.osNameVersion = info.GetString("osNameVersion");
-				this.frameworkVersion = info.GetString("frameworkVersion");
-				
-			}
-			catch {}
-			finally {
-				this.number = ApplicationExceptions.Unknown;
-			}
-		}
-
-		/// <summary>
-		/// Interface for serializing
-		/// </summary>
-		/// <param name="info">Info Object</param>
-		/// <param name="context">Context Object</param>
-		public override void GetObjectData(SerializationInfo info ,StreamingContext context) {
-			info.AddValue("number",this.number);
-			info.AddValue("osNameVersion", osNameVersion, typeof(string));
-			info.AddValue("frameworkVersion", frameworkVersion, typeof(string));
-			// base class operation
-			base.GetObjectData(info,context);
-		}
-
-
-		#endregion
 
 		#region Public Properties
 		/// <summary>

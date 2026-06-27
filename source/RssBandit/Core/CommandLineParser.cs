@@ -1049,19 +1049,6 @@ namespace RssBandit.Utility {
 		}
 
 		#endregion Public Instance Constructors
-
-    #region Private Instance Constructors
-
-		/// <summary>
-		/// Initializes a new instance of the <see cref="CommandLineArgumentException" /> class 
-		/// with serialized data.
-		/// </summary>
-		/// <param name="info">The <see cref="SerializationInfo" /> that holds the serialized object data about the exception being thrown.</param>
-		/// <param name="context">The <see cref="StreamingContext" /> that contains contextual information about the source or destination.</param>
-		private CommandLineArgumentException(SerializationInfo info, StreamingContext context) : base(info, context) {
-		}
-
-    #endregion Private Instance Constructors
 	}
 
 

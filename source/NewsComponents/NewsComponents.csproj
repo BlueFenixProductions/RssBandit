@@ -3,8 +3,9 @@
         <!-- Portable (MAUI-shareable) engine (MAUI Slice 0b): plain net10.0, no -windows TFM and
              no WinForms/WPF/win-x86 (opted out via the IsPortableProject gate in ..\Directory.Build.props,
              where this project is listed). The only native bits are runtime-Windows-only: the registry
-             MIME/SettingStore lookups (Microsoft.Win32.Registry package below) and a kernel32 MoveFileEx
-             P/Invoke in FileHelper (compiles without a package). The AssertNewsComponentsPortable target
+             MIME/SettingStore lookups (Microsoft.Win32.Registry, framework-provided on net10.0) and a
+             kernel32 MoveFileEx P/Invoke in FileHelper (compiles without a package). The
+             AssertNewsComponentsPortable target
              below fails the build if -windows or WinForms/WPF coupling ever returns. -->
         <TargetFramework>net10.0</TargetFramework>
         <Title>News Components</Title>
@@ -46,7 +47,7 @@
     <ProjectReference Include="..\RssBandit.AppServices\RssBandit.AppServices.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="log4net" Version="2.0.17" />
+    <PackageReference Include="log4net" Version="3.3.0" />
     <PackageReference Include="Lucene.Net" Version="4.8.0-beta00017" />
     <PackageReference Include="Lucene.Net.Analysis.Common" Version="4.8.0-beta00017" />
     <PackageReference Include="Lucene.Net.QueryParser" Version="4.8.0-beta00017" />
@@ -54,9 +55,9 @@
     <!-- SharpZipLib was formerly a transitive dependency of Lucene.Net.Contrib 2.9.4.1; FileHelper.ZipFiles() uses it directly: -->
     <PackageReference Include="SharpZipLib" Version="1.4.2" />
     <!-- Registry access for MimeType (HKCR MIME lookup) and INewsComponentsConfiguration (HKCU
-         SettingStore). Under net10.0 (no -windows TFM) these types are no longer in the framework,
-         so the package supplies them. Runtime-Windows-only; the WinForms head runs on Windows. -->
-    <PackageReference Include="Microsoft.Win32.Registry" Version="5.0.0" />
+         SettingStore) is provided by the net10.0 framework itself, so no Microsoft.Win32.Registry
+         package is needed (NuGet prunes it; NU1510). The call sites are guarded with
+         OperatingSystem.IsWindows() (CA1416); the WinForms head runs on Windows. -->
   </ItemGroup>
 
   <!-- Self-enforcing portability assertion (MAUI Slice 0b, mirrors AssertAppServicesPortable). Runs

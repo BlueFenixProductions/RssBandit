@@ -410,7 +410,7 @@ namespace RssBandit.AppServices
 			return dict.Contains(key);
 		}
 
-		public void Add(object key, object value) {
+		public void Add(object key, object? value) {
 			ThrowReadOnlyException();
 		}
 

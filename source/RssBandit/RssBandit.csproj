@@ -15,6 +15,14 @@
     <StartAction>Program</StartAction>
     <StartProgram>c:\windows\system32\notepad.exe</StartProgram>
     <ApplicationManifest>RssBandit.exe.manifest</ApplicationManifest>
+    <!-- WFO0003: the .exe.manifest carries the DPI awareness (PerMonitorV2), which the OS applies at
+         process startup. Program.cs also calls Application.SetHighDpiMode, but the manifest supersedes
+         it, so PerMonitorV2 is the effective mode today. Migrating to the API/ApplicationHighDpiMode
+         property and removing the manifest block would instead activate the leftover SystemAware call
+         (this app uses manual WinForms startup, not the source generated ApplicationConfiguration.Initialize,
+         so the property is inert), changing effective DPI behavior. That is an app wide, render visible
+         change that needs a real GUI smoke test, so it is deferred and the warning is suppressed here. -->
+    <NoWarn>$(NoWarn);WFO0003</NoWarn>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <RuntimeIdentifiers>win-x86</RuntimeIdentifiers>
     <Description>Your desktop news aggregator</Description>

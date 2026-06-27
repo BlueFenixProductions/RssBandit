@@ -189,6 +189,10 @@ namespace NewsComponents.Utils
                 if (option == null || mimeType == null)
                     return null;
 
+                // HKEY_CLASSES_ROOT lookup is Windows-only (CA1416); no MIME registry on other heads.
+                if (!OperatingSystem.IsWindows())
+                    return null;
+
                 RegistryKey typeKey = Registry.ClassesRoot.OpenSubKey(@"MIME\Database\Content Type\" + mimeType, false);
                 if (typeKey == null)
                     return null;

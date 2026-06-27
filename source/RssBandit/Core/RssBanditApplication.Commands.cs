@@ -18,6 +18,10 @@ using RssBandit.WinGui.Menus;
 using RssBandit.WinGui.Utility;
 using RssBandit.Common;
 
+// SYSLIB0013: Uri.EscapeUriString is obsolete. Uri.EscapeDataString escapes reserved characters
+// differently, so a blind swap can corrupt these built URLs; a per-site audit is deferred.
+#pragma warning disable SYSLIB0013
+
 namespace RssBandit
 {
     internal partial class RssBanditApplication

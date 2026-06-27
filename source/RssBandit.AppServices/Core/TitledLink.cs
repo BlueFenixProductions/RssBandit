@@ -99,7 +99,7 @@ namespace NewsComponents
 			return true;
 		}
 
-		public override bool Equals(object obj)
+		public override bool Equals(object? obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
 			return obj is TitledLink && Equals((TitledLink) obj);

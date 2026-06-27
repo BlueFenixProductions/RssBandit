@@ -21,6 +21,10 @@ using RssBandit.Common;
 using NewsComponents.Net;
 using NewsComponents.Utils;
 
+// SYSLIB0014: WebRequest/HttpWebRequest/FtpWebRequest are obsolete. Moving them to HttpClient is a
+// networking-subsystem rewrite, and the FtpWebRequest sites have no HttpClient equivalent. Deferred.
+#pragma warning disable SYSLIB0014
+
 namespace NewsComponents.Feed {
 
 	/// <summary>

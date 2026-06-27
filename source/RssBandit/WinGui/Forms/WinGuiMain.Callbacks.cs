@@ -2129,7 +2129,7 @@ namespace RssBandit.WinGui.Forms
         }
 
 
-        private void OnFormClosing(object sender, CancelEventArgs e)
+        private void OnFormClosing(object sender, FormClosingEventArgs e)
         {
             if (owner.Preferences.HideToTrayAction == HideToTray.OnClose &&
                 _forceShutdown == false)
@@ -4066,14 +4066,12 @@ namespace RssBandit.WinGui.Forms
 
                 var wv2 = sender as CoreWebView2;
 
-                var isTab = false;
                 if (wv2 != null)
                 {
                     var hc = webViewInstanceMap[wv2];
                     var dc = (DockControl) hc.Tag;
                     if (dc != null)
                     {
-                        isTab = true;
                         var ts = (ITabState)dc.Tag;
                         tabCanClose = ts.CanClose;
                     }

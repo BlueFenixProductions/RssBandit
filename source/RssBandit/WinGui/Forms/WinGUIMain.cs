@@ -59,6 +59,10 @@ using ToolTip=System.Windows.Forms.ToolTip;
 using Microsoft.WindowsAPICodePack.Taskbar;
 using Microsoft.Web.WebView2.WinForms;
 
+// SYSLIB0013: Uri.EscapeUriString is obsolete. Uri.EscapeDataString escapes reserved characters
+// differently, so a blind swap can corrupt these built URLs; a per-site audit is deferred.
+#pragma warning disable SYSLIB0013
+
 namespace RssBandit.WinGui.Forms
 {
     /// <summary>
