@@ -40,15 +40,7 @@ public partial class MainPage : ContentPage
     void OnRefreshAll(object sender, System.EventArgs e) => _vm.RefreshAll();
 
     async void OnAddFeed(object sender, System.EventArgs e)
-    {
-        var url = await DisplayPromptAsync(
-            "Add feed", "Feed URL:", accept: "Add", cancel: "Cancel",
-            placeholder: "https://example.com/feed", keyboard: Keyboard.Url);
-
-        var error = _vm.AddFeed(url); // null on success or cancel
-        if (error != null)
-            await DisplayAlert("Add feed", error, "OK");
-    }
+        => await Navigation.PushAsync(new AddFeedPage(_vm));
 
     async void OnDeleteFeed(object sender, System.EventArgs e)
     {

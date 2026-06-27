@@ -1,5 +1,6 @@
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
+using Microsoft.Maui.Storage;
 using RssBandit.ViewModels;
 
 namespace RssBandit.Maui;
@@ -13,6 +14,7 @@ public partial class SubscriptionItemViewModel : ObservableObject
     {
         Url = url;
         _title = string.IsNullOrWhiteSpace(title) ? url : title!;
+        _unreadCount = Preferences.Default.Get(Key(url), 0); // restore last-known count (survives restarts)
         Node = new FeedNodeViewModel();
     }
 
@@ -25,11 +27,17 @@ public partial class SubscriptionItemViewModel : ObservableObject
     [ObservableProperty]
     private bool _isBusy;
 
-    /// <summary>Unread count shown on the tree (from cache on startup, then kept current on refresh /
-    /// when leaving the feed). Separate from <see cref="Node"/>'s count, which only exists once the
-    /// feed's items are loaded.</summary>
+    /// <summary>Unread count shown on the tree. Restored from MAUI Preferences in the ctor and persisted
+    /// on every change, so counts survive an app restart. (Separate from <see cref="Node"/>'s count,
+    /// which only exists once the feed's items are loaded.)</summary>
     [ObservableProperty]
     private int _unreadCount;
+    partial void OnUnreadCountChanged(int value) => Preferences.Default.Set(Key(Url), value);
+
+    /// <summary>Drop a feed's persisted count when it's unsubscribed.</summary>
+    public static void Forget(string url) => Preferences.Default.Remove(Key(url));
+
+    private static string Key(string url) => "unread:" + url;
 }
 
 /// <summary>A category of feeds (an OPML outline group). Acts as a MAUI CollectionView group.</summary>
