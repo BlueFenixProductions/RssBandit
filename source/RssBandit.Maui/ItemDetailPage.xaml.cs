@@ -21,7 +21,9 @@ public partial class ItemDetailPage : ContentPage
         "html,body{background:#1a1b26!important;color:#c0caf5!important;line-height:1.6;padding:4px 10px;}" +
         // The engine template wraps content in containers with their own (light) backgrounds; make every
         // descendant transparent so the dark body shows through, and force the text colour to TokyoNight.
-        "body *{background-color:transparent!important;color:#c0caf5!important;}" +
+        // max-width:100% defeats the template's desktop-era 'div.PostContent{max-width:70%}', which
+        // otherwise leaves a ~30% empty right margin on a phone -- the article uses the full width now.
+        "body *{background-color:transparent!important;color:#c0caf5!important;max-width:100%!important;box-sizing:border-box!important;}" +
         "body,body *{font-family:'Hack','Roboto Mono',monospace!important;}" +
         "a{color:#7aa2f7!important;}" +
         "h1,h2,h3,h4{color:#bb9af7!important;}" +
