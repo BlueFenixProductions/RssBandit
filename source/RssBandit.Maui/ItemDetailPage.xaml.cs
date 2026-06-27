@@ -10,29 +10,35 @@ namespace RssBandit.Maui;
 /// </summary>
 public partial class ItemDetailPage : ContentPage
 {
-    // TokyoNight reading theme for the article, in the Hack font (bundled -> reachable on Android at
-    // /android_asset). Also hides the engine template's read/flag/enclosure chrome icons, which point
-    // at an unreachable host ($IMAGEDIR$ -> templates.invalid), and fits article images to the screen.
-    // Done here in the host layer, not the shared XSLT (the WinForms head serves those icons locally).
+    // A <head> blob injected into the article: the Tokyo Night Dark reading theme in the Hack font,
+    // plus highlight.js for code-block syntax highlighting (same as PostXING). The .js/.css/.ttf are
+    // bundled raw assets reachable on Android at /android_asset; highlightAll() runs once on load.
     private const string ThemeCss =
+        "<link rel=\"stylesheet\" href=\"file:///android_asset/tokyo-night-dark.min.css\">" +
         "<style>" +
         "@font-face{font-family:'Hack';src:url('file:///android_asset/Hack-Regular.ttf');}" +
         "@font-face{font-family:'Hack';font-weight:bold;src:url('file:///android_asset/Hack-Bold.ttf');}" +
         "html,body{background:#1a1b26!important;color:#c0caf5!important;line-height:1.6;padding:4px 10px;}" +
-        // The engine template wraps content in containers with their own (light) backgrounds; make every
-        // descendant transparent so the dark body shows through, and force the text colour to TokyoNight.
-        // max-width:100% defeats the template's desktop-era 'div.PostContent{max-width:70%}', which
-        // otherwise leaves a ~30% empty right margin on a phone -- the article uses the full width now.
-        "body *{background-color:transparent!important;color:#c0caf5!important;max-width:100%!important;box-sizing:border-box!important;}" +
+        // Every container transparent over the dark body; max-width:100% defeats the template's
+        // desktop-era div.PostContent{max-width:70%}. Colour is forced on text elements only -- NOT
+        // span/pre/code -- so highlight.js's syntax colours survive.
+        "body *{background-color:transparent!important;max-width:100%!important;box-sizing:border-box!important;}" +
         "body,body *{font-family:'Hack','Roboto Mono',monospace!important;}" +
+        "p,div,li,td,th,blockquote,strong,em,b,i,small{color:#c0caf5!important;}" +
         "a{color:#7aa2f7!important;}" +
         "h1,h2,h3,h4{color:#bb9af7!important;}" +
         "img{max-width:100%!important;height:auto!important;}" +
         "img[src*=\"templates.invalid\"]{display:none!important;}" +
-        "pre,code{background:#16161e!important;color:#9ece6a!important;}" +
+        "pre{background-color:#16161e!important;padding:12px!important;overflow-x:auto!important;border-radius:6px!important;}" +
+        ".hljs{background:#16161e!important;}" +
         "hr{border-color:#414868!important;}" +
         "blockquote{border-left:3px solid #7aa2f7!important;color:#a9b1d6!important;}" +
-        "</style>";
+        "</style>" +
+        "<script src=\"file:///android_asset/highlight.min.js\"></script>" +
+        "<script>window.addEventListener('load',function(){try{if(window.hljs){" +
+        "document.querySelectorAll('pre').forEach(function(p){if(!p.querySelector('code')){" +
+        "var c=document.createElement('code');c.textContent=p.textContent;p.textContent='';p.appendChild(c);}});" +
+        "hljs.highlightAll();}}catch(e){}});</script>";
 
     private bool _loaded;
 
