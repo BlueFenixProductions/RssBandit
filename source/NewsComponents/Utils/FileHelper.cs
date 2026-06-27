@@ -31,7 +31,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Runtime.InteropServices;
 using System.Threading;
 using System.Diagnostics;
 using ICSharpCode.SharpZipLib.Zip;
@@ -46,6 +45,12 @@ namespace NewsComponents.Utils
 		#region private vars
 		private static readonly int msecsBetweenRetries = 100;
 		private static readonly int bufferSize = 1024 * 20;	// 20K read/write buffer
+
+		// The file-move primitive (the engine's only P/Invoke) is OS-selected: on Windows the
+		// verbatim WindowsFileMover (kernel32!MoveFileEx, byte-identical to the historical impl),
+		// otherwise the managed PortableFileMover so the portable engine runs off-Windows.
+		private static readonly IFileMover fileMover =
+			OperatingSystem.IsWindows() ? new WindowsFileMover() : new PortableFileMover();
 		#endregion
 
 
@@ -535,27 +540,7 @@ namespace NewsComponents.Utils
 		/// <param name="flags">Flags about how to move the files.</param>
 		/// <returns>indicates whether the file was moved.</returns>
 		public static bool MoveFile( string existingFileName, string newFileName, MoveFileFlag flags) {
-
-			int retries = 10;
-
-			while ( retries > 0 ) {
-				try {
-					return NativeMethods.MoveFileEx( existingFileName, newFileName, flags );
-				}
-				catch (Exception) {
-					retries--;
-
-					if (retries <= 0)
-						throw;	// giving up and report error
-
-					// yield control to other threads so that we get a little
-					// wait before we retry.
-					Thread.Sleep(msecsBetweenRetries);
-					continue;    
-				}				
-			}//while 
-
-			return false; 
+			return fileMover.MoveFile( existingFileName, newFileName, flags );
 		}
 
 		/// <summary>
@@ -688,24 +673,6 @@ namespace NewsComponents.Utils
 
 		
 		#endregion
-
-		private class NativeMethods
-		{
-			/// <summary>
-			/// API declaration of the Win32 function.
-			/// </summary>
-			/// <param name="lpExistingFileName">Existing file path.</param>
-			/// <param name="lpNewFileName">The file path.</param>
-			/// <param name="dwFlags">Move file flags.</param>
-			/// <returns>Whether the file was moved or not.</returns>
-			[DllImport("KERNEL32.DLL", CharSet = CharSet.Unicode)]
-			internal static extern bool MoveFileEx(
-				string lpExistingFileName,
-				string lpNewFileName,
-				MoveFileFlag dwFlags);
-
-		}
-
 
 		/// <summary>
 		/// Determines the size of a Directory
