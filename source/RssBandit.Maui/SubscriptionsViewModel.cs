@@ -76,7 +76,8 @@ public partial class SubscriptionsViewModel : ObservableObject
             _source = source;
             BuildGroups();
             Status = $"{_byUrl.Count} feeds in {Categories.Count} categories";
-            LoadCachedUnreadCounts(); // show counts for already-fetched feeds without opening them
+            // Per-feed counts are restored from Preferences in each SubscriptionItemViewModel's ctor,
+            // so the tree shows last-known counts immediately (Refresh keeps them current).
         }
         catch (Exception ex)
         {
@@ -140,29 +141,6 @@ public partial class SubscriptionsViewModel : ObservableObject
         });
     }
 
-    /// <summary>Populate each feed's unread count from its cached items (no network, no formatting).</summary>
-    private void LoadCachedUnreadCounts()
-    {
-        var source = _source;
-        if (source == null)
-            return;
-
-        var subs = _byUrl.Values.ToList();
-        Task.Run(() =>
-        {
-            foreach (var sub in subs)
-            {
-                try
-                {
-                    int unread = source.GetCachedItemsForFeed(sub.Url).Count(i => !i.BeenRead);
-                    if (unread > 0)
-                        MainThread.BeginInvokeOnMainThread(() => sub.UnreadCount = unread);
-                }
-                catch { /* skip feeds with no/unreadable cache */ }
-            }
-        });
-    }
-
     /// <summary>Subscribe to a feed by url. Returns null on success, or an error message to surface.</summary>
     public string? AddFeed(string? rawUrl)
     {
@@ -212,6 +190,7 @@ public partial class SubscriptionsViewModel : ObservableObject
         }
         catch { /* best effort -- still drop it from the UI */ }
 
+        SubscriptionItemViewModel.Forget(sub.Url); // drop its persisted unread count
         _byUrl.Remove(Norm(sub.Url));
         foreach (var group in Categories.ToList())
         {
