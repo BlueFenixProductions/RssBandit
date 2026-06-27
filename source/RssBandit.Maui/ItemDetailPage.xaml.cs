@@ -19,6 +19,9 @@ public partial class ItemDetailPage : ContentPage
         "@font-face{font-family:'Hack';src:url('file:///android_asset/Hack-Regular.ttf');}" +
         "@font-face{font-family:'Hack';font-weight:bold;src:url('file:///android_asset/Hack-Bold.ttf');}" +
         "html,body{background:#1a1b26!important;color:#c0caf5!important;line-height:1.6;padding:4px 10px;}" +
+        // The engine template wraps content in containers with their own (light) backgrounds; make every
+        // descendant transparent so the dark body shows through, and force the text colour to TokyoNight.
+        "body *{background-color:transparent!important;color:#c0caf5!important;}" +
         "body,body *{font-family:'Hack','Roboto Mono',monospace!important;}" +
         "a{color:#7aa2f7!important;}" +
         "h1,h2,h3,h4{color:#bb9af7!important;}" +
