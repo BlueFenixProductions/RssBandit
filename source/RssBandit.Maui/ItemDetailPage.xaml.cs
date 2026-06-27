@@ -56,14 +56,17 @@ public partial class ItemDetailPage : ContentPage
         ArticleView.Navigated += (s, e) => _loaded = true;
         ArticleView.Navigating += OnNavigating;
 
-        item.IsRead = true;
+        if (AppSettings.MarkReadOnOpen)
+            item.IsRead = true;
     }
 
     private static string InjectCss(string html)
     {
         html ??= string.Empty;
+        // ThemeCss is constant; the reader font size is a user setting, appended after so it wins.
+        var blob = ThemeCss + $"<style>html,body{{font-size:{AppSettings.ReaderFontSize}px!important;}}</style>";
         int head = html.IndexOf("<head>", StringComparison.OrdinalIgnoreCase);
-        return head >= 0 ? html.Insert(head + "<head>".Length, ThemeCss) : ThemeCss + html;
+        return head >= 0 ? html.Insert(head + "<head>".Length, blob) : blob + html;
     }
 
     private void OnNavigating(object? sender, WebNavigatingEventArgs e)

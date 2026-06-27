@@ -7,6 +7,7 @@ namespace RssBandit.Maui;
 public partial class MainPage : ContentPage
 {
     private readonly SubscriptionsViewModel _vm = new();
+    private bool _refreshedOnLaunch;
 
     public MainPage()
     {
@@ -18,7 +19,16 @@ public partial class MainPage : ContentPage
     {
         base.OnAppearing();
         await _vm.InitializeAsync(); // imports the blogroll OPML on first run, loads the feedlist after
+
+        if (!_refreshedOnLaunch && AppSettings.RefreshOnLaunch)
+        {
+            _refreshedOnLaunch = true;
+            _vm.RefreshAll();
+        }
     }
+
+    async void OnSettings(object sender, System.EventArgs e)
+        => await Navigation.PushAsync(new SettingsPage());
 
     async void OnFeedSelected(object sender, SelectionChangedEventArgs e)
     {

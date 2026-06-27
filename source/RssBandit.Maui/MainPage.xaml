@@ -8,6 +8,7 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Refresh" Clicked="OnRefreshAll" />
         <ToolbarItem Text="Add" Clicked="OnAddFeed" />
+        <ToolbarItem Text="Settings" Order="Secondary" Clicked="OnSettings" />
     </ContentPage.ToolbarItems>
 
     <Grid RowDefinitions="Auto,*" Padding="16,8" RowSpacing="8">
