@@ -10,7 +10,6 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Runtime.Serialization;
@@ -158,49 +157,6 @@ namespace NewsComponents.Utils
             }
         }
 
-
-        /// <summary>
-        /// Gets a Font, but only if it was serialized with a call to
-        /// SerializationInfoReader.ConvertFont().
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="defaultValue"></param>
-        /// <returns></returns>
-        public Font GetFont(string name, Font defaultValue) 
-		{
-			try
-			{
-				if (_keys.Contains(name)) {
-					var oFont = new FontConverter();
-					var sFont = _info.GetString(name);
-					return oFont.ConvertFromString(null, CultureInfo.InvariantCulture, sFont) as Font;
-				}
-				return defaultValue;
-			}
-			catch {
-				return defaultValue;
-			}
-		}
-
-		/// <summary>
-		/// Gets a image.
-		/// </summary>
-		/// <param name="name">The name.</param>
-		/// <param name="defaultValue">The default value.</param>
-		/// <returns></returns>
-		public Image GetImage(string name, Image defaultValue) {
-			try
-			{
-				if (_keys.Contains(name)) {
-					byte[] sImage = (byte[])_info.GetValue(name,typeof(byte[]));
-					return ConvertBytesToImage(sImage);
-				}
-				return defaultValue;
-			}
-			catch {
-				return defaultValue;
-			}
-		}
 
 		/// <summary>
 		/// Gets the generic dictionary.
@@ -550,47 +506,6 @@ namespace NewsComponents.Utils
 			return new Version(nameParts[2]);
 		}
 
-		/// <summary>
-		/// Convert Font to a serializable string
-		/// </summary>
-		/// <param name="font"></param>
-		/// <returns></returns>
-		public static string ConvertFont(Font font) 
-		{
-			FontConverter oFontConv = new FontConverter();
-			return oFontConv.ConvertToString(null,CultureInfo.InvariantCulture,font);
-		}
-		
-		/// <summary>
-		/// Converts byte array to an image.
-		/// </summary>
-		/// <param name="bytes">The bytes.</param>
-		/// <returns></returns>
-		public static Image ConvertBytesToImage(byte[] bytes) 
-		{
-			if (bytes!=null) {
-				MemoryStream stream = new MemoryStream(bytes);
-				return Image.FromStream(stream);
-			}
-			return null;
-		}
-		
-		/// <summary>
-		/// Converts the image to byte array.
-		/// </summary>
-		/// <param name="image">The image.</param>
-		/// <returns></returns>
-		public static byte[] ConvertImageToBytes(Image image) 
-		{
-			if (image!=null) 
-			{
-				MemoryStream stream = new MemoryStream();
-				image.Save(stream,image.RawFormat);
-				
-				return stream.ToArray();
-			}
-			return null;
-		}
 	}
 
 }

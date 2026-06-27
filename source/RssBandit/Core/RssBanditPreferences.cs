@@ -983,12 +983,12 @@ namespace RssBandit
 				ProxyBypassList = ProxyBypassList,
 				NewsItemStylesheetFile = NewsItemStylesheetFile,
 				HideToTrayAction = HideToTrayAction.ToString(),
-				NormalFontString = SerializationInfoReader.ConvertFont(NormalFont),
-				UnreadFontString = SerializationInfoReader.ConvertFont(UnreadFont),
-				FlagFontString = SerializationInfoReader.ConvertFont(FlagFont),
-				ErrorFontString = SerializationInfoReader.ConvertFont(ErrorFont),
-				ReferrerFontString = SerializationInfoReader.ConvertFont(ReferrerFont),
-				NewCommentsFontString = SerializationInfoReader.ConvertFont(NewCommentsFont),
+				NormalFontString = ConvertFont(NormalFont),
+				UnreadFontString = ConvertFont(UnreadFont),
+				FlagFontString = ConvertFont(FlagFont),
+				ErrorFontString = ConvertFont(ErrorFont),
+				ReferrerFontString = ConvertFont(ReferrerFont),
+				NewCommentsFontString = ConvertFont(NewCommentsFont),
 				NormalFontColor = ColorTranslator.ToHtml(NormalFontColor),
 				UnreadFontColor = ColorTranslator.ToHtml(UnreadFontColor),
 				FlagFontColor = ColorTranslator.ToHtml(FlagFontColor),
@@ -1079,8 +1079,19 @@ namespace RssBandit
 		}
 
 		/// <summary>
-		/// Parses a font string created by <see cref="SerializationInfoReader.ConvertFont"/>
-		/// (inverse operation, same logic as <see cref="SerializationInfoReader.GetFont"/>).
+		/// Convert Font to a serializable string
+		/// </summary>
+		/// <param name="font"></param>
+		/// <returns></returns>
+		private static string ConvertFont(Font font)
+		{
+			FontConverter oFontConv = new FontConverter();
+			return oFontConv.ConvertToString(null,CultureInfo.InvariantCulture,font);
+		}
+
+		/// <summary>
+		/// Parses a font string created by <see cref="ConvertFont"/>
+		/// (inverse operation).
 		/// </summary>
 		private static Font ParseFont(string fontString, Font defaultValue)
 		{

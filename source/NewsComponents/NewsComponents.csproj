@@ -57,13 +57,6 @@
          SettingStore). Under net10.0 (no -windows TFM) these types are no longer in the framework,
          so the package supplies them. Runtime-Windows-only; the WinForms head runs on Windows. -->
     <PackageReference Include="Microsoft.Win32.Registry" Version="5.0.0" />
-    <!-- System.Drawing (Font/Image) for SerializationInfoReader. ConvertFont(Font) is live: the head
-         (RssBandit.Core.RssBanditPreferences) calls it to serialize font preferences. Under net10.0
-         (no -windows TFM) System.Drawing types need this package. Runtime-Windows-only (System.Drawing.Common
-         is Windows-only); recon expected SerializationInfoReader to be System.Drawing-free but it is not.
-         FOLLOW-UP: relocate ConvertFont plus the dead GetFont/GetImage/ConvertBytesToImage/ConvertImageToBytes
-         helpers to the head so the engine carries no GUI graphics dependency before a real MAUI mobile head. -->
-    <PackageReference Include="System.Drawing.Common" Version="10.0.9" />
   </ItemGroup>
 
   <!-- Self-enforcing portability assertion (MAUI Slice 0b, mirrors AssertAppServicesPortable). Runs
