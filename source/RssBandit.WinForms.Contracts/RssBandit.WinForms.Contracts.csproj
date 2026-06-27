@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0-windows10.0.19041</TargetFramework>
+    <!-- WinForms-coupled interface contracts split out of RssBandit.AppServices (MAUI Slice 0)
+         so AppServices itself can stay portable (net10.0). This project intentionally keeps
+         WinForms: it is NOT listed as portable in ..\Directory.Build.props, so it inherits
+         UseWindowsForms/UseWPF/win-x86 from there. -->
+    <Nullable>enable</Nullable>
+    <AssemblyOriginatorKeyFile>..\rssbandit.org.snk</AssemblyOriginatorKeyFile>
+    <SignAssembly>true</SignAssembly>
+    <Title>RSS Bandit WinForms Application Service Contracts</Title>
+    <Description>WinForms-coupled interfaces split out of RssBandit.AppServices</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\Common\VersionInfo.cs">
+      <Link>VersionInfo.cs</Link>
+    </Compile>
+    <None Include="..\rssbandit.org.snk">
+      <Link>rssbandit.org.snk</Link>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- The portable contracts these WinForms interfaces extend. ICoreApplication's
+         `using NewsComponents;` resolves IChannelProcessor, which is defined in the
+         NewsComponents namespace inside the AppServices assembly, so the AppServices
+         reference fully satisfies it; this contracts project must NOT take a backwards
+         dependency on the NewsComponents engine. -->
+    <ProjectReference Include="..\RssBandit.AppServices\RssBandit.AppServices.csproj" />
+  </ItemGroup>
+</Project>

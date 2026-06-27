@@ -15,12 +15,17 @@
     <NoWarn>1701;1702;1705;1591;NU1701</NoWarn>
 
     <IsLegacyProject>$(MSBuildProjectName.Equals('RssBandit'))</IsLegacyProject>
-    <IsPackageProject>$(MSBuildProjectName.Contains('.Package'))</IsPackageProject>    
+    <IsPackageProject>$(MSBuildProjectName.Contains('.Package'))</IsPackageProject>
     <LangVersion>preview</LangVersion>
-    
-    <UseWPF>true</UseWPF>
-    <UseWindowsForms>true</UseWindowsForms>
-    <RuntimeIdentifiers>win-x86</RuntimeIdentifiers>
+
+    <!-- Portable (MAUI-shareable) projects build as plain net10.0: no WinForms/WPF/win-x86,
+         so they can be referenced by the future MAUI heads. To make another project portable
+         (MAUI Slice 0b/D add NewsComponents / RssBandit.ViewModels), append one more `or` clause. -->
+    <IsPortableProject Condition="'$(MSBuildProjectName)' == 'RssBandit.AppServices'">true</IsPortableProject>
+
+    <UseWPF Condition="'$(IsPortableProject)' != 'true'">true</UseWPF>
+    <UseWindowsForms Condition="'$(IsPortableProject)' != 'true'">true</UseWindowsForms>
+    <RuntimeIdentifiers Condition="'$(IsPortableProject)' != 'true'">win-x86</RuntimeIdentifiers>
   </PropertyGroup>
   
   <ItemGroup>

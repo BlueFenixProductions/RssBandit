@@ -1,6 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net10.0-windows10.0.19041</TargetFramework>
+    <!-- Portable contracts layer (MAUI Slice 0): pure net10.0 with NO Windows coupling, so it
+         can be shared with the MAUI heads. The WinForms-coupled interfaces were split out into
+         RssBandit.WinForms.Contracts. WinForms/WPF/win-x86 are opted out via the IsPortableProject
+         gate in ..\Directory.Build.props (this project is listed there); the AssertAppServicesPortable
+         target below fails the build if that coupling ever returns. -->
+    <TargetFramework>net10.0</TargetFramework>
     <!-- Nullable enabled on the AppServices contracts layer first (beachhead). The UI
          and engine projects stay non-nullable for now; full enablement is a separate
          incremental effort (~8k warnings across RssBandit + NewsComponents). -->
@@ -19,4 +24,14 @@
       <Link>rssbandit.org.snk</Link>
     </None>
   </ItemGroup>
+
+  <!-- Self-enforcing portability assertion (MAUI Slice 0). Runs in CI because the RssBandit
+       closure build includes this project. Fails the build if AppServices ever regains a
+       -windows TFM or enables WinForms/WPF. -->
+  <Target Name="AssertAppServicesPortable" BeforeTargets="Build">
+    <Error Condition="$(TargetFramework.Contains('windows'))"
+           Text="RssBandit.AppServices must stay portable (net10.0, no -windows TFM)." />
+    <Error Condition="'$(UseWindowsForms)' == 'true' or '$(UseWPF)' == 'true'"
+           Text="RssBandit.AppServices must not enable WinForms/WPF (it is the portable contracts layer)." />
+  </Target>
 </Project>
