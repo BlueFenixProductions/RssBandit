@@ -15,11 +15,22 @@ namespace RssBandit.ViewModels
     {
         private readonly IReadStateItem _item;
 
-        public FeedItemViewModel(IReadStateItem item)
+        public FeedItemViewModel(IReadStateItem item, string? html = null, string? link = null)
         {
             _item = item ?? throw new ArgumentNullException(nameof(item));
             _isRead = item.BeenRead;
+            Html = html ?? string.Empty;
+            Link = link;
         }
+
+        /// <summary>
+        /// Pre-rendered article HTML for the detail view (the engine renders this in the host layer,
+        /// keeping this portable model engine-free). Empty when not supplied.
+        /// </summary>
+        public string Html { get; }
+
+        /// <summary>The item's source link, used as the detail WebView's base URL. Null when not supplied.</summary>
+        public string? Link { get; }
 
         /// <summary>The unique identifier of the item, projected from the model.</summary>
         public string Id => _item.Id;

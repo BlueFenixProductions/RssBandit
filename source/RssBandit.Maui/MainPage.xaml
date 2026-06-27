@@ -22,7 +22,8 @@
             <Label Text="{Binding Status}" FontSize="13" TextColor="Gray" VerticalOptions="Center" />
         </HorizontalStackLayout>
 
-        <CollectionView Grid.Row="2" ItemsSource="{Binding Node.Items}">
+        <CollectionView Grid.Row="2" ItemsSource="{Binding Node.Items}"
+                        SelectionMode="Single" SelectionChanged="OnItemSelected">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="vm:FeedItemViewModel">
                     <Grid Padding="0,10" ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">

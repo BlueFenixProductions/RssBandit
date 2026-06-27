@@ -6,8 +6,10 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Maui.ApplicationModel;
 using Microsoft.Maui.Storage;
+using System.Xml.Xsl;
 using NewsComponents;
 using NewsComponents.Feed;
+using NewsComponents.Formatting;
 using RssBandit.ViewModels;
 
 namespace RssBandit.Maui;
@@ -23,6 +25,9 @@ public partial class FeedListViewModel : ObservableObject
     private const string FeedUrl = "https://hnrss.org/frontpage";
 
     private FeedSource? _source;
+
+    // One formatter reused across items -- it caches the compiled XSLT templates.
+    private readonly NewsItemFormatter _formatter = new();
 
     public FeedNodeViewModel Node { get; } = new();
 
@@ -65,11 +70,21 @@ public partial class FeedListViewModel : ObservableObject
         source.OnAllAsyncRequestsCompleted += (s, e) =>
         {
             IList<INewsItem> items = source.GetCachedItemsForFeed(FeedUrl);
+            // Render each item's article HTML here on the background thread (XSLT transform is cheap
+            // and the compiled template is cached); then marshal only the collection mutation to the UI.
+            var built = new List<FeedItemViewModel>(items.Count);
+            foreach (var item in items)
+            {
+                string html;
+                try { html = _formatter.ToHtml(string.Empty, item, new XsltArgumentList()); }
+                catch { html = item.Content ?? string.Empty; }
+                built.Add(new FeedItemViewModel(new NewsItemReadStateAdapter(item), html, item.Link));
+            }
             MainThread.BeginInvokeOnMainThread(() =>
             {
                 Node.Items.Clear();
-                foreach (var item in items)
-                    Node.Items.Add(new FeedItemViewModel(new NewsItemReadStateAdapter(item)));
+                foreach (var vm in built)
+                    Node.Items.Add(vm);
                 Status = items.Count == 0
                     ? "Completed, but no items (check connectivity)."
                     : $"{items.Count} items loaded.";
