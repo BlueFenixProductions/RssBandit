@@ -19,6 +19,7 @@ using NewsComponents.Utils;
 using RssBandit.Common;
 using RssBandit.Resources;
 using RssBandit.SpecialFeeds;
+using RssBandit.ViewModels;
 using RssBandit.WinGui.Controls;
 using RssBandit.WinGui.Dialogs;
 using RssBandit.WinGui.Interfaces;
@@ -2598,9 +2599,14 @@ namespace RssBandit.WinGui.Forms
             {
                 var n = (INewsItem) item.Key;
                 if (n != null)
-                    ApplyStyles(item, n.BeenRead, n.HasNewComments);
+                    ApplyStyles(item, StyleIsReadViaViewModel(n), n.HasNewComments);
             }
         }
+
+        // MAUI Phase E1: the read/unread font decision flows through the shared FeedItemViewModel.
+        // Transient (construct-and-read) so it can't drift from the live INewsItem.BeenRead.
+        private static bool StyleIsReadViaViewModel(INewsItem item)
+            => new FeedItemViewModel(new NewsItemReadStateAdapter(item)).IsRead;
 
         private void ApplyStyles(ThreadedListViewItem item, bool beenRead)
         {

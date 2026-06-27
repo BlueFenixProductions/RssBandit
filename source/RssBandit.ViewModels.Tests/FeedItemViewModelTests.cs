@@ -64,6 +64,20 @@ namespace RssBandit.ViewModels.Tests
         }
 
         [Test]
+        public void StyleDecision_IsRead_EqualsModelBeenRead()
+        {
+            // MAUI Phase E1 invariant: the WinForms head substitutes a transient
+            // FeedItemViewModel.IsRead for the read/unread font decision (the beenRead styling
+            // argument). Constructing the VM and reading IsRead must therefore be provably equal to
+            // the model's BeenRead at that instant, for both states.
+            foreach (var beenRead in new[] { true, false })
+            {
+                var fake = new FakeReadStateItem { BeenRead = beenRead };
+                Assert.That(new FeedItemViewModel(fake).IsRead, Is.EqualTo(fake.BeenRead));
+            }
+        }
+
+        [Test]
         public void Title_Date_Id_ProjectModel()
         {
             var date = new DateTime(2024, 1, 2, 3, 4, 5, DateTimeKind.Utc);

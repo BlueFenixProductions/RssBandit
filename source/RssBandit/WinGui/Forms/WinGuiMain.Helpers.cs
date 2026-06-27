@@ -1028,7 +1028,7 @@ namespace RssBandit.WinGui.Forms
             lvi.ImageIndex = imgOffset;
 
             // apply leading fonts/colors
-            ApplyStyles(lvi, newsItem.BeenRead, newsItem.HasNewComments);
+            ApplyStyles(lvi, StyleIsReadViaViewModel(newsItem), newsItem.HasNewComments);
 
             lvi.HasChilds = hasChilds;
             lvi.IsComment = authorInTopicColumn;
