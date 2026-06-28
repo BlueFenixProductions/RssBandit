@@ -65,33 +65,36 @@ namespace RssBandit.ViewModels.Tests
         }
 
         [Test]
-        public void RenderScript_WrapsBodyAsRenderArticleCall()
+        public void RenderScript_EmitsRenderArticleWithBodyThenBase()
         {
-            var js = ReaderHtml.RenderScript("<p>hi</p>");
-            Assert.That(js, Does.StartWith("renderArticle("));
-            Assert.That(js, Does.EndWith(")"));
-            // The argument round-trips back to the body (safe encoding, exact escaping unimportant).
-            var arg = js.Substring("renderArticle(".Length, js.Length - "renderArticle(".Length - 1);
-            Assert.That(JsonSerializer.Deserialize<string>(arg), Is.EqualTo("<p>hi</p>"));
+            var body = "<p>hi</p>";
+            var url = "https://chris.pelatari.com/posts/x";
+            // The exact call the WebView evaluates: body then base, both JSON-encoded so neither can break out.
+            Assert.That(ReaderHtml.RenderScript(body, url),
+                Is.EqualTo($"renderArticle({JsonSerializer.Serialize(body)},{JsonSerializer.Serialize(url)})"));
         }
 
         [Test]
-        public void RenderScript_NeutralisesScriptBreakoutAndRoundTrips()
+        public void RenderScript_NeutralisesScriptBreakout()
         {
-            var body = "</script><img src=x onerror=alert('\"x\"')>";
-            var js = ReaderHtml.RenderScript(body);
+            var js = ReaderHtml.RenderScript("</script><img src=x onerror=alert(1)>", "https://x/p");
             // Must not carry a raw </script> that could close a hosting script element.
             Assert.That(js, Does.Not.Contain("</script>"));
-            var arg = js.Substring("renderArticle(".Length, js.Length - "renderArticle(".Length - 1);
-            Assert.That(JsonSerializer.Deserialize<string>(arg), Is.EqualTo(body));
         }
 
         [Test]
-        public void RenderScript_NullBody_RendersEmpty()
+        public void RenderScript_NullArgs_EmitEmptyStrings()
         {
-            var js = ReaderHtml.RenderScript(null);
-            var arg = js.Substring("renderArticle(".Length, js.Length - "renderArticle(".Length - 1);
-            Assert.That(JsonSerializer.Deserialize<string>(arg), Is.EqualTo(string.Empty));
+            Assert.That(ReaderHtml.RenderScript(null, null), Is.EqualTo("renderArticle(\"\",\"\")"));
+        }
+
+        [Test]
+        public void BuildShell_AbsolutizesImagesAndHidesBrokenOnes()
+        {
+            var shell = Shell();
+            Assert.That(shell, Does.Contain("new URL("), "img src must be absolutized against the article base.");
+            Assert.That(shell, Does.Contain("addEventListener('error'"), "broken images must be caught (capturing).");
+            Assert.That(shell, Does.Contain("display='none'"), "broken images must be hidden.");
         }
     }
 }

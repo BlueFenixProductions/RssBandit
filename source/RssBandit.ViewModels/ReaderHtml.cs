@@ -55,7 +55,10 @@ function highlightAll(){
     hljs.highlightElement(code);
   });
 }
-function renderArticle(html){var c=document.getElementById('content');if(!c)return;var d=new DOMParser().parseFromString(html||'','text/html');c.innerHTML=(d&&d.body)?d.body.innerHTML:(html||'');highlightAll();}";
+function renderArticle(html,base){var c=document.getElementById('content');if(!c)return;var d=new DOMParser().parseFromString(html||'','text/html');if(base){d.querySelectorAll('img[src]').forEach(function(im){try{im.setAttribute('src',new URL(im.getAttribute('src'),base).href);}catch(e){}});}c.innerHTML=(d&&d.body)?d.body.innerHTML:(html||'');highlightAll();}
+/* Hide images that fail to load (404 feeds, dead links, broken paths) so they don't clutter the read.
+   Capturing listener on document because 'error' doesn't bubble; set once, covers every rendered article. */
+document.addEventListener('error',function(e){if(e.target&&e.target.tagName==='IMG')e.target.style.display='none';},true);";
 
         /// <summary>
         /// Builds the load-once reader shell. All assets are inlined (no <c>file://</c> / <c>android_asset</c>),
@@ -90,10 +93,13 @@ function renderArticle(html){var c=document.getElementById('content');if(!c)retu
 
         /// <summary>
         /// The per-article JS that swaps <paramref name="bodyHtml"/> into the loaded shell and re-highlights.
-        /// The body is JSON-encoded (the default encoder escapes <c>&lt;</c>/<c>&gt;</c>/<c>&amp;</c>/quotes),
-        /// so it cannot break out of the call and carries no raw <c>&lt;/script&gt;</c>.
+        /// <paramref name="baseUrl"/> (the article's link) is used to absolutize relative <c>&lt;img&gt;</c>
+        /// sources — the per-article base the Flyweight shell can't carry, since one shell serves many
+        /// articles. Both args are JSON-encoded (the default encoder escapes <c>&lt;</c>/<c>&gt;</c>/<c>&amp;</c>/quotes),
+        /// so neither can break out of the call and the body carries no raw <c>&lt;/script&gt;</c>.
         /// </summary>
-        public static string RenderScript(string? bodyHtml)
-            => "renderArticle(" + JsonSerializer.Serialize(bodyHtml ?? string.Empty) + ")";
+        public static string RenderScript(string? bodyHtml, string? baseUrl = null)
+            => "renderArticle(" + JsonSerializer.Serialize(bodyHtml ?? string.Empty)
+               + "," + JsonSerializer.Serialize(baseUrl ?? string.Empty) + ")";
     }
 }

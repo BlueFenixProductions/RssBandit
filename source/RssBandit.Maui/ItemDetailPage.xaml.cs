@@ -63,7 +63,7 @@ public partial class ItemDetailPage : ContentPage
     {
         MarkRead();
         UpdateChrome();
-        await ArticleView.EvaluateJavaScriptAsync(ReaderHtml.RenderScript(Current.Html));
+        await ArticleView.EvaluateJavaScriptAsync(ReaderHtml.RenderScript(Current.Html, Current.Link));
     }
 
     private void MarkRead()

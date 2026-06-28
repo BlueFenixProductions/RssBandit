@@ -1,6 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-	<application android:allowBackup="true" android:icon="@mipmap/appicon" android:roundIcon="@mipmap/appicon_round" android:supportsRtl="true"></application>
+	<!-- usesCleartextTraffic: a reader shows arbitrary old web content, much of it (pre-2015 blog images,
+	     the WordPress-era posts) served over plain http. Android 9+ blocks cleartext in the WebView by
+	     default, which would hide those images. This re-permits them. The .NET HttpClient that fetches
+	     feeds already bypasses this policy, so the only thing it changes is WebView image loads. -->
+	<application android:allowBackup="true" android:icon="@mipmap/appicon" android:roundIcon="@mipmap/appicon_round" android:supportsRtl="true" android:usesCleartextTraffic="true"></application>
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.INTERNET" />
 </manifest>
