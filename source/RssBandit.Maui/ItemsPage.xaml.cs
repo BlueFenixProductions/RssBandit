@@ -38,7 +38,14 @@ public partial class ItemsPage : ContentPage
     async void OnItemSelected(object sender, SelectionChangedEventArgs e)
     {
         if (e.CurrentSelection.FirstOrDefault() is FeedItemViewModel item)
-            await Navigation.PushAsync(new ItemDetailPage(item));
+        {
+            // Hand the reader the whole feed + the tapped index so it can page Prev/Next through the
+            // session, reusing the loaded shell (the Flyweight) across articles.
+            var items = _feed.Node.Items;
+            int idx = items.IndexOf(item);
+            if (idx >= 0)
+                await Navigation.PushAsync(new ItemDetailPage(items, idx));
+        }
         ((CollectionView)sender).SelectedItem = null;
     }
 }

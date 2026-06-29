@@ -3,5 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RssBandit.Maui.ItemDetailPage"
              Title="Article">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="PrevButton" Text="◀ Prev" Clicked="OnPrev" />
+        <ToolbarItem x:Name="NextButton" Text="Next ▶" Clicked="OnNext" />
+    </ContentPage.ToolbarItems>
     <WebView x:Name="ArticleView" BackgroundColor="#1A1B26" />
 </ContentPage>
